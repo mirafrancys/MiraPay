@@ -1,0 +1,61 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="logo">MiraPay</div>
+    <nav class="user-nav">
+      <span class="user-name">John Doe</span>
+      <div class="avatar">JD</div>
+    </nav>
+  </header>
+
+  <main class="dashboard-content">
+    <section class="overview">
+      <h1>Bienvenue sur votre tableau de bord</h1>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="label">Total Envoyé</span>
+          <span class="value">$1,375.50</span>
+        </div>
+        <div class="stat-card">
+          <span class="label">Transactions</span>
+          <span class="value">24</span>
+        </div>
+        <div class="stat-card">
+          <span class="label">Statut Compte</span>
+          <span class="value verified">Vérifié</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="recent-transactions">
+      <div class="section-header">
+        <h2>Transactions Récentes</h2>
+        <button class="btn-all">Voir tout</button>
+      </div>
+
+      <table class="transaction-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Montant</th>
+            <th>Devise</th>
+            <th>Statut</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tx of transactions">
+            <td>#{{tx.id}}</td>
+            <td>{{tx.amount | number:'1.2-2'}}</td>
+            <td>{{tx.currency}}</td>
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(tx.status)">
+                {{tx.status}}
+              </span>
+            </td>
+            <td>{{tx.date | date:'shortDate'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>

@@ -1,0 +1,17 @@
+{
+  "name": "mirapay-backend-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": ["mirapay-backend"],
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "options": {
+        "jestConfig": "apps/mirapay-backend-e2e/jest.config.cts",
+        "passWithNoTests": true
+      },
+      "dependsOn": ["mirapay-backend:build", "mirapay-backend:serve"]
+    }
+  }
+}
