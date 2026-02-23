@@ -43,7 +43,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tx of transactions">
+          @for (tx of transactions; track tx.id) {
+          <tr>
             <td>#{{tx.id}}</td>
             <td>{{tx.amount | number:'1.2-2'}}</td>
             <td>{{tx.currency}}</td>
@@ -54,6 +55,7 @@
             </td>
             <td>{{tx.date | date:'shortDate'}}</td>
           </tr>
+          }
         </tbody>
       </table>
     </section>
