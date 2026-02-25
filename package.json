@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"npm run start:front\" \"npm run start:back\"",
+    "start": "concurrently \"npm run start:back\" \"npm run start:front\"",
     "start:front": "nx serve mirapay-frontend",
     "start:back": "nx serve mirapay-backend",
+    "build:shared": "nx run shared-models:build",
+    "build:back": "nx run shared-models:build && nx run mirapay-backend:build",
+    "clean": "rimraf dist",
+    "clean:build": "rimraf dist && nx run shared-models:build",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
@@ -81,6 +85,7 @@
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/swagger": "^11.2.6",
     "@prisma/adapter-pg": "7.4.1",
     "@prisma/client": "^7.4.1",
     "axios": "^1.6.0",
@@ -88,6 +93,7 @@
     "express": "^4.21.2",
     "pg": "8.18.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "swagger-ui-express": "^5.0.1"
   }
 }

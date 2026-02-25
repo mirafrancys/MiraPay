@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NgClass, DatePipe, DecimalPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [NgClass, DatePipe, DecimalPipe, RouterModule],
+  imports: [CommonModule, RouterModule],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
