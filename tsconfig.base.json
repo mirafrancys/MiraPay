@@ -14,6 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+
     "paths": {
       "@mirapay/shared-models": ["libs/shared-models/src/index.ts"]
     }

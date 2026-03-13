@@ -19,12 +19,7 @@
             "input": "apps/mirapay-frontend/public"
           }
         ],
-        "styles": ["apps/mirapay-frontend/src/styles.scss"],
-        "server": "apps/mirapay-frontend/src/main.server.ts",
-        "ssr": {
-          "entry": "apps/mirapay-frontend/src/server.ts"
-        },
-        "outputMode": "server"
+        "styles": ["apps/mirapay-frontend/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -48,7 +43,7 @@
           "sourceMap": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "development"
     },
     "serve": {
       "continuous": true,

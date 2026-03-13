@@ -1,39 +1,26 @@
 import 'dotenv/config';
-/**
- * MiraPay Backend — NestJS API
- */
+import express from 'express';
+import cors from 'cors';
+import routes from './app/routes';
 
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app/app.module';
+const app = express();
+const port = process.env.PORT || 3000;
+const globalPrefix = 'api';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+// Middlewares
+app.use(cors());
+app.use(express.json());
 
-  // Préfixe global pour toutes les routes : /api/...
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
+// Routes
+app.use(`/${globalPrefix}`, routes);
 
-  // Configuration de Swagger (documentation interactive)
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle('MiraPay API')
-    .setDescription("Documentation de l'API backend MiraPay")
-    .setVersion('1.0')
-    .build();
+// Status route
+app.get('/', (req, res) => {
+  res.send({ message: 'MiraPay API is running' });
+});
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api/docs', app, document);
-
-  const port = process.env.PORT || 3000;
-  await app.listen(port);
-
-  Logger.log(
+app.listen(port, () => {
+  console.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`,
   );
-  Logger.log(
-    `📚 Swagger documentation:      http://localhost:${port}/api/docs`,
-  );
-}
-
-bootstrap();
+});

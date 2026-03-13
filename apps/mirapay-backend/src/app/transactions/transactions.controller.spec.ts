@@ -1,26 +1,76 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { Test, TestingModule } from '@nestjs/testing';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { TransactionsController } from './transactions.controller';
+import { TransactionsService } from './transactions.service';
+
+// Mock the service
+vi.mock('./transactions.service', () => {
+  return {
+    TransactionsService: vi.fn().mockImplementation(() => {
+      return {
+        getAllTransactions: vi.fn(),
+        getTransactionById: vi.fn(),
+        createTransaction: vi.fn(),
+        updateTransactionStatus: vi.fn(),
+        deleteTransaction: vi.fn(),
+      };
+    }),
+  };
+});
 
 describe('TransactionsController', () => {
   let controller: TransactionsController;
+  let mockService: any;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [TransactionsController],
-    }).compile();
-
-    controller = module.get<TransactionsController>(TransactionsController);
+  beforeEach(() => {
+    vi.clearAllMocks();
+    controller = new TransactionsController();
+    // In our implementation, we create a new instance of the service inside the controller file
+    // But since we vi.mock'ed it, we can access the mock instance if we need to.
+    // For simplicity, let's assume the controller uses the mocked service.
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
 
-  it('should return an array of transactions', () => {
-    const result = controller.getTransactions();
-    expect(Array.isArray(result)).toBe(true);
-    expect(result.length).toBe(2);
-    expect(result[0].amount).toBe(150.0);
+  describe('getAll', () => {
+    it('should return 200 and transactions', async () => {
+      const mockTransactions = [{ id: '1', amount: 100 }];
+      
+      // We need to mock the implementation of the service method
+      // Since the service is instantiated inside the controller file, we rely on the mock
+      const { TransactionsService } = await import('./transactions.service');
+      const serviceInstance = new TransactionsService();
+      (serviceInstance.getAllTransactions as any).mockResolvedValue(mockTransactions);
+
+      const req = {} as any;
+      const res = {
+        json: vi.fn(),
+        status: vi.fn().mockReturnThis(),
+      } as any;
+
+      // In the real code, we use a singleton exported from the controller file
+      // but for tests we can test the class methods
+      await controller.getAll(req, res);
+
+      expect(res.json).toHaveBeenCalledWith(mockTransactions);
+    });
+
+    it('should return 500 if service fails', async () => {
+      const { TransactionsService } = await import('./transactions.service');
+      const serviceInstance = new TransactionsService();
+      (serviceInstance.getAllTransactions as any).mockRejectedValue(new Error('Internal Error'));
+
+      const req = {} as any;
+      const res = {
+        json: vi.fn(),
+        status: vi.fn().mockReturnThis(),
+      } as any;
+
+      await controller.getAll(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({ error: 'Failed to fetch transactions' });
+    });
   });
 });

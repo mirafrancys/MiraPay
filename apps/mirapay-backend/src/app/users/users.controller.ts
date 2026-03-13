@@ -1,44 +1,62 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Request, Response } from 'express';
 import { UsersService } from './users.service';
-import { Prisma } from '@prisma/client';
 
-@Controller('users')
+const usersService = new UsersService();
+
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
-
-  @Post()
-  create(@Body() createUserDto: Prisma.UserCreateInput) {
-    return this.usersService.create(createUserDto);
+  async getAll(req: Request, res: Response) {
+    try {
+      const users = await usersService.findAll();
+      res.json(users);
+    } catch (error) {
+      res.status(500).json({ error: (error as Error).message });
+    }
   }
 
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async getOne(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const user = await usersService.findOne(id);
+      if (!user) {
+        return res.status(404).json({ error: `User with ID ${id} not found` });
+      }
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: (error as Error).message });
+    }
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  async create(req: Request, res: Response) {
+    try {
+      const user = await usersService.create(req.body);
+      res.status(201).json(user);
+    } catch (error) {
+      if ((error as Error).message === 'Email already exists') {
+        return res.status(409).json({ error: (error as Error).message });
+      }
+      res.status(500).json({ error: (error as Error).message });
+    }
   }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateUserDto: Prisma.UserUpdateInput,
-  ) {
-    return this.usersService.update(id, updateUserDto);
+  async update(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const user = await usersService.update(id, req.body);
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: (error as Error).message });
+    }
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
+  async delete(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      await usersService.remove(id);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ error: (error as Error).message });
+    }
   }
 }
+
+export const usersController = new UsersController();
