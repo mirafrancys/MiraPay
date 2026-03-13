@@ -1,46 +1,58 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './components/header/header';
+import { SidebarComponent } from './components/sidebar/sidebar';
+import { FooterComponent } from './components/footer/footer';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    HeaderComponent, 
+    SidebarComponent, 
+    FooterComponent
+  ],
   selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
+  template: `
+    <div class="app-container">
+      <app-header></app-header>
+      
+      <div class="main-layout">
+        <app-sidebar class="sidebar-wrapper"></app-sidebar>
+        
+        <main class="content-area">
+          <router-outlet></router-outlet>
+        </main>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+  `,
+  styles: [`
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #f8fafc;
+    }
+    .main-layout {
+      display: flex;
+      flex: 1;
+    }
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .sidebar-wrapper {
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .sidebar-wrapper {
+        display: none;
+      }
+    }
+  `]
 })
-export class App {
-  title = 'MiraPay Dashboard';
-
-  transactions = [
-    {
-      id: '1',
-      amount: 150.0,
-      currency: 'USD',
-      status: 'COMPLETED',
-      date: new Date(),
-    },
-    {
-      id: '2',
-      amount: 25.5,
-      currency: 'EUR',
-      status: 'PENDING',
-      date: new Date(),
-    },
-    {
-      id: '3',
-      amount: 1200.0,
-      currency: 'USD',
-      status: 'COMPLETED',
-      date: new Date(),
-    },
-  ];
-
-  getStatusClass(status: string) {
-    return {
-      'status-completed': status === 'COMPLETED',
-      'status-pending': status === 'PENDING',
-      'status-failed': status === 'FAILED',
-    };
-  }
-}
+export class App {}
