@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,22 +10,22 @@ import { CommonModule } from '@angular/common';
     <div class="dashboard-page">
       <section class="overview">
         <div class="welcome-banner">
-          <h1>Bienvenue, John 👋</h1>
-          <p>Voici un aperçu de votre compte aujourd'hui.</p>
+          <h1>{{ts.translate('DASHBOARD.GREETING')}}</h1>
+          <p>{{ts.translate('DASHBOARD.SUBTITLE')}}</p>
         </div>
 
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="label">Solde Total</span>
+            <span class="label">{{ts.translate('DASHBOARD.TOTAL_BALANCE')}}</span>
             <span class="value">$12,450.00</span>
-            <span class="trend up">+2.5% cette semaine</span>
+            <span class="trend up">+2.5% {{ts.translate('DASHBOARD.TREND_WEEK')}}</span>
           </div>
           <div class="stat-card">
-            <span class="label">Total Envoyé</span>
+            <span class="label">{{ts.translate('DASHBOARD.TOTAL_SENT')}}</span>
             <span class="value">$1,375.50</span>
           </div>
           <div class="stat-card">
-            <span class="label">Transactions</span>
+            <span class="label">{{ts.translate('COMMON.TRANSACTIONS')}}</span>
             <span class="value">24</span>
           </div>
         </div>
@@ -32,18 +33,18 @@ import { CommonModule } from '@angular/common';
 
       <section class="recent-transactions">
         <div class="section-header">
-          <h2>Transactions Récentes</h2>
-          <button class="btn-text">Voir tout</button>
+          <h2>{{ts.translate('DASHBOARD.RECENT_TRANSACTIONS')}}</h2>
+          <button class="btn-text">{{ts.translate('DASHBOARD.SEE_ALL')}}</button>
         </div>
 
         <div class="table-container">
           <table class="transaction-table">
             <thead>
               <tr>
-                <th>Destinataire</th>
-                <th>Montant</th>
-                <th>Statut</th>
-                <th>Date</th>
+                <th>{{ts.translate('DASHBOARD.RECIPIENT')}}</th>
+                <th>{{ts.translate('DASHBOARD.AMOUNT')}}</th>
+                <th>{{ts.translate('DASHBOARD.STATUS')}}</th>
+                <th>{{ts.translate('DASHBOARD.DATE')}}</th>
               </tr>
             </thead>
             <tbody>
@@ -190,6 +191,8 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class DashboardComponent {
+  ts = inject(TranslationService);
+
   transactions = [
     { id: '1', user: 'Amazon.com', amount: -150.0, status: 'Completed', date: new Date() },
     { id: '2', user: 'Transfert de Marie', amount: 500.0, status: 'Completed', date: new Date() },

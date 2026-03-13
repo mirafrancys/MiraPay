@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,25 +14,25 @@ import { RouterModule } from '@angular/router';
           <li>
             <a routerLink="/dashboard" routerLinkActive="active">
               <span class="icon">📊</span>
-              <span class="label">Tableau de bord</span>
+              <span class="label">{{ts.translate('COMMON.DASHBOARD')}}</span>
             </a>
           </li>
           <li>
             <a routerLink="/transactions" routerLinkActive="active">
               <span class="icon">💸</span>
-              <span class="label">Transactions</span>
+              <span class="label">{{ts.translate('COMMON.TRANSACTIONS')}}</span>
             </a>
           </li>
           <li>
             <a routerLink="/cards" routerLinkActive="active">
               <span class="icon">💳</span>
-              <span class="label">Mes Cartes</span>
+              <span class="label">{{ts.translate('COMMON.CARDS')}}</span>
             </a>
           </li>
           <li>
             <a routerLink="/contacts" routerLinkActive="active">
               <span class="icon">👥</span>
-              <span class="label">Contacts</span>
+              <span class="label">{{ts.translate('COMMON.CONTACTS')}}</span>
             </a>
           </li>
         </ul>
@@ -39,11 +40,11 @@ import { RouterModule } from '@angular/router';
         <div class="sidebar-footer">
           <a routerLink="/settings" routerLinkActive="active">
             <span class="icon">⚙️</span>
-            <span class="label">Paramètres</span>
+            <span class="label">{{ts.translate('COMMON.SETTINGS')}}</span>
           </a>
           <a href="#" class="logout">
             <span class="icon">🚪</span>
-            <span class="label">Déconnexion</span>
+            <span class="label">{{ts.translate('COMMON.LOGOUT')}}</span>
           </a>
         </div>
       </nav>
@@ -112,4 +113,6 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  ts = inject(TranslationService);
+}

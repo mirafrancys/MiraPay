@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,13 @@ import { CommonModule } from '@angular/common';
         <div class="logo">MiraPay</div>
       </div>
       <div class="header-right">
+        <div class="language-selector">
+          <select [value]="ts.getLanguage()" (change)="onLangChange($event)">
+            <option value="fr">🇫🇷 Français</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="es">🇪🇸 Español</option>
+          </select>
+        </div>
         <div class="notifications">
           <span class="icon">🔔</span>
         </div>
@@ -46,6 +54,19 @@ import { CommonModule } from '@angular/common';
       align-items: center;
       gap: 1.5rem;
     }
+    .language-selector select {
+      padding: 0.4rem 0.6rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      font-family: inherit;
+      font-size: 0.875rem;
+      cursor: pointer;
+      outline: none;
+    }
+    .language-selector select:hover {
+      border-color: #6366f1;
+    }
     .user-profile {
       display: flex;
       align-items: center;
@@ -78,4 +99,10 @@ import { CommonModule } from '@angular/common';
     }
   `]
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  ts = inject(TranslationService);
+
+  onLangChange(event: any) {
+    this.ts.setLanguage(event.target.value);
+  }
+}

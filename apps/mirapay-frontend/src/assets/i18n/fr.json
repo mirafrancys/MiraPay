@@ -1,0 +1,24 @@
+{
+  "COMMON": {
+    "WELCOME": "Bienvenue",
+    "DASHBOARD": "Tableau de bord",
+    "TRANSACTIONS": "Transactions",
+    "CARDS": "Mes Cartes",
+    "CONTACTS": "Contacts",
+    "SETTINGS": "Paramètres",
+    "LOGOUT": "Déconnexion"
+  },
+  "DASHBOARD": {
+    "GREETING": "Bienvenue, John 👋",
+    "SUBTITLE": "Voici un aperçu de votre compte aujourd'hui.",
+    "TOTAL_BALANCE": "Solde Total",
+    "TOTAL_SENT": "Total Envoyé",
+    "TREND_WEEK": "cette semaine",
+    "RECENT_TRANSACTIONS": "Transactions Récentes",
+    "SEE_ALL": "Voir tout",
+    "RECIPIENT": "Destinataire",
+    "AMOUNT": "Montant",
+    "STATUS": "Statut",
+    "DATE": "Date"
+  }
+}
