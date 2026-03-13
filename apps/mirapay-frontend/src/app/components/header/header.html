@@ -1,0 +1,21 @@
+<header class="app-header">
+  <div class="header-left">
+    <div class="logo">MiraPay</div>
+  </div>
+  <div class="header-right">
+    <div class="language-selector">
+      <select [value]="ts.getLanguage()" (change)="onLangChange($event)">
+        <option value="fr">FR</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+      </select>
+    </div>
+    <div class="notifications">
+      <span class="icon">🔔</span>
+    </div>
+    <div class="user-profile">
+      <span class="user-name">John Doe</span>
+      <div class="avatar">JD</div>
+    </div>
+  </div>
+</header>

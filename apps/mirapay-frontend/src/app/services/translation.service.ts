@@ -1,11 +1,11 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationService {
   private currentLang = signal('fr');
-  private translations: any = { fr: {}, en: {}, es: {} };
+  private translations = signal<any>({ fr: {}, en: {}, es: {} });
 
   constructor() {
     this.loadTranslations();
@@ -13,22 +13,36 @@ export class TranslationService {
 
   async loadTranslations() {
     const langs = ['fr', 'en', 'es'];
+    const loadedTranslations: any = { fr: {}, en: {}, es: {} };
+    
     for (const lang of langs) {
       try {
-        const response = await fetch(`/assets/i18n/${lang}.json`);
-        this.translations[lang] = await response.json();
+        const response = await fetch(`/i18n/${lang}.json`);
+        if (!response.ok) throw new Error(`Status ${response.status}`);
+        loadedTranslations[lang] = await response.json();
       } catch (e) {
         console.error(`Failed to load translations for ${lang}`, e);
       }
     }
+    // Update the signal with all loaded translations
+    this.translations.set(loadedTranslations);
   }
 
-  get(key: string): string {
+  translate(key: string): string {
+    const lang = this.currentLang();
+    const data = this.translations();
+    
     const keys = key.split('.');
-    let value = this.translations[this.currentLang()];
+    let value = data[lang];
+    
     for (const k of keys) {
-      if (value) value = value[k];
+      if (value) {
+        value = value[k];
+      } else {
+        return key; // Return the key if not found
+      }
     }
+    
     return value || key;
   }
 
@@ -38,10 +52,5 @@ export class TranslationService {
 
   getLanguage() {
     return this.currentLang();
-  }
-
-  // Simple pipe-like method for templates
-  translate(key: string) {
-    return this.get(key);
   }
 }
