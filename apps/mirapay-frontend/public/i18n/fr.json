@@ -19,6 +19,46 @@
     "RECIPIENT": "Destinataire",
     "AMOUNT": "Montant",
     "STATUS": "Statut",
-    "DATE": "Date"
+    "DATE": "Date",
+    "NEW_TRANSFER": "Nouveau Transfert",
+    "AVAILABLE_BALANCE": "Solde Disponible",
+    "INCOME": "Revenus",
+    "EXPENSES": "Dépenses"
+  },
+  "FOOTER": {
+    "ALL_RIGHTS_RESERVED": "Tous droits réservés.",
+    "HELP": "Aide",
+    "PRIVACY": "Confidentialité",
+    "TERMS": "Conditions"
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Connexion",
+    "LOGIN_SUBTITLE": "Bienvenue sur MiraPay. Veuillez vous connecter.",
+    "LOGIN_ERROR": "Identifiants invalides",
+    "EMAIL_OR_USERNAME": "Email ou Nom d'utilisateur",
+    "EMAIL_PLACEHOLDER": "votre@email.com",
+    "PASSWORD": "Mot de passe",
+    "PASSWORD_PLACEHOLDER": "••••••••",
+    "CONNECTING": "Connexion en cours...",
+    "CONNECT_BTN": "Se connecter",
+    "NO_ACCOUNT": "Pas encore de compte ?",
+    "REGISTER_HERE": "Inscrivez-vous ici",
+    "REGISTER_TITLE": "Créer un compte",
+    "REGISTER_SUBTITLE": "Rejoignez MiraPay en quelques secondes.",
+    "FIRST_NAME": "Prénom",
+    "LAST_NAME": "Nom",
+    "USERNAME": "Nom d'utilisateur",
+    "EMAIL": "Email",
+    "PHONE": "Téléphone",
+    "ROLE": "Rôle",
+    "SELECT_ROLE": "Sélectionnez un rôle",
+    "ADDRESS": "Adresse",
+    "CITY": "Ville",
+    "COUNTRY": "Pays",
+    "REGISTERING": "Création en cours...",
+    "REGISTER_BTN": "S'inscrire",
+    "ALREADY_ACCOUNT": "Déjà un compte ?",
+    "LOGIN_HERE": "Connectez-vous ici",
+    "GO_TO_LOGIN": "Aller à la page de connexion"
   }
 }

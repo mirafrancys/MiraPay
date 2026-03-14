@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { TranslationGateway } from '../../../cores/gateways/translation.gateway';
+import { TranslationService } from '../../../cores/services/translation.service';
 import { AuthGateway } from '../../../cores/gateways/auth.gateway';
 
 @Component({
@@ -12,7 +12,7 @@ import { AuthGateway } from '../../../cores/gateways/auth.gateway';
   styleUrl: './sidebar.scss'
 })
 export class SidebarComponent {
-  ts = inject(TranslationGateway);
+  ts = inject(TranslationService);
   private authService = inject(AuthGateway);
   private router = inject(Router);
 

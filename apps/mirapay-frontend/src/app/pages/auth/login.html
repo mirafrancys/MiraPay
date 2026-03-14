@@ -2,8 +2,8 @@
   <div class="auth-card">
     <div class="auth-header">
       <img src="/images/logo.png" alt="MiraPay Logo" class="auth-logo">
-      <h2>Connexion</h2>
-      <p>Bienvenue sur MiraPay. Veuillez vous connecter.</p>
+      <h2>{{ts.translate('AUTH.LOGIN_TITLE')}}</h2>
+      <p>{{ts.translate('AUTH.LOGIN_SUBTITLE')}}</p>
     </div>
 
     <div class="auth-error" *ngIf="errorMessage">
@@ -12,7 +12,7 @@
 
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="auth-form">
       <div class="form-group">
-        <label for="identifier">Email ou Nom d'utilisateur</label>
+        <label for="identifier">{{ts.translate('AUTH.EMAIL_OR_USERNAME')}}</label>
         <input 
           type="text" 
           id="identifier" 
@@ -20,12 +20,12 @@
           [(ngModel)]="credentials.emailOrUsername" 
           required
           class="form-control"
-          placeholder="votre@email.com"
+          [placeholder]="ts.translate('AUTH.EMAIL_PLACEHOLDER')"
         />
       </div>
 
       <div class="form-group">
-        <label for="password">Mot de passe</label>
+        <label for="password">{{ts.translate('AUTH.PASSWORD')}}</label>
         <input 
           type="password" 
           id="password" 
@@ -33,17 +33,17 @@
           [(ngModel)]="credentials.password" 
           required
           class="form-control"
-          placeholder="••••••••"
+          [placeholder]="ts.translate('AUTH.PASSWORD_PLACEHOLDER')"
         />
       </div>
 
       <button type="submit" class="btn-primary" [disabled]="!loginForm.form.valid || isLoading">
-        {{ isLoading ? 'Connexion en cours...' : 'Se connecter' }}
+        {{ isLoading ? ts.translate('AUTH.CONNECTING') : ts.translate('AUTH.CONNECT_BTN') }}
       </button>
     </form>
 
     <div class="auth-footer">
-      <p>Pas encore de compte ? <a routerLink="/register">Inscrivez-vous ici</a>.</p>
+      <p>{{ts.translate('AUTH.NO_ACCOUNT')}} <a routerLink="/register">{{ts.translate('AUTH.REGISTER_HERE')}}</a>.</p>
     </div>
   </div>
 </div>

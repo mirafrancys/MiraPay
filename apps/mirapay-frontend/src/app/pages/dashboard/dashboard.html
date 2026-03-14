@@ -1,0 +1,91 @@
+<div class="dashboard-page">
+  <section class="overview">
+    <div class="welcome-header">
+      <div class="welcome-text">
+        <h1>{{ts.translate('DASHBOARD.GREETING')}}</h1>
+        <p>{{ts.translate('DASHBOARD.SUBTITLE')}}</p>
+      </div>
+      <div class="quick-actions">
+        <button class="btn-primary">
+          <span class="icon">➕</span>
+          {{ts.translate('DASHBOARD.NEW_TRANSFER')}}
+        </button>
+      </div>
+    </div>
+
+    <div class="dashboard-hero">
+      <div class="hero-card">
+        <div class="card-content">
+          <span class="card-label">{{ts.translate('DASHBOARD.AVAILABLE_BALANCE')}}</span>
+          <h2 class="card-value">$12,450.00</h2>
+          <div class="card-meta">
+            <span class="card-number">**** **** **** 4582</span>
+            <span class="card-expiry">12/28</span>
+          </div>
+        </div>
+        <img src="/images/card.png" alt="Card Background" class="card-bg-img">
+      </div>
+
+      <div class="stats-mini">
+        <div class="mini-card income">
+          <div class="mini-icon">📈</div>
+          <div class="mini-data">
+            <span class="mini-label">{{ts.translate('DASHBOARD.INCOME')}}</span>
+            <span class="mini-value">+$2,400.00</span>
+          </div>
+        </div>
+        <div class="mini-card expense">
+          <div class="mini-icon">📉</div>
+          <div class="mini-data">
+            <span class="mini-label">{{ts.translate('DASHBOARD.EXPENSES')}}</span>
+            <span class="mini-value">-$1,150.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="recent-transactions">
+    <div class="section-header">
+      <h2>{{ts.translate('DASHBOARD.RECENT_TRANSACTIONS')}}</h2>
+      <button class="btn-text">{{ts.translate('DASHBOARD.SEE_ALL')}}</button>
+    </div>
+
+    <div class="table-container">
+      <table class="transaction-table">
+        <thead>
+          <tr>
+            <th>{{ts.translate('DASHBOARD.RECIPIENT')}}</th>
+            <th>{{ts.translate('DASHBOARD.AMOUNT')}}</th>
+            <th>{{ts.translate('DASHBOARD.STATUS')}}</th>
+            <th>{{ts.translate('DASHBOARD.DATE')}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tx of transactions; track tx.id) {
+          <tr>
+            <td>
+              <div class="user-row">
+                <div class="avatar-sm">{{tx.user[0]}}</div>
+                <div class="user-info">
+                  <span class="user-name">{{tx.user}}</span>
+                  <span class="user-category">Shopping</span>
+                </div>
+              </div>
+            </td>
+            <td [class.negative]="tx.amount < 0" class="amount-cell">
+              {{tx.amount > 0 ? '+' : ''}}{{tx.amount | currency:'USD'}}
+            </td>
+            <td>
+              <span class="status-badge" [ngClass]="tx.status.toLowerCase()">
+                {{tx.status}}
+              </span>
+            </td>
+            <td class="date-cell">{{tx.date | date:'mediumDate'}}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

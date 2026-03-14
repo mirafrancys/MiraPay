@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthGateway } from '../../cores/gateways/auth.gateway';
+import { TranslationService } from '../../cores/services/translation.service';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,7 @@ import { AuthGateway } from '../../cores/gateways/auth.gateway';
   styleUrl: './register.scss'
 })
 export class RegisterComponent implements OnInit {
+  ts = inject(TranslationService);
   user: any = {
     firstName: '',
     lastName: '',

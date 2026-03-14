@@ -2,8 +2,8 @@
   <div class="auth-card">
     <div class="auth-header">
       <img src="/images/logo.png" alt="MiraPay Logo" class="auth-logo">
-      <h2>Créer un compte</h2>
-      <p>Rejoignez MiraPay en quelques secondes.</p>
+      <h2>{{ts.translate('AUTH.REGISTER_TITLE')}}</h2>
+      <p>{{ts.translate('AUTH.REGISTER_SUBTITLE')}}</p>
     </div>
 
     <div class="auth-error" *ngIf="errorMessage">
@@ -17,71 +17,71 @@
       
       <div class="form-row">
         <div class="form-group flex-1">
-          <label for="firstName">Prénom</label>
+          <label for="firstName">{{ts.translate('AUTH.FIRST_NAME')}}</label>
           <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required class="form-control" />
         </div>
         <div class="form-group flex-1">
-          <label for="lastName">Nom</label>
+          <label for="lastName">{{ts.translate('AUTH.LAST_NAME')}}</label>
           <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required class="form-control" />
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group flex-1">
-          <label for="username">Nom d'utilisateur</label>
+          <label for="username">{{ts.translate('AUTH.USERNAME')}}</label>
           <input type="text" id="username" name="username" [(ngModel)]="user.username" required class="form-control" />
         </div>
         <div class="form-group flex-1">
-          <label for="email">Email</label>
+          <label for="email">{{ts.translate('AUTH.EMAIL')}}</label>
           <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="form-control" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="password">Mot de passe</label>
+        <label for="password">{{ts.translate('AUTH.PASSWORD')}}</label>
         <input type="password" id="password" name="password" [(ngModel)]="user.password" required class="form-control" />
       </div>
 
       <div class="form-row">
         <div class="form-group flex-1">
-          <label for="phoneNumber">Téléphone</label>
+          <label for="phoneNumber">{{ts.translate('AUTH.PHONE')}}</label>
           <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" class="form-control" />
         </div>
         <div class="form-group flex-1">
-          <label for="roleId">Rôle</label>
+          <label for="roleId">{{ts.translate('AUTH.ROLE')}}</label>
           <select id="roleId" name="roleId" [(ngModel)]="user.roleId" class="form-control">
-            <option value="">Sélectionnez un rôle</option>
+            <option value="">{{ts.translate('AUTH.SELECT_ROLE')}}</option>
             <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
           </select>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="address">Adresse</label>
+        <label for="address">{{ts.translate('AUTH.ADDRESS')}}</label>
         <input type="text" id="address" name="address" [(ngModel)]="user.address" class="form-control" />
       </div>
 
       <div class="form-row">
         <div class="form-group flex-1">
-          <label for="city">Ville</label>
+          <label for="city">{{ts.translate('AUTH.CITY')}}</label>
           <input type="text" id="city" name="city" [(ngModel)]="user.city" class="form-control" />
         </div>
         <div class="form-group flex-1">
-          <label for="country">Pays</label>
+          <label for="country">{{ts.translate('AUTH.COUNTRY')}}</label>
           <input type="text" id="country" name="country" [(ngModel)]="user.country" class="form-control" />
         </div>
       </div>
 
       <button type="submit" class="btn-primary" [disabled]="!registerForm.form.valid || isLoading">
-        {{ isLoading ? 'Création en cours...' : 'S\\'inscrire' }}
+        {{ isLoading ? ts.translate('AUTH.REGISTERING') : ts.translate('AUTH.REGISTER_BTN') }}
       </button>
     </form>
 
     <div class="auth-footer" *ngIf="!successMessage">
-      <p>Déjà un compte ? <a routerLink="/login">Connectez-vous ici</a>.</p>
+      <p>{{ts.translate('AUTH.ALREADY_ACCOUNT')}} <a routerLink="/login">{{ts.translate('AUTH.LOGIN_HERE')}}</a>.</p>
     </div>
     <div class="auth-footer" *ngIf="successMessage">
-      <p><a routerLink="/login" class="btn-secondary">Aller à la page de connexion</a></p>
+      <p><a routerLink="/login" class="btn-secondary">{{ts.translate('AUTH.GO_TO_LOGIN')}}</a></p>
     </div>
   </div>
 </div>

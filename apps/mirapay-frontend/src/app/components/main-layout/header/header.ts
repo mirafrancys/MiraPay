@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslationGateway } from '../../../cores/gateways/translation.gateway';
+import { TranslationService } from '../../../cores/services/translation.service';
 import { AuthGateway } from '../../../cores/gateways/auth.gateway';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthGateway } from '../../../cores/gateways/auth.gateway';
   styleUrl: './header.scss'
 })
 export class HeaderComponent {
-  ts = inject(TranslationGateway);
+  ts = inject(TranslationService);
   auth = inject(AuthGateway);
 
   onLangChange(event: any) {
