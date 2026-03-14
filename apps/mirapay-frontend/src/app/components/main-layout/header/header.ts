@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslationService } from '../../services/translation.service';
-import { AuthService } from '../../services/auth.service';
+import { TranslationGateway } from '../../../cores/gateways/translation.gateway';
+import { AuthGateway } from '../../../cores/gateways/auth.gateway';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +11,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './header.scss'
 })
 export class HeaderComponent {
-  ts = inject(TranslationService);
-  auth = inject(AuthService);
+  ts = inject(TranslationGateway);
+  auth = inject(AuthGateway);
 
   onLangChange(event: any) {
     this.ts.setLanguage(event.target.value);

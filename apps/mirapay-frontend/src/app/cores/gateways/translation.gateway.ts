@@ -3,7 +3,7 @@ import { Injectable, signal, computed } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class TranslationService {
+export class TranslationGateway {
   private currentLang = signal('fr');
   private translations = signal<any>({ fr: {}, en: {}, es: {} });
 

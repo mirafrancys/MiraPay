@@ -1,0 +1,41 @@
+<aside class="app-sidebar">
+  <nav class="sidebar-nav">
+    <ul>
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <span class="icon">📊</span>
+          <span class="label">{{ts.translate('COMMON.DASHBOARD')}}</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/transactions" routerLinkActive="active">
+          <span class="icon">💸</span>
+          <span class="label">{{ts.translate('COMMON.TRANSACTIONS')}}</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/cards" routerLinkActive="active">
+          <span class="icon">💳</span>
+          <span class="label">{{ts.translate('COMMON.CARDS')}}</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/contacts" routerLinkActive="active">
+          <span class="icon">👥</span>
+          <span class="label">{{ts.translate('COMMON.CONTACTS')}}</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a routerLink="/settings" routerLinkActive="active">
+        <span class="icon">⚙️</span>
+        <span class="label">{{ts.translate('COMMON.SETTINGS')}}</span>
+      </a>
+      <a href="#" class="logout" (click)="logout($event)">
+        <span class="icon">🚪</span>
+        <span class="label">{{ts.translate('COMMON.LOGOUT')}}</span>
+      </a>
+    </div>
+  </nav>
+</aside>

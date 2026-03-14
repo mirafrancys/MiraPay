@@ -1,6 +1,9 @@
 <header class="app-header">
   <div class="header-left">
-    <img src="/images/logo.png" alt="MiraPay" class="logo-img">
+    <div class="logo-container">
+      <img src="/images/logo.png" alt="MiraPay Logo" class="logo-img">
+      <span class="logo-text">MiraPay</span>
+    </div>
   </div>
   <div class="header-right">
     <div class="language-selector">
@@ -14,8 +17,10 @@
       <span class="icon">🔔</span>
     </div>
     <div class="user-profile">
-      <span class="user-name" *ngIf="auth.currentUser()">{{ auth.currentUser().firstName }} {{ auth.currentUser().lastName }}</span>
-      <span class="user-name" *ngIf="!auth.currentUser()">Invité</span>
+      <span class="user-name" *ngIf="auth.currentUser() as user; else guest">{{ user.firstName }} {{ user.lastName }}</span>
+      <ng-template #guest>
+        <span class="user-name">Invité</span>
+      </ng-template>
       <img src="/images/user_avatar.png" alt="JD" class="avatar-img">
     </div>
   </div>

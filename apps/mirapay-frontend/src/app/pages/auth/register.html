@@ -1,0 +1,87 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <img src="/images/logo.png" alt="MiraPay Logo" class="auth-logo">
+      <h2>Créer un compte</h2>
+      <p>Rejoignez MiraPay en quelques secondes.</p>
+    </div>
+
+    <div class="auth-error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+    <div class="auth-success" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="auth-form" *ngIf="!successMessage">
+      
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="firstName">Prénom</label>
+          <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required class="form-control" />
+        </div>
+        <div class="form-group flex-1">
+          <label for="lastName">Nom</label>
+          <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required class="form-control" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="username">Nom d'utilisateur</label>
+          <input type="text" id="username" name="username" [(ngModel)]="user.username" required class="form-control" />
+        </div>
+        <div class="form-group flex-1">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="form-control" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" [(ngModel)]="user.password" required class="form-control" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="phoneNumber">Téléphone</label>
+          <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" class="form-control" />
+        </div>
+        <div class="form-group flex-1">
+          <label for="roleId">Rôle</label>
+          <select id="roleId" name="roleId" [(ngModel)]="user.roleId" class="form-control">
+            <option value="">Sélectionnez un rôle</option>
+            <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Adresse</label>
+        <input type="text" id="address" name="address" [(ngModel)]="user.address" class="form-control" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="city">Ville</label>
+          <input type="text" id="city" name="city" [(ngModel)]="user.city" class="form-control" />
+        </div>
+        <div class="form-group flex-1">
+          <label for="country">Pays</label>
+          <input type="text" id="country" name="country" [(ngModel)]="user.country" class="form-control" />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="!registerForm.form.valid || isLoading">
+        {{ isLoading ? 'Création en cours...' : 'S\\'inscrire' }}
+      </button>
+    </form>
+
+    <div class="auth-footer" *ngIf="!successMessage">
+      <p>Déjà un compte ? <a routerLink="/login">Connectez-vous ici</a>.</p>
+    </div>
+    <div class="auth-footer" *ngIf="successMessage">
+      <p><a routerLink="/login" class="btn-secondary">Aller à la page de connexion</a></p>
+    </div>
+  </div>
+</div>
