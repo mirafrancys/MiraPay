@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslationService } from '../../services/translation.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -42,7 +43,7 @@ import { TranslationService } from '../../services/translation.service';
             <span class="icon">⚙️</span>
             <span class="label">{{ts.translate('COMMON.SETTINGS')}}</span>
           </a>
-          <a href="#" class="logout">
+          <a href="#" class="logout" (click)="logout($event)">
             <span class="icon">🚪</span>
             <span class="label">{{ts.translate('COMMON.LOGOUT')}}</span>
           </a>
@@ -115,4 +116,12 @@ import { TranslationService } from '../../services/translation.service';
 })
 export class SidebarComponent {
   ts = inject(TranslationService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
+  logout(event: Event) {
+    event.preventDefault();
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }
