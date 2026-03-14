@@ -31,10 +31,11 @@ export class UsersController {
       const user = await usersService.create(req.body);
       res.status(201).json(user);
     } catch (error) {
-      if ((error as Error).message === 'Email already exists') {
-        return res.status(409).json({ error: (error as Error).message });
+      const msg = (error as Error).message;
+      if (msg === 'Email already exists' || msg === 'Username already exists') {
+        return res.status(409).json({ error: msg });
       }
-      res.status(500).json({ error: (error as Error).message });
+      res.status(500).json({ error: msg });
     }
   }
 

@@ -13,9 +13,15 @@
 }
 
 .logo-img {
-  height: 32px;
+  height: 42px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.2));
+  transition: transform 0.2s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
 }
 
 .avatar-img {

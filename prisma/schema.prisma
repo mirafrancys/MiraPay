@@ -10,13 +10,35 @@ datasource db {
   provider = "postgresql"
 }
 
+model Role {
+  id          String   @id @default(uuid())
+  name        String   @unique // ex: ADMIN, CUSTOMER, SUPPORT
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+}
+
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  username    String   @unique
+  email       String   @unique
+  password    String   // Sera encrypté (hash) avant sauvegarde
+  firstName   String
+  lastName    String
+  phoneNumber String?
+  dateOfBirth DateTime?
+  address     String?
+  city        String?
+  country     String?
+  isActive    Boolean  @default(true)
+  
+  roleId      String?
+  role        Role?    @relation(fields: [roleId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   transactions Transaction[]
 }
 
