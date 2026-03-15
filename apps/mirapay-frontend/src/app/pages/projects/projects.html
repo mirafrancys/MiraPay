@@ -1,0 +1,137 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>{{ ts.translate('COMMON.PROJECTS') }}</h1>
+    <button class="btn-primary" (click)="openModal()">
+      ➕ Créer un Projet
+    </button>
+  </div>
+
+  <!-- Modal Overlay -->
+  @if (isModalOpen()) {
+    <div class="modal-backdrop">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2>Créer un Nouveau Projet</h2>
+          <button class="btn-close" (click)="closeModal()">×</button>
+        </div>
+        
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+          <div class="modal-body">
+            <div class="form-grid">
+              <!-- Nom du Projet -->
+              <div class="form-group full-width">
+                <label for="nom">Nom du Projet *</label>
+                <input id="nom" type="text" formControlName="nom" placeholder="Ex: Refonte Site Web">
+                @if (projectForm.get('nom')?.invalid && projectForm.get('nom')?.touched) {
+                  <span class="error-text">Le nom est requis.</span>
+                }
+              </div>
+
+              <!-- Client -->
+              <div class="form-group full-width">
+                <label for="clientId">Client *</label>
+                <select id="clientId" formControlName="clientId">
+                  <option value="" disabled>Sélectionner un client</option>
+                  @for (client of clients(); track client.id) {
+                    <option [value]="client.id">{{ client.nomLegal }}</option>
+                  }
+                </select>
+                @if (projectForm.get('clientId')?.invalid && projectForm.get('clientId')?.touched) {
+                  <span class="error-text">Le client est requis.</span>
+                }
+              </div>
+
+              <!-- Type de Facturation -->
+              <div class="form-group">
+                <label for="typeFacturation">Type de Facturation *</label>
+                <select id="typeFacturation" formControlName="typeFacturation">
+                  <option value="horaire">Horaire</option>
+                  <option value="forfait">Forfait du montant</option>
+                  <option value="banqueHeures">Banque d'heures</option>
+                </select>
+              </div>
+
+              <!-- Taux Horaire -->
+              @if (projectForm.get('typeFacturation')?.value === 'horaire') {
+                <div class="form-group">
+                  <label for="tauxHoraire">Taux Horaire ($)</label>
+                  <input id="tauxHoraire" type="number" formControlName="tauxHoraire" placeholder="Ex: 75">
+                </div>
+              }
+
+              <!-- Montant Forfait -->
+              @if (projectForm.get('typeFacturation')?.value === 'forfait') {
+                <div class="form-group">
+                  <label for="montantForfait">Montant Forfait ($)</label>
+                  <input id="montantForfait" type="number" formControlName="montantForfait" placeholder="Ex: 5000">
+                </div>
+              }
+
+              <!-- Budget Heures -->
+              @if (projectForm.get('typeFacturation')?.value === 'banqueHeures') {
+                <div class="form-group">
+                  <label for="heuresBanqueTotales">Total Heures Banquées</label>
+                  <input id="heuresBanqueTotales" type="number" formControlName="heuresBanqueTotales" placeholder="Ex: 50">
+                </div>
+              }
+
+              <!-- Statut -->
+              <div class="form-group">
+                <label for="statut">Statut</label>
+                <select id="statut" formControlName="statut">
+                  <option value="brouillon">Brouillon</option>
+                  <option value="enCours">En cours</option>
+                  <option value="enPause">En pause</option>
+                  <option value="termine">Terminé</option>
+                </select>
+              </div>
+
+              <!-- Date Début -->
+              <div class="form-group">
+                <label for="dateDebut">Date Début *</label>
+                <input id="dateDebut" type="date" formControlName="dateDebut">
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
+            <button type="submit" class="btn-primary" [disabled]="projectForm.invalid">Sauvegarder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- List Table -->
+  <div class="list-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nom du Projet</th>
+          <th>Client</th>
+          <th>Taux Horaire</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (project of projects(); track project.id) {
+          <tr>
+            <td class="font-bold">{{ project.nom }}</td>
+            <td>{{ project.client?.nomLegal }}</td>
+            <td>{{ project.tauxHoraire ? (project.tauxHoraire | currency:'CAD') : 'N/A' }}</td>
+            <td>
+              <span style="padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; background: #dff6dd; color: #1e4620;">
+                {{ project.statut }}
+              </span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="empty-state">Aucun projet trouvé.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

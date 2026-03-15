@@ -1,0 +1,116 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>{{ ts.translate('COMMON.TIME_ENTRIES') }}</h1>
+    <button class="btn-primary" (click)="openModal()">
+      ⏱️ Déclarer du Temps
+    </button>
+  </div>
+
+  <!-- Modal Overlay -->
+  @if (isModalOpen()) {
+    <div class="modal-backdrop">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2>Déclarer du Temps passé</h2>
+          <button class="btn-close" (click)="closeModal()">×</button>
+        </div>
+        
+        <form [formGroup]="timeForm" (ngSubmit)="onSubmit()">
+          <div class="modal-body">
+            <div class="form-grid">
+              
+              <!-- Date -->
+              <div class="form-group">
+                <label for="date">Date *</label>
+                <input id="date" type="date" formControlName="date">
+              </div>
+
+              <!-- Projet -->
+              <div class="form-group">
+                <label for="projetId">Projet *</label>
+                <select id="projetId" formControlName="projetId" (change)="onProjectChange($event)">
+                  <option value="" disabled>Sélectionner un projet</option>
+                  @for (project of projects(); track project.id) {
+                    <option [value]="project.id">{{ project.nom }}</option>
+                  }
+                </select>
+              </div>
+
+              <!-- Tâche (Dépend du projet) -->
+              <div class="form-group full-width">
+                <label for="tacheId">Tâche</label>
+                <select id="tacheId" formControlName="tacheId">
+                  <option value="">-- Aucune tâche spécifique --</option>
+                  @for (task of tasks(); track task.id) {
+                    <option [value]="task.id">{{ task.titre }} ({{ task.type }})</option>
+                  }
+                </select>
+              </div>
+
+              <!-- Durée -->
+              <div class="form-group">
+                <label for="dureeHeures">Durée (Heures) *</label>
+                <input id="dureeHeures" type="number" step="0.25" formControlName="dureeHeures" placeholder="Ex: 1.5">
+              </div>
+
+              <!-- Facturable -->
+              <div class="form-group flex-row">
+                <label class="checkbox-label" style="align-self: center; margin-top: 1rem;">
+                  <input type="checkbox" formControlName="estFacturable"> Est Facturable
+                </label>
+              </div>
+
+              <!-- Commentaire -->
+              <div class="form-group full-width">
+                <label for="commentaire">Commentaire / Description</label>
+                <textarea id="commentaire" formControlName="commentaire" rows="3" placeholder="Description du travail effectué..."></textarea>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
+            <button type="submit" class="btn-primary" [disabled]="timeForm.invalid">Sauvegarder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- List Table -->
+  <div class="list-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Projet</th>
+          <th>Description</th>
+          <th>Durée</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (entry of entries(); track entry.id) {
+          <tr>
+            <td>{{ entry.date | date:'shortDate' }}</td>
+            <td class="font-bold">{{ entry.projet?.nom }}</td>
+            <td>{{ entry.commentaire || '-' }}</td>
+            <td>{{ entry.dureeHeures }} h</td>
+            <td>
+              <span [style.background]="entry.statut === 'valide' ? '#dff6dd' : '#fef3c7'" 
+                    [style.color]="entry.statut === 'valide' ? '#1e4620' : '#d97706'"
+                    style="padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;">
+                {{ entry.statut }}
+              </span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="empty-state">Aucune entrée de temps trouvée.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

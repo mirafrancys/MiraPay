@@ -1,58 +1,102 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TimeEntriesGateway } from '../../cores/gateways/time-entries.gateway';
+import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
+import { TasksGateway } from '../../cores/gateways/tasks.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 
 @Component({
   selector: 'app-time-entries',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="page-container" style="padding: 2rem;">
-      <div class="page-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-        <h1 style="margin: 0;">{{ts.translate('COMMON.TIME_ENTRIES')}}</h1>
-        <button style="background: #2563eb; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 500;">
-          ⏱️ Déclarer du Temps
-        </button>
-      </div>
-
-      <div class="list-container" style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); padding: 1.5rem;">
-        <table style="width: 100%; border-collapse: collapse; text-align: left;">
-          <thead>
-            <tr style="border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: 0.875rem;">
-              <th style="padding: 1rem;">Date</th>
-              <th style="padding: 1rem;">Projet</th>
-              <th style="padding: 1rem;">Durée (Heures)</th>
-              <th style="padding: 1rem;">Statut</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (entry of entries(); track entry.id) {
-            <tr style="border-bottom: 1px solid #f1f5f9;">
-              <td style="padding: 1rem;">{{entry.date | date:'shortDate'}}</td>
-              <td style="padding: 1rem; font-weight: 500;">{{entry.projet?.nom}}</td>
-              <td style="padding: 1rem;">{{entry.dureeHeures}} h</td>
-              <td style="padding: 1rem;">
-                <span [style.background]="entry.statut === 'valide' ? '#dff6dd' : '#fef3c7'" 
-                      [style.color]="entry.statut === 'valide' ? '#1e4620' : '#d97706'"
-                      style="padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;">
-                  {{entry.statut}}
-                </span>
-              </td>
-            </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-  `
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './time-entries.html',
+  styleUrl: './time-entries.scss'
 })
 export class TimeEntriesComponent implements OnInit {
   ts = inject(TranslationService);
   private timeGateway = inject(TimeEntriesGateway);
-  entries = signal<any[]>([]);
+  private projectsGateway = inject(ProjectsGateway);
+  private tasksGateway = inject(TasksGateway);
+  private fb = inject(FormBuilder);
 
-  async ngOnInit() {
-    this.entries.set(await this.timeGateway.getAll());
+  entries = signal<any[]>([]);
+  projects = signal<any[]>([]);
+  tasks = signal<any[]>([]); // Tâches du projet sélectionné
+  isModalOpen = signal<boolean>(false);
+  timeForm!: FormGroup;
+
+  ngOnInit() {
+    this.initForm();
+    this.loadData();
+  }
+
+  initForm() {
+    this.timeForm = this.fb.group({
+      projetId: ['', Validators.required],
+      tacheId: [''],
+      date: [new Date().toISOString().substring(0, 10), Validators.required],
+      dureeHeures: [null, [Validators.required, Validators.min(0.25)]],
+      estFacturable: [true],
+      commentaire: ['']
+    });
+  }
+
+  async loadData() {
+    try {
+      this.entries.set(await this.timeGateway.getAll());
+      this.projects.set(await this.projectsGateway.getAll());
+    } catch (error) {
+      console.error('Erreur lors du chargement des données', error);
+    }
+  }
+
+  async onProjectChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    const projectId = select.value;
+    this.tasks.set([]); // Reset
+    this.timeForm.get('tacheId')?.setValue(''); // Reset form control
+
+    if (projectId) {
+      try {
+        const list = await this.tasksGateway.getByProject(projectId);
+        this.tasks.set(list);
+      } catch (error) {
+        console.error('Erreur lors du chargement des tâches', error);
+      }
+    }
+  }
+
+  openModal() {
+    this.timeForm.reset({
+      date: new Date().toISOString().substring(0, 10),
+      estFacturable: true,
+      projetId: '',
+      tacheId: ''
+    });
+    this.tasks.set([]);
+    this.isModalOpen.set(true);
+  }
+
+  closeModal() {
+    this.isModalOpen.set(false);
+  }
+
+  async onSubmit() {
+    if (this.timeForm.invalid) return;
+
+    try {
+      const payload = { ...this.timeForm.value };
+      if (!payload.tacheId || payload.tacheId === '') {
+        delete payload.tacheId; // Nettoyer si vide
+      }
+
+      await this.timeGateway.create(payload);
+      this.closeModal();
+      this.loadData(); // Actualiser
+    } catch (error) {
+      console.error('Erreur lors de la déclaration du temps', error);
+      alert('Erreur : ' + (error as Error).message);
+    }
   }
 }

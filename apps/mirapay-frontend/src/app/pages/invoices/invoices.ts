@@ -1,56 +1,115 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InvoicesGateway } from '../../cores/gateways/invoices.gateway';
+import { ClientsGateway } from '../../cores/gateways/clients.gateway';
+import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 
 @Component({
   selector: 'app-invoices',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="page-container" style="padding: 2rem;">
-      <div class="page-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-        <h1 style="margin: 0;">{{ts.translate('COMMON.INVOICES')}}</h1>
-        <button style="background: #2563eb; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 500;">
-          🧾 Générer une Facture
-        </button>
-      </div>
-
-      <div class="list-container" style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); padding: 1.5rem;">
-        <table style="width: 100%; border-collapse: collapse; text-align: left;">
-          <thead>
-            <tr style="border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: 0.875rem;">
-              <th style="padding: 1rem;">Numéro</th>
-              <th style="padding: 1rem;">Client</th>
-              <th style="padding: 1rem;">Montant Total</th>
-              <th style="padding: 1rem;">Statut</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (invoice of invoices(); track invoice.id) {
-            <tr style="border-bottom: 1px solid #f1f5f9;">
-              <td style="padding: 1rem; font-weight: 500;">{{invoice.numero}}</td>
-              <td style="padding: 1rem;">{{invoice.client?.nomLegal}}</td>
-              <td style="padding: 1rem;">{{invoice.totalTTC | currency:'CAD'}}</td>
-              <td style="padding: 1rem;">
-                <span style="padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; background: #e0f2fe; color: #0369a1;">
-                  {{invoice.statut}}
-                </span>
-              </td>
-            </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-  `
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './invoices.html',
+  styleUrl: './invoices.scss'
 })
 export class InvoicesComponent implements OnInit {
   ts = inject(TranslationService);
   private invoicesGateway = inject(InvoicesGateway);
-  invoices = signal<any[]>([]);
+  private clientsGateway = inject(ClientsGateway);
+  private projectsGateway = inject(ProjectsGateway);
+  private fb = inject(FormBuilder);
 
-  async ngOnInit() {
-    this.invoices.set(await this.invoicesGateway.getAll());
+  invoices = signal<any[]>([]);
+  clients = signal<any[]>([]);
+  projects = signal<any[]>([]);
+  
+  // Filtrer les projets par client sélectionné
+  filteredProjects = computed(() => {
+    const clientId = this.invoiceForm?.get('clientId')?.value;
+    if (!clientId) return [];
+    return this.projects().filter(p => p.clientId === clientId);
+  });
+
+  isModalOpen = signal<boolean>(false);
+  invoiceForm!: FormGroup;
+  draftData = signal<any>(null); // Aperçu du brouillon calculé
+
+  ngOnInit() {
+    this.initForm();
+    this.loadData();
+  }
+
+  initForm() {
+    this.invoiceForm = this.fb.group({
+      clientId: ['', Validators.required],
+      projetId: [''],
+    });
+  }
+
+  async loadData() {
+    try {
+      this.invoices.set(await this.invoicesGateway.getAll());
+      this.clients.set(await this.clientsGateway.getAll());
+      this.projects.set(await this.projectsGateway.getAll());
+    } catch (error) {
+      console.error('Erreur lors du chargement des factures', error);
+    }
+  }
+
+  onClientChange() {
+    this.invoiceForm.get('projetId')?.setValue('');
+    this.draftData.set(null); // Reset draft
+  }
+
+  onProjectChange() {
+    this.draftData.set(null); // Reset draft
+  }
+
+  async prepareDraft() {
+    const clientId = this.invoiceForm.get('clientId')?.value;
+    const projetId = this.invoiceForm.get('projetId')?.value;
+
+    if (!clientId) return;
+
+    try {
+      const payload: any = { clientId };
+      if (projetId) payload.projetId = projetId;
+
+      const res = await this.invoicesGateway.prepareDraft(payload);
+      this.draftData.set(res);
+    } catch (error) {
+      console.error('Erreur lors du calcul du brouillon', error);
+      alert('Erreur lors du calcul : ' + (error as Error).message);
+    }
+  }
+
+  openModal() {
+    this.invoiceForm.reset({
+      clientId: '',
+      projetId: ''
+    });
+    this.draftData.set(null);
+    this.isModalOpen.set(true);
+  }
+
+  closeModal() {
+    this.isModalOpen.set(false);
+  }
+
+  async onSubmit() {
+    if (this.invoiceForm.invalid || !this.draftData()) return;
+
+    try {
+      const payload = { ...this.invoiceForm.value };
+      if (!payload.projetId || payload.projetId === '') delete payload.projetId;
+
+      await this.invoicesGateway.create(payload);
+      this.closeModal();
+      this.loadData(); // actualiser
+    } catch (error) {
+      console.error('Erreur création facture', error);
+      alert('Erreur : ' + (error as Error).message);
+    }
   }
 }

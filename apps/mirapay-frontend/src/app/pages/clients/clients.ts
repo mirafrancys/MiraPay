@@ -1,52 +1,86 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="page-container" style="padding: 2rem;">
-      <div class="page-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-        <h1 style="margin: 0;">{{ts.translate('COMMON.CLIENTS')}}</h1>
-        <button style="background: #2563eb; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 500;">
-          ➕ Créer un Client
-        </button>
-      </div>
-
-      <div class="list-container" style="background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); padding: 1.5rem;">
-        <table style="width: 100%; border-collapse: collapse; text-align: left;">
-          <thead>
-            <tr style="border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: 0.875rem;">
-              <th style="padding: 1rem;">Nom</th>
-              <th style="padding: 1rem;">Courriel</th>
-              <th style="padding: 1rem;">Téléphone</th>
-              <th style="padding: 1rem;">Projets</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (client of clients(); track client.id) {
-            <tr style="border-bottom: 1px solid #f1f5f9;">
-              <td style="padding: 1rem; font-weight: 500;">{{client.nomLegal}}</td>
-              <td style="padding: 1rem;">{{client.courriel}}</td>
-              <td style="padding: 1rem;">{{client.telephone}}</td>
-              <td style="padding: 1rem;">{{client._count?.projects}}</td>
-            </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-  `
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './clients.html',
+  styleUrl: './clients.scss'
 })
 export class ClientsComponent implements OnInit {
   ts = inject(TranslationService);
   private clientsGateway = inject(ClientsGateway);
-  clients = signal<any[]>([]);
+  private fb = inject(FormBuilder);
 
-  async ngOnInit() {
-    this.clients.set(await this.clientsGateway.getAll());
+  clients = signal<any[]>([]);
+  isModalOpen = signal<boolean>(false);
+  clientForm!: FormGroup;
+
+  ngOnInit() {
+    this.initForm();
+    this.loadClients();
+  }
+
+  initForm() {
+    this.clientForm = this.fb.group({
+      typeClient: ['entreprise', Validators.required],
+      nomLegal: ['', Validators.required],
+      adresseLigne1: ['', Validators.required],
+      adresseLigne2: [''],
+      ville: ['', Validators.required],
+      province: ['', Validators.required],
+      codePostal: ['', Validators.required],
+      pays: ['Canada', Validators.required],
+      courriel: ['', [Validators.required, Validators.email]],
+      telephone: ['', Validators.required],
+      modeFacturationParDefaut: ['horaire', Validators.required],
+      deviseParDefaut: ['CAD', Validators.required],
+      clientTaxable: [true],
+      appliquerTPS: [true],
+      appliquerTVQ: [true]
+    });
+  }
+
+  async loadClients() {
+    try {
+      this.clients.set(await this.clientsGateway.getAll());
+    } catch (error) {
+      console.error('Erreur lors du chargement des clients', error);
+    }
+  }
+
+  openModal() {
+    this.clientForm.reset({
+      typeClient: 'entreprise',
+      pays: 'Canada',
+      modeFacturationParDefaut: 'horaire',
+      deviseParDefaut: 'CAD',
+      clientTaxable: true,
+      appliquerTPS: true,
+      appliquerTVQ: true
+    });
+    this.isModalOpen.set(true);
+  }
+
+  closeModal() {
+    this.isModalOpen.set(false);
+  }
+
+  async onSubmit() {
+    if (this.clientForm.invalid) return;
+
+    try {
+      const payload = this.clientForm.value;
+      await this.clientsGateway.create(payload);
+      this.closeModal();
+      this.loadClients(); // Actualiser la liste
+    } catch (error) {
+      console.error('Erreur lors de la création du client', error);
+      alert('Erreur lors de la création du client : ' + (error as Error).message);
+    }
   }
 }

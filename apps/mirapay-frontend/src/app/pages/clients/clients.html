@@ -1,0 +1,143 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>{{ ts.translate('COMMON.CLIENTS') }}</h1>
+    <button class="btn-primary" (click)="openModal()">
+      ➕ {{ ts.translate('COMMON.CREATE_CLIENT') || 'Créer un Client' }}
+    </button>
+  </div>
+
+  <!-- Modal Overlay -->
+  @if (isModalOpen()) {
+    <div class="modal-backdrop">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2>Créer un Nouveau Client</h2>
+          <button class="btn-close" (click)="closeModal()">×</button>
+        </div>
+        
+        <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+          <div class="modal-body">
+            <div class="form-grid">
+              <!-- Type de Client -->
+              <div class="form-group full-width">
+                <label>Type de Client</label>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" value="entreprise" formControlName="typeClient"> Entreprise
+                  </label>
+                  <label>
+                    <input type="radio" value="particulier" formControlName="typeClient"> Particulier
+                  </label>
+                </div>
+              </div>
+
+              <!-- Nom Légal -->
+              <div class="form-group full-width">
+                <label>Nom Légal *</label>
+                <input type="text" formControlName="nomLegal" placeholder="Nom de l'entreprise ou personne">
+                @if (clientForm.get('nomLegal')?.invalid && clientForm.get('nomLegal')?.touched) {
+                  <span class="error-text">Le nom est requis.</span>
+                }
+              </div>
+
+              <!-- Contact / Courriel -->
+              <div class="form-group">
+                <label>Courriel *</label>
+                <input type="email" formControlName="courriel" placeholder="Ex: contact@entreprise.com">
+                @if (clientForm.get('courriel')?.invalid && clientForm.get('courriel')?.touched) {
+                  <span class="error-text">Courriel invalide.</span>
+                }
+              </div>
+              <div class="form-group">
+                <label>Téléphone *</label>
+                <input type="text" formControlName="telephone" placeholder="Ex: 514-123-4567">
+              </div>
+
+              <!-- Adresse -->
+              <div class="form-group full-width">
+                <label>Adresse (Ligne 1) *</label>
+                <input type="text" formControlName="adresseLigne1" placeholder="Ex: 123 Rue Principale">
+              </div>
+              <div class="form-group">
+                <label>Ville *</label>
+                <input type="text" formControlName="ville" placeholder="Ex: Montréal">
+              </div>
+              <div class="form-group">
+                <label>Province *</label>
+                <input type="text" formControlName="province" placeholder="Ex: QC">
+              </div>
+              <div class="form-group">
+                <label>Code Postal *</label>
+                <input type="text" formControlName="codePostal" placeholder="Ex: H1A 1A1">
+              </div>
+              <div class="form-group">
+                <label>Pays *</label>
+                <input type="text" formControlName="pays">
+              </div>
+
+              <!-- Facturation -->
+              <div class="form-group">
+                <label>Mode Facturation</label>
+                <select formControlName="modeFacturationParDefaut">
+                  <option value="horaire">Horaire</option>
+                  <option value="forfait">Forfait</option>
+                  <option value="banqueHeures">Banque d'Heures</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Devise</label>
+                <select formControlName="deviseParDefaut">
+                  <option value="CAD">CAD</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width flex-row">
+                <label class="checkbox-label">
+                  <input type="checkbox" formControlName="appliquerTPS"> Appliquer TPS (5%)
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" formControlName="appliquerTVQ"> Appliquer TVQ (9.975%)
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
+            <button type="submit" class="btn-primary" [disabled]="clientForm.invalid">Sauvegarder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- List Table -->
+  <div class="list-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Courriel</th>
+          <th>Téléphone</th>
+          <th>Projets</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (client of clients(); track client.id) {
+          <tr>
+            <td class="font-bold">{{ client.nomLegal }}</td>
+            <td>{{ client.courriel }}</td>
+            <td>{{ client.telephone }}</td>
+            <td>{{ client._count?.projects || 0 }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="empty-state">Aucun client trouvé.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
