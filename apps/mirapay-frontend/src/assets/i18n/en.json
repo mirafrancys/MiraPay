@@ -6,6 +6,10 @@
     "CARDS": "My Cards",
     "CONTACTS": "Contacts",
     "SETTINGS": "Settings",
+    "CLIENTS": "Clients",
+    "PROJECTS": "Projects",
+    "TIME_ENTRIES": "Time Tracking",
+    "INVOICES": "Invoices",
     "LOGOUT": "Logout"
   },
   "DASHBOARD": {

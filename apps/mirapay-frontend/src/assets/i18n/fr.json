@@ -6,6 +6,10 @@
     "CARDS": "Mes Cartes",
     "CONTACTS": "Contacts",
     "SETTINGS": "Paramètres",
+    "CLIENTS": "Clients",
+    "PROJECTS": "Projets",
+    "TIME_ENTRIES": "Saisie du Temps",
+    "INVOICES": "Facturation",
     "LOGOUT": "Déconnexion"
   },
   "DASHBOARD": {
