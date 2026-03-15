@@ -41,6 +41,142 @@ model User {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   transactions Transaction[]
+  timeEntries  TimeEntry[]
+}
+
+model Client {
+  id                    String   @id @default(uuid())
+  typeClient            String   // entreprise | particulier
+  nomLegal              String
+  adresseLigne1        String
+  adresseLigne2        String?
+  ville                 String
+  province              String
+  codePostal           String
+  pays                  String
+  courriel              String
+  telephone             String
+  contactNom           String?  // pour entreprise
+  contactFonction      String?
+  notesInternes         String?  @db.Text
+  
+  modeFacturationParDefaut String // horaire | forfait | banqueHeures | nonFacturable
+  deviseParDefaut       String   @default("CAD")
+  conditionsPaiement    String?
+  modesPaiement         String?  // Interac, virement, etc.
+
+  clientTaxable        Boolean  @default(true)
+  appliquerTPS         Boolean  @default(true)
+  appliquerTVQ         Boolean  @default(true)
+  estArchive           Boolean  @default(false)
+
+  projects             Project[]
+  invoices             Invoice[]
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model Project {
+  id                    String   @id @default(uuid())
+  clientId              String
+  client                Client   @relation(fields: [clientId], references: [id])
+  nom                   String
+  description           String?  @db.Text
+  dateDebut            DateTime
+  dateFinPrevue        DateTime?
+  statut                String   @default("brouillon") // brouillon | enCours | enPause | termine | facture | archive
+
+  typeFacturation       String   // horaire | forfait | banqueHeures
+  tauxHoraire          Float?
+  montantForfait       Float?
+  heuresBanqueTotales  Float?
+  heuresBanqueConsommees Float   @default(0)
+  budgetHeuresPrevu    Float?
+  budgetMontantPrevu   Float?
+  arrondiHeures        Float?   // 0.25 | 0.5 | 1
+
+  tasks                Task[]
+  timeEntries          TimeEntry[]
+  invoiceLines         InvoiceLine[]
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model Task {
+  id                    String   @id @default(uuid())
+  projetId              String
+  projet                Project  @relation(fields: [projetId], references: [id])
+  titre                 String
+  description           String?  @db.Text
+  type                  String   // analyse, développement, réunion, support, etc.
+  priorite              String   @default("normale") // basse | normale | haute
+  statut                String   @default("aFaire") // aFaire | enCours | enAttente | termine
+  dateDebutPrevue      DateTime?
+  dateEcheance          DateTime?
+
+  timeEntries          TimeEntry[]
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model TimeEntry {
+  id                    String   @id @default(uuid())
+  userId                String
+  user                  User     @relation(fields: [userId], references: [id])
+  date                  DateTime
+  projetId              String
+  projet                Project  @relation(fields: [projetId], references: [id])
+  tacheId              String?
+  tache                 Task?    @relation(fields: [tacheId], references: [id])
+  dureeHeures          Float
+  estFacturable        Boolean  @default(true)
+  commentaire           String?  @db.Text
+  statut                String   @default("brouillon") // brouillon | approuve | facture
+
+  invoiceLines         InvoiceLine[] @relation("InvoiceLineTimeEntries")
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model Invoice {
+  id                    String   @id @default(uuid())
+  numero                String   @unique // numérotation séquentielle
+  dateFacture           DateTime @default(now())
+  clientId              String
+  client                Client   @relation(fields: [clientId], references: [id])
+  projetId              String?  // optionnel si multi-projets
+  statut                String   @default("brouillon") // brouillon | envoyee | payee | enRetard | annulee
+  sousTotal             Float    @default(0)
+  montantTPS            Float    @default(0)
+  montantTVQ            Float    @default(0)
+  totalTTC              Float    @default(0)
+  conditionsPaiement    String?
+
+  lines                 InvoiceLine[]
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model InvoiceLine {
+  id                    String   @id @default(uuid())
+  factureId             String
+  facture               Invoice  @relation(fields: [factureId], references: [id])
+  projetId              String?
+  projet                Project? @relation(fields: [projetId], references: [id])
+  description           String   @db.Text
+  quantite             Float    // ex. heures
+  prixUnitaire         Float
+  montantLigne         Float    // calculé quantite * prixUnitaire
+
+  timeEntries          TimeEntry[] @relation("InvoiceLineTimeEntries")
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 }
 
 model Transaction {
