@@ -1,5 +1,5 @@
 import prisma from '../prisma-client';
-import { Task, Prisma } from '../generated/prisma';
+import { Task, Prisma } from '../../generated/prisma';
 
 export class TasksService {
   async create(data: Prisma.TaskCreateInput): Promise<Task> {

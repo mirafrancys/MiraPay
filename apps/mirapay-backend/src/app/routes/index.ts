@@ -5,6 +5,8 @@ import authRoutes from './auth';
 import clientsRoutes from './clients';
 import projectsRoutes from './projects';
 import tasksRoutes from './tasks';
+import timeEntriesRoutes from './time-entries';
+import invoicesRoutes from './invoices';
 
 const router = Router();
 
@@ -14,5 +16,7 @@ router.use('/transactions', transactionsRoutes);
 router.use('/clients', clientsRoutes);
 router.use('/projects', projectsRoutes);
 router.use('/tasks', tasksRoutes);
+router.use('/time-entries', timeEntriesRoutes);
+router.use('/invoices', invoicesRoutes);
 
 export default router;

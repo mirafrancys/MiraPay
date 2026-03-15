@@ -1,5 +1,5 @@
 import prisma from '../prisma-client';
-import { Client, Prisma } from '../generated/prisma';
+import { Client, Prisma } from '../../generated/prisma';
 
 export class ClientsService {
   async create(data: Prisma.ClientCreateInput): Promise<Client> {
