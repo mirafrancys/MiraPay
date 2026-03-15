@@ -27,6 +27,7 @@ export class UsersService {
       },
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...result } = user;
     return result;
   }
@@ -35,9 +36,9 @@ export class UsersService {
     return prisma.user.findMany({
       include: {
         _count: {
-          select: { transactions: true }
-        }
-      }
+          select: { transactions: true },
+        },
+      },
     });
   }
 
@@ -45,8 +46,8 @@ export class UsersService {
     const user = await prisma.user.findUnique({
       where: { id },
       include: {
-        transactions: true
-      }
+        transactions: true,
+      },
     });
     return user;
   }
