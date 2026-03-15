@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TimeEntriesGateway } from '../../cores/gateways/time-entries.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
@@ -27,7 +27,8 @@ import { TranslationService } from '../../cores/services/translation.service';
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let entry of entries" style="border-bottom: 1px solid #f1f5f9;">
+            @for (entry of entries(); track entry.id) {
+            <tr style="border-bottom: 1px solid #f1f5f9;">
               <td style="padding: 1rem;">{{entry.date | date:'shortDate'}}</td>
               <td style="padding: 1rem; font-weight: 500;">{{entry.projet?.nom}}</td>
               <td style="padding: 1rem;">{{entry.dureeHeures}} h</td>
@@ -39,6 +40,7 @@ import { TranslationService } from '../../cores/services/translation.service';
                 </span>
               </td>
             </tr>
+            }
           </tbody>
         </table>
       </div>
@@ -48,9 +50,9 @@ import { TranslationService } from '../../cores/services/translation.service';
 export class TimeEntriesComponent implements OnInit {
   ts = inject(TranslationService);
   private timeGateway = inject(TimeEntriesGateway);
-  entries: any[] = [];
+  entries = signal<any[]>([]);
 
   async ngOnInit() {
-    this.entries = await this.timeGateway.getAll();
+    this.entries.set(await this.timeGateway.getAll());
   }
 }

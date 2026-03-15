@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
@@ -27,7 +27,8 @@ import { TranslationService } from '../../cores/services/translation.service';
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let project of projects" style="border-bottom: 1px solid #f1f5f9;">
+            @for (project of projects(); track project.id) {
+            <tr style="border-bottom: 1px solid #f1f5f9;">
               <td style="padding: 1rem; font-weight: 500;">{{project.nom}}</td>
               <td style="padding: 1rem;">{{project.client?.nomLegal}}</td>
               <td style="padding: 1rem;">{{project.tauxHoraire | currency:'CAD'}}</td>
@@ -37,6 +38,7 @@ import { TranslationService } from '../../cores/services/translation.service';
                 </span>
               </td>
             </tr>
+            }
           </tbody>
         </table>
       </div>
@@ -46,9 +48,9 @@ import { TranslationService } from '../../cores/services/translation.service';
 export class ProjectsComponent implements OnInit {
   ts = inject(TranslationService);
   private projectsGateway = inject(ProjectsGateway);
-  projects: any[] = [];
+  projects = signal<any[]>([]);
 
   async ngOnInit() {
-    this.projects = await this.projectsGateway.getAll();
+    this.projects.set(await this.projectsGateway.getAll());
   }
 }

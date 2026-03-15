@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InvoicesGateway } from '../../cores/gateways/invoices.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
@@ -27,7 +27,8 @@ import { TranslationService } from '../../cores/services/translation.service';
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let invoice of invoices" style="border-bottom: 1px solid #f1f5f9;">
+            @for (invoice of invoices(); track invoice.id) {
+            <tr style="border-bottom: 1px solid #f1f5f9;">
               <td style="padding: 1rem; font-weight: 500;">{{invoice.numero}}</td>
               <td style="padding: 1rem;">{{invoice.client?.nomLegal}}</td>
               <td style="padding: 1rem;">{{invoice.totalTTC | currency:'CAD'}}</td>
@@ -37,6 +38,7 @@ import { TranslationService } from '../../cores/services/translation.service';
                 </span>
               </td>
             </tr>
+            }
           </tbody>
         </table>
       </div>
@@ -46,9 +48,9 @@ import { TranslationService } from '../../cores/services/translation.service';
 export class InvoicesComponent implements OnInit {
   ts = inject(TranslationService);
   private invoicesGateway = inject(InvoicesGateway);
-  invoices: any[] = [];
+  invoices = signal<any[]>([]);
 
   async ngOnInit() {
-    this.invoices = await this.invoicesGateway.getAll();
+    this.invoices.set(await this.invoicesGateway.getAll());
   }
 }

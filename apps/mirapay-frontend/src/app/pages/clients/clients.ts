@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
@@ -27,12 +27,14 @@ import { TranslationService } from '../../cores/services/translation.service';
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let client of clients" style="border-bottom: 1px solid #f1f5f9;">
+            @for (client of clients(); track client.id) {
+            <tr style="border-bottom: 1px solid #f1f5f9;">
               <td style="padding: 1rem; font-weight: 500;">{{client.nomLegal}}</td>
               <td style="padding: 1rem;">{{client.courriel}}</td>
               <td style="padding: 1rem;">{{client.telephone}}</td>
               <td style="padding: 1rem;">{{client._count?.projects}}</td>
             </tr>
+            }
           </tbody>
         </table>
       </div>
@@ -42,9 +44,9 @@ import { TranslationService } from '../../cores/services/translation.service';
 export class ClientsComponent implements OnInit {
   ts = inject(TranslationService);
   private clientsGateway = inject(ClientsGateway);
-  clients: any[] = [];
+  clients = signal<any[]>([]);
 
   async ngOnInit() {
-    this.clients = await this.clientsGateway.getAll();
+    this.clients.set(await this.clientsGateway.getAll());
   }
 }
