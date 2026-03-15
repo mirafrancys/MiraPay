@@ -6,6 +6,10 @@
     "CARDS": "Mis Tarjetas",
     "CONTACTS": "Contactos",
     "SETTINGS": "Ajustes",
+    "CLIENTS": "Clientes",
+    "PROJECTS": "Proyectos",
+    "TIME_ENTRIES": "Registro de Tiempo",
+    "INVOICES": "Facturación",
     "LOGOUT": "Cerrar sesión"
   },
   "DASHBOARD": {
