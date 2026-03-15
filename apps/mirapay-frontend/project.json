@@ -48,6 +48,9 @@
     "serve": {
       "continuous": true,
       "executor": "@angular/build:dev-server",
+      "options": {
+        "proxyConfig": "apps/mirapay-frontend/proxy.conf.json"
+      },
       "configurations": {
         "production": {
           "buildTarget": "mirapay-frontend:build:production"
