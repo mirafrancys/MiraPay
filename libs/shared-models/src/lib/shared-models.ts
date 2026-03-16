@@ -48,6 +48,7 @@ export interface Client {
   appliquerTPS: boolean;
   appliquerTVQ: boolean;
   estArchive: boolean;
+  bankHours?: BankHour[];
   createdAt: Date | string;
   updatedAt: Date | string;
 }
@@ -69,6 +70,7 @@ export interface Project {
   budgetHeuresPrevu?: number;
   budgetMontantPrevu?: number;
   arrondiHeures?: number;
+  bankHours?: BankHour[];
   createdAt: Date | string;
   updatedAt: Date | string;
 }
@@ -113,6 +115,8 @@ export interface TimeEntry {
   estFacturable: boolean;
   commentaire?: string;
   statut: string; // brouillon | approuve | facture
+  bankHourId?: string;
+  bankHour?: BankHour;
   createdAt: Date | string;
   updatedAt: Date | string;
 }
@@ -157,4 +161,22 @@ export interface Transaction {
   userId: string;
   user?: User;
   createdAt: Date | string;
+}
+
+export interface BankHour {
+  id: string;
+  clientId: string;
+  client?: Client;
+  projetId?: string;
+  projet?: Project;
+  nom: string;
+  description?: string;
+  heuresAchetees: number;
+  heuresConsommees: number;
+  dateDebut?: Date | string;
+  dateFin?: Date | string;
+  estActive: boolean;
+  timeEntries?: TimeEntry[];
+  createdAt: Date | string;
+  updatedAt: Date | string;
 }

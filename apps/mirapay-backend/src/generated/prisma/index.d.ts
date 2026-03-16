@@ -63,6 +63,11 @@ export type InvoiceLine = $Result.DefaultSelection<Prisma.$InvoiceLinePayload>
  * 
  */
 export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
+/**
+ * Model BankHour
+ * 
+ */
+export type BankHour = $Result.DefaultSelection<Prisma.$BankHourPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -284,6 +289,16 @@ export class PrismaClient<
     * ```
     */
   get transaction(): Prisma.TransactionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bankHour`: Exposes CRUD operations for the **BankHour** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BankHours
+    * const bankHours = await prisma.bankHour.findMany()
+    * ```
+    */
+  get bankHour(): Prisma.BankHourDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -727,7 +742,8 @@ export namespace Prisma {
     TimeEntry: 'TimeEntry',
     Invoice: 'Invoice',
     InvoiceLine: 'InvoiceLine',
-    Transaction: 'Transaction'
+    Transaction: 'Transaction',
+    BankHour: 'BankHour'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -743,7 +759,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "role" | "user" | "client" | "project" | "task" | "taskNote" | "timeEntry" | "invoice" | "invoiceLine" | "transaction"
+      modelProps: "role" | "user" | "client" | "project" | "task" | "taskNote" | "timeEntry" | "invoice" | "invoiceLine" | "transaction" | "bankHour"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1487,6 +1503,80 @@ export namespace Prisma {
           }
         }
       }
+      BankHour: {
+        payload: Prisma.$BankHourPayload<ExtArgs>
+        fields: Prisma.BankHourFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BankHourFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BankHourFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>
+          }
+          findFirst: {
+            args: Prisma.BankHourFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BankHourFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>
+          }
+          findMany: {
+            args: Prisma.BankHourFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>[]
+          }
+          create: {
+            args: Prisma.BankHourCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>
+          }
+          createMany: {
+            args: Prisma.BankHourCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BankHourCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>[]
+          }
+          delete: {
+            args: Prisma.BankHourDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>
+          }
+          update: {
+            args: Prisma.BankHourUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>
+          }
+          deleteMany: {
+            args: Prisma.BankHourDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BankHourUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BankHourUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>[]
+          }
+          upsert: {
+            args: Prisma.BankHourUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankHourPayload>
+          }
+          aggregate: {
+            args: Prisma.BankHourAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBankHour>
+          }
+          groupBy: {
+            args: Prisma.BankHourGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BankHourGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BankHourCountArgs<ExtArgs>
+            result: $Utils.Optional<BankHourCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1605,6 +1695,7 @@ export namespace Prisma {
     invoice?: InvoiceOmit
     invoiceLine?: InvoiceLineOmit
     transaction?: TransactionOmit
+    bankHour?: BankHourOmit
   }
 
   /* Types for Logging */
@@ -1767,11 +1858,13 @@ export namespace Prisma {
   export type ClientCountOutputType = {
     projects: number
     invoices: number
+    bankHours: number
   }
 
   export type ClientCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     projects?: boolean | ClientCountOutputTypeCountProjectsArgs
     invoices?: boolean | ClientCountOutputTypeCountInvoicesArgs
+    bankHours?: boolean | ClientCountOutputTypeCountBankHoursArgs
   }
 
   // Custom InputTypes
@@ -1799,6 +1892,13 @@ export namespace Prisma {
     where?: InvoiceWhereInput
   }
 
+  /**
+   * ClientCountOutputType without action
+   */
+  export type ClientCountOutputTypeCountBankHoursArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankHourWhereInput
+  }
+
 
   /**
    * Count Type ProjectCountOutputType
@@ -1808,12 +1908,14 @@ export namespace Prisma {
     tasks: number
     timeEntries: number
     invoiceLines: number
+    bankHours: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tasks?: boolean | ProjectCountOutputTypeCountTasksArgs
     timeEntries?: boolean | ProjectCountOutputTypeCountTimeEntriesArgs
     invoiceLines?: boolean | ProjectCountOutputTypeCountInvoiceLinesArgs
+    bankHours?: boolean | ProjectCountOutputTypeCountBankHoursArgs
   }
 
   // Custom InputTypes
@@ -1846,6 +1948,13 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountInvoiceLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InvoiceLineWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountBankHoursArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankHourWhereInput
   }
 
 
@@ -1978,6 +2087,37 @@ export namespace Prisma {
    * InvoiceLineCountOutputType without action
    */
   export type InvoiceLineCountOutputTypeCountTimeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TimeEntryWhereInput
+  }
+
+
+  /**
+   * Count Type BankHourCountOutputType
+   */
+
+  export type BankHourCountOutputType = {
+    timeEntries: number
+  }
+
+  export type BankHourCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    timeEntries?: boolean | BankHourCountOutputTypeCountTimeEntriesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BankHourCountOutputType without action
+   */
+  export type BankHourCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHourCountOutputType
+     */
+    select?: BankHourCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BankHourCountOutputType without action
+   */
+  export type BankHourCountOutputTypeCountTimeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TimeEntryWhereInput
   }
 
@@ -4677,6 +4817,7 @@ export namespace Prisma {
     updatedAt?: boolean
     projects?: boolean | Client$projectsArgs<ExtArgs>
     invoices?: boolean | Client$invoicesArgs<ExtArgs>
+    bankHours?: boolean | Client$bankHoursArgs<ExtArgs>
     _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["client"]>
 
@@ -4765,6 +4906,7 @@ export namespace Prisma {
   export type ClientInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     projects?: boolean | Client$projectsArgs<ExtArgs>
     invoices?: boolean | Client$invoicesArgs<ExtArgs>
+    bankHours?: boolean | Client$bankHoursArgs<ExtArgs>
     _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClientIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4775,6 +4917,7 @@ export namespace Prisma {
     objects: {
       projects: Prisma.$ProjectPayload<ExtArgs>[]
       invoices: Prisma.$InvoicePayload<ExtArgs>[]
+      bankHours: Prisma.$BankHourPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5197,6 +5340,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     projects<T extends Client$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Client$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invoices<T extends Client$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, Client$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bankHours<T extends Client$bankHoursArgs<ExtArgs> = {}>(args?: Subset<T, Client$bankHoursArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5691,6 +5835,30 @@ export namespace Prisma {
   }
 
   /**
+   * Client.bankHours
+   */
+  export type Client$bankHoursArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    where?: BankHourWhereInput
+    orderBy?: BankHourOrderByWithRelationInput | BankHourOrderByWithRelationInput[]
+    cursor?: BankHourWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BankHourScalarFieldEnum | BankHourScalarFieldEnum[]
+  }
+
+  /**
    * Client without action
    */
   export type ClientDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6031,6 +6199,7 @@ export namespace Prisma {
     tasks?: boolean | Project$tasksArgs<ExtArgs>
     timeEntries?: boolean | Project$timeEntriesArgs<ExtArgs>
     invoiceLines?: boolean | Project$invoiceLinesArgs<ExtArgs>
+    bankHours?: boolean | Project$bankHoursArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -6102,6 +6271,7 @@ export namespace Prisma {
     tasks?: boolean | Project$tasksArgs<ExtArgs>
     timeEntries?: boolean | Project$timeEntriesArgs<ExtArgs>
     invoiceLines?: boolean | Project$invoiceLinesArgs<ExtArgs>
+    bankHours?: boolean | Project$bankHoursArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6118,6 +6288,7 @@ export namespace Prisma {
       tasks: Prisma.$TaskPayload<ExtArgs>[]
       timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
       invoiceLines: Prisma.$InvoiceLinePayload<ExtArgs>[]
+      bankHours: Prisma.$BankHourPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6535,6 +6706,7 @@ export namespace Prisma {
     tasks<T extends Project$tasksArgs<ExtArgs> = {}>(args?: Subset<T, Project$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeEntries<T extends Project$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invoiceLines<T extends Project$invoiceLinesArgs<ExtArgs> = {}>(args?: Subset<T, Project$invoiceLinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bankHours<T extends Project$bankHoursArgs<ExtArgs> = {}>(args?: Subset<T, Project$bankHoursArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7051,6 +7223,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InvoiceLineScalarFieldEnum | InvoiceLineScalarFieldEnum[]
+  }
+
+  /**
+   * Project.bankHours
+   */
+  export type Project$bankHoursArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    where?: BankHourWhereInput
+    orderBy?: BankHourOrderByWithRelationInput | BankHourOrderByWithRelationInput[]
+    cursor?: BankHourWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BankHourScalarFieldEnum | BankHourScalarFieldEnum[]
   }
 
   /**
@@ -9398,6 +9594,7 @@ export namespace Prisma {
     estFacturable: boolean | null
     commentaire: string | null
     statut: string | null
+    bankHourId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9412,6 +9609,7 @@ export namespace Prisma {
     estFacturable: boolean | null
     commentaire: string | null
     statut: string | null
+    bankHourId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9426,6 +9624,7 @@ export namespace Prisma {
     estFacturable: number
     commentaire: number
     statut: number
+    bankHourId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -9450,6 +9649,7 @@ export namespace Prisma {
     estFacturable?: true
     commentaire?: true
     statut?: true
+    bankHourId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9464,6 +9664,7 @@ export namespace Prisma {
     estFacturable?: true
     commentaire?: true
     statut?: true
+    bankHourId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9478,6 +9679,7 @@ export namespace Prisma {
     estFacturable?: true
     commentaire?: true
     statut?: true
+    bankHourId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -9579,6 +9781,7 @@ export namespace Prisma {
     estFacturable: boolean
     commentaire: string | null
     statut: string
+    bankHourId: string | null
     createdAt: Date
     updatedAt: Date
     _count: TimeEntryCountAggregateOutputType | null
@@ -9612,12 +9815,14 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: boolean
     statut?: boolean
+    bankHourId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     projet?: boolean | ProjectDefaultArgs<ExtArgs>
     tache?: boolean | TimeEntry$tacheArgs<ExtArgs>
     invoiceLines?: boolean | TimeEntry$invoiceLinesArgs<ExtArgs>
+    bankHour?: boolean | TimeEntry$bankHourArgs<ExtArgs>
     _count?: boolean | TimeEntryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["timeEntry"]>
 
@@ -9631,11 +9836,13 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: boolean
     statut?: boolean
+    bankHourId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     projet?: boolean | ProjectDefaultArgs<ExtArgs>
     tache?: boolean | TimeEntry$tacheArgs<ExtArgs>
+    bankHour?: boolean | TimeEntry$bankHourArgs<ExtArgs>
   }, ExtArgs["result"]["timeEntry"]>
 
   export type TimeEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9648,11 +9855,13 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: boolean
     statut?: boolean
+    bankHourId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     projet?: boolean | ProjectDefaultArgs<ExtArgs>
     tache?: boolean | TimeEntry$tacheArgs<ExtArgs>
+    bankHour?: boolean | TimeEntry$bankHourArgs<ExtArgs>
   }, ExtArgs["result"]["timeEntry"]>
 
   export type TimeEntrySelectScalar = {
@@ -9665,27 +9874,31 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: boolean
     statut?: boolean
+    bankHourId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TimeEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "projetId" | "tacheId" | "dureeHeures" | "estFacturable" | "commentaire" | "statut" | "createdAt" | "updatedAt", ExtArgs["result"]["timeEntry"]>
+  export type TimeEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "projetId" | "tacheId" | "dureeHeures" | "estFacturable" | "commentaire" | "statut" | "bankHourId" | "createdAt" | "updatedAt", ExtArgs["result"]["timeEntry"]>
   export type TimeEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     projet?: boolean | ProjectDefaultArgs<ExtArgs>
     tache?: boolean | TimeEntry$tacheArgs<ExtArgs>
     invoiceLines?: boolean | TimeEntry$invoiceLinesArgs<ExtArgs>
+    bankHour?: boolean | TimeEntry$bankHourArgs<ExtArgs>
     _count?: boolean | TimeEntryCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TimeEntryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     projet?: boolean | ProjectDefaultArgs<ExtArgs>
     tache?: boolean | TimeEntry$tacheArgs<ExtArgs>
+    bankHour?: boolean | TimeEntry$bankHourArgs<ExtArgs>
   }
   export type TimeEntryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     projet?: boolean | ProjectDefaultArgs<ExtArgs>
     tache?: boolean | TimeEntry$tacheArgs<ExtArgs>
+    bankHour?: boolean | TimeEntry$bankHourArgs<ExtArgs>
   }
 
   export type $TimeEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9695,6 +9908,7 @@ export namespace Prisma {
       projet: Prisma.$ProjectPayload<ExtArgs>
       tache: Prisma.$TaskPayload<ExtArgs> | null
       invoiceLines: Prisma.$InvoiceLinePayload<ExtArgs>[]
+      bankHour: Prisma.$BankHourPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9706,6 +9920,7 @@ export namespace Prisma {
       estFacturable: boolean
       commentaire: string | null
       statut: string
+      bankHourId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["timeEntry"]>
@@ -10106,6 +10321,7 @@ export namespace Prisma {
     projet<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     tache<T extends TimeEntry$tacheArgs<ExtArgs> = {}>(args?: Subset<T, TimeEntry$tacheArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     invoiceLines<T extends TimeEntry$invoiceLinesArgs<ExtArgs> = {}>(args?: Subset<T, TimeEntry$invoiceLinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bankHour<T extends TimeEntry$bankHourArgs<ExtArgs> = {}>(args?: Subset<T, TimeEntry$bankHourArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10144,6 +10360,7 @@ export namespace Prisma {
     readonly estFacturable: FieldRef<"TimeEntry", 'Boolean'>
     readonly commentaire: FieldRef<"TimeEntry", 'String'>
     readonly statut: FieldRef<"TimeEntry", 'String'>
+    readonly bankHourId: FieldRef<"TimeEntry", 'String'>
     readonly createdAt: FieldRef<"TimeEntry", 'DateTime'>
     readonly updatedAt: FieldRef<"TimeEntry", 'DateTime'>
   }
@@ -10587,6 +10804,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InvoiceLineScalarFieldEnum | InvoiceLineScalarFieldEnum[]
+  }
+
+  /**
+   * TimeEntry.bankHour
+   */
+  export type TimeEntry$bankHourArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    where?: BankHourWhereInput
   }
 
   /**
@@ -14176,6 +14412,1255 @@ export namespace Prisma {
 
 
   /**
+   * Model BankHour
+   */
+
+  export type AggregateBankHour = {
+    _count: BankHourCountAggregateOutputType | null
+    _avg: BankHourAvgAggregateOutputType | null
+    _sum: BankHourSumAggregateOutputType | null
+    _min: BankHourMinAggregateOutputType | null
+    _max: BankHourMaxAggregateOutputType | null
+  }
+
+  export type BankHourAvgAggregateOutputType = {
+    heuresAchetees: number | null
+    heuresConsommees: number | null
+  }
+
+  export type BankHourSumAggregateOutputType = {
+    heuresAchetees: number | null
+    heuresConsommees: number | null
+  }
+
+  export type BankHourMinAggregateOutputType = {
+    id: string | null
+    clientId: string | null
+    projetId: string | null
+    nom: string | null
+    description: string | null
+    heuresAchetees: number | null
+    heuresConsommees: number | null
+    dateDebut: Date | null
+    dateFin: Date | null
+    estActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BankHourMaxAggregateOutputType = {
+    id: string | null
+    clientId: string | null
+    projetId: string | null
+    nom: string | null
+    description: string | null
+    heuresAchetees: number | null
+    heuresConsommees: number | null
+    dateDebut: Date | null
+    dateFin: Date | null
+    estActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BankHourCountAggregateOutputType = {
+    id: number
+    clientId: number
+    projetId: number
+    nom: number
+    description: number
+    heuresAchetees: number
+    heuresConsommees: number
+    dateDebut: number
+    dateFin: number
+    estActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BankHourAvgAggregateInputType = {
+    heuresAchetees?: true
+    heuresConsommees?: true
+  }
+
+  export type BankHourSumAggregateInputType = {
+    heuresAchetees?: true
+    heuresConsommees?: true
+  }
+
+  export type BankHourMinAggregateInputType = {
+    id?: true
+    clientId?: true
+    projetId?: true
+    nom?: true
+    description?: true
+    heuresAchetees?: true
+    heuresConsommees?: true
+    dateDebut?: true
+    dateFin?: true
+    estActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BankHourMaxAggregateInputType = {
+    id?: true
+    clientId?: true
+    projetId?: true
+    nom?: true
+    description?: true
+    heuresAchetees?: true
+    heuresConsommees?: true
+    dateDebut?: true
+    dateFin?: true
+    estActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BankHourCountAggregateInputType = {
+    id?: true
+    clientId?: true
+    projetId?: true
+    nom?: true
+    description?: true
+    heuresAchetees?: true
+    heuresConsommees?: true
+    dateDebut?: true
+    dateFin?: true
+    estActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BankHourAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BankHour to aggregate.
+     */
+    where?: BankHourWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankHours to fetch.
+     */
+    orderBy?: BankHourOrderByWithRelationInput | BankHourOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BankHourWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankHours from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankHours.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BankHours
+    **/
+    _count?: true | BankHourCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BankHourAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BankHourSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BankHourMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BankHourMaxAggregateInputType
+  }
+
+  export type GetBankHourAggregateType<T extends BankHourAggregateArgs> = {
+        [P in keyof T & keyof AggregateBankHour]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBankHour[P]>
+      : GetScalarType<T[P], AggregateBankHour[P]>
+  }
+
+
+
+
+  export type BankHourGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankHourWhereInput
+    orderBy?: BankHourOrderByWithAggregationInput | BankHourOrderByWithAggregationInput[]
+    by: BankHourScalarFieldEnum[] | BankHourScalarFieldEnum
+    having?: BankHourScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BankHourCountAggregateInputType | true
+    _avg?: BankHourAvgAggregateInputType
+    _sum?: BankHourSumAggregateInputType
+    _min?: BankHourMinAggregateInputType
+    _max?: BankHourMaxAggregateInputType
+  }
+
+  export type BankHourGroupByOutputType = {
+    id: string
+    clientId: string
+    projetId: string | null
+    nom: string
+    description: string | null
+    heuresAchetees: number
+    heuresConsommees: number
+    dateDebut: Date | null
+    dateFin: Date | null
+    estActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: BankHourCountAggregateOutputType | null
+    _avg: BankHourAvgAggregateOutputType | null
+    _sum: BankHourSumAggregateOutputType | null
+    _min: BankHourMinAggregateOutputType | null
+    _max: BankHourMaxAggregateOutputType | null
+  }
+
+  type GetBankHourGroupByPayload<T extends BankHourGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BankHourGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BankHourGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BankHourGroupByOutputType[P]>
+            : GetScalarType<T[P], BankHourGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BankHourSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clientId?: boolean
+    projetId?: boolean
+    nom?: boolean
+    description?: boolean
+    heuresAchetees?: boolean
+    heuresConsommees?: boolean
+    dateDebut?: boolean
+    dateFin?: boolean
+    estActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    projet?: boolean | BankHour$projetArgs<ExtArgs>
+    timeEntries?: boolean | BankHour$timeEntriesArgs<ExtArgs>
+    _count?: boolean | BankHourCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bankHour"]>
+
+  export type BankHourSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clientId?: boolean
+    projetId?: boolean
+    nom?: boolean
+    description?: boolean
+    heuresAchetees?: boolean
+    heuresConsommees?: boolean
+    dateDebut?: boolean
+    dateFin?: boolean
+    estActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    projet?: boolean | BankHour$projetArgs<ExtArgs>
+  }, ExtArgs["result"]["bankHour"]>
+
+  export type BankHourSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clientId?: boolean
+    projetId?: boolean
+    nom?: boolean
+    description?: boolean
+    heuresAchetees?: boolean
+    heuresConsommees?: boolean
+    dateDebut?: boolean
+    dateFin?: boolean
+    estActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    projet?: boolean | BankHour$projetArgs<ExtArgs>
+  }, ExtArgs["result"]["bankHour"]>
+
+  export type BankHourSelectScalar = {
+    id?: boolean
+    clientId?: boolean
+    projetId?: boolean
+    nom?: boolean
+    description?: boolean
+    heuresAchetees?: boolean
+    heuresConsommees?: boolean
+    dateDebut?: boolean
+    dateFin?: boolean
+    estActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BankHourOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "projetId" | "nom" | "description" | "heuresAchetees" | "heuresConsommees" | "dateDebut" | "dateFin" | "estActive" | "createdAt" | "updatedAt", ExtArgs["result"]["bankHour"]>
+  export type BankHourInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    projet?: boolean | BankHour$projetArgs<ExtArgs>
+    timeEntries?: boolean | BankHour$timeEntriesArgs<ExtArgs>
+    _count?: boolean | BankHourCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BankHourIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    projet?: boolean | BankHour$projetArgs<ExtArgs>
+  }
+  export type BankHourIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    projet?: boolean | BankHour$projetArgs<ExtArgs>
+  }
+
+  export type $BankHourPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BankHour"
+    objects: {
+      client: Prisma.$ClientPayload<ExtArgs>
+      projet: Prisma.$ProjectPayload<ExtArgs> | null
+      timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      clientId: string
+      projetId: string | null
+      nom: string
+      description: string | null
+      heuresAchetees: number
+      heuresConsommees: number
+      dateDebut: Date | null
+      dateFin: Date | null
+      estActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bankHour"]>
+    composites: {}
+  }
+
+  type BankHourGetPayload<S extends boolean | null | undefined | BankHourDefaultArgs> = $Result.GetResult<Prisma.$BankHourPayload, S>
+
+  type BankHourCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BankHourFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BankHourCountAggregateInputType | true
+    }
+
+  export interface BankHourDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BankHour'], meta: { name: 'BankHour' } }
+    /**
+     * Find zero or one BankHour that matches the filter.
+     * @param {BankHourFindUniqueArgs} args - Arguments to find a BankHour
+     * @example
+     * // Get one BankHour
+     * const bankHour = await prisma.bankHour.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BankHourFindUniqueArgs>(args: SelectSubset<T, BankHourFindUniqueArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BankHour that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BankHourFindUniqueOrThrowArgs} args - Arguments to find a BankHour
+     * @example
+     * // Get one BankHour
+     * const bankHour = await prisma.bankHour.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BankHourFindUniqueOrThrowArgs>(args: SelectSubset<T, BankHourFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BankHour that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankHourFindFirstArgs} args - Arguments to find a BankHour
+     * @example
+     * // Get one BankHour
+     * const bankHour = await prisma.bankHour.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BankHourFindFirstArgs>(args?: SelectSubset<T, BankHourFindFirstArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BankHour that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankHourFindFirstOrThrowArgs} args - Arguments to find a BankHour
+     * @example
+     * // Get one BankHour
+     * const bankHour = await prisma.bankHour.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BankHourFindFirstOrThrowArgs>(args?: SelectSubset<T, BankHourFindFirstOrThrowArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BankHours that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankHourFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BankHours
+     * const bankHours = await prisma.bankHour.findMany()
+     * 
+     * // Get first 10 BankHours
+     * const bankHours = await prisma.bankHour.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bankHourWithIdOnly = await prisma.bankHour.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BankHourFindManyArgs>(args?: SelectSubset<T, BankHourFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BankHour.
+     * @param {BankHourCreateArgs} args - Arguments to create a BankHour.
+     * @example
+     * // Create one BankHour
+     * const BankHour = await prisma.bankHour.create({
+     *   data: {
+     *     // ... data to create a BankHour
+     *   }
+     * })
+     * 
+     */
+    create<T extends BankHourCreateArgs>(args: SelectSubset<T, BankHourCreateArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BankHours.
+     * @param {BankHourCreateManyArgs} args - Arguments to create many BankHours.
+     * @example
+     * // Create many BankHours
+     * const bankHour = await prisma.bankHour.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BankHourCreateManyArgs>(args?: SelectSubset<T, BankHourCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BankHours and returns the data saved in the database.
+     * @param {BankHourCreateManyAndReturnArgs} args - Arguments to create many BankHours.
+     * @example
+     * // Create many BankHours
+     * const bankHour = await prisma.bankHour.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BankHours and only return the `id`
+     * const bankHourWithIdOnly = await prisma.bankHour.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BankHourCreateManyAndReturnArgs>(args?: SelectSubset<T, BankHourCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BankHour.
+     * @param {BankHourDeleteArgs} args - Arguments to delete one BankHour.
+     * @example
+     * // Delete one BankHour
+     * const BankHour = await prisma.bankHour.delete({
+     *   where: {
+     *     // ... filter to delete one BankHour
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BankHourDeleteArgs>(args: SelectSubset<T, BankHourDeleteArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BankHour.
+     * @param {BankHourUpdateArgs} args - Arguments to update one BankHour.
+     * @example
+     * // Update one BankHour
+     * const bankHour = await prisma.bankHour.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BankHourUpdateArgs>(args: SelectSubset<T, BankHourUpdateArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BankHours.
+     * @param {BankHourDeleteManyArgs} args - Arguments to filter BankHours to delete.
+     * @example
+     * // Delete a few BankHours
+     * const { count } = await prisma.bankHour.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BankHourDeleteManyArgs>(args?: SelectSubset<T, BankHourDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BankHours.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankHourUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BankHours
+     * const bankHour = await prisma.bankHour.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BankHourUpdateManyArgs>(args: SelectSubset<T, BankHourUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BankHours and returns the data updated in the database.
+     * @param {BankHourUpdateManyAndReturnArgs} args - Arguments to update many BankHours.
+     * @example
+     * // Update many BankHours
+     * const bankHour = await prisma.bankHour.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BankHours and only return the `id`
+     * const bankHourWithIdOnly = await prisma.bankHour.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BankHourUpdateManyAndReturnArgs>(args: SelectSubset<T, BankHourUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BankHour.
+     * @param {BankHourUpsertArgs} args - Arguments to update or create a BankHour.
+     * @example
+     * // Update or create a BankHour
+     * const bankHour = await prisma.bankHour.upsert({
+     *   create: {
+     *     // ... data to create a BankHour
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BankHour we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BankHourUpsertArgs>(args: SelectSubset<T, BankHourUpsertArgs<ExtArgs>>): Prisma__BankHourClient<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BankHours.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankHourCountArgs} args - Arguments to filter BankHours to count.
+     * @example
+     * // Count the number of BankHours
+     * const count = await prisma.bankHour.count({
+     *   where: {
+     *     // ... the filter for the BankHours we want to count
+     *   }
+     * })
+    **/
+    count<T extends BankHourCountArgs>(
+      args?: Subset<T, BankHourCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BankHourCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BankHour.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankHourAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BankHourAggregateArgs>(args: Subset<T, BankHourAggregateArgs>): Prisma.PrismaPromise<GetBankHourAggregateType<T>>
+
+    /**
+     * Group by BankHour.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankHourGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BankHourGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BankHourGroupByArgs['orderBy'] }
+        : { orderBy?: BankHourGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BankHourGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBankHourGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BankHour model
+   */
+  readonly fields: BankHourFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BankHour.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BankHourClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    client<T extends ClientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClientDefaultArgs<ExtArgs>>): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    projet<T extends BankHour$projetArgs<ExtArgs> = {}>(args?: Subset<T, BankHour$projetArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    timeEntries<T extends BankHour$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, BankHour$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BankHour model
+   */
+  interface BankHourFieldRefs {
+    readonly id: FieldRef<"BankHour", 'String'>
+    readonly clientId: FieldRef<"BankHour", 'String'>
+    readonly projetId: FieldRef<"BankHour", 'String'>
+    readonly nom: FieldRef<"BankHour", 'String'>
+    readonly description: FieldRef<"BankHour", 'String'>
+    readonly heuresAchetees: FieldRef<"BankHour", 'Float'>
+    readonly heuresConsommees: FieldRef<"BankHour", 'Float'>
+    readonly dateDebut: FieldRef<"BankHour", 'DateTime'>
+    readonly dateFin: FieldRef<"BankHour", 'DateTime'>
+    readonly estActive: FieldRef<"BankHour", 'Boolean'>
+    readonly createdAt: FieldRef<"BankHour", 'DateTime'>
+    readonly updatedAt: FieldRef<"BankHour", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BankHour findUnique
+   */
+  export type BankHourFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * Filter, which BankHour to fetch.
+     */
+    where: BankHourWhereUniqueInput
+  }
+
+  /**
+   * BankHour findUniqueOrThrow
+   */
+  export type BankHourFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * Filter, which BankHour to fetch.
+     */
+    where: BankHourWhereUniqueInput
+  }
+
+  /**
+   * BankHour findFirst
+   */
+  export type BankHourFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * Filter, which BankHour to fetch.
+     */
+    where?: BankHourWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankHours to fetch.
+     */
+    orderBy?: BankHourOrderByWithRelationInput | BankHourOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BankHours.
+     */
+    cursor?: BankHourWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankHours from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankHours.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BankHours.
+     */
+    distinct?: BankHourScalarFieldEnum | BankHourScalarFieldEnum[]
+  }
+
+  /**
+   * BankHour findFirstOrThrow
+   */
+  export type BankHourFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * Filter, which BankHour to fetch.
+     */
+    where?: BankHourWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankHours to fetch.
+     */
+    orderBy?: BankHourOrderByWithRelationInput | BankHourOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BankHours.
+     */
+    cursor?: BankHourWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankHours from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankHours.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BankHours.
+     */
+    distinct?: BankHourScalarFieldEnum | BankHourScalarFieldEnum[]
+  }
+
+  /**
+   * BankHour findMany
+   */
+  export type BankHourFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * Filter, which BankHours to fetch.
+     */
+    where?: BankHourWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankHours to fetch.
+     */
+    orderBy?: BankHourOrderByWithRelationInput | BankHourOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BankHours.
+     */
+    cursor?: BankHourWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankHours from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankHours.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BankHours.
+     */
+    distinct?: BankHourScalarFieldEnum | BankHourScalarFieldEnum[]
+  }
+
+  /**
+   * BankHour create
+   */
+  export type BankHourCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BankHour.
+     */
+    data: XOR<BankHourCreateInput, BankHourUncheckedCreateInput>
+  }
+
+  /**
+   * BankHour createMany
+   */
+  export type BankHourCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BankHours.
+     */
+    data: BankHourCreateManyInput | BankHourCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BankHour createManyAndReturn
+   */
+  export type BankHourCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * The data used to create many BankHours.
+     */
+    data: BankHourCreateManyInput | BankHourCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BankHour update
+   */
+  export type BankHourUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BankHour.
+     */
+    data: XOR<BankHourUpdateInput, BankHourUncheckedUpdateInput>
+    /**
+     * Choose, which BankHour to update.
+     */
+    where: BankHourWhereUniqueInput
+  }
+
+  /**
+   * BankHour updateMany
+   */
+  export type BankHourUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BankHours.
+     */
+    data: XOR<BankHourUpdateManyMutationInput, BankHourUncheckedUpdateManyInput>
+    /**
+     * Filter which BankHours to update
+     */
+    where?: BankHourWhereInput
+    /**
+     * Limit how many BankHours to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BankHour updateManyAndReturn
+   */
+  export type BankHourUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * The data used to update BankHours.
+     */
+    data: XOR<BankHourUpdateManyMutationInput, BankHourUncheckedUpdateManyInput>
+    /**
+     * Filter which BankHours to update
+     */
+    where?: BankHourWhereInput
+    /**
+     * Limit how many BankHours to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BankHour upsert
+   */
+  export type BankHourUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BankHour to update in case it exists.
+     */
+    where: BankHourWhereUniqueInput
+    /**
+     * In case the BankHour found by the `where` argument doesn't exist, create a new BankHour with this data.
+     */
+    create: XOR<BankHourCreateInput, BankHourUncheckedCreateInput>
+    /**
+     * In case the BankHour was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BankHourUpdateInput, BankHourUncheckedUpdateInput>
+  }
+
+  /**
+   * BankHour delete
+   */
+  export type BankHourDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+    /**
+     * Filter which BankHour to delete.
+     */
+    where: BankHourWhereUniqueInput
+  }
+
+  /**
+   * BankHour deleteMany
+   */
+  export type BankHourDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BankHours to delete
+     */
+    where?: BankHourWhereInput
+    /**
+     * Limit how many BankHours to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BankHour.projet
+   */
+  export type BankHour$projetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * BankHour.timeEntries
+   */
+  export type BankHour$timeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    where?: TimeEntryWhereInput
+    orderBy?: TimeEntryOrderByWithRelationInput | TimeEntryOrderByWithRelationInput[]
+    cursor?: TimeEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TimeEntryScalarFieldEnum | TimeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * BankHour without action
+   */
+  export type BankHourDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankHour
+     */
+    select?: BankHourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankHour
+     */
+    omit?: BankHourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankHourInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14314,6 +15799,7 @@ export namespace Prisma {
     estFacturable: 'estFacturable',
     commentaire: 'commentaire',
     statut: 'statut',
+    bankHourId: 'bankHourId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -14365,6 +15851,24 @@ export namespace Prisma {
   };
 
   export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
+  export const BankHourScalarFieldEnum: {
+    id: 'id',
+    clientId: 'clientId',
+    projetId: 'projetId',
+    nom: 'nom',
+    description: 'description',
+    heuresAchetees: 'heuresAchetees',
+    heuresConsommees: 'heuresConsommees',
+    dateDebut: 'dateDebut',
+    dateFin: 'dateFin',
+    estActive: 'estActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BankHourScalarFieldEnum = (typeof BankHourScalarFieldEnum)[keyof typeof BankHourScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14661,6 +16165,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Client"> | Date | string
     projects?: ProjectListRelationFilter
     invoices?: InvoiceListRelationFilter
+    bankHours?: BankHourListRelationFilter
   }
 
   export type ClientOrderByWithRelationInput = {
@@ -14690,6 +16195,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     projects?: ProjectOrderByRelationAggregateInput
     invoices?: InvoiceOrderByRelationAggregateInput
+    bankHours?: BankHourOrderByRelationAggregateInput
   }
 
   export type ClientWhereUniqueInput = Prisma.AtLeast<{
@@ -14722,6 +16228,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Client"> | Date | string
     projects?: ProjectListRelationFilter
     invoices?: InvoiceListRelationFilter
+    bankHours?: BankHourListRelationFilter
   }, "id">
 
   export type ClientOrderByWithAggregationInput = {
@@ -14809,6 +16316,7 @@ export namespace Prisma {
     tasks?: TaskListRelationFilter
     timeEntries?: TimeEntryListRelationFilter
     invoiceLines?: InvoiceLineListRelationFilter
+    bankHours?: BankHourListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -14833,6 +16341,7 @@ export namespace Prisma {
     tasks?: TaskOrderByRelationAggregateInput
     timeEntries?: TimeEntryOrderByRelationAggregateInput
     invoiceLines?: InvoiceLineOrderByRelationAggregateInput
+    bankHours?: BankHourOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -14860,6 +16369,7 @@ export namespace Prisma {
     tasks?: TaskListRelationFilter
     timeEntries?: TimeEntryListRelationFilter
     invoiceLines?: InvoiceLineListRelationFilter
+    bankHours?: BankHourListRelationFilter
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -15082,12 +16592,14 @@ export namespace Prisma {
     estFacturable?: BoolFilter<"TimeEntry"> | boolean
     commentaire?: StringNullableFilter<"TimeEntry"> | string | null
     statut?: StringFilter<"TimeEntry"> | string
+    bankHourId?: StringNullableFilter<"TimeEntry"> | string | null
     createdAt?: DateTimeFilter<"TimeEntry"> | Date | string
     updatedAt?: DateTimeFilter<"TimeEntry"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     projet?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     tache?: XOR<TaskNullableScalarRelationFilter, TaskWhereInput> | null
     invoiceLines?: InvoiceLineListRelationFilter
+    bankHour?: XOR<BankHourNullableScalarRelationFilter, BankHourWhereInput> | null
   }
 
   export type TimeEntryOrderByWithRelationInput = {
@@ -15100,12 +16612,14 @@ export namespace Prisma {
     estFacturable?: SortOrder
     commentaire?: SortOrderInput | SortOrder
     statut?: SortOrder
+    bankHourId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     projet?: ProjectOrderByWithRelationInput
     tache?: TaskOrderByWithRelationInput
     invoiceLines?: InvoiceLineOrderByRelationAggregateInput
+    bankHour?: BankHourOrderByWithRelationInput
   }
 
   export type TimeEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -15121,12 +16635,14 @@ export namespace Prisma {
     estFacturable?: BoolFilter<"TimeEntry"> | boolean
     commentaire?: StringNullableFilter<"TimeEntry"> | string | null
     statut?: StringFilter<"TimeEntry"> | string
+    bankHourId?: StringNullableFilter<"TimeEntry"> | string | null
     createdAt?: DateTimeFilter<"TimeEntry"> | Date | string
     updatedAt?: DateTimeFilter<"TimeEntry"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     projet?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     tache?: XOR<TaskNullableScalarRelationFilter, TaskWhereInput> | null
     invoiceLines?: InvoiceLineListRelationFilter
+    bankHour?: XOR<BankHourNullableScalarRelationFilter, BankHourWhereInput> | null
   }, "id">
 
   export type TimeEntryOrderByWithAggregationInput = {
@@ -15139,6 +16655,7 @@ export namespace Prisma {
     estFacturable?: SortOrder
     commentaire?: SortOrderInput | SortOrder
     statut?: SortOrder
+    bankHourId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TimeEntryCountOrderByAggregateInput
@@ -15161,6 +16678,7 @@ export namespace Prisma {
     estFacturable?: BoolWithAggregatesFilter<"TimeEntry"> | boolean
     commentaire?: StringNullableWithAggregatesFilter<"TimeEntry"> | string | null
     statut?: StringWithAggregatesFilter<"TimeEntry"> | string
+    bankHourId?: StringNullableWithAggregatesFilter<"TimeEntry"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"TimeEntry"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TimeEntry"> | Date | string
   }
@@ -15410,6 +16928,104 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"Transaction"> | string
   }
 
+  export type BankHourWhereInput = {
+    AND?: BankHourWhereInput | BankHourWhereInput[]
+    OR?: BankHourWhereInput[]
+    NOT?: BankHourWhereInput | BankHourWhereInput[]
+    id?: StringFilter<"BankHour"> | string
+    clientId?: StringFilter<"BankHour"> | string
+    projetId?: StringNullableFilter<"BankHour"> | string | null
+    nom?: StringFilter<"BankHour"> | string
+    description?: StringNullableFilter<"BankHour"> | string | null
+    heuresAchetees?: FloatFilter<"BankHour"> | number
+    heuresConsommees?: FloatFilter<"BankHour"> | number
+    dateDebut?: DateTimeNullableFilter<"BankHour"> | Date | string | null
+    dateFin?: DateTimeNullableFilter<"BankHour"> | Date | string | null
+    estActive?: BoolFilter<"BankHour"> | boolean
+    createdAt?: DateTimeFilter<"BankHour"> | Date | string
+    updatedAt?: DateTimeFilter<"BankHour"> | Date | string
+    client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
+    projet?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
+    timeEntries?: TimeEntryListRelationFilter
+  }
+
+  export type BankHourOrderByWithRelationInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    projetId?: SortOrderInput | SortOrder
+    nom?: SortOrder
+    description?: SortOrderInput | SortOrder
+    heuresAchetees?: SortOrder
+    heuresConsommees?: SortOrder
+    dateDebut?: SortOrderInput | SortOrder
+    dateFin?: SortOrderInput | SortOrder
+    estActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    client?: ClientOrderByWithRelationInput
+    projet?: ProjectOrderByWithRelationInput
+    timeEntries?: TimeEntryOrderByRelationAggregateInput
+  }
+
+  export type BankHourWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BankHourWhereInput | BankHourWhereInput[]
+    OR?: BankHourWhereInput[]
+    NOT?: BankHourWhereInput | BankHourWhereInput[]
+    clientId?: StringFilter<"BankHour"> | string
+    projetId?: StringNullableFilter<"BankHour"> | string | null
+    nom?: StringFilter<"BankHour"> | string
+    description?: StringNullableFilter<"BankHour"> | string | null
+    heuresAchetees?: FloatFilter<"BankHour"> | number
+    heuresConsommees?: FloatFilter<"BankHour"> | number
+    dateDebut?: DateTimeNullableFilter<"BankHour"> | Date | string | null
+    dateFin?: DateTimeNullableFilter<"BankHour"> | Date | string | null
+    estActive?: BoolFilter<"BankHour"> | boolean
+    createdAt?: DateTimeFilter<"BankHour"> | Date | string
+    updatedAt?: DateTimeFilter<"BankHour"> | Date | string
+    client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
+    projet?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
+    timeEntries?: TimeEntryListRelationFilter
+  }, "id">
+
+  export type BankHourOrderByWithAggregationInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    projetId?: SortOrderInput | SortOrder
+    nom?: SortOrder
+    description?: SortOrderInput | SortOrder
+    heuresAchetees?: SortOrder
+    heuresConsommees?: SortOrder
+    dateDebut?: SortOrderInput | SortOrder
+    dateFin?: SortOrderInput | SortOrder
+    estActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BankHourCountOrderByAggregateInput
+    _avg?: BankHourAvgOrderByAggregateInput
+    _max?: BankHourMaxOrderByAggregateInput
+    _min?: BankHourMinOrderByAggregateInput
+    _sum?: BankHourSumOrderByAggregateInput
+  }
+
+  export type BankHourScalarWhereWithAggregatesInput = {
+    AND?: BankHourScalarWhereWithAggregatesInput | BankHourScalarWhereWithAggregatesInput[]
+    OR?: BankHourScalarWhereWithAggregatesInput[]
+    NOT?: BankHourScalarWhereWithAggregatesInput | BankHourScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BankHour"> | string
+    clientId?: StringWithAggregatesFilter<"BankHour"> | string
+    projetId?: StringNullableWithAggregatesFilter<"BankHour"> | string | null
+    nom?: StringWithAggregatesFilter<"BankHour"> | string
+    description?: StringNullableWithAggregatesFilter<"BankHour"> | string | null
+    heuresAchetees?: FloatWithAggregatesFilter<"BankHour"> | number
+    heuresConsommees?: FloatWithAggregatesFilter<"BankHour"> | number
+    dateDebut?: DateTimeNullableWithAggregatesFilter<"BankHour"> | Date | string | null
+    dateFin?: DateTimeNullableWithAggregatesFilter<"BankHour"> | Date | string | null
+    estActive?: BoolWithAggregatesFilter<"BankHour"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"BankHour"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BankHour"> | Date | string
+  }
+
   export type RoleCreateInput = {
     id?: string
     name: string
@@ -15634,6 +17250,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     projects?: ProjectCreateNestedManyWithoutClientInput
     invoices?: InvoiceCreateNestedManyWithoutClientInput
+    bankHours?: BankHourCreateNestedManyWithoutClientInput
   }
 
   export type ClientUncheckedCreateInput = {
@@ -15663,6 +17280,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
   }
 
   export type ClientUpdateInput = {
@@ -15692,6 +17310,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUpdateManyWithoutClientNestedInput
     invoices?: InvoiceUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUpdateManyWithoutClientNestedInput
   }
 
   export type ClientUncheckedUpdateInput = {
@@ -15721,6 +17340,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
   }
 
   export type ClientCreateManyInput = {
@@ -15825,6 +17445,7 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutProjetInput
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -15848,6 +17469,7 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectUpdateInput = {
@@ -15871,6 +17493,7 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutProjetNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUpdateManyWithoutProjetNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -15894,6 +17517,7 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutProjetNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -16141,6 +17765,7 @@ export namespace Prisma {
     projet: ProjectCreateNestedOneWithoutTimeEntriesInput
     tache?: TaskCreateNestedOneWithoutTimeEntriesInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutTimeEntriesInput
+    bankHour?: BankHourCreateNestedOneWithoutTimeEntriesInput
   }
 
   export type TimeEntryUncheckedCreateInput = {
@@ -16153,6 +17778,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutTimeEntriesInput
@@ -16171,6 +17797,7 @@ export namespace Prisma {
     projet?: ProjectUpdateOneRequiredWithoutTimeEntriesNestedInput
     tache?: TaskUpdateOneWithoutTimeEntriesNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutTimeEntriesNestedInput
+    bankHour?: BankHourUpdateOneWithoutTimeEntriesNestedInput
   }
 
   export type TimeEntryUncheckedUpdateInput = {
@@ -16183,6 +17810,7 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutTimeEntriesNestedInput
@@ -16198,6 +17826,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16223,6 +17852,7 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16488,6 +18118,113 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BankHourCreateInput = {
+    id?: string
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutBankHoursInput
+    projet?: ProjectCreateNestedOneWithoutBankHoursInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutBankHourInput
+  }
+
+  export type BankHourUncheckedCreateInput = {
+    id?: string
+    clientId: string
+    projetId?: string | null
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutBankHourInput
+  }
+
+  export type BankHourUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutBankHoursNestedInput
+    projet?: ProjectUpdateOneWithoutBankHoursNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutBankHourNestedInput
+  }
+
+  export type BankHourUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    projetId?: NullableStringFieldUpdateOperationsInput | string | null
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutBankHourNestedInput
+  }
+
+  export type BankHourCreateManyInput = {
+    id?: string
+    clientId: string
+    projetId?: string | null
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankHourUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BankHourUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    projetId?: NullableStringFieldUpdateOperationsInput | string | null
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16759,11 +18496,21 @@ export namespace Prisma {
     none?: InvoiceWhereInput
   }
 
+  export type BankHourListRelationFilter = {
+    every?: BankHourWhereInput
+    some?: BankHourWhereInput
+    none?: BankHourWhereInput
+  }
+
   export type ProjectOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type InvoiceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BankHourOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17099,6 +18846,11 @@ export namespace Prisma {
     isNot?: TaskWhereInput | null
   }
 
+  export type BankHourNullableScalarRelationFilter = {
+    is?: BankHourWhereInput | null
+    isNot?: BankHourWhereInput | null
+  }
+
   export type TimeEntryCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -17109,6 +18861,7 @@ export namespace Prisma {
     estFacturable?: SortOrder
     commentaire?: SortOrder
     statut?: SortOrder
+    bankHourId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17127,6 +18880,7 @@ export namespace Prisma {
     estFacturable?: SortOrder
     commentaire?: SortOrder
     statut?: SortOrder
+    bankHourId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17141,6 +18895,7 @@ export namespace Prisma {
     estFacturable?: SortOrder
     commentaire?: SortOrder
     statut?: SortOrder
+    bankHourId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17302,6 +19057,61 @@ export namespace Prisma {
 
   export type TransactionSumOrderByAggregateInput = {
     amount?: SortOrder
+  }
+
+  export type BankHourCountOrderByAggregateInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    projetId?: SortOrder
+    nom?: SortOrder
+    description?: SortOrder
+    heuresAchetees?: SortOrder
+    heuresConsommees?: SortOrder
+    dateDebut?: SortOrder
+    dateFin?: SortOrder
+    estActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BankHourAvgOrderByAggregateInput = {
+    heuresAchetees?: SortOrder
+    heuresConsommees?: SortOrder
+  }
+
+  export type BankHourMaxOrderByAggregateInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    projetId?: SortOrder
+    nom?: SortOrder
+    description?: SortOrder
+    heuresAchetees?: SortOrder
+    heuresConsommees?: SortOrder
+    dateDebut?: SortOrder
+    dateFin?: SortOrder
+    estActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BankHourMinOrderByAggregateInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    projetId?: SortOrder
+    nom?: SortOrder
+    description?: SortOrder
+    heuresAchetees?: SortOrder
+    heuresConsommees?: SortOrder
+    dateDebut?: SortOrder
+    dateFin?: SortOrder
+    estActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BankHourSumOrderByAggregateInput = {
+    heuresAchetees?: SortOrder
+    heuresConsommees?: SortOrder
   }
 
   export type UserCreateNestedManyWithoutRoleInput = {
@@ -17522,6 +19332,13 @@ export namespace Prisma {
     connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
   }
 
+  export type BankHourCreateNestedManyWithoutClientInput = {
+    create?: XOR<BankHourCreateWithoutClientInput, BankHourUncheckedCreateWithoutClientInput> | BankHourCreateWithoutClientInput[] | BankHourUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: BankHourCreateOrConnectWithoutClientInput | BankHourCreateOrConnectWithoutClientInput[]
+    createMany?: BankHourCreateManyClientInputEnvelope
+    connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+  }
+
   export type ProjectUncheckedCreateNestedManyWithoutClientInput = {
     create?: XOR<ProjectCreateWithoutClientInput, ProjectUncheckedCreateWithoutClientInput> | ProjectCreateWithoutClientInput[] | ProjectUncheckedCreateWithoutClientInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutClientInput | ProjectCreateOrConnectWithoutClientInput[]
@@ -17534,6 +19351,13 @@ export namespace Prisma {
     connectOrCreate?: InvoiceCreateOrConnectWithoutClientInput | InvoiceCreateOrConnectWithoutClientInput[]
     createMany?: InvoiceCreateManyClientInputEnvelope
     connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+  }
+
+  export type BankHourUncheckedCreateNestedManyWithoutClientInput = {
+    create?: XOR<BankHourCreateWithoutClientInput, BankHourUncheckedCreateWithoutClientInput> | BankHourCreateWithoutClientInput[] | BankHourUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: BankHourCreateOrConnectWithoutClientInput | BankHourCreateOrConnectWithoutClientInput[]
+    createMany?: BankHourCreateManyClientInputEnvelope
+    connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
   }
 
   export type ProjectUpdateManyWithoutClientNestedInput = {
@@ -17564,6 +19388,20 @@ export namespace Prisma {
     deleteMany?: InvoiceScalarWhereInput | InvoiceScalarWhereInput[]
   }
 
+  export type BankHourUpdateManyWithoutClientNestedInput = {
+    create?: XOR<BankHourCreateWithoutClientInput, BankHourUncheckedCreateWithoutClientInput> | BankHourCreateWithoutClientInput[] | BankHourUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: BankHourCreateOrConnectWithoutClientInput | BankHourCreateOrConnectWithoutClientInput[]
+    upsert?: BankHourUpsertWithWhereUniqueWithoutClientInput | BankHourUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: BankHourCreateManyClientInputEnvelope
+    set?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    disconnect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    delete?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    update?: BankHourUpdateWithWhereUniqueWithoutClientInput | BankHourUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: BankHourUpdateManyWithWhereWithoutClientInput | BankHourUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
+  }
+
   export type ProjectUncheckedUpdateManyWithoutClientNestedInput = {
     create?: XOR<ProjectCreateWithoutClientInput, ProjectUncheckedCreateWithoutClientInput> | ProjectCreateWithoutClientInput[] | ProjectUncheckedCreateWithoutClientInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutClientInput | ProjectCreateOrConnectWithoutClientInput[]
@@ -17590,6 +19428,20 @@ export namespace Prisma {
     update?: InvoiceUpdateWithWhereUniqueWithoutClientInput | InvoiceUpdateWithWhereUniqueWithoutClientInput[]
     updateMany?: InvoiceUpdateManyWithWhereWithoutClientInput | InvoiceUpdateManyWithWhereWithoutClientInput[]
     deleteMany?: InvoiceScalarWhereInput | InvoiceScalarWhereInput[]
+  }
+
+  export type BankHourUncheckedUpdateManyWithoutClientNestedInput = {
+    create?: XOR<BankHourCreateWithoutClientInput, BankHourUncheckedCreateWithoutClientInput> | BankHourCreateWithoutClientInput[] | BankHourUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: BankHourCreateOrConnectWithoutClientInput | BankHourCreateOrConnectWithoutClientInput[]
+    upsert?: BankHourUpsertWithWhereUniqueWithoutClientInput | BankHourUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: BankHourCreateManyClientInputEnvelope
+    set?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    disconnect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    delete?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    update?: BankHourUpdateWithWhereUniqueWithoutClientInput | BankHourUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: BankHourUpdateManyWithWhereWithoutClientInput | BankHourUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
   }
 
   export type ClientCreateNestedOneWithoutProjectsInput = {
@@ -17619,6 +19471,13 @@ export namespace Prisma {
     connect?: InvoiceLineWhereUniqueInput | InvoiceLineWhereUniqueInput[]
   }
 
+  export type BankHourCreateNestedManyWithoutProjetInput = {
+    create?: XOR<BankHourCreateWithoutProjetInput, BankHourUncheckedCreateWithoutProjetInput> | BankHourCreateWithoutProjetInput[] | BankHourUncheckedCreateWithoutProjetInput[]
+    connectOrCreate?: BankHourCreateOrConnectWithoutProjetInput | BankHourCreateOrConnectWithoutProjetInput[]
+    createMany?: BankHourCreateManyProjetInputEnvelope
+    connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+  }
+
   export type TaskUncheckedCreateNestedManyWithoutProjetInput = {
     create?: XOR<TaskCreateWithoutProjetInput, TaskUncheckedCreateWithoutProjetInput> | TaskCreateWithoutProjetInput[] | TaskUncheckedCreateWithoutProjetInput[]
     connectOrCreate?: TaskCreateOrConnectWithoutProjetInput | TaskCreateOrConnectWithoutProjetInput[]
@@ -17638,6 +19497,13 @@ export namespace Prisma {
     connectOrCreate?: InvoiceLineCreateOrConnectWithoutProjetInput | InvoiceLineCreateOrConnectWithoutProjetInput[]
     createMany?: InvoiceLineCreateManyProjetInputEnvelope
     connect?: InvoiceLineWhereUniqueInput | InvoiceLineWhereUniqueInput[]
+  }
+
+  export type BankHourUncheckedCreateNestedManyWithoutProjetInput = {
+    create?: XOR<BankHourCreateWithoutProjetInput, BankHourUncheckedCreateWithoutProjetInput> | BankHourCreateWithoutProjetInput[] | BankHourUncheckedCreateWithoutProjetInput[]
+    connectOrCreate?: BankHourCreateOrConnectWithoutProjetInput | BankHourCreateOrConnectWithoutProjetInput[]
+    createMany?: BankHourCreateManyProjetInputEnvelope
+    connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
   }
 
   export type NullableFloatFieldUpdateOperationsInput = {
@@ -17706,6 +19572,20 @@ export namespace Prisma {
     deleteMany?: InvoiceLineScalarWhereInput | InvoiceLineScalarWhereInput[]
   }
 
+  export type BankHourUpdateManyWithoutProjetNestedInput = {
+    create?: XOR<BankHourCreateWithoutProjetInput, BankHourUncheckedCreateWithoutProjetInput> | BankHourCreateWithoutProjetInput[] | BankHourUncheckedCreateWithoutProjetInput[]
+    connectOrCreate?: BankHourCreateOrConnectWithoutProjetInput | BankHourCreateOrConnectWithoutProjetInput[]
+    upsert?: BankHourUpsertWithWhereUniqueWithoutProjetInput | BankHourUpsertWithWhereUniqueWithoutProjetInput[]
+    createMany?: BankHourCreateManyProjetInputEnvelope
+    set?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    disconnect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    delete?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    update?: BankHourUpdateWithWhereUniqueWithoutProjetInput | BankHourUpdateWithWhereUniqueWithoutProjetInput[]
+    updateMany?: BankHourUpdateManyWithWhereWithoutProjetInput | BankHourUpdateManyWithWhereWithoutProjetInput[]
+    deleteMany?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
+  }
+
   export type TaskUncheckedUpdateManyWithoutProjetNestedInput = {
     create?: XOR<TaskCreateWithoutProjetInput, TaskUncheckedCreateWithoutProjetInput> | TaskCreateWithoutProjetInput[] | TaskUncheckedCreateWithoutProjetInput[]
     connectOrCreate?: TaskCreateOrConnectWithoutProjetInput | TaskCreateOrConnectWithoutProjetInput[]
@@ -17746,6 +19626,20 @@ export namespace Prisma {
     update?: InvoiceLineUpdateWithWhereUniqueWithoutProjetInput | InvoiceLineUpdateWithWhereUniqueWithoutProjetInput[]
     updateMany?: InvoiceLineUpdateManyWithWhereWithoutProjetInput | InvoiceLineUpdateManyWithWhereWithoutProjetInput[]
     deleteMany?: InvoiceLineScalarWhereInput | InvoiceLineScalarWhereInput[]
+  }
+
+  export type BankHourUncheckedUpdateManyWithoutProjetNestedInput = {
+    create?: XOR<BankHourCreateWithoutProjetInput, BankHourUncheckedCreateWithoutProjetInput> | BankHourCreateWithoutProjetInput[] | BankHourUncheckedCreateWithoutProjetInput[]
+    connectOrCreate?: BankHourCreateOrConnectWithoutProjetInput | BankHourCreateOrConnectWithoutProjetInput[]
+    upsert?: BankHourUpsertWithWhereUniqueWithoutProjetInput | BankHourUpsertWithWhereUniqueWithoutProjetInput[]
+    createMany?: BankHourCreateManyProjetInputEnvelope
+    set?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    disconnect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    delete?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+    update?: BankHourUpdateWithWhereUniqueWithoutProjetInput | BankHourUpdateWithWhereUniqueWithoutProjetInput[]
+    updateMany?: BankHourUpdateManyWithWhereWithoutProjetInput | BankHourUpdateManyWithWhereWithoutProjetInput[]
+    deleteMany?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
   }
 
   export type ProjectCreateNestedOneWithoutTasksInput = {
@@ -17898,6 +19792,12 @@ export namespace Prisma {
     connect?: InvoiceLineWhereUniqueInput | InvoiceLineWhereUniqueInput[]
   }
 
+  export type BankHourCreateNestedOneWithoutTimeEntriesInput = {
+    create?: XOR<BankHourCreateWithoutTimeEntriesInput, BankHourUncheckedCreateWithoutTimeEntriesInput>
+    connectOrCreate?: BankHourCreateOrConnectWithoutTimeEntriesInput
+    connect?: BankHourWhereUniqueInput
+  }
+
   export type InvoiceLineUncheckedCreateNestedManyWithoutTimeEntriesInput = {
     create?: XOR<InvoiceLineCreateWithoutTimeEntriesInput, InvoiceLineUncheckedCreateWithoutTimeEntriesInput> | InvoiceLineCreateWithoutTimeEntriesInput[] | InvoiceLineUncheckedCreateWithoutTimeEntriesInput[]
     connectOrCreate?: InvoiceLineCreateOrConnectWithoutTimeEntriesInput | InvoiceLineCreateOrConnectWithoutTimeEntriesInput[]
@@ -17941,6 +19841,16 @@ export namespace Prisma {
     update?: InvoiceLineUpdateWithWhereUniqueWithoutTimeEntriesInput | InvoiceLineUpdateWithWhereUniqueWithoutTimeEntriesInput[]
     updateMany?: InvoiceLineUpdateManyWithWhereWithoutTimeEntriesInput | InvoiceLineUpdateManyWithWhereWithoutTimeEntriesInput[]
     deleteMany?: InvoiceLineScalarWhereInput | InvoiceLineScalarWhereInput[]
+  }
+
+  export type BankHourUpdateOneWithoutTimeEntriesNestedInput = {
+    create?: XOR<BankHourCreateWithoutTimeEntriesInput, BankHourUncheckedCreateWithoutTimeEntriesInput>
+    connectOrCreate?: BankHourCreateOrConnectWithoutTimeEntriesInput
+    upsert?: BankHourUpsertWithoutTimeEntriesInput
+    disconnect?: BankHourWhereInput | boolean
+    delete?: BankHourWhereInput | boolean
+    connect?: BankHourWhereUniqueInput
+    update?: XOR<XOR<BankHourUpdateToOneWithWhereWithoutTimeEntriesInput, BankHourUpdateWithoutTimeEntriesInput>, BankHourUncheckedUpdateWithoutTimeEntriesInput>
   }
 
   export type InvoiceLineUncheckedUpdateManyWithoutTimeEntriesNestedInput = {
@@ -18092,6 +20002,78 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutTransactionsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTransactionsInput, UserUpdateWithoutTransactionsInput>, UserUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type ClientCreateNestedOneWithoutBankHoursInput = {
+    create?: XOR<ClientCreateWithoutBankHoursInput, ClientUncheckedCreateWithoutBankHoursInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutBankHoursInput
+    connect?: ClientWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedOneWithoutBankHoursInput = {
+    create?: XOR<ProjectCreateWithoutBankHoursInput, ProjectUncheckedCreateWithoutBankHoursInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutBankHoursInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type TimeEntryCreateNestedManyWithoutBankHourInput = {
+    create?: XOR<TimeEntryCreateWithoutBankHourInput, TimeEntryUncheckedCreateWithoutBankHourInput> | TimeEntryCreateWithoutBankHourInput[] | TimeEntryUncheckedCreateWithoutBankHourInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutBankHourInput | TimeEntryCreateOrConnectWithoutBankHourInput[]
+    createMany?: TimeEntryCreateManyBankHourInputEnvelope
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+  }
+
+  export type TimeEntryUncheckedCreateNestedManyWithoutBankHourInput = {
+    create?: XOR<TimeEntryCreateWithoutBankHourInput, TimeEntryUncheckedCreateWithoutBankHourInput> | TimeEntryCreateWithoutBankHourInput[] | TimeEntryUncheckedCreateWithoutBankHourInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutBankHourInput | TimeEntryCreateOrConnectWithoutBankHourInput[]
+    createMany?: TimeEntryCreateManyBankHourInputEnvelope
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+  }
+
+  export type ClientUpdateOneRequiredWithoutBankHoursNestedInput = {
+    create?: XOR<ClientCreateWithoutBankHoursInput, ClientUncheckedCreateWithoutBankHoursInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutBankHoursInput
+    upsert?: ClientUpsertWithoutBankHoursInput
+    connect?: ClientWhereUniqueInput
+    update?: XOR<XOR<ClientUpdateToOneWithWhereWithoutBankHoursInput, ClientUpdateWithoutBankHoursInput>, ClientUncheckedUpdateWithoutBankHoursInput>
+  }
+
+  export type ProjectUpdateOneWithoutBankHoursNestedInput = {
+    create?: XOR<ProjectCreateWithoutBankHoursInput, ProjectUncheckedCreateWithoutBankHoursInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutBankHoursInput
+    upsert?: ProjectUpsertWithoutBankHoursInput
+    disconnect?: ProjectWhereInput | boolean
+    delete?: ProjectWhereInput | boolean
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutBankHoursInput, ProjectUpdateWithoutBankHoursInput>, ProjectUncheckedUpdateWithoutBankHoursInput>
+  }
+
+  export type TimeEntryUpdateManyWithoutBankHourNestedInput = {
+    create?: XOR<TimeEntryCreateWithoutBankHourInput, TimeEntryUncheckedCreateWithoutBankHourInput> | TimeEntryCreateWithoutBankHourInput[] | TimeEntryUncheckedCreateWithoutBankHourInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutBankHourInput | TimeEntryCreateOrConnectWithoutBankHourInput[]
+    upsert?: TimeEntryUpsertWithWhereUniqueWithoutBankHourInput | TimeEntryUpsertWithWhereUniqueWithoutBankHourInput[]
+    createMany?: TimeEntryCreateManyBankHourInputEnvelope
+    set?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    disconnect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    delete?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    update?: TimeEntryUpdateWithWhereUniqueWithoutBankHourInput | TimeEntryUpdateWithWhereUniqueWithoutBankHourInput[]
+    updateMany?: TimeEntryUpdateManyWithWhereWithoutBankHourInput | TimeEntryUpdateManyWithWhereWithoutBankHourInput[]
+    deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+  }
+
+  export type TimeEntryUncheckedUpdateManyWithoutBankHourNestedInput = {
+    create?: XOR<TimeEntryCreateWithoutBankHourInput, TimeEntryUncheckedCreateWithoutBankHourInput> | TimeEntryCreateWithoutBankHourInput[] | TimeEntryUncheckedCreateWithoutBankHourInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutBankHourInput | TimeEntryCreateOrConnectWithoutBankHourInput[]
+    upsert?: TimeEntryUpsertWithWhereUniqueWithoutBankHourInput | TimeEntryUpsertWithWhereUniqueWithoutBankHourInput[]
+    createMany?: TimeEntryCreateManyBankHourInputEnvelope
+    set?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    disconnect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    delete?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    update?: TimeEntryUpdateWithWhereUniqueWithoutBankHourInput | TimeEntryUpdateWithWhereUniqueWithoutBankHourInput[]
+    updateMany?: TimeEntryUpdateManyWithWhereWithoutBankHourInput | TimeEntryUpdateManyWithWhereWithoutBankHourInput[]
+    deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -18441,6 +20423,7 @@ export namespace Prisma {
     projet: ProjectCreateNestedOneWithoutTimeEntriesInput
     tache?: TaskCreateNestedOneWithoutTimeEntriesInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutTimeEntriesInput
+    bankHour?: BankHourCreateNestedOneWithoutTimeEntriesInput
   }
 
   export type TimeEntryUncheckedCreateWithoutUserInput = {
@@ -18452,6 +20435,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutTimeEntriesInput
@@ -18577,6 +20561,7 @@ export namespace Prisma {
     estFacturable?: BoolFilter<"TimeEntry"> | boolean
     commentaire?: StringNullableFilter<"TimeEntry"> | string | null
     statut?: StringFilter<"TimeEntry"> | string
+    bankHourId?: StringNullableFilter<"TimeEntry"> | string | null
     createdAt?: DateTimeFilter<"TimeEntry"> | Date | string
     updatedAt?: DateTimeFilter<"TimeEntry"> | Date | string
   }
@@ -18629,6 +20614,7 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutProjetInput
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectUncheckedCreateWithoutClientInput = {
@@ -18651,6 +20637,7 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectCreateOrConnectWithoutClientInput = {
@@ -18702,6 +20689,46 @@ export namespace Prisma {
 
   export type InvoiceCreateManyClientInputEnvelope = {
     data: InvoiceCreateManyClientInput | InvoiceCreateManyClientInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BankHourCreateWithoutClientInput = {
+    id?: string
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projet?: ProjectCreateNestedOneWithoutBankHoursInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutBankHourInput
+  }
+
+  export type BankHourUncheckedCreateWithoutClientInput = {
+    id?: string
+    projetId?: string | null
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutBankHourInput
+  }
+
+  export type BankHourCreateOrConnectWithoutClientInput = {
+    where: BankHourWhereUniqueInput
+    create: XOR<BankHourCreateWithoutClientInput, BankHourUncheckedCreateWithoutClientInput>
+  }
+
+  export type BankHourCreateManyClientInputEnvelope = {
+    data: BankHourCreateManyClientInput | BankHourCreateManyClientInput[]
     skipDuplicates?: boolean
   }
 
@@ -18779,6 +20806,40 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Invoice"> | Date | string
   }
 
+  export type BankHourUpsertWithWhereUniqueWithoutClientInput = {
+    where: BankHourWhereUniqueInput
+    update: XOR<BankHourUpdateWithoutClientInput, BankHourUncheckedUpdateWithoutClientInput>
+    create: XOR<BankHourCreateWithoutClientInput, BankHourUncheckedCreateWithoutClientInput>
+  }
+
+  export type BankHourUpdateWithWhereUniqueWithoutClientInput = {
+    where: BankHourWhereUniqueInput
+    data: XOR<BankHourUpdateWithoutClientInput, BankHourUncheckedUpdateWithoutClientInput>
+  }
+
+  export type BankHourUpdateManyWithWhereWithoutClientInput = {
+    where: BankHourScalarWhereInput
+    data: XOR<BankHourUpdateManyMutationInput, BankHourUncheckedUpdateManyWithoutClientInput>
+  }
+
+  export type BankHourScalarWhereInput = {
+    AND?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
+    OR?: BankHourScalarWhereInput[]
+    NOT?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
+    id?: StringFilter<"BankHour"> | string
+    clientId?: StringFilter<"BankHour"> | string
+    projetId?: StringNullableFilter<"BankHour"> | string | null
+    nom?: StringFilter<"BankHour"> | string
+    description?: StringNullableFilter<"BankHour"> | string | null
+    heuresAchetees?: FloatFilter<"BankHour"> | number
+    heuresConsommees?: FloatFilter<"BankHour"> | number
+    dateDebut?: DateTimeNullableFilter<"BankHour"> | Date | string | null
+    dateFin?: DateTimeNullableFilter<"BankHour"> | Date | string | null
+    estActive?: BoolFilter<"BankHour"> | boolean
+    createdAt?: DateTimeFilter<"BankHour"> | Date | string
+    updatedAt?: DateTimeFilter<"BankHour"> | Date | string
+  }
+
   export type ClientCreateWithoutProjectsInput = {
     id?: string
     typeClient: string
@@ -18805,6 +20866,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     invoices?: InvoiceCreateNestedManyWithoutClientInput
+    bankHours?: BankHourCreateNestedManyWithoutClientInput
   }
 
   export type ClientUncheckedCreateWithoutProjectsInput = {
@@ -18833,6 +20895,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
   }
 
   export type ClientCreateOrConnectWithoutProjectsInput = {
@@ -18894,6 +20957,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutTimeEntriesInput
     tache?: TaskCreateNestedOneWithoutTimeEntriesInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutTimeEntriesInput
+    bankHour?: BankHourCreateNestedOneWithoutTimeEntriesInput
   }
 
   export type TimeEntryUncheckedCreateWithoutProjetInput = {
@@ -18905,6 +20969,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutTimeEntriesInput
@@ -18954,6 +21019,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type BankHourCreateWithoutProjetInput = {
+    id?: string
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutBankHoursInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutBankHourInput
+  }
+
+  export type BankHourUncheckedCreateWithoutProjetInput = {
+    id?: string
+    clientId: string
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutBankHourInput
+  }
+
+  export type BankHourCreateOrConnectWithoutProjetInput = {
+    where: BankHourWhereUniqueInput
+    create: XOR<BankHourCreateWithoutProjetInput, BankHourUncheckedCreateWithoutProjetInput>
+  }
+
+  export type BankHourCreateManyProjetInputEnvelope = {
+    data: BankHourCreateManyProjetInput | BankHourCreateManyProjetInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ClientUpsertWithoutProjectsInput = {
     update: XOR<ClientUpdateWithoutProjectsInput, ClientUncheckedUpdateWithoutProjectsInput>
     create: XOR<ClientCreateWithoutProjectsInput, ClientUncheckedCreateWithoutProjectsInput>
@@ -18991,6 +21096,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoices?: InvoiceUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUpdateManyWithoutClientNestedInput
   }
 
   export type ClientUncheckedUpdateWithoutProjectsInput = {
@@ -19019,6 +21125,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
   }
 
   export type TaskUpsertWithWhereUniqueWithoutProjetInput = {
@@ -19102,6 +21209,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"InvoiceLine"> | Date | string
   }
 
+  export type BankHourUpsertWithWhereUniqueWithoutProjetInput = {
+    where: BankHourWhereUniqueInput
+    update: XOR<BankHourUpdateWithoutProjetInput, BankHourUncheckedUpdateWithoutProjetInput>
+    create: XOR<BankHourCreateWithoutProjetInput, BankHourUncheckedCreateWithoutProjetInput>
+  }
+
+  export type BankHourUpdateWithWhereUniqueWithoutProjetInput = {
+    where: BankHourWhereUniqueInput
+    data: XOR<BankHourUpdateWithoutProjetInput, BankHourUncheckedUpdateWithoutProjetInput>
+  }
+
+  export type BankHourUpdateManyWithWhereWithoutProjetInput = {
+    where: BankHourScalarWhereInput
+    data: XOR<BankHourUpdateManyMutationInput, BankHourUncheckedUpdateManyWithoutProjetInput>
+  }
+
   export type ProjectCreateWithoutTasksInput = {
     id?: string
     nom: string
@@ -19122,6 +21245,7 @@ export namespace Prisma {
     client: ClientCreateNestedOneWithoutProjectsInput
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectUncheckedCreateWithoutTasksInput = {
@@ -19144,6 +21268,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectCreateOrConnectWithoutTasksInput = {
@@ -19163,6 +21288,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutTimeEntriesInput
     projet: ProjectCreateNestedOneWithoutTimeEntriesInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutTimeEntriesInput
+    bankHour?: BankHourCreateNestedOneWithoutTimeEntriesInput
   }
 
   export type TimeEntryUncheckedCreateWithoutTacheInput = {
@@ -19174,6 +21300,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutTimeEntriesInput
@@ -19246,6 +21373,7 @@ export namespace Prisma {
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUpdateManyWithoutProjetNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutTasksInput = {
@@ -19268,6 +21396,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutProjetNestedInput
   }
 
   export type TimeEntryUpsertWithWhereUniqueWithoutTacheInput = {
@@ -19543,6 +21672,7 @@ export namespace Prisma {
     client: ClientCreateNestedOneWithoutProjectsInput
     tasks?: TaskCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectUncheckedCreateWithoutTimeEntriesInput = {
@@ -19565,6 +21695,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectCreateOrConnectWithoutTimeEntriesInput = {
@@ -19636,6 +21767,41 @@ export namespace Prisma {
   export type InvoiceLineCreateOrConnectWithoutTimeEntriesInput = {
     where: InvoiceLineWhereUniqueInput
     create: XOR<InvoiceLineCreateWithoutTimeEntriesInput, InvoiceLineUncheckedCreateWithoutTimeEntriesInput>
+  }
+
+  export type BankHourCreateWithoutTimeEntriesInput = {
+    id?: string
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutBankHoursInput
+    projet?: ProjectCreateNestedOneWithoutBankHoursInput
+  }
+
+  export type BankHourUncheckedCreateWithoutTimeEntriesInput = {
+    id?: string
+    clientId: string
+    projetId?: string | null
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankHourCreateOrConnectWithoutTimeEntriesInput = {
+    where: BankHourWhereUniqueInput
+    create: XOR<BankHourCreateWithoutTimeEntriesInput, BankHourUncheckedCreateWithoutTimeEntriesInput>
   }
 
   export type UserUpsertWithoutTimeEntriesInput = {
@@ -19720,6 +21886,7 @@ export namespace Prisma {
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
     tasks?: TaskUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUpdateManyWithoutProjetNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutTimeEntriesInput = {
@@ -19742,6 +21909,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutProjetNestedInput
   }
 
   export type TaskUpsertWithoutTimeEntriesInput = {
@@ -19803,6 +21971,47 @@ export namespace Prisma {
     data: XOR<InvoiceLineUpdateManyMutationInput, InvoiceLineUncheckedUpdateManyWithoutTimeEntriesInput>
   }
 
+  export type BankHourUpsertWithoutTimeEntriesInput = {
+    update: XOR<BankHourUpdateWithoutTimeEntriesInput, BankHourUncheckedUpdateWithoutTimeEntriesInput>
+    create: XOR<BankHourCreateWithoutTimeEntriesInput, BankHourUncheckedCreateWithoutTimeEntriesInput>
+    where?: BankHourWhereInput
+  }
+
+  export type BankHourUpdateToOneWithWhereWithoutTimeEntriesInput = {
+    where?: BankHourWhereInput
+    data: XOR<BankHourUpdateWithoutTimeEntriesInput, BankHourUncheckedUpdateWithoutTimeEntriesInput>
+  }
+
+  export type BankHourUpdateWithoutTimeEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutBankHoursNestedInput
+    projet?: ProjectUpdateOneWithoutBankHoursNestedInput
+  }
+
+  export type BankHourUncheckedUpdateWithoutTimeEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    projetId?: NullableStringFieldUpdateOperationsInput | string | null
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ClientCreateWithoutInvoicesInput = {
     id?: string
     typeClient: string
@@ -19829,6 +22038,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     projects?: ProjectCreateNestedManyWithoutClientInput
+    bankHours?: BankHourCreateNestedManyWithoutClientInput
   }
 
   export type ClientUncheckedCreateWithoutInvoicesInput = {
@@ -19857,6 +22067,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
   }
 
   export type ClientCreateOrConnectWithoutInvoicesInput = {
@@ -19935,6 +22146,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUpdateManyWithoutClientNestedInput
   }
 
   export type ClientUncheckedUpdateWithoutInvoicesInput = {
@@ -19963,6 +22175,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
   }
 
   export type InvoiceLineUpsertWithWhereUniqueWithoutFactureInput = {
@@ -20038,6 +22251,7 @@ export namespace Prisma {
     client: ClientCreateNestedOneWithoutProjectsInput
     tasks?: TaskCreateNestedManyWithoutProjetInput
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectUncheckedCreateWithoutInvoiceLinesInput = {
@@ -20060,6 +22274,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutProjetInput
   }
 
   export type ProjectCreateOrConnectWithoutInvoiceLinesInput = {
@@ -20079,6 +22294,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutTimeEntriesInput
     projet: ProjectCreateNestedOneWithoutTimeEntriesInput
     tache?: TaskCreateNestedOneWithoutTimeEntriesInput
+    bankHour?: BankHourCreateNestedOneWithoutTimeEntriesInput
   }
 
   export type TimeEntryUncheckedCreateWithoutInvoiceLinesInput = {
@@ -20091,6 +22307,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20174,6 +22391,7 @@ export namespace Prisma {
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
     tasks?: TaskUpdateManyWithoutProjetNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUpdateManyWithoutProjetNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutInvoiceLinesInput = {
@@ -20196,6 +22414,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutProjetNestedInput
   }
 
   export type TimeEntryUpsertWithWhereUniqueWithoutInvoiceLinesInput = {
@@ -20310,6 +22529,302 @@ export namespace Prisma {
     taskNotes?: TaskNoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type ClientCreateWithoutBankHoursInput = {
+    id?: string
+    typeClient: string
+    nomLegal: string
+    adresseLigne1: string
+    adresseLigne2?: string | null
+    ville: string
+    province: string
+    codePostal: string
+    pays: string
+    courriel: string
+    telephone: string
+    contactNom?: string | null
+    contactFonction?: string | null
+    notesInternes?: string | null
+    modeFacturationParDefaut: string
+    deviseParDefaut?: string
+    conditionsPaiement?: string | null
+    modesPaiement?: string | null
+    clientTaxable?: boolean
+    appliquerTPS?: boolean
+    appliquerTVQ?: boolean
+    estArchive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectCreateNestedManyWithoutClientInput
+    invoices?: InvoiceCreateNestedManyWithoutClientInput
+  }
+
+  export type ClientUncheckedCreateWithoutBankHoursInput = {
+    id?: string
+    typeClient: string
+    nomLegal: string
+    adresseLigne1: string
+    adresseLigne2?: string | null
+    ville: string
+    province: string
+    codePostal: string
+    pays: string
+    courriel: string
+    telephone: string
+    contactNom?: string | null
+    contactFonction?: string | null
+    notesInternes?: string | null
+    modeFacturationParDefaut: string
+    deviseParDefaut?: string
+    conditionsPaiement?: string | null
+    modesPaiement?: string | null
+    clientTaxable?: boolean
+    appliquerTPS?: boolean
+    appliquerTVQ?: boolean
+    estArchive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
+  }
+
+  export type ClientCreateOrConnectWithoutBankHoursInput = {
+    where: ClientWhereUniqueInput
+    create: XOR<ClientCreateWithoutBankHoursInput, ClientUncheckedCreateWithoutBankHoursInput>
+  }
+
+  export type ProjectCreateWithoutBankHoursInput = {
+    id?: string
+    nom: string
+    description?: string | null
+    dateDebut: Date | string
+    dateFinPrevue?: Date | string | null
+    statut?: string
+    typeFacturation: string
+    tauxHoraire?: number | null
+    montantForfait?: number | null
+    heuresBanqueTotales?: number | null
+    heuresBanqueConsommees?: number
+    budgetHeuresPrevu?: number | null
+    budgetMontantPrevu?: number | null
+    arrondiHeures?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutProjectsInput
+    tasks?: TaskCreateNestedManyWithoutProjetInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
+    invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
+  }
+
+  export type ProjectUncheckedCreateWithoutBankHoursInput = {
+    id?: string
+    clientId: string
+    nom: string
+    description?: string | null
+    dateDebut: Date | string
+    dateFinPrevue?: Date | string | null
+    statut?: string
+    typeFacturation: string
+    tauxHoraire?: number | null
+    montantForfait?: number | null
+    heuresBanqueTotales?: number | null
+    heuresBanqueConsommees?: number
+    budgetHeuresPrevu?: number | null
+    budgetMontantPrevu?: number | null
+    arrondiHeures?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutProjetInput
+    invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutProjetInput
+  }
+
+  export type ProjectCreateOrConnectWithoutBankHoursInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutBankHoursInput, ProjectUncheckedCreateWithoutBankHoursInput>
+  }
+
+  export type TimeEntryCreateWithoutBankHourInput = {
+    id?: string
+    date: Date | string
+    dureeHeures: number
+    estFacturable?: boolean
+    commentaire?: string | null
+    statut?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutTimeEntriesInput
+    projet: ProjectCreateNestedOneWithoutTimeEntriesInput
+    tache?: TaskCreateNestedOneWithoutTimeEntriesInput
+    invoiceLines?: InvoiceLineCreateNestedManyWithoutTimeEntriesInput
+  }
+
+  export type TimeEntryUncheckedCreateWithoutBankHourInput = {
+    id?: string
+    userId: string
+    date: Date | string
+    projetId: string
+    tacheId?: string | null
+    dureeHeures: number
+    estFacturable?: boolean
+    commentaire?: string | null
+    statut?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutTimeEntriesInput
+  }
+
+  export type TimeEntryCreateOrConnectWithoutBankHourInput = {
+    where: TimeEntryWhereUniqueInput
+    create: XOR<TimeEntryCreateWithoutBankHourInput, TimeEntryUncheckedCreateWithoutBankHourInput>
+  }
+
+  export type TimeEntryCreateManyBankHourInputEnvelope = {
+    data: TimeEntryCreateManyBankHourInput | TimeEntryCreateManyBankHourInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClientUpsertWithoutBankHoursInput = {
+    update: XOR<ClientUpdateWithoutBankHoursInput, ClientUncheckedUpdateWithoutBankHoursInput>
+    create: XOR<ClientCreateWithoutBankHoursInput, ClientUncheckedCreateWithoutBankHoursInput>
+    where?: ClientWhereInput
+  }
+
+  export type ClientUpdateToOneWithWhereWithoutBankHoursInput = {
+    where?: ClientWhereInput
+    data: XOR<ClientUpdateWithoutBankHoursInput, ClientUncheckedUpdateWithoutBankHoursInput>
+  }
+
+  export type ClientUpdateWithoutBankHoursInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    typeClient?: StringFieldUpdateOperationsInput | string
+    nomLegal?: StringFieldUpdateOperationsInput | string
+    adresseLigne1?: StringFieldUpdateOperationsInput | string
+    adresseLigne2?: NullableStringFieldUpdateOperationsInput | string | null
+    ville?: StringFieldUpdateOperationsInput | string
+    province?: StringFieldUpdateOperationsInput | string
+    codePostal?: StringFieldUpdateOperationsInput | string
+    pays?: StringFieldUpdateOperationsInput | string
+    courriel?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
+    contactNom?: NullableStringFieldUpdateOperationsInput | string | null
+    contactFonction?: NullableStringFieldUpdateOperationsInput | string | null
+    notesInternes?: NullableStringFieldUpdateOperationsInput | string | null
+    modeFacturationParDefaut?: StringFieldUpdateOperationsInput | string
+    deviseParDefaut?: StringFieldUpdateOperationsInput | string
+    conditionsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    modesPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    clientTaxable?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTPS?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTVQ?: BoolFieldUpdateOperationsInput | boolean
+    estArchive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUpdateManyWithoutClientNestedInput
+    invoices?: InvoiceUpdateManyWithoutClientNestedInput
+  }
+
+  export type ClientUncheckedUpdateWithoutBankHoursInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    typeClient?: StringFieldUpdateOperationsInput | string
+    nomLegal?: StringFieldUpdateOperationsInput | string
+    adresseLigne1?: StringFieldUpdateOperationsInput | string
+    adresseLigne2?: NullableStringFieldUpdateOperationsInput | string | null
+    ville?: StringFieldUpdateOperationsInput | string
+    province?: StringFieldUpdateOperationsInput | string
+    codePostal?: StringFieldUpdateOperationsInput | string
+    pays?: StringFieldUpdateOperationsInput | string
+    courriel?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
+    contactNom?: NullableStringFieldUpdateOperationsInput | string | null
+    contactFonction?: NullableStringFieldUpdateOperationsInput | string | null
+    notesInternes?: NullableStringFieldUpdateOperationsInput | string | null
+    modeFacturationParDefaut?: StringFieldUpdateOperationsInput | string
+    deviseParDefaut?: StringFieldUpdateOperationsInput | string
+    conditionsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    modesPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    clientTaxable?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTPS?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTVQ?: BoolFieldUpdateOperationsInput | boolean
+    estArchive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
+  }
+
+  export type ProjectUpsertWithoutBankHoursInput = {
+    update: XOR<ProjectUpdateWithoutBankHoursInput, ProjectUncheckedUpdateWithoutBankHoursInput>
+    create: XOR<ProjectCreateWithoutBankHoursInput, ProjectUncheckedCreateWithoutBankHoursInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutBankHoursInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutBankHoursInput, ProjectUncheckedUpdateWithoutBankHoursInput>
+  }
+
+  export type ProjectUpdateWithoutBankHoursInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFinPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    typeFacturation?: StringFieldUpdateOperationsInput | string
+    tauxHoraire?: NullableFloatFieldUpdateOperationsInput | number | null
+    montantForfait?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueTotales?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueConsommees?: FloatFieldUpdateOperationsInput | number
+    budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
+    tasks?: TaskUpdateManyWithoutProjetNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
+    invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutBankHoursInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFinPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    typeFacturation?: StringFieldUpdateOperationsInput | string
+    tauxHoraire?: NullableFloatFieldUpdateOperationsInput | number | null
+    montantForfait?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueTotales?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueConsommees?: FloatFieldUpdateOperationsInput | number
+    budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutProjetNestedInput
+    invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutProjetNestedInput
+  }
+
+  export type TimeEntryUpsertWithWhereUniqueWithoutBankHourInput = {
+    where: TimeEntryWhereUniqueInput
+    update: XOR<TimeEntryUpdateWithoutBankHourInput, TimeEntryUncheckedUpdateWithoutBankHourInput>
+    create: XOR<TimeEntryCreateWithoutBankHourInput, TimeEntryUncheckedCreateWithoutBankHourInput>
+  }
+
+  export type TimeEntryUpdateWithWhereUniqueWithoutBankHourInput = {
+    where: TimeEntryWhereUniqueInput
+    data: XOR<TimeEntryUpdateWithoutBankHourInput, TimeEntryUncheckedUpdateWithoutBankHourInput>
+  }
+
+  export type TimeEntryUpdateManyWithWhereWithoutBankHourInput = {
+    where: TimeEntryScalarWhereInput
+    data: XOR<TimeEntryUpdateManyMutationInput, TimeEntryUncheckedUpdateManyWithoutBankHourInput>
+  }
+
   export type UserCreateManyRoleInput = {
     id?: string
     username: string
@@ -20401,6 +22916,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20449,6 +22965,7 @@ export namespace Prisma {
     projet?: ProjectUpdateOneRequiredWithoutTimeEntriesNestedInput
     tache?: TaskUpdateOneWithoutTimeEntriesNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutTimeEntriesNestedInput
+    bankHour?: BankHourUpdateOneWithoutTimeEntriesNestedInput
   }
 
   export type TimeEntryUncheckedUpdateWithoutUserInput = {
@@ -20460,6 +22977,7 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutTimeEntriesNestedInput
@@ -20474,6 +22992,7 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20536,6 +23055,20 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type BankHourCreateManyClientInput = {
+    id?: string
+    projetId?: string | null
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ProjectUpdateWithoutClientInput = {
     id?: StringFieldUpdateOperationsInput | string
     nom?: StringFieldUpdateOperationsInput | string
@@ -20556,6 +23089,7 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutProjetNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUpdateManyWithoutProjetNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutClientInput = {
@@ -20578,6 +23112,7 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutProjetNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutClientInput = {
@@ -20646,6 +23181,50 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BankHourUpdateWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projet?: ProjectUpdateOneWithoutBankHoursNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutBankHourNestedInput
+  }
+
+  export type BankHourUncheckedUpdateWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projetId?: NullableStringFieldUpdateOperationsInput | string | null
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutBankHourNestedInput
+  }
+
+  export type BankHourUncheckedUpdateManyWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projetId?: NullableStringFieldUpdateOperationsInput | string | null
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type TaskCreateManyProjetInput = {
     id?: string
     titre: string
@@ -20669,6 +23248,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20680,6 +23260,20 @@ export namespace Prisma {
     quantite: number
     prixUnitaire: number
     montantLigne: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BankHourCreateManyProjetInput = {
+    id?: string
+    clientId: string
+    nom: string
+    description?: string | null
+    heuresAchetees: number
+    heuresConsommees?: number
+    dateDebut?: Date | string | null
+    dateFin?: Date | string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20742,6 +23336,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutTimeEntriesNestedInput
     tache?: TaskUpdateOneWithoutTimeEntriesNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutTimeEntriesNestedInput
+    bankHour?: BankHourUpdateOneWithoutTimeEntriesNestedInput
   }
 
   export type TimeEntryUncheckedUpdateWithoutProjetInput = {
@@ -20753,6 +23348,7 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutTimeEntriesNestedInput
@@ -20767,6 +23363,7 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20806,6 +23403,50 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BankHourUpdateWithoutProjetInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutBankHoursNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutBankHourNestedInput
+  }
+
+  export type BankHourUncheckedUpdateWithoutProjetInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutBankHourNestedInput
+  }
+
+  export type BankHourUncheckedUpdateManyWithoutProjetInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    heuresAchetees?: FloatFieldUpdateOperationsInput | number
+    heuresConsommees?: FloatFieldUpdateOperationsInput | number
+    dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type TimeEntryCreateManyTacheInput = {
     id?: string
     userId: string
@@ -20815,6 +23456,7 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    bankHourId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20839,6 +23481,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutTimeEntriesNestedInput
     projet?: ProjectUpdateOneRequiredWithoutTimeEntriesNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutTimeEntriesNestedInput
+    bankHour?: BankHourUpdateOneWithoutTimeEntriesNestedInput
   }
 
   export type TimeEntryUncheckedUpdateWithoutTacheInput = {
@@ -20850,6 +23493,7 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutTimeEntriesNestedInput
@@ -20864,6 +23508,7 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20986,6 +23631,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutTimeEntriesNestedInput
     projet?: ProjectUpdateOneRequiredWithoutTimeEntriesNestedInput
     tache?: TaskUpdateOneWithoutTimeEntriesNestedInput
+    bankHour?: BankHourUpdateOneWithoutTimeEntriesNestedInput
   }
 
   export type TimeEntryUncheckedUpdateWithoutInvoiceLinesInput = {
@@ -20998,11 +23644,71 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TimeEntryUncheckedUpdateManyWithoutInvoiceLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    projetId?: StringFieldUpdateOperationsInput | string
+    tacheId?: NullableStringFieldUpdateOperationsInput | string | null
+    dureeHeures?: FloatFieldUpdateOperationsInput | number
+    estFacturable?: BoolFieldUpdateOperationsInput | boolean
+    commentaire?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    bankHourId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimeEntryCreateManyBankHourInput = {
+    id?: string
+    userId: string
+    date: Date | string
+    projetId: string
+    tacheId?: string | null
+    dureeHeures: number
+    estFacturable?: boolean
+    commentaire?: string | null
+    statut?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TimeEntryUpdateWithoutBankHourInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dureeHeures?: FloatFieldUpdateOperationsInput | number
+    estFacturable?: BoolFieldUpdateOperationsInput | boolean
+    commentaire?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTimeEntriesNestedInput
+    projet?: ProjectUpdateOneRequiredWithoutTimeEntriesNestedInput
+    tache?: TaskUpdateOneWithoutTimeEntriesNestedInput
+    invoiceLines?: InvoiceLineUpdateManyWithoutTimeEntriesNestedInput
+  }
+
+  export type TimeEntryUncheckedUpdateWithoutBankHourInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    projetId?: StringFieldUpdateOperationsInput | string
+    tacheId?: NullableStringFieldUpdateOperationsInput | string | null
+    dureeHeures?: FloatFieldUpdateOperationsInput | number
+    estFacturable?: BoolFieldUpdateOperationsInput | boolean
+    commentaire?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutTimeEntriesNestedInput
+  }
+
+  export type TimeEntryUncheckedUpdateManyWithoutBankHourInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -227,6 +227,7 @@ exports.Prisma.TimeEntryScalarFieldEnum = {
   estFacturable: 'estFacturable',
   commentaire: 'commentaire',
   statut: 'statut',
+  bankHourId: 'bankHourId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -268,6 +269,21 @@ exports.Prisma.TransactionScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.BankHourScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  projetId: 'projetId',
+  nom: 'nom',
+  description: 'description',
+  heuresAchetees: 'heuresAchetees',
+  heuresConsommees: 'heuresConsommees',
+  dateDebut: 'dateDebut',
+  dateFin: 'dateFin',
+  estActive: 'estActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -294,7 +310,8 @@ exports.Prisma.ModelName = {
   TimeEntry: 'TimeEntry',
   Invoice: 'Invoice',
   InvoiceLine: 'InvoiceLine',
-  Transaction: 'Transaction'
+  Transaction: 'Transaction',
+  BankHour: 'BankHour'
 };
 
 /**
