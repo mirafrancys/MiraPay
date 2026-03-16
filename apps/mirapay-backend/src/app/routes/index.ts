@@ -8,6 +8,8 @@ import tasksRoutes from './tasks';
 import timeEntriesRoutes from './time-entries';
 import invoicesRoutes from './invoices';
 import bankHoursRoutes from './bank-hours';
+import soumissionsRoutes from './soumissions';
+import contratsRoutes from './contrats';
 
 const router = Router();
 
@@ -20,5 +22,7 @@ router.use('/tasks', tasksRoutes);
 router.use('/time-entries', timeEntriesRoutes);
 router.use('/invoices', invoicesRoutes);
 router.use('/bank-hours', bankHoursRoutes);
+router.use('/soumissions', soumissionsRoutes);
+router.use('/contrats', contratsRoutes);
 
 export default router;

@@ -7,6 +7,8 @@ import { ClientDetailComponent } from './pages/clients/client-detail/client-deta
 import { ProjectsComponent } from './pages/projects/projects';
 import { TimeEntriesComponent } from './pages/time-entries/time-entries';
 import { InvoicesComponent } from './pages/invoices/invoices';
+import { SoumissionsComponent } from './pages/soumissions/soumissions';
+import { ContratsComponent } from './pages/contrats/contrats';
 import { authGuard } from './cores/guards/auth.guard';
 
 export const appRoutes: Route[] = [
@@ -22,7 +24,9 @@ export const appRoutes: Route[] = [
       { path: 'clients/:id', component: ClientDetailComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'time-entries', component: TimeEntriesComponent },
-      { path: 'invoices', component: InvoicesComponent }
+      { path: 'invoices', component: InvoicesComponent },
+      { path: 'soumissions', component: SoumissionsComponent },
+      { path: 'contrats', component: ContratsComponent }
     ]
   },
   { path: '**', redirectTo: 'dashboard' }

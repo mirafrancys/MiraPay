@@ -1,0 +1,111 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Soumissions (Devis)</h1>
+    <button class="btn-primary" (click)="openModal()">
+      ➕ Créer une Soumission
+    </button>
+  </div>
+
+  @if (isModalOpen()) {
+    <div class="modal-backdrop">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2>Créer une Soumission</h2>
+          <button class="btn-close" (click)="closeModal()">×</button>
+        </div>
+
+        <form [formGroup]="soumissionForm" (ngSubmit)="onSubmit()">
+          <div class="modal-body">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Client *</label>
+                <select formControlName="clientId">
+                  <option value="" disabled>Sélectionner un client</option>
+                  @for (client of clients(); track client.id) {
+                    <option [value]="client.id">{{ client.nomLegal }}</option>
+                  }
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Numéro *</label>
+                <input type="text" formControlName="numero" />
+              </div>
+
+              <div class="form-group full-width">
+                <label>Titre *</label>
+                <input type="text" formControlName="titre" placeholder="ex: Refonte Site Web" />
+              </div>
+
+              <div class="form-group full-width">
+                <label>Description</label>
+                <textarea formControlName="description" rows="2"></textarea>
+              </div>
+            </div>
+
+            <!-- Lignes de Soumission -->
+            <div class="lines-section">
+              <h3>Détail des services</h3>
+              <div formArrayName="lines">
+                @for (line of lines.controls; let i = $index; track i) {
+                  <div class="line-item" [formGroupName]="i">
+                    <!-- description -->
+                    <input type="text" formControlName="description" placeholder="Description du service" class="desc-input" />
+                    <!-- quantite -->
+                    <input type="number" formControlName="quantite" placeholder="Qté" class="small-input" />
+                    <!-- prix -->
+                    <input type="number" formControlName="prixUnitaire" placeholder="Prix" class="small-input" />
+                    <!-- montant (disabled) -->
+                    <input type="number" formControlName="montantLigne" class="small-input disabled" />
+                    
+                    <button type="button" class="btn-danger" (click)="removeLine(i)">×</button>
+                  </div>
+                }
+              </div>
+              <button type="button" class="btn-link" (click)="addLine()">+ Ajouter une ligne</button>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
+            <button type="submit" class="btn-primary" [disabled]="soumissionForm.invalid">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- Tableau Liste -->
+  <div class="list-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Numéro</th>
+          <th>Titre</th>
+          <th>Client</th>
+          <th>Sous-Total HT</th>
+          <th>Total TTC</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (s of soumissions(); track s.id) {
+          <tr>
+            <td class="font-bold">{{ s.numero }}</td>
+            <td>{{ s.titre }}</td>
+            <td>{{ s.client?.nomLegal }}</td>
+            <td>{{ s.sousTotalHT }} $</td>
+            <td>{{ s.totalTTC }} $</td>
+            <td>
+              <span class="status-badge" [class]="s.statut">{{ s.statut }}</span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="empty-state">Aucune soumission trouvée.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
