@@ -1,0 +1,131 @@
+@if (project()) {
+  <div class="project-detail-container">
+    <div class="header">
+      <div class="title-section">
+        <a routerLink="/projects" class="back-link">← Retour aux projets</a>
+        <h1>{{ project()?.nom }}</h1>
+        <span class="type-badge">{{ project()?.statut }}</span>
+      </div>
+      <button class="btn-primary" (click)="openModal()">+ Ajouter une Tâche</button>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Fiche Info -->
+      <div class="card info-card">
+        <h2>Informations Générales</h2>
+        <div class="info-item"><strong>Client :</strong> {{ project()?.client?.nomLegal || 'Non défini' }}</div>
+        <div class="info-item"><strong>Type Facturation :</strong> {{ project()?.typeFacturation }}</div>
+        <div class="info-item"><strong>Date Début :</strong> {{ project()?.dateDebut && (project()?.dateDebut | date:'shortDate') || 'TBA' }}</div>
+        <div class="info-item"><strong>Statut :</strong> {{ project()?.statut }}</div>
+      </div>
+
+      <!-- Liste des Tâches -->
+      <div class="card tasks-card">
+        <h2>Tâches</h2>
+        @if (tasks() && tasks().length > 0) {
+          <div class="tasks-table-wrapper">
+            <table class="tasks-table">
+              <thead>
+                <tr>
+                  <th>Titre</th>
+                  <th>Type</th>
+                  <th>Priorité</th>
+                  <th>Statut</th>
+                  <th>Facturable</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (task of tasks(); track task.id) {
+                  <tr>
+                    <td><strong>{{ task.titre }}</strong><br/><small class="desc">{{ task.description }}</small></td>
+                    <td><span class="badge badge-light">{{ task.type }}</span></td>
+                    <td><span class="badge" [ngClass]="getPriorityClass(task.priorite)">{{ task.priorite }}</span></td>
+                    <td><span class="badge" [ngClass]="getStatusClass(task.statut)">{{ task.statut }}</span></td>
+                    <td><span class="badge" [class.badge-success]="task.tacheFacturable" [class.badge-secondary]="!task.tacheFacturable">{{ task.tacheFacturable ? 'Oui' : 'Non' }}</span></td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        } @else {
+          <p class="empty-state">Aucune tâche définie pour ce projet.</p>
+        }
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Modal Ajouter Tâche -->
+@if (isModalOpen()) {
+  <div class="modal-overlay">
+    <div class="modal">
+      <h2>Ajouter une Tâche</h2>
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="taskName">Titre de la tâche *</label>
+          <input id="taskName" type="text" formControlName="titre" placeholder="ex: Configurer la DB" />
+        </div>
+
+        <div class="form-group">
+          <label for="taskDesc">Description</label>
+          <textarea id="taskDesc" formControlName="description" rows="3"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="taskType">Type *</label>
+            <select id="taskType" formControlName="type">
+              <option value="analyse">Analyse</option>
+              <option value="développement">Développement</option>
+              <option value="réunion">Réunion</option>
+              <option value="support">Support</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskPriority">Priorité *</label>
+            <select id="taskPriority" formControlName="priorite">
+              <option value="basse">Basse</option>
+              <option value="normale">Normale</option>
+              <option value="haute">Haute</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="taskStatus">Statut *</label>
+            <select id="taskStatus" formControlName="statut">
+              <option value="new">Nouveau</option>
+              <option value="analyse">Analyse en cours</option>
+              <option value="en_cours">En cours</option>
+              <option value="terminer">Terminé</option>
+              <option value="fermer">Fermé</option>
+            </select>
+          </div>
+          <div class="form-group checkbox-group">
+            <label for="taskBillable">
+              <input id="taskBillable" type="checkbox" formControlName="tacheFacturable" />
+              Facturable
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="startDate">Date Début Prévue</label>
+            <input id="startDate" type="date" formControlName="dateDebutPrevue" />
+          </div>
+          <div class="form-group">
+            <label for="endDate">Échéance</label>
+            <input id="endDate" type="date" formControlName="dateEcheance" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
+          <button type="submit" class="btn-primary" [disabled]="taskForm.invalid">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

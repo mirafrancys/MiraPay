@@ -9,6 +9,7 @@ import { TimeEntriesComponent } from './pages/time-entries/time-entries';
 import { InvoicesComponent } from './pages/invoices/invoices';
 import { SoumissionsComponent } from './pages/soumissions/soumissions';
 import { ContratsComponent } from './pages/contrats/contrats';
+import { ProjectDetailComponent } from './pages/projects/project-detail/project-detail';
 import { authGuard } from './cores/guards/auth.guard';
 
 export const appRoutes: Route[] = [
@@ -23,6 +24,7 @@ export const appRoutes: Route[] = [
       { path: 'clients', component: ClientsComponent },
       { path: 'clients/:id', component: ClientDetailComponent },
       { path: 'projects', component: ProjectsComponent },
+      { path: 'projects/:id', component: ProjectDetailComponent },
       { path: 'time-entries', component: TimeEntriesComponent },
       { path: 'invoices', component: InvoicesComponent },
       { path: 'soumissions', component: SoumissionsComponent },

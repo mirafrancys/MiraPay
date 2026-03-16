@@ -117,7 +117,11 @@
       <tbody>
         @for (project of projects(); track project.id) {
           <tr>
-            <td class="font-bold">{{ project.nom }}</td>
+            <td>
+              <a [routerLink]="['/projects', project.id]" style="color: #4f46e5; text-decoration: none; font-weight: bold;">
+                {{ project.nom }}
+              </a>
+            </td>
             <td>{{ project.client?.nomLegal }}</td>
             <td>{{ project.tauxHoraire ? (project.tauxHoraire | currency:'CAD') : 'N/A' }}</td>
             <td>
