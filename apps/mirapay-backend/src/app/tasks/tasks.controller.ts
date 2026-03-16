@@ -55,6 +55,31 @@ export class TasksController {
       res.status(500).json({ error: (error as Error).message });
     }
   }
+
+  async addNote(req: Request, res: Response) {
+    try {
+      const { taskId } = req.params;
+      const { contenu, userId } = req.body;
+      const note = await tasksService.addNote({
+        contenu,
+        tache: { connect: { id: taskId } },
+        user: { connect: { id: userId } }
+      });
+      res.status(201).json(note);
+    } catch (error) {
+      res.status(500).json({ error: (error as Error).message });
+    }
+  }
+
+  async getNotes(req: Request, res: Response) {
+    try {
+      const { taskId } = req.params;
+      const notes = await tasksService.findNotesByTask(taskId);
+      res.json(notes);
+    } catch (error) {
+      res.status(500).json({ error: (error as Error).message });
+    }
+  }
 }
 
 export const tasksController = new TasksController();

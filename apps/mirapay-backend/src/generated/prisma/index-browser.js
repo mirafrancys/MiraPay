@@ -199,10 +199,20 @@ exports.Prisma.TaskScalarFieldEnum = {
   titre: 'titre',
   description: 'description',
   type: 'type',
+  tacheFacturable: 'tacheFacturable',
   priorite: 'priorite',
   statut: 'statut',
   dateDebutPrevue: 'dateDebutPrevue',
   dateEcheance: 'dateEcheance',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TaskNoteScalarFieldEnum = {
+  id: 'id',
+  tacheId: 'tacheId',
+  userId: 'userId',
+  contenu: 'contenu',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -280,6 +290,7 @@ exports.Prisma.ModelName = {
   Client: 'Client',
   Project: 'Project',
   Task: 'Task',
+  TaskNote: 'TaskNote',
   TimeEntry: 'TimeEntry',
   Invoice: 'Invoice',
   InvoiceLine: 'InvoiceLine',

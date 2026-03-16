@@ -1,5 +1,5 @@
 import prisma from '../prisma-client';
-import { Task, Prisma } from '../../generated/prisma';
+import { Task, Prisma, PrismaClient } from '../../generated/prisma';
 
 export class TasksService {
   async create(data: Prisma.TaskCreateInput): Promise<Task> {
@@ -34,6 +34,20 @@ export class TasksService {
   async remove(id: string): Promise<Task> {
     return prisma.task.delete({
       where: { id }
+    });
+  }
+
+  async addNote(data: Prisma.TaskNoteCreateInput) {
+    return (prisma as PrismaClient).taskNote.create({ data });
+  }
+
+  async findNotesByTask(tacheId: string) {
+    return (prisma as PrismaClient).taskNote.findMany({
+      where: { tacheId },
+      include: {
+        user: { select: { firstName: true, lastName: true } }
+      },
+      orderBy: { createdAt: 'desc' }
     });
   }
 }

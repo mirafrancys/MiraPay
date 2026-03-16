@@ -39,6 +39,11 @@ export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
  */
 export type Task = $Result.DefaultSelection<Prisma.$TaskPayload>
 /**
+ * Model TaskNote
+ * 
+ */
+export type TaskNote = $Result.DefaultSelection<Prisma.$TaskNotePayload>
+/**
  * Model TimeEntry
  * 
  */
@@ -229,6 +234,16 @@ export class PrismaClient<
     * ```
     */
   get task(): Prisma.TaskDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.taskNote`: Exposes CRUD operations for the **TaskNote** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TaskNotes
+    * const taskNotes = await prisma.taskNote.findMany()
+    * ```
+    */
+  get taskNote(): Prisma.TaskNoteDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.timeEntry`: Exposes CRUD operations for the **TimeEntry** model.
@@ -708,6 +723,7 @@ export namespace Prisma {
     Client: 'Client',
     Project: 'Project',
     Task: 'Task',
+    TaskNote: 'TaskNote',
     TimeEntry: 'TimeEntry',
     Invoice: 'Invoice',
     InvoiceLine: 'InvoiceLine',
@@ -727,7 +743,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "role" | "user" | "client" | "project" | "task" | "timeEntry" | "invoice" | "invoiceLine" | "transaction"
+      modelProps: "role" | "user" | "client" | "project" | "task" | "taskNote" | "timeEntry" | "invoice" | "invoiceLine" | "transaction"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1098,6 +1114,80 @@ export namespace Prisma {
           count: {
             args: Prisma.TaskCountArgs<ExtArgs>
             result: $Utils.Optional<TaskCountAggregateOutputType> | number
+          }
+        }
+      }
+      TaskNote: {
+        payload: Prisma.$TaskNotePayload<ExtArgs>
+        fields: Prisma.TaskNoteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskNoteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskNoteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>
+          }
+          findFirst: {
+            args: Prisma.TaskNoteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskNoteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>
+          }
+          findMany: {
+            args: Prisma.TaskNoteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>[]
+          }
+          create: {
+            args: Prisma.TaskNoteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>
+          }
+          createMany: {
+            args: Prisma.TaskNoteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskNoteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>[]
+          }
+          delete: {
+            args: Prisma.TaskNoteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>
+          }
+          update: {
+            args: Prisma.TaskNoteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskNoteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskNoteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskNoteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskNoteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskNotePayload>
+          }
+          aggregate: {
+            args: Prisma.TaskNoteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTaskNote>
+          }
+          groupBy: {
+            args: Prisma.TaskNoteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskNoteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskNoteCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskNoteCountAggregateOutputType> | number
           }
         }
       }
@@ -1510,6 +1600,7 @@ export namespace Prisma {
     client?: ClientOmit
     project?: ProjectOmit
     task?: TaskOmit
+    taskNote?: TaskNoteOmit
     timeEntry?: TimeEntryOmit
     invoice?: InvoiceOmit
     invoiceLine?: InvoiceLineOmit
@@ -1627,11 +1718,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     transactions: number
     timeEntries: number
+    taskNotes: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | UserCountOutputTypeCountTransactionsArgs
     timeEntries?: boolean | UserCountOutputTypeCountTimeEntriesArgs
+    taskNotes?: boolean | UserCountOutputTypeCountTaskNotesArgs
   }
 
   // Custom InputTypes
@@ -1657,6 +1750,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountTimeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TimeEntryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTaskNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskNoteWhereInput
   }
 
 
@@ -1755,10 +1855,12 @@ export namespace Prisma {
 
   export type TaskCountOutputType = {
     timeEntries: number
+    notes: number
   }
 
   export type TaskCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     timeEntries?: boolean | TaskCountOutputTypeCountTimeEntriesArgs
+    notes?: boolean | TaskCountOutputTypeCountNotesArgs
   }
 
   // Custom InputTypes
@@ -1777,6 +1879,13 @@ export namespace Prisma {
    */
   export type TaskCountOutputTypeCountTimeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TimeEntryWhereInput
+  }
+
+  /**
+   * TaskCountOutputType without action
+   */
+  export type TaskCountOutputTypeCountNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskNoteWhereInput
   }
 
 
@@ -3199,6 +3308,7 @@ export namespace Prisma {
     role?: boolean | User$roleArgs<ExtArgs>
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     timeEntries?: boolean | User$timeEntriesArgs<ExtArgs>
+    taskNotes?: boolean | User$taskNotesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3263,6 +3373,7 @@ export namespace Prisma {
     role?: boolean | User$roleArgs<ExtArgs>
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     timeEntries?: boolean | User$timeEntriesArgs<ExtArgs>
+    taskNotes?: boolean | User$taskNotesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3278,6 +3389,7 @@ export namespace Prisma {
       role: Prisma.$RolePayload<ExtArgs> | null
       transactions: Prisma.$TransactionPayload<ExtArgs>[]
       timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
+      taskNotes: Prisma.$TaskNotePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3692,6 +3804,7 @@ export namespace Prisma {
     role<T extends User$roleArgs<ExtArgs> = {}>(args?: Subset<T, User$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     transactions<T extends User$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeEntries<T extends User$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, User$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    taskNotes<T extends User$taskNotesArgs<ExtArgs> = {}>(args?: Subset<T, User$taskNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4201,6 +4314,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TimeEntryScalarFieldEnum | TimeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * User.taskNotes
+   */
+  export type User$taskNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    where?: TaskNoteWhereInput
+    orderBy?: TaskNoteOrderByWithRelationInput | TaskNoteOrderByWithRelationInput[]
+    cursor?: TaskNoteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskNoteScalarFieldEnum | TaskNoteScalarFieldEnum[]
   }
 
   /**
@@ -6951,6 +7088,7 @@ export namespace Prisma {
     titre: string | null
     description: string | null
     type: string | null
+    tacheFacturable: boolean | null
     priorite: string | null
     statut: string | null
     dateDebutPrevue: Date | null
@@ -6965,6 +7103,7 @@ export namespace Prisma {
     titre: string | null
     description: string | null
     type: string | null
+    tacheFacturable: boolean | null
     priorite: string | null
     statut: string | null
     dateDebutPrevue: Date | null
@@ -6979,6 +7118,7 @@ export namespace Prisma {
     titre: number
     description: number
     type: number
+    tacheFacturable: number
     priorite: number
     statut: number
     dateDebutPrevue: number
@@ -6995,6 +7135,7 @@ export namespace Prisma {
     titre?: true
     description?: true
     type?: true
+    tacheFacturable?: true
     priorite?: true
     statut?: true
     dateDebutPrevue?: true
@@ -7009,6 +7150,7 @@ export namespace Prisma {
     titre?: true
     description?: true
     type?: true
+    tacheFacturable?: true
     priorite?: true
     statut?: true
     dateDebutPrevue?: true
@@ -7023,6 +7165,7 @@ export namespace Prisma {
     titre?: true
     description?: true
     type?: true
+    tacheFacturable?: true
     priorite?: true
     statut?: true
     dateDebutPrevue?: true
@@ -7110,6 +7253,7 @@ export namespace Prisma {
     titre: string
     description: string | null
     type: string
+    tacheFacturable: boolean
     priorite: string
     statut: string
     dateDebutPrevue: Date | null
@@ -7141,6 +7285,7 @@ export namespace Prisma {
     titre?: boolean
     description?: boolean
     type?: boolean
+    tacheFacturable?: boolean
     priorite?: boolean
     statut?: boolean
     dateDebutPrevue?: boolean
@@ -7149,6 +7294,7 @@ export namespace Prisma {
     updatedAt?: boolean
     projet?: boolean | ProjectDefaultArgs<ExtArgs>
     timeEntries?: boolean | Task$timeEntriesArgs<ExtArgs>
+    notes?: boolean | Task$notesArgs<ExtArgs>
     _count?: boolean | TaskCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["task"]>
 
@@ -7158,6 +7304,7 @@ export namespace Prisma {
     titre?: boolean
     description?: boolean
     type?: boolean
+    tacheFacturable?: boolean
     priorite?: boolean
     statut?: boolean
     dateDebutPrevue?: boolean
@@ -7173,6 +7320,7 @@ export namespace Prisma {
     titre?: boolean
     description?: boolean
     type?: boolean
+    tacheFacturable?: boolean
     priorite?: boolean
     statut?: boolean
     dateDebutPrevue?: boolean
@@ -7188,6 +7336,7 @@ export namespace Prisma {
     titre?: boolean
     description?: boolean
     type?: boolean
+    tacheFacturable?: boolean
     priorite?: boolean
     statut?: boolean
     dateDebutPrevue?: boolean
@@ -7196,10 +7345,11 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projetId" | "titre" | "description" | "type" | "priorite" | "statut" | "dateDebutPrevue" | "dateEcheance" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projetId" | "titre" | "description" | "type" | "tacheFacturable" | "priorite" | "statut" | "dateDebutPrevue" | "dateEcheance" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
   export type TaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     projet?: boolean | ProjectDefaultArgs<ExtArgs>
     timeEntries?: boolean | Task$timeEntriesArgs<ExtArgs>
+    notes?: boolean | Task$notesArgs<ExtArgs>
     _count?: boolean | TaskCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TaskIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7214,6 +7364,7 @@ export namespace Prisma {
     objects: {
       projet: Prisma.$ProjectPayload<ExtArgs>
       timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
+      notes: Prisma.$TaskNotePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7221,6 +7372,7 @@ export namespace Prisma {
       titre: string
       description: string | null
       type: string
+      tacheFacturable: boolean
       priorite: string
       statut: string
       dateDebutPrevue: Date | null
@@ -7623,6 +7775,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     projet<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     timeEntries<T extends Task$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Task$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    notes<T extends Task$notesArgs<ExtArgs> = {}>(args?: Subset<T, Task$notesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7657,6 +7810,7 @@ export namespace Prisma {
     readonly titre: FieldRef<"Task", 'String'>
     readonly description: FieldRef<"Task", 'String'>
     readonly type: FieldRef<"Task", 'String'>
+    readonly tacheFacturable: FieldRef<"Task", 'Boolean'>
     readonly priorite: FieldRef<"Task", 'String'>
     readonly statut: FieldRef<"Task", 'String'>
     readonly dateDebutPrevue: FieldRef<"Task", 'DateTime'>
@@ -8088,6 +8242,30 @@ export namespace Prisma {
   }
 
   /**
+   * Task.notes
+   */
+  export type Task$notesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    where?: TaskNoteWhereInput
+    orderBy?: TaskNoteOrderByWithRelationInput | TaskNoteOrderByWithRelationInput[]
+    cursor?: TaskNoteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskNoteScalarFieldEnum | TaskNoteScalarFieldEnum[]
+  }
+
+  /**
    * Task without action
    */
   export type TaskDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8103,6 +8281,1090 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: TaskInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TaskNote
+   */
+
+  export type AggregateTaskNote = {
+    _count: TaskNoteCountAggregateOutputType | null
+    _min: TaskNoteMinAggregateOutputType | null
+    _max: TaskNoteMaxAggregateOutputType | null
+  }
+
+  export type TaskNoteMinAggregateOutputType = {
+    id: string | null
+    tacheId: string | null
+    userId: string | null
+    contenu: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TaskNoteMaxAggregateOutputType = {
+    id: string | null
+    tacheId: string | null
+    userId: string | null
+    contenu: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TaskNoteCountAggregateOutputType = {
+    id: number
+    tacheId: number
+    userId: number
+    contenu: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TaskNoteMinAggregateInputType = {
+    id?: true
+    tacheId?: true
+    userId?: true
+    contenu?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TaskNoteMaxAggregateInputType = {
+    id?: true
+    tacheId?: true
+    userId?: true
+    contenu?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TaskNoteCountAggregateInputType = {
+    id?: true
+    tacheId?: true
+    userId?: true
+    contenu?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TaskNoteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskNote to aggregate.
+     */
+    where?: TaskNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskNotes to fetch.
+     */
+    orderBy?: TaskNoteOrderByWithRelationInput | TaskNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TaskNotes
+    **/
+    _count?: true | TaskNoteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskNoteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskNoteMaxAggregateInputType
+  }
+
+  export type GetTaskNoteAggregateType<T extends TaskNoteAggregateArgs> = {
+        [P in keyof T & keyof AggregateTaskNote]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTaskNote[P]>
+      : GetScalarType<T[P], AggregateTaskNote[P]>
+  }
+
+
+
+
+  export type TaskNoteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskNoteWhereInput
+    orderBy?: TaskNoteOrderByWithAggregationInput | TaskNoteOrderByWithAggregationInput[]
+    by: TaskNoteScalarFieldEnum[] | TaskNoteScalarFieldEnum
+    having?: TaskNoteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskNoteCountAggregateInputType | true
+    _min?: TaskNoteMinAggregateInputType
+    _max?: TaskNoteMaxAggregateInputType
+  }
+
+  export type TaskNoteGroupByOutputType = {
+    id: string
+    tacheId: string
+    userId: string
+    contenu: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TaskNoteCountAggregateOutputType | null
+    _min: TaskNoteMinAggregateOutputType | null
+    _max: TaskNoteMaxAggregateOutputType | null
+  }
+
+  type GetTaskNoteGroupByPayload<T extends TaskNoteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskNoteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskNoteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskNoteGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskNoteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskNoteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tacheId?: boolean
+    userId?: boolean
+    contenu?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tache?: boolean | TaskDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskNote"]>
+
+  export type TaskNoteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tacheId?: boolean
+    userId?: boolean
+    contenu?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tache?: boolean | TaskDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskNote"]>
+
+  export type TaskNoteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tacheId?: boolean
+    userId?: boolean
+    contenu?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tache?: boolean | TaskDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskNote"]>
+
+  export type TaskNoteSelectScalar = {
+    id?: boolean
+    tacheId?: boolean
+    userId?: boolean
+    contenu?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TaskNoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tacheId" | "userId" | "contenu" | "createdAt" | "updatedAt", ExtArgs["result"]["taskNote"]>
+  export type TaskNoteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tache?: boolean | TaskDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TaskNoteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tache?: boolean | TaskDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TaskNoteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tache?: boolean | TaskDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $TaskNotePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TaskNote"
+    objects: {
+      tache: Prisma.$TaskPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tacheId: string
+      userId: string
+      contenu: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["taskNote"]>
+    composites: {}
+  }
+
+  type TaskNoteGetPayload<S extends boolean | null | undefined | TaskNoteDefaultArgs> = $Result.GetResult<Prisma.$TaskNotePayload, S>
+
+  type TaskNoteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskNoteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskNoteCountAggregateInputType | true
+    }
+
+  export interface TaskNoteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TaskNote'], meta: { name: 'TaskNote' } }
+    /**
+     * Find zero or one TaskNote that matches the filter.
+     * @param {TaskNoteFindUniqueArgs} args - Arguments to find a TaskNote
+     * @example
+     * // Get one TaskNote
+     * const taskNote = await prisma.taskNote.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskNoteFindUniqueArgs>(args: SelectSubset<T, TaskNoteFindUniqueArgs<ExtArgs>>): Prisma__TaskNoteClient<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TaskNote that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskNoteFindUniqueOrThrowArgs} args - Arguments to find a TaskNote
+     * @example
+     * // Get one TaskNote
+     * const taskNote = await prisma.taskNote.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskNoteFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskNoteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskNoteClient<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskNote that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskNoteFindFirstArgs} args - Arguments to find a TaskNote
+     * @example
+     * // Get one TaskNote
+     * const taskNote = await prisma.taskNote.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskNoteFindFirstArgs>(args?: SelectSubset<T, TaskNoteFindFirstArgs<ExtArgs>>): Prisma__TaskNoteClient<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskNote that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskNoteFindFirstOrThrowArgs} args - Arguments to find a TaskNote
+     * @example
+     * // Get one TaskNote
+     * const taskNote = await prisma.taskNote.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskNoteFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskNoteFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskNoteClient<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TaskNotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskNoteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TaskNotes
+     * const taskNotes = await prisma.taskNote.findMany()
+     * 
+     * // Get first 10 TaskNotes
+     * const taskNotes = await prisma.taskNote.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskNoteWithIdOnly = await prisma.taskNote.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskNoteFindManyArgs>(args?: SelectSubset<T, TaskNoteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TaskNote.
+     * @param {TaskNoteCreateArgs} args - Arguments to create a TaskNote.
+     * @example
+     * // Create one TaskNote
+     * const TaskNote = await prisma.taskNote.create({
+     *   data: {
+     *     // ... data to create a TaskNote
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskNoteCreateArgs>(args: SelectSubset<T, TaskNoteCreateArgs<ExtArgs>>): Prisma__TaskNoteClient<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TaskNotes.
+     * @param {TaskNoteCreateManyArgs} args - Arguments to create many TaskNotes.
+     * @example
+     * // Create many TaskNotes
+     * const taskNote = await prisma.taskNote.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskNoteCreateManyArgs>(args?: SelectSubset<T, TaskNoteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TaskNotes and returns the data saved in the database.
+     * @param {TaskNoteCreateManyAndReturnArgs} args - Arguments to create many TaskNotes.
+     * @example
+     * // Create many TaskNotes
+     * const taskNote = await prisma.taskNote.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TaskNotes and only return the `id`
+     * const taskNoteWithIdOnly = await prisma.taskNote.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskNoteCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskNoteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TaskNote.
+     * @param {TaskNoteDeleteArgs} args - Arguments to delete one TaskNote.
+     * @example
+     * // Delete one TaskNote
+     * const TaskNote = await prisma.taskNote.delete({
+     *   where: {
+     *     // ... filter to delete one TaskNote
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskNoteDeleteArgs>(args: SelectSubset<T, TaskNoteDeleteArgs<ExtArgs>>): Prisma__TaskNoteClient<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TaskNote.
+     * @param {TaskNoteUpdateArgs} args - Arguments to update one TaskNote.
+     * @example
+     * // Update one TaskNote
+     * const taskNote = await prisma.taskNote.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskNoteUpdateArgs>(args: SelectSubset<T, TaskNoteUpdateArgs<ExtArgs>>): Prisma__TaskNoteClient<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TaskNotes.
+     * @param {TaskNoteDeleteManyArgs} args - Arguments to filter TaskNotes to delete.
+     * @example
+     * // Delete a few TaskNotes
+     * const { count } = await prisma.taskNote.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskNoteDeleteManyArgs>(args?: SelectSubset<T, TaskNoteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskNotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskNoteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TaskNotes
+     * const taskNote = await prisma.taskNote.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskNoteUpdateManyArgs>(args: SelectSubset<T, TaskNoteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskNotes and returns the data updated in the database.
+     * @param {TaskNoteUpdateManyAndReturnArgs} args - Arguments to update many TaskNotes.
+     * @example
+     * // Update many TaskNotes
+     * const taskNote = await prisma.taskNote.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TaskNotes and only return the `id`
+     * const taskNoteWithIdOnly = await prisma.taskNote.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskNoteUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskNoteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TaskNote.
+     * @param {TaskNoteUpsertArgs} args - Arguments to update or create a TaskNote.
+     * @example
+     * // Update or create a TaskNote
+     * const taskNote = await prisma.taskNote.upsert({
+     *   create: {
+     *     // ... data to create a TaskNote
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TaskNote we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskNoteUpsertArgs>(args: SelectSubset<T, TaskNoteUpsertArgs<ExtArgs>>): Prisma__TaskNoteClient<$Result.GetResult<Prisma.$TaskNotePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TaskNotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskNoteCountArgs} args - Arguments to filter TaskNotes to count.
+     * @example
+     * // Count the number of TaskNotes
+     * const count = await prisma.taskNote.count({
+     *   where: {
+     *     // ... the filter for the TaskNotes we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskNoteCountArgs>(
+      args?: Subset<T, TaskNoteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskNoteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TaskNote.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskNoteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskNoteAggregateArgs>(args: Subset<T, TaskNoteAggregateArgs>): Prisma.PrismaPromise<GetTaskNoteAggregateType<T>>
+
+    /**
+     * Group by TaskNote.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskNoteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskNoteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskNoteGroupByArgs['orderBy'] }
+        : { orderBy?: TaskNoteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskNoteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskNoteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TaskNote model
+   */
+  readonly fields: TaskNoteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TaskNote.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskNoteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tache<T extends TaskDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TaskDefaultArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TaskNote model
+   */
+  interface TaskNoteFieldRefs {
+    readonly id: FieldRef<"TaskNote", 'String'>
+    readonly tacheId: FieldRef<"TaskNote", 'String'>
+    readonly userId: FieldRef<"TaskNote", 'String'>
+    readonly contenu: FieldRef<"TaskNote", 'String'>
+    readonly createdAt: FieldRef<"TaskNote", 'DateTime'>
+    readonly updatedAt: FieldRef<"TaskNote", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TaskNote findUnique
+   */
+  export type TaskNoteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskNote to fetch.
+     */
+    where: TaskNoteWhereUniqueInput
+  }
+
+  /**
+   * TaskNote findUniqueOrThrow
+   */
+  export type TaskNoteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskNote to fetch.
+     */
+    where: TaskNoteWhereUniqueInput
+  }
+
+  /**
+   * TaskNote findFirst
+   */
+  export type TaskNoteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskNote to fetch.
+     */
+    where?: TaskNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskNotes to fetch.
+     */
+    orderBy?: TaskNoteOrderByWithRelationInput | TaskNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskNotes.
+     */
+    cursor?: TaskNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskNotes.
+     */
+    distinct?: TaskNoteScalarFieldEnum | TaskNoteScalarFieldEnum[]
+  }
+
+  /**
+   * TaskNote findFirstOrThrow
+   */
+  export type TaskNoteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskNote to fetch.
+     */
+    where?: TaskNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskNotes to fetch.
+     */
+    orderBy?: TaskNoteOrderByWithRelationInput | TaskNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskNotes.
+     */
+    cursor?: TaskNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskNotes.
+     */
+    distinct?: TaskNoteScalarFieldEnum | TaskNoteScalarFieldEnum[]
+  }
+
+  /**
+   * TaskNote findMany
+   */
+  export type TaskNoteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskNotes to fetch.
+     */
+    where?: TaskNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskNotes to fetch.
+     */
+    orderBy?: TaskNoteOrderByWithRelationInput | TaskNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TaskNotes.
+     */
+    cursor?: TaskNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskNotes.
+     */
+    distinct?: TaskNoteScalarFieldEnum | TaskNoteScalarFieldEnum[]
+  }
+
+  /**
+   * TaskNote create
+   */
+  export type TaskNoteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TaskNote.
+     */
+    data: XOR<TaskNoteCreateInput, TaskNoteUncheckedCreateInput>
+  }
+
+  /**
+   * TaskNote createMany
+   */
+  export type TaskNoteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TaskNotes.
+     */
+    data: TaskNoteCreateManyInput | TaskNoteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TaskNote createManyAndReturn
+   */
+  export type TaskNoteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * The data used to create many TaskNotes.
+     */
+    data: TaskNoteCreateManyInput | TaskNoteCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskNote update
+   */
+  export type TaskNoteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TaskNote.
+     */
+    data: XOR<TaskNoteUpdateInput, TaskNoteUncheckedUpdateInput>
+    /**
+     * Choose, which TaskNote to update.
+     */
+    where: TaskNoteWhereUniqueInput
+  }
+
+  /**
+   * TaskNote updateMany
+   */
+  export type TaskNoteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TaskNotes.
+     */
+    data: XOR<TaskNoteUpdateManyMutationInput, TaskNoteUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskNotes to update
+     */
+    where?: TaskNoteWhereInput
+    /**
+     * Limit how many TaskNotes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskNote updateManyAndReturn
+   */
+  export type TaskNoteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * The data used to update TaskNotes.
+     */
+    data: XOR<TaskNoteUpdateManyMutationInput, TaskNoteUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskNotes to update
+     */
+    where?: TaskNoteWhereInput
+    /**
+     * Limit how many TaskNotes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskNote upsert
+   */
+  export type TaskNoteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TaskNote to update in case it exists.
+     */
+    where: TaskNoteWhereUniqueInput
+    /**
+     * In case the TaskNote found by the `where` argument doesn't exist, create a new TaskNote with this data.
+     */
+    create: XOR<TaskNoteCreateInput, TaskNoteUncheckedCreateInput>
+    /**
+     * In case the TaskNote was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskNoteUpdateInput, TaskNoteUncheckedUpdateInput>
+  }
+
+  /**
+   * TaskNote delete
+   */
+  export type TaskNoteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
+    /**
+     * Filter which TaskNote to delete.
+     */
+    where: TaskNoteWhereUniqueInput
+  }
+
+  /**
+   * TaskNote deleteMany
+   */
+  export type TaskNoteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskNotes to delete
+     */
+    where?: TaskNoteWhereInput
+    /**
+     * Limit how many TaskNotes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskNote without action
+   */
+  export type TaskNoteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskNote
+     */
+    select?: TaskNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskNote
+     */
+    omit?: TaskNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskNoteInclude<ExtArgs> | null
   }
 
 
@@ -13018,6 +14280,7 @@ export namespace Prisma {
     titre: 'titre',
     description: 'description',
     type: 'type',
+    tacheFacturable: 'tacheFacturable',
     priorite: 'priorite',
     statut: 'statut',
     dateDebutPrevue: 'dateDebutPrevue',
@@ -13027,6 +14290,18 @@ export namespace Prisma {
   };
 
   export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+  export const TaskNoteScalarFieldEnum: {
+    id: 'id',
+    tacheId: 'tacheId',
+    userId: 'userId',
+    contenu: 'contenu',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TaskNoteScalarFieldEnum = (typeof TaskNoteScalarFieldEnum)[keyof typeof TaskNoteScalarFieldEnum]
 
 
   export const TimeEntryScalarFieldEnum: {
@@ -13264,6 +14539,7 @@ export namespace Prisma {
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     transactions?: TransactionListRelationFilter
     timeEntries?: TimeEntryListRelationFilter
+    taskNotes?: TaskNoteListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -13285,6 +14561,7 @@ export namespace Prisma {
     role?: RoleOrderByWithRelationInput
     transactions?: TransactionOrderByRelationAggregateInput
     timeEntries?: TimeEntryOrderByRelationAggregateInput
+    taskNotes?: TaskNoteOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -13309,6 +14586,7 @@ export namespace Prisma {
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     transactions?: TransactionListRelationFilter
     timeEntries?: TimeEntryListRelationFilter
+    taskNotes?: TaskNoteListRelationFilter
   }, "id" | "username" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -13641,6 +14919,7 @@ export namespace Prisma {
     titre?: StringFilter<"Task"> | string
     description?: StringNullableFilter<"Task"> | string | null
     type?: StringFilter<"Task"> | string
+    tacheFacturable?: BoolFilter<"Task"> | boolean
     priorite?: StringFilter<"Task"> | string
     statut?: StringFilter<"Task"> | string
     dateDebutPrevue?: DateTimeNullableFilter<"Task"> | Date | string | null
@@ -13649,6 +14928,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Task"> | Date | string
     projet?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     timeEntries?: TimeEntryListRelationFilter
+    notes?: TaskNoteListRelationFilter
   }
 
   export type TaskOrderByWithRelationInput = {
@@ -13657,6 +14937,7 @@ export namespace Prisma {
     titre?: SortOrder
     description?: SortOrderInput | SortOrder
     type?: SortOrder
+    tacheFacturable?: SortOrder
     priorite?: SortOrder
     statut?: SortOrder
     dateDebutPrevue?: SortOrderInput | SortOrder
@@ -13665,6 +14946,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     projet?: ProjectOrderByWithRelationInput
     timeEntries?: TimeEntryOrderByRelationAggregateInput
+    notes?: TaskNoteOrderByRelationAggregateInput
   }
 
   export type TaskWhereUniqueInput = Prisma.AtLeast<{
@@ -13676,6 +14958,7 @@ export namespace Prisma {
     titre?: StringFilter<"Task"> | string
     description?: StringNullableFilter<"Task"> | string | null
     type?: StringFilter<"Task"> | string
+    tacheFacturable?: BoolFilter<"Task"> | boolean
     priorite?: StringFilter<"Task"> | string
     statut?: StringFilter<"Task"> | string
     dateDebutPrevue?: DateTimeNullableFilter<"Task"> | Date | string | null
@@ -13684,6 +14967,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Task"> | Date | string
     projet?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     timeEntries?: TimeEntryListRelationFilter
+    notes?: TaskNoteListRelationFilter
   }, "id">
 
   export type TaskOrderByWithAggregationInput = {
@@ -13692,6 +14976,7 @@ export namespace Prisma {
     titre?: SortOrder
     description?: SortOrderInput | SortOrder
     type?: SortOrder
+    tacheFacturable?: SortOrder
     priorite?: SortOrder
     statut?: SortOrder
     dateDebutPrevue?: SortOrderInput | SortOrder
@@ -13712,12 +14997,76 @@ export namespace Prisma {
     titre?: StringWithAggregatesFilter<"Task"> | string
     description?: StringNullableWithAggregatesFilter<"Task"> | string | null
     type?: StringWithAggregatesFilter<"Task"> | string
+    tacheFacturable?: BoolWithAggregatesFilter<"Task"> | boolean
     priorite?: StringWithAggregatesFilter<"Task"> | string
     statut?: StringWithAggregatesFilter<"Task"> | string
     dateDebutPrevue?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
     dateEcheance?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
+  }
+
+  export type TaskNoteWhereInput = {
+    AND?: TaskNoteWhereInput | TaskNoteWhereInput[]
+    OR?: TaskNoteWhereInput[]
+    NOT?: TaskNoteWhereInput | TaskNoteWhereInput[]
+    id?: StringFilter<"TaskNote"> | string
+    tacheId?: StringFilter<"TaskNote"> | string
+    userId?: StringFilter<"TaskNote"> | string
+    contenu?: StringFilter<"TaskNote"> | string
+    createdAt?: DateTimeFilter<"TaskNote"> | Date | string
+    updatedAt?: DateTimeFilter<"TaskNote"> | Date | string
+    tache?: XOR<TaskScalarRelationFilter, TaskWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type TaskNoteOrderByWithRelationInput = {
+    id?: SortOrder
+    tacheId?: SortOrder
+    userId?: SortOrder
+    contenu?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tache?: TaskOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type TaskNoteWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TaskNoteWhereInput | TaskNoteWhereInput[]
+    OR?: TaskNoteWhereInput[]
+    NOT?: TaskNoteWhereInput | TaskNoteWhereInput[]
+    tacheId?: StringFilter<"TaskNote"> | string
+    userId?: StringFilter<"TaskNote"> | string
+    contenu?: StringFilter<"TaskNote"> | string
+    createdAt?: DateTimeFilter<"TaskNote"> | Date | string
+    updatedAt?: DateTimeFilter<"TaskNote"> | Date | string
+    tache?: XOR<TaskScalarRelationFilter, TaskWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type TaskNoteOrderByWithAggregationInput = {
+    id?: SortOrder
+    tacheId?: SortOrder
+    userId?: SortOrder
+    contenu?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TaskNoteCountOrderByAggregateInput
+    _max?: TaskNoteMaxOrderByAggregateInput
+    _min?: TaskNoteMinOrderByAggregateInput
+  }
+
+  export type TaskNoteScalarWhereWithAggregatesInput = {
+    AND?: TaskNoteScalarWhereWithAggregatesInput | TaskNoteScalarWhereWithAggregatesInput[]
+    OR?: TaskNoteScalarWhereWithAggregatesInput[]
+    NOT?: TaskNoteScalarWhereWithAggregatesInput | TaskNoteScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TaskNote"> | string
+    tacheId?: StringWithAggregatesFilter<"TaskNote"> | string
+    userId?: StringWithAggregatesFilter<"TaskNote"> | string
+    contenu?: StringWithAggregatesFilter<"TaskNote"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TaskNote"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TaskNote"> | Date | string
   }
 
   export type TimeEntryWhereInput = {
@@ -14139,6 +15488,7 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutUsersInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    taskNotes?: TaskNoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14159,6 +15509,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    taskNotes?: TaskNoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -14179,6 +15530,7 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutUsersNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    taskNotes?: TaskNoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14199,6 +15551,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    taskNotes?: TaskNoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -14607,6 +15960,7 @@ export namespace Prisma {
     titre: string
     description?: string | null
     type: string
+    tacheFacturable?: boolean
     priorite?: string
     statut?: string
     dateDebutPrevue?: Date | string | null
@@ -14615,6 +15969,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     projet: ProjectCreateNestedOneWithoutTasksInput
     timeEntries?: TimeEntryCreateNestedManyWithoutTacheInput
+    notes?: TaskNoteCreateNestedManyWithoutTacheInput
   }
 
   export type TaskUncheckedCreateInput = {
@@ -14623,6 +15978,7 @@ export namespace Prisma {
     titre: string
     description?: string | null
     type: string
+    tacheFacturable?: boolean
     priorite?: string
     statut?: string
     dateDebutPrevue?: Date | string | null
@@ -14630,6 +15986,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutTacheInput
+    notes?: TaskNoteUncheckedCreateNestedManyWithoutTacheInput
   }
 
   export type TaskUpdateInput = {
@@ -14637,6 +15994,7 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14645,6 +16003,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projet?: ProjectUpdateOneRequiredWithoutTasksNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutTacheNestedInput
+    notes?: TaskNoteUpdateManyWithoutTacheNestedInput
   }
 
   export type TaskUncheckedUpdateInput = {
@@ -14653,6 +16012,7 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14660,6 +16020,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutTacheNestedInput
+    notes?: TaskNoteUncheckedUpdateManyWithoutTacheNestedInput
   }
 
   export type TaskCreateManyInput = {
@@ -14668,6 +16029,7 @@ export namespace Prisma {
     titre: string
     description?: string | null
     type: string
+    tacheFacturable?: boolean
     priorite?: string
     statut?: string
     dateDebutPrevue?: Date | string | null
@@ -14681,6 +16043,7 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14695,10 +16058,72 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateEcheance?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskNoteCreateInput = {
+    id?: string
+    contenu: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tache: TaskCreateNestedOneWithoutNotesInput
+    user: UserCreateNestedOneWithoutTaskNotesInput
+  }
+
+  export type TaskNoteUncheckedCreateInput = {
+    id?: string
+    tacheId: string
+    userId: string
+    contenu: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskNoteUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tache?: TaskUpdateOneRequiredWithoutNotesNestedInput
+    user?: UserUpdateOneRequiredWithoutTaskNotesNestedInput
+  }
+
+  export type TaskNoteUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tacheId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskNoteCreateManyInput = {
+    id?: string
+    tacheId: string
+    userId: string
+    contenu: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskNoteUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskNoteUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tacheId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15228,11 +16653,21 @@ export namespace Prisma {
     none?: TimeEntryWhereInput
   }
 
+  export type TaskNoteListRelationFilter = {
+    every?: TaskNoteWhereInput
+    some?: TaskNoteWhereInput
+    none?: TaskNoteWhereInput
+  }
+
   export type TransactionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type TimeEntryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TaskNoteOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15583,6 +17018,7 @@ export namespace Prisma {
     titre?: SortOrder
     description?: SortOrder
     type?: SortOrder
+    tacheFacturable?: SortOrder
     priorite?: SortOrder
     statut?: SortOrder
     dateDebutPrevue?: SortOrder
@@ -15597,6 +17033,7 @@ export namespace Prisma {
     titre?: SortOrder
     description?: SortOrder
     type?: SortOrder
+    tacheFacturable?: SortOrder
     priorite?: SortOrder
     statut?: SortOrder
     dateDebutPrevue?: SortOrder
@@ -15611,6 +17048,7 @@ export namespace Prisma {
     titre?: SortOrder
     description?: SortOrder
     type?: SortOrder
+    tacheFacturable?: SortOrder
     priorite?: SortOrder
     statut?: SortOrder
     dateDebutPrevue?: SortOrder
@@ -15619,9 +17057,41 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type TaskScalarRelationFilter = {
+    is?: TaskWhereInput
+    isNot?: TaskWhereInput
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type TaskNoteCountOrderByAggregateInput = {
+    id?: SortOrder
+    tacheId?: SortOrder
+    userId?: SortOrder
+    contenu?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskNoteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tacheId?: SortOrder
+    userId?: SortOrder
+    contenu?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskNoteMinOrderByAggregateInput = {
+    id?: SortOrder
+    tacheId?: SortOrder
+    userId?: SortOrder
+    contenu?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TaskNullableScalarRelationFilter = {
@@ -15908,6 +17378,13 @@ export namespace Prisma {
     connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
   }
 
+  export type TaskNoteCreateNestedManyWithoutUserInput = {
+    create?: XOR<TaskNoteCreateWithoutUserInput, TaskNoteUncheckedCreateWithoutUserInput> | TaskNoteCreateWithoutUserInput[] | TaskNoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TaskNoteCreateOrConnectWithoutUserInput | TaskNoteCreateOrConnectWithoutUserInput[]
+    createMany?: TaskNoteCreateManyUserInputEnvelope
+    connect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+  }
+
   export type TransactionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
@@ -15920,6 +17397,13 @@ export namespace Prisma {
     connectOrCreate?: TimeEntryCreateOrConnectWithoutUserInput | TimeEntryCreateOrConnectWithoutUserInput[]
     createMany?: TimeEntryCreateManyUserInputEnvelope
     connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+  }
+
+  export type TaskNoteUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TaskNoteCreateWithoutUserInput, TaskNoteUncheckedCreateWithoutUserInput> | TaskNoteCreateWithoutUserInput[] | TaskNoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TaskNoteCreateOrConnectWithoutUserInput | TaskNoteCreateOrConnectWithoutUserInput[]
+    createMany?: TaskNoteCreateManyUserInputEnvelope
+    connect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -15968,6 +17452,20 @@ export namespace Prisma {
     deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
   }
 
+  export type TaskNoteUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TaskNoteCreateWithoutUserInput, TaskNoteUncheckedCreateWithoutUserInput> | TaskNoteCreateWithoutUserInput[] | TaskNoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TaskNoteCreateOrConnectWithoutUserInput | TaskNoteCreateOrConnectWithoutUserInput[]
+    upsert?: TaskNoteUpsertWithWhereUniqueWithoutUserInput | TaskNoteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TaskNoteCreateManyUserInputEnvelope
+    set?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    disconnect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    delete?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    connect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    update?: TaskNoteUpdateWithWhereUniqueWithoutUserInput | TaskNoteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TaskNoteUpdateManyWithWhereWithoutUserInput | TaskNoteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TaskNoteScalarWhereInput | TaskNoteScalarWhereInput[]
+  }
+
   export type TransactionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
@@ -15994,6 +17492,20 @@ export namespace Prisma {
     update?: TimeEntryUpdateWithWhereUniqueWithoutUserInput | TimeEntryUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: TimeEntryUpdateManyWithWhereWithoutUserInput | TimeEntryUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+  }
+
+  export type TaskNoteUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TaskNoteCreateWithoutUserInput, TaskNoteUncheckedCreateWithoutUserInput> | TaskNoteCreateWithoutUserInput[] | TaskNoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TaskNoteCreateOrConnectWithoutUserInput | TaskNoteCreateOrConnectWithoutUserInput[]
+    upsert?: TaskNoteUpsertWithWhereUniqueWithoutUserInput | TaskNoteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TaskNoteCreateManyUserInputEnvelope
+    set?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    disconnect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    delete?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    connect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    update?: TaskNoteUpdateWithWhereUniqueWithoutUserInput | TaskNoteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TaskNoteUpdateManyWithWhereWithoutUserInput | TaskNoteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TaskNoteScalarWhereInput | TaskNoteScalarWhereInput[]
   }
 
   export type ProjectCreateNestedManyWithoutClientInput = {
@@ -16249,11 +17761,25 @@ export namespace Prisma {
     connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
   }
 
+  export type TaskNoteCreateNestedManyWithoutTacheInput = {
+    create?: XOR<TaskNoteCreateWithoutTacheInput, TaskNoteUncheckedCreateWithoutTacheInput> | TaskNoteCreateWithoutTacheInput[] | TaskNoteUncheckedCreateWithoutTacheInput[]
+    connectOrCreate?: TaskNoteCreateOrConnectWithoutTacheInput | TaskNoteCreateOrConnectWithoutTacheInput[]
+    createMany?: TaskNoteCreateManyTacheInputEnvelope
+    connect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+  }
+
   export type TimeEntryUncheckedCreateNestedManyWithoutTacheInput = {
     create?: XOR<TimeEntryCreateWithoutTacheInput, TimeEntryUncheckedCreateWithoutTacheInput> | TimeEntryCreateWithoutTacheInput[] | TimeEntryUncheckedCreateWithoutTacheInput[]
     connectOrCreate?: TimeEntryCreateOrConnectWithoutTacheInput | TimeEntryCreateOrConnectWithoutTacheInput[]
     createMany?: TimeEntryCreateManyTacheInputEnvelope
     connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+  }
+
+  export type TaskNoteUncheckedCreateNestedManyWithoutTacheInput = {
+    create?: XOR<TaskNoteCreateWithoutTacheInput, TaskNoteUncheckedCreateWithoutTacheInput> | TaskNoteCreateWithoutTacheInput[] | TaskNoteUncheckedCreateWithoutTacheInput[]
+    connectOrCreate?: TaskNoteCreateOrConnectWithoutTacheInput | TaskNoteCreateOrConnectWithoutTacheInput[]
+    createMany?: TaskNoteCreateManyTacheInputEnvelope
+    connect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
   }
 
   export type ProjectUpdateOneRequiredWithoutTasksNestedInput = {
@@ -16278,6 +17804,20 @@ export namespace Prisma {
     deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
   }
 
+  export type TaskNoteUpdateManyWithoutTacheNestedInput = {
+    create?: XOR<TaskNoteCreateWithoutTacheInput, TaskNoteUncheckedCreateWithoutTacheInput> | TaskNoteCreateWithoutTacheInput[] | TaskNoteUncheckedCreateWithoutTacheInput[]
+    connectOrCreate?: TaskNoteCreateOrConnectWithoutTacheInput | TaskNoteCreateOrConnectWithoutTacheInput[]
+    upsert?: TaskNoteUpsertWithWhereUniqueWithoutTacheInput | TaskNoteUpsertWithWhereUniqueWithoutTacheInput[]
+    createMany?: TaskNoteCreateManyTacheInputEnvelope
+    set?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    disconnect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    delete?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    connect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    update?: TaskNoteUpdateWithWhereUniqueWithoutTacheInput | TaskNoteUpdateWithWhereUniqueWithoutTacheInput[]
+    updateMany?: TaskNoteUpdateManyWithWhereWithoutTacheInput | TaskNoteUpdateManyWithWhereWithoutTacheInput[]
+    deleteMany?: TaskNoteScalarWhereInput | TaskNoteScalarWhereInput[]
+  }
+
   export type TimeEntryUncheckedUpdateManyWithoutTacheNestedInput = {
     create?: XOR<TimeEntryCreateWithoutTacheInput, TimeEntryUncheckedCreateWithoutTacheInput> | TimeEntryCreateWithoutTacheInput[] | TimeEntryUncheckedCreateWithoutTacheInput[]
     connectOrCreate?: TimeEntryCreateOrConnectWithoutTacheInput | TimeEntryCreateOrConnectWithoutTacheInput[]
@@ -16290,6 +17830,48 @@ export namespace Prisma {
     update?: TimeEntryUpdateWithWhereUniqueWithoutTacheInput | TimeEntryUpdateWithWhereUniqueWithoutTacheInput[]
     updateMany?: TimeEntryUpdateManyWithWhereWithoutTacheInput | TimeEntryUpdateManyWithWhereWithoutTacheInput[]
     deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+  }
+
+  export type TaskNoteUncheckedUpdateManyWithoutTacheNestedInput = {
+    create?: XOR<TaskNoteCreateWithoutTacheInput, TaskNoteUncheckedCreateWithoutTacheInput> | TaskNoteCreateWithoutTacheInput[] | TaskNoteUncheckedCreateWithoutTacheInput[]
+    connectOrCreate?: TaskNoteCreateOrConnectWithoutTacheInput | TaskNoteCreateOrConnectWithoutTacheInput[]
+    upsert?: TaskNoteUpsertWithWhereUniqueWithoutTacheInput | TaskNoteUpsertWithWhereUniqueWithoutTacheInput[]
+    createMany?: TaskNoteCreateManyTacheInputEnvelope
+    set?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    disconnect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    delete?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    connect?: TaskNoteWhereUniqueInput | TaskNoteWhereUniqueInput[]
+    update?: TaskNoteUpdateWithWhereUniqueWithoutTacheInput | TaskNoteUpdateWithWhereUniqueWithoutTacheInput[]
+    updateMany?: TaskNoteUpdateManyWithWhereWithoutTacheInput | TaskNoteUpdateManyWithWhereWithoutTacheInput[]
+    deleteMany?: TaskNoteScalarWhereInput | TaskNoteScalarWhereInput[]
+  }
+
+  export type TaskCreateNestedOneWithoutNotesInput = {
+    create?: XOR<TaskCreateWithoutNotesInput, TaskUncheckedCreateWithoutNotesInput>
+    connectOrCreate?: TaskCreateOrConnectWithoutNotesInput
+    connect?: TaskWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutTaskNotesInput = {
+    create?: XOR<UserCreateWithoutTaskNotesInput, UserUncheckedCreateWithoutTaskNotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTaskNotesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type TaskUpdateOneRequiredWithoutNotesNestedInput = {
+    create?: XOR<TaskCreateWithoutNotesInput, TaskUncheckedCreateWithoutNotesInput>
+    connectOrCreate?: TaskCreateOrConnectWithoutNotesInput
+    upsert?: TaskUpsertWithoutNotesInput
+    connect?: TaskWhereUniqueInput
+    update?: XOR<XOR<TaskUpdateToOneWithWhereWithoutNotesInput, TaskUpdateWithoutNotesInput>, TaskUncheckedUpdateWithoutNotesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutTaskNotesNestedInput = {
+    create?: XOR<UserCreateWithoutTaskNotesInput, UserUncheckedCreateWithoutTaskNotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTaskNotesInput
+    upsert?: UserUpsertWithoutTaskNotesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTaskNotesInput, UserUpdateWithoutTaskNotesInput>, UserUncheckedUpdateWithoutTaskNotesInput>
   }
 
   export type UserCreateNestedOneWithoutTimeEntriesInput = {
@@ -16730,6 +18312,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    taskNotes?: TaskNoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRoleInput = {
@@ -16749,6 +18332,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    taskNotes?: TaskNoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRoleInput = {
@@ -16883,6 +18467,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TaskNoteCreateWithoutUserInput = {
+    id?: string
+    contenu: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tache: TaskCreateNestedOneWithoutNotesInput
+  }
+
+  export type TaskNoteUncheckedCreateWithoutUserInput = {
+    id?: string
+    tacheId: string
+    contenu: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskNoteCreateOrConnectWithoutUserInput = {
+    where: TaskNoteWhereUniqueInput
+    create: XOR<TaskNoteCreateWithoutUserInput, TaskNoteUncheckedCreateWithoutUserInput>
+  }
+
+  export type TaskNoteCreateManyUserInputEnvelope = {
+    data: TaskNoteCreateManyUserInput | TaskNoteCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type RoleUpsertWithoutUsersInput = {
     update: XOR<RoleUpdateWithoutUsersInput, RoleUncheckedUpdateWithoutUsersInput>
     create: XOR<RoleCreateWithoutUsersInput, RoleUncheckedCreateWithoutUsersInput>
@@ -16969,6 +18579,34 @@ export namespace Prisma {
     statut?: StringFilter<"TimeEntry"> | string
     createdAt?: DateTimeFilter<"TimeEntry"> | Date | string
     updatedAt?: DateTimeFilter<"TimeEntry"> | Date | string
+  }
+
+  export type TaskNoteUpsertWithWhereUniqueWithoutUserInput = {
+    where: TaskNoteWhereUniqueInput
+    update: XOR<TaskNoteUpdateWithoutUserInput, TaskNoteUncheckedUpdateWithoutUserInput>
+    create: XOR<TaskNoteCreateWithoutUserInput, TaskNoteUncheckedCreateWithoutUserInput>
+  }
+
+  export type TaskNoteUpdateWithWhereUniqueWithoutUserInput = {
+    where: TaskNoteWhereUniqueInput
+    data: XOR<TaskNoteUpdateWithoutUserInput, TaskNoteUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TaskNoteUpdateManyWithWhereWithoutUserInput = {
+    where: TaskNoteScalarWhereInput
+    data: XOR<TaskNoteUpdateManyMutationInput, TaskNoteUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TaskNoteScalarWhereInput = {
+    AND?: TaskNoteScalarWhereInput | TaskNoteScalarWhereInput[]
+    OR?: TaskNoteScalarWhereInput[]
+    NOT?: TaskNoteScalarWhereInput | TaskNoteScalarWhereInput[]
+    id?: StringFilter<"TaskNote"> | string
+    tacheId?: StringFilter<"TaskNote"> | string
+    userId?: StringFilter<"TaskNote"> | string
+    contenu?: StringFilter<"TaskNote"> | string
+    createdAt?: DateTimeFilter<"TaskNote"> | Date | string
+    updatedAt?: DateTimeFilter<"TaskNote"> | Date | string
   }
 
   export type ProjectCreateWithoutClientInput = {
@@ -17207,6 +18845,7 @@ export namespace Prisma {
     titre: string
     description?: string | null
     type: string
+    tacheFacturable?: boolean
     priorite?: string
     statut?: string
     dateDebutPrevue?: Date | string | null
@@ -17214,6 +18853,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     timeEntries?: TimeEntryCreateNestedManyWithoutTacheInput
+    notes?: TaskNoteCreateNestedManyWithoutTacheInput
   }
 
   export type TaskUncheckedCreateWithoutProjetInput = {
@@ -17221,6 +18861,7 @@ export namespace Prisma {
     titre: string
     description?: string | null
     type: string
+    tacheFacturable?: boolean
     priorite?: string
     statut?: string
     dateDebutPrevue?: Date | string | null
@@ -17228,6 +18869,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutTacheInput
+    notes?: TaskNoteUncheckedCreateNestedManyWithoutTacheInput
   }
 
   export type TaskCreateOrConnectWithoutProjetInput = {
@@ -17404,6 +19046,7 @@ export namespace Prisma {
     titre?: StringFilter<"Task"> | string
     description?: StringNullableFilter<"Task"> | string | null
     type?: StringFilter<"Task"> | string
+    tacheFacturable?: BoolFilter<"Task"> | boolean
     priorite?: StringFilter<"Task"> | string
     statut?: StringFilter<"Task"> | string
     dateDebutPrevue?: DateTimeNullableFilter<"Task"> | Date | string | null
@@ -17546,6 +19189,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TaskNoteCreateWithoutTacheInput = {
+    id?: string
+    contenu: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutTaskNotesInput
+  }
+
+  export type TaskNoteUncheckedCreateWithoutTacheInput = {
+    id?: string
+    userId: string
+    contenu: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskNoteCreateOrConnectWithoutTacheInput = {
+    where: TaskNoteWhereUniqueInput
+    create: XOR<TaskNoteCreateWithoutTacheInput, TaskNoteUncheckedCreateWithoutTacheInput>
+  }
+
+  export type TaskNoteCreateManyTacheInputEnvelope = {
+    data: TaskNoteCreateManyTacheInput | TaskNoteCreateManyTacheInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProjectUpsertWithoutTasksInput = {
     update: XOR<ProjectUpdateWithoutTasksInput, ProjectUncheckedUpdateWithoutTasksInput>
     create: XOR<ProjectCreateWithoutTasksInput, ProjectUncheckedCreateWithoutTasksInput>
@@ -17617,6 +19286,198 @@ export namespace Prisma {
     data: XOR<TimeEntryUpdateManyMutationInput, TimeEntryUncheckedUpdateManyWithoutTacheInput>
   }
 
+  export type TaskNoteUpsertWithWhereUniqueWithoutTacheInput = {
+    where: TaskNoteWhereUniqueInput
+    update: XOR<TaskNoteUpdateWithoutTacheInput, TaskNoteUncheckedUpdateWithoutTacheInput>
+    create: XOR<TaskNoteCreateWithoutTacheInput, TaskNoteUncheckedCreateWithoutTacheInput>
+  }
+
+  export type TaskNoteUpdateWithWhereUniqueWithoutTacheInput = {
+    where: TaskNoteWhereUniqueInput
+    data: XOR<TaskNoteUpdateWithoutTacheInput, TaskNoteUncheckedUpdateWithoutTacheInput>
+  }
+
+  export type TaskNoteUpdateManyWithWhereWithoutTacheInput = {
+    where: TaskNoteScalarWhereInput
+    data: XOR<TaskNoteUpdateManyMutationInput, TaskNoteUncheckedUpdateManyWithoutTacheInput>
+  }
+
+  export type TaskCreateWithoutNotesInput = {
+    id?: string
+    titre: string
+    description?: string | null
+    type: string
+    tacheFacturable?: boolean
+    priorite?: string
+    statut?: string
+    dateDebutPrevue?: Date | string | null
+    dateEcheance?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projet: ProjectCreateNestedOneWithoutTasksInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutTacheInput
+  }
+
+  export type TaskUncheckedCreateWithoutNotesInput = {
+    id?: string
+    projetId: string
+    titre: string
+    description?: string | null
+    type: string
+    tacheFacturable?: boolean
+    priorite?: string
+    statut?: string
+    dateDebutPrevue?: Date | string | null
+    dateEcheance?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutTacheInput
+  }
+
+  export type TaskCreateOrConnectWithoutNotesInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutNotesInput, TaskUncheckedCreateWithoutNotesInput>
+  }
+
+  export type UserCreateWithoutTaskNotesInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    phoneNumber?: string | null
+    dateOfBirth?: Date | string | null
+    address?: string | null
+    city?: string | null
+    country?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: RoleCreateNestedOneWithoutUsersInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTaskNotesInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    phoneNumber?: string | null
+    dateOfBirth?: Date | string | null
+    address?: string | null
+    city?: string | null
+    country?: string | null
+    isActive?: boolean
+    roleId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTaskNotesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTaskNotesInput, UserUncheckedCreateWithoutTaskNotesInput>
+  }
+
+  export type TaskUpsertWithoutNotesInput = {
+    update: XOR<TaskUpdateWithoutNotesInput, TaskUncheckedUpdateWithoutNotesInput>
+    create: XOR<TaskCreateWithoutNotesInput, TaskUncheckedCreateWithoutNotesInput>
+    where?: TaskWhereInput
+  }
+
+  export type TaskUpdateToOneWithWhereWithoutNotesInput = {
+    where?: TaskWhereInput
+    data: XOR<TaskUpdateWithoutNotesInput, TaskUncheckedUpdateWithoutNotesInput>
+  }
+
+  export type TaskUpdateWithoutNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
+    priorite?: StringFieldUpdateOperationsInput | string
+    statut?: StringFieldUpdateOperationsInput | string
+    dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateEcheance?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projet?: ProjectUpdateOneRequiredWithoutTasksNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutTacheNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projetId?: StringFieldUpdateOperationsInput | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
+    priorite?: StringFieldUpdateOperationsInput | string
+    statut?: StringFieldUpdateOperationsInput | string
+    dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateEcheance?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutTacheNestedInput
+  }
+
+  export type UserUpsertWithoutTaskNotesInput = {
+    update: XOR<UserUpdateWithoutTaskNotesInput, UserUncheckedUpdateWithoutTaskNotesInput>
+    create: XOR<UserCreateWithoutTaskNotesInput, UserUncheckedCreateWithoutTaskNotesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTaskNotesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTaskNotesInput, UserUncheckedUpdateWithoutTaskNotesInput>
+  }
+
+  export type UserUpdateWithoutTaskNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: RoleUpdateOneWithoutUsersNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTaskNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type UserCreateWithoutTimeEntriesInput = {
     id?: string
     username: string
@@ -17634,6 +19495,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: RoleCreateNestedOneWithoutUsersInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
+    taskNotes?: TaskNoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTimeEntriesInput = {
@@ -17653,6 +19515,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    taskNotes?: TaskNoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTimeEntriesInput = {
@@ -17714,6 +19577,7 @@ export namespace Prisma {
     titre: string
     description?: string | null
     type: string
+    tacheFacturable?: boolean
     priorite?: string
     statut?: string
     dateDebutPrevue?: Date | string | null
@@ -17721,6 +19585,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     projet: ProjectCreateNestedOneWithoutTasksInput
+    notes?: TaskNoteCreateNestedManyWithoutTacheInput
   }
 
   export type TaskUncheckedCreateWithoutTimeEntriesInput = {
@@ -17729,12 +19594,14 @@ export namespace Prisma {
     titre: string
     description?: string | null
     type: string
+    tacheFacturable?: boolean
     priorite?: string
     statut?: string
     dateDebutPrevue?: Date | string | null
     dateEcheance?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    notes?: TaskNoteUncheckedCreateNestedManyWithoutTacheInput
   }
 
   export type TaskCreateOrConnectWithoutTimeEntriesInput = {
@@ -17799,6 +19666,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: RoleUpdateOneWithoutUsersNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
+    taskNotes?: TaskNoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTimeEntriesInput = {
@@ -17818,6 +19686,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    taskNotes?: TaskNoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutTimeEntriesInput = {
@@ -17891,6 +19760,7 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -17898,6 +19768,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projet?: ProjectUpdateOneRequiredWithoutTasksNestedInput
+    notes?: TaskNoteUpdateManyWithoutTacheNestedInput
   }
 
   export type TaskUncheckedUpdateWithoutTimeEntriesInput = {
@@ -17906,12 +19777,14 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateEcheance?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: TaskNoteUncheckedUpdateManyWithoutTacheNestedInput
   }
 
   export type InvoiceLineUpsertWithWhereUniqueWithoutTimeEntriesInput = {
@@ -18358,6 +20231,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     role?: RoleCreateNestedOneWithoutUsersInput
     timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    taskNotes?: TaskNoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTransactionsInput = {
@@ -18377,6 +20251,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    taskNotes?: TaskNoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTransactionsInput = {
@@ -18412,6 +20287,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: RoleUpdateOneWithoutUsersNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    taskNotes?: TaskNoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransactionsInput = {
@@ -18431,6 +20307,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    taskNotes?: TaskNoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyRoleInput = {
@@ -18467,6 +20344,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    taskNotes?: TaskNoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRoleInput = {
@@ -18486,6 +20364,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    taskNotes?: TaskNoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -18522,6 +20401,14 @@ export namespace Prisma {
     estFacturable?: boolean
     commentaire?: string | null
     statut?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskNoteCreateManyUserInput = {
+    id?: string
+    tacheId: string
+    contenu: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -18587,6 +20474,30 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskNoteUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tache?: TaskUpdateOneRequiredWithoutNotesNestedInput
+  }
+
+  export type TaskNoteUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tacheId?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskNoteUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tacheId?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18740,6 +20651,7 @@ export namespace Prisma {
     titre: string
     description?: string | null
     type: string
+    tacheFacturable?: boolean
     priorite?: string
     statut?: string
     dateDebutPrevue?: Date | string | null
@@ -18777,6 +20689,7 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -18784,6 +20697,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeEntries?: TimeEntryUpdateManyWithoutTacheNestedInput
+    notes?: TaskNoteUpdateManyWithoutTacheNestedInput
   }
 
   export type TaskUncheckedUpdateWithoutProjetInput = {
@@ -18791,6 +20705,7 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -18798,6 +20713,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutTacheNestedInput
+    notes?: TaskNoteUncheckedUpdateManyWithoutTacheNestedInput
   }
 
   export type TaskUncheckedUpdateManyWithoutProjetInput = {
@@ -18805,6 +20721,7 @@ export namespace Prisma {
     titre?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
+    tacheFacturable?: BoolFieldUpdateOperationsInput | boolean
     priorite?: StringFieldUpdateOperationsInput | string
     statut?: StringFieldUpdateOperationsInput | string
     dateDebutPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -18902,6 +20819,14 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type TaskNoteCreateManyTacheInput = {
+    id?: string
+    userId: string
+    contenu: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type TimeEntryUpdateWithoutTacheInput = {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18939,6 +20864,30 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskNoteUpdateWithoutTacheInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTaskNotesNestedInput
+  }
+
+  export type TaskNoteUncheckedUpdateWithoutTacheInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskNoteUncheckedUpdateManyWithoutTacheInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    contenu?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

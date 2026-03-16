@@ -42,6 +42,7 @@ model User {
   updatedAt    DateTime      @updatedAt
   transactions Transaction[]
   timeEntries  TimeEntry[]
+  taskNotes    TaskNote[]
 }
 
 model Client {
@@ -111,13 +112,26 @@ model Task {
   titre           String
   description     String?   @db.Text
   type            String // analyse, développement, réunion, support, etc.
+  tacheFacturable Boolean   @default(true)
   priorite        String    @default("normale") // basse | normale | haute
-  statut          String    @default("aFaire") // aFaire | enCours | enAttente | termine
+  statut          String    @default("new") // new | analyse | en_cours | terminer | fermer
   dateDebutPrevue DateTime?
   dateEcheance    DateTime?
 
   timeEntries TimeEntry[]
+  notes       TaskNote[]
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TaskNote {
+  id        String   @id @default(uuid())
+  tacheId   String
+  tache     Task     @relation(fields: [tacheId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  contenu   String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

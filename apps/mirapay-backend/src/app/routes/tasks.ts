@@ -18,4 +18,8 @@ router.patch('/:id', tasksController.update);
 // Delete task
 router.delete('/:id', tasksController.delete);
 
+// Task Notes
+router.get('/:taskId/notes', tasksController.getNotes);
+router.post('/:taskId/notes', tasksController.addNote);
+
 export default router;
