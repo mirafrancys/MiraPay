@@ -49,6 +49,9 @@ export interface Client {
   appliquerTVQ: boolean;
   estArchive: boolean;
   bankHours?: BankHour[];
+  contacts?: Contact[];
+  soumissions?: Soumission[];
+  contrats?: Contrat[];
   _count?: { projects: number; invoices: number; };
   createdAt: Date | string;
   updatedAt: Date | string;
@@ -72,6 +75,8 @@ export interface Project {
   budgetMontantPrevu?: number;
   arrondiHeures?: number;
   bankHours?: BankHour[];
+  contratId?: string;
+  contrat?: Contrat;
   createdAt: Date | string;
   updatedAt: Date | string;
 }
@@ -178,6 +183,76 @@ export interface BankHour {
   dateFin?: Date | string;
   estActive: boolean;
   timeEntries?: TimeEntry[];
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export interface Contact {
+  id: string;
+  clientId: string;
+  client?: Client;
+  nom: string;
+  fonction?: string;
+  courriel?: string;
+  telephone?: string;
+  soumissions?: Soumission[];
+  contrats?: Contrat[];
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export interface Soumission {
+  id: string;
+  numero: string;
+  dateSoumission: Date | string;
+  clientId: string;
+  client?: Client;
+  contactId?: string;
+  contact?: Contact;
+  titre: string;
+  description?: string;
+  dateValidite?: Date | string;
+  statut: string; // brouillon | envoyee | acceptee | refusee | expiree
+  sousTotalHT: number;
+  montantTPS: number;
+  montantTVQ: number;
+  totalTTC: number;
+  lines?: SoumissionLine[];
+  contrats?: Contrat[];
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export interface SoumissionLine {
+  id: string;
+  soumissionId: string;
+  soumission?: Soumission;
+  description: string;
+  quantite: number;
+  prixUnitaire: number;
+  montantLigne: number;
+  typeLigne: string; // service | materiel | autre
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export interface Contrat {
+  id: string;
+  numero: string;
+  dateSignature?: Date | string;
+  dateDebut: Date | string;
+  dateFin?: Date | string;
+  clientId: string;
+  client?: Client;
+  contactId?: string;
+  contact?: Contact;
+  soumissionId?: string;
+  soumission?: Soumission;
+  statut: string; // actif | suspendu | termine | archive
+  montantTotalContrat?: number;
+  typeContrat: string; // horaire | forfait | banqueHeures | mixte;
+  conditionsSpeciales?: string;
+  projects?: Project[];
   createdAt: Date | string;
   updatedAt: Date | string;
 }

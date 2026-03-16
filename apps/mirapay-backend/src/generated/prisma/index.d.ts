@@ -68,6 +68,26 @@ export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
  * 
  */
 export type BankHour = $Result.DefaultSelection<Prisma.$BankHourPayload>
+/**
+ * Model Contact
+ * 
+ */
+export type Contact = $Result.DefaultSelection<Prisma.$ContactPayload>
+/**
+ * Model Soumission
+ * 
+ */
+export type Soumission = $Result.DefaultSelection<Prisma.$SoumissionPayload>
+/**
+ * Model SoumissionLine
+ * 
+ */
+export type SoumissionLine = $Result.DefaultSelection<Prisma.$SoumissionLinePayload>
+/**
+ * Model Contrat
+ * 
+ */
+export type Contrat = $Result.DefaultSelection<Prisma.$ContratPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -299,6 +319,46 @@ export class PrismaClient<
     * ```
     */
   get bankHour(): Prisma.BankHourDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contact`: Exposes CRUD operations for the **Contact** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Contacts
+    * const contacts = await prisma.contact.findMany()
+    * ```
+    */
+  get contact(): Prisma.ContactDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.soumission`: Exposes CRUD operations for the **Soumission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Soumissions
+    * const soumissions = await prisma.soumission.findMany()
+    * ```
+    */
+  get soumission(): Prisma.SoumissionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.soumissionLine`: Exposes CRUD operations for the **SoumissionLine** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SoumissionLines
+    * const soumissionLines = await prisma.soumissionLine.findMany()
+    * ```
+    */
+  get soumissionLine(): Prisma.SoumissionLineDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contrat`: Exposes CRUD operations for the **Contrat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Contrats
+    * const contrats = await prisma.contrat.findMany()
+    * ```
+    */
+  get contrat(): Prisma.ContratDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -743,7 +803,11 @@ export namespace Prisma {
     Invoice: 'Invoice',
     InvoiceLine: 'InvoiceLine',
     Transaction: 'Transaction',
-    BankHour: 'BankHour'
+    BankHour: 'BankHour',
+    Contact: 'Contact',
+    Soumission: 'Soumission',
+    SoumissionLine: 'SoumissionLine',
+    Contrat: 'Contrat'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -759,7 +823,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "role" | "user" | "client" | "project" | "task" | "taskNote" | "timeEntry" | "invoice" | "invoiceLine" | "transaction" | "bankHour"
+      modelProps: "role" | "user" | "client" | "project" | "task" | "taskNote" | "timeEntry" | "invoice" | "invoiceLine" | "transaction" | "bankHour" | "contact" | "soumission" | "soumissionLine" | "contrat"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1577,6 +1641,302 @@ export namespace Prisma {
           }
         }
       }
+      Contact: {
+        payload: Prisma.$ContactPayload<ExtArgs>
+        fields: Prisma.ContactFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContactFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContactFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>
+          }
+          findFirst: {
+            args: Prisma.ContactFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContactFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>
+          }
+          findMany: {
+            args: Prisma.ContactFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>[]
+          }
+          create: {
+            args: Prisma.ContactCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>
+          }
+          createMany: {
+            args: Prisma.ContactCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContactCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>[]
+          }
+          delete: {
+            args: Prisma.ContactDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>
+          }
+          update: {
+            args: Prisma.ContactUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContactDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContactUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContactUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContactUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>
+          }
+          aggregate: {
+            args: Prisma.ContactAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContact>
+          }
+          groupBy: {
+            args: Prisma.ContactGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContactGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContactCountArgs<ExtArgs>
+            result: $Utils.Optional<ContactCountAggregateOutputType> | number
+          }
+        }
+      }
+      Soumission: {
+        payload: Prisma.$SoumissionPayload<ExtArgs>
+        fields: Prisma.SoumissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SoumissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SoumissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>
+          }
+          findFirst: {
+            args: Prisma.SoumissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SoumissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>
+          }
+          findMany: {
+            args: Prisma.SoumissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>[]
+          }
+          create: {
+            args: Prisma.SoumissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>
+          }
+          createMany: {
+            args: Prisma.SoumissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SoumissionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>[]
+          }
+          delete: {
+            args: Prisma.SoumissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>
+          }
+          update: {
+            args: Prisma.SoumissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SoumissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SoumissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SoumissionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>[]
+          }
+          upsert: {
+            args: Prisma.SoumissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionPayload>
+          }
+          aggregate: {
+            args: Prisma.SoumissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSoumission>
+          }
+          groupBy: {
+            args: Prisma.SoumissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SoumissionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SoumissionCountArgs<ExtArgs>
+            result: $Utils.Optional<SoumissionCountAggregateOutputType> | number
+          }
+        }
+      }
+      SoumissionLine: {
+        payload: Prisma.$SoumissionLinePayload<ExtArgs>
+        fields: Prisma.SoumissionLineFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SoumissionLineFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SoumissionLineFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>
+          }
+          findFirst: {
+            args: Prisma.SoumissionLineFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SoumissionLineFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>
+          }
+          findMany: {
+            args: Prisma.SoumissionLineFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>[]
+          }
+          create: {
+            args: Prisma.SoumissionLineCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>
+          }
+          createMany: {
+            args: Prisma.SoumissionLineCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SoumissionLineCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>[]
+          }
+          delete: {
+            args: Prisma.SoumissionLineDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>
+          }
+          update: {
+            args: Prisma.SoumissionLineUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>
+          }
+          deleteMany: {
+            args: Prisma.SoumissionLineDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SoumissionLineUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SoumissionLineUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>[]
+          }
+          upsert: {
+            args: Prisma.SoumissionLineUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoumissionLinePayload>
+          }
+          aggregate: {
+            args: Prisma.SoumissionLineAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSoumissionLine>
+          }
+          groupBy: {
+            args: Prisma.SoumissionLineGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SoumissionLineGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SoumissionLineCountArgs<ExtArgs>
+            result: $Utils.Optional<SoumissionLineCountAggregateOutputType> | number
+          }
+        }
+      }
+      Contrat: {
+        payload: Prisma.$ContratPayload<ExtArgs>
+        fields: Prisma.ContratFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContratFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContratFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>
+          }
+          findFirst: {
+            args: Prisma.ContratFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContratFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>
+          }
+          findMany: {
+            args: Prisma.ContratFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>[]
+          }
+          create: {
+            args: Prisma.ContratCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>
+          }
+          createMany: {
+            args: Prisma.ContratCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContratCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>[]
+          }
+          delete: {
+            args: Prisma.ContratDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>
+          }
+          update: {
+            args: Prisma.ContratUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContratDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContratUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContratUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContratUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratPayload>
+          }
+          aggregate: {
+            args: Prisma.ContratAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContrat>
+          }
+          groupBy: {
+            args: Prisma.ContratGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContratGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContratCountArgs<ExtArgs>
+            result: $Utils.Optional<ContratCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1696,6 +2056,10 @@ export namespace Prisma {
     invoiceLine?: InvoiceLineOmit
     transaction?: TransactionOmit
     bankHour?: BankHourOmit
+    contact?: ContactOmit
+    soumission?: SoumissionOmit
+    soumissionLine?: SoumissionLineOmit
+    contrat?: ContratOmit
   }
 
   /* Types for Logging */
@@ -1859,12 +2223,18 @@ export namespace Prisma {
     projects: number
     invoices: number
     bankHours: number
+    contacts: number
+    soumissions: number
+    contrats: number
   }
 
   export type ClientCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     projects?: boolean | ClientCountOutputTypeCountProjectsArgs
     invoices?: boolean | ClientCountOutputTypeCountInvoicesArgs
     bankHours?: boolean | ClientCountOutputTypeCountBankHoursArgs
+    contacts?: boolean | ClientCountOutputTypeCountContactsArgs
+    soumissions?: boolean | ClientCountOutputTypeCountSoumissionsArgs
+    contrats?: boolean | ClientCountOutputTypeCountContratsArgs
   }
 
   // Custom InputTypes
@@ -1897,6 +2267,27 @@ export namespace Prisma {
    */
   export type ClientCountOutputTypeCountBankHoursArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BankHourWhereInput
+  }
+
+  /**
+   * ClientCountOutputType without action
+   */
+  export type ClientCountOutputTypeCountContactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactWhereInput
+  }
+
+  /**
+   * ClientCountOutputType without action
+   */
+  export type ClientCountOutputTypeCountSoumissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoumissionWhereInput
+  }
+
+  /**
+   * ClientCountOutputType without action
+   */
+  export type ClientCountOutputTypeCountContratsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContratWhereInput
   }
 
 
@@ -2119,6 +2510,117 @@ export namespace Prisma {
    */
   export type BankHourCountOutputTypeCountTimeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TimeEntryWhereInput
+  }
+
+
+  /**
+   * Count Type ContactCountOutputType
+   */
+
+  export type ContactCountOutputType = {
+    soumissions: number
+    contrats: number
+  }
+
+  export type ContactCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    soumissions?: boolean | ContactCountOutputTypeCountSoumissionsArgs
+    contrats?: boolean | ContactCountOutputTypeCountContratsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ContactCountOutputType without action
+   */
+  export type ContactCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactCountOutputType
+     */
+    select?: ContactCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ContactCountOutputType without action
+   */
+  export type ContactCountOutputTypeCountSoumissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoumissionWhereInput
+  }
+
+  /**
+   * ContactCountOutputType without action
+   */
+  export type ContactCountOutputTypeCountContratsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContratWhereInput
+  }
+
+
+  /**
+   * Count Type SoumissionCountOutputType
+   */
+
+  export type SoumissionCountOutputType = {
+    lines: number
+    contrats: number
+  }
+
+  export type SoumissionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lines?: boolean | SoumissionCountOutputTypeCountLinesArgs
+    contrats?: boolean | SoumissionCountOutputTypeCountContratsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SoumissionCountOutputType without action
+   */
+  export type SoumissionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionCountOutputType
+     */
+    select?: SoumissionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SoumissionCountOutputType without action
+   */
+  export type SoumissionCountOutputTypeCountLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoumissionLineWhereInput
+  }
+
+  /**
+   * SoumissionCountOutputType without action
+   */
+  export type SoumissionCountOutputTypeCountContratsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContratWhereInput
+  }
+
+
+  /**
+   * Count Type ContratCountOutputType
+   */
+
+  export type ContratCountOutputType = {
+    projects: number
+  }
+
+  export type ContratCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    projects?: boolean | ContratCountOutputTypeCountProjectsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ContratCountOutputType without action
+   */
+  export type ContratCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratCountOutputType
+     */
+    select?: ContratCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ContratCountOutputType without action
+   */
+  export type ContratCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
   }
 
 
@@ -4818,6 +5320,9 @@ export namespace Prisma {
     projects?: boolean | Client$projectsArgs<ExtArgs>
     invoices?: boolean | Client$invoicesArgs<ExtArgs>
     bankHours?: boolean | Client$bankHoursArgs<ExtArgs>
+    contacts?: boolean | Client$contactsArgs<ExtArgs>
+    soumissions?: boolean | Client$soumissionsArgs<ExtArgs>
+    contrats?: boolean | Client$contratsArgs<ExtArgs>
     _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["client"]>
 
@@ -4907,6 +5412,9 @@ export namespace Prisma {
     projects?: boolean | Client$projectsArgs<ExtArgs>
     invoices?: boolean | Client$invoicesArgs<ExtArgs>
     bankHours?: boolean | Client$bankHoursArgs<ExtArgs>
+    contacts?: boolean | Client$contactsArgs<ExtArgs>
+    soumissions?: boolean | Client$soumissionsArgs<ExtArgs>
+    contrats?: boolean | Client$contratsArgs<ExtArgs>
     _count?: boolean | ClientCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClientIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4918,6 +5426,9 @@ export namespace Prisma {
       projects: Prisma.$ProjectPayload<ExtArgs>[]
       invoices: Prisma.$InvoicePayload<ExtArgs>[]
       bankHours: Prisma.$BankHourPayload<ExtArgs>[]
+      contacts: Prisma.$ContactPayload<ExtArgs>[]
+      soumissions: Prisma.$SoumissionPayload<ExtArgs>[]
+      contrats: Prisma.$ContratPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5341,6 +5852,9 @@ export namespace Prisma {
     projects<T extends Client$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Client$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invoices<T extends Client$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, Client$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bankHours<T extends Client$bankHoursArgs<ExtArgs> = {}>(args?: Subset<T, Client$bankHoursArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contacts<T extends Client$contactsArgs<ExtArgs> = {}>(args?: Subset<T, Client$contactsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    soumissions<T extends Client$soumissionsArgs<ExtArgs> = {}>(args?: Subset<T, Client$soumissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contrats<T extends Client$contratsArgs<ExtArgs> = {}>(args?: Subset<T, Client$contratsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5859,6 +6373,78 @@ export namespace Prisma {
   }
 
   /**
+   * Client.contacts
+   */
+  export type Client$contactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    where?: ContactWhereInput
+    orderBy?: ContactOrderByWithRelationInput | ContactOrderByWithRelationInput[]
+    cursor?: ContactWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[]
+  }
+
+  /**
+   * Client.soumissions
+   */
+  export type Client$soumissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    where?: SoumissionWhereInput
+    orderBy?: SoumissionOrderByWithRelationInput | SoumissionOrderByWithRelationInput[]
+    cursor?: SoumissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoumissionScalarFieldEnum | SoumissionScalarFieldEnum[]
+  }
+
+  /**
+   * Client.contrats
+   */
+  export type Client$contratsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    where?: ContratWhereInput
+    orderBy?: ContratOrderByWithRelationInput | ContratOrderByWithRelationInput[]
+    cursor?: ContratWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContratScalarFieldEnum | ContratScalarFieldEnum[]
+  }
+
+  /**
    * Client without action
    */
   export type ClientDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5925,6 +6511,7 @@ export namespace Prisma {
     budgetHeuresPrevu: number | null
     budgetMontantPrevu: number | null
     arrondiHeures: number | null
+    contratId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5945,6 +6532,7 @@ export namespace Prisma {
     budgetHeuresPrevu: number | null
     budgetMontantPrevu: number | null
     arrondiHeures: number | null
+    contratId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5965,6 +6553,7 @@ export namespace Prisma {
     budgetHeuresPrevu: number
     budgetMontantPrevu: number
     arrondiHeures: number
+    contratId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6007,6 +6596,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: true
     budgetMontantPrevu?: true
     arrondiHeures?: true
+    contratId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6027,6 +6617,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: true
     budgetMontantPrevu?: true
     arrondiHeures?: true
+    contratId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6047,6 +6638,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: true
     budgetMontantPrevu?: true
     arrondiHeures?: true
+    contratId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6154,6 +6746,7 @@ export namespace Prisma {
     budgetHeuresPrevu: number | null
     budgetMontantPrevu: number | null
     arrondiHeures: number | null
+    contratId: string | null
     createdAt: Date
     updatedAt: Date
     _count: ProjectCountAggregateOutputType | null
@@ -6193,6 +6786,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: boolean
     budgetMontantPrevu?: boolean
     arrondiHeures?: boolean
+    contratId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
@@ -6200,6 +6794,7 @@ export namespace Prisma {
     timeEntries?: boolean | Project$timeEntriesArgs<ExtArgs>
     invoiceLines?: boolean | Project$invoiceLinesArgs<ExtArgs>
     bankHours?: boolean | Project$bankHoursArgs<ExtArgs>
+    contrat?: boolean | Project$contratArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -6219,9 +6814,11 @@ export namespace Prisma {
     budgetHeuresPrevu?: boolean
     budgetMontantPrevu?: boolean
     arrondiHeures?: boolean
+    contratId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
+    contrat?: boolean | Project$contratArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6240,9 +6837,11 @@ export namespace Prisma {
     budgetHeuresPrevu?: boolean
     budgetMontantPrevu?: boolean
     arrondiHeures?: boolean
+    contratId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
+    contrat?: boolean | Project$contratArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectScalar = {
@@ -6261,24 +6860,28 @@ export namespace Prisma {
     budgetHeuresPrevu?: boolean
     budgetMontantPrevu?: boolean
     arrondiHeures?: boolean
+    contratId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "nom" | "description" | "dateDebut" | "dateFinPrevue" | "statut" | "typeFacturation" | "tauxHoraire" | "montantForfait" | "heuresBanqueTotales" | "heuresBanqueConsommees" | "budgetHeuresPrevu" | "budgetMontantPrevu" | "arrondiHeures" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "nom" | "description" | "dateDebut" | "dateFinPrevue" | "statut" | "typeFacturation" | "tauxHoraire" | "montantForfait" | "heuresBanqueTotales" | "heuresBanqueConsommees" | "budgetHeuresPrevu" | "budgetMontantPrevu" | "arrondiHeures" | "contratId" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | ClientDefaultArgs<ExtArgs>
     tasks?: boolean | Project$tasksArgs<ExtArgs>
     timeEntries?: boolean | Project$timeEntriesArgs<ExtArgs>
     invoiceLines?: boolean | Project$invoiceLinesArgs<ExtArgs>
     bankHours?: boolean | Project$bankHoursArgs<ExtArgs>
+    contrat?: boolean | Project$contratArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | ClientDefaultArgs<ExtArgs>
+    contrat?: boolean | Project$contratArgs<ExtArgs>
   }
   export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | ClientDefaultArgs<ExtArgs>
+    contrat?: boolean | Project$contratArgs<ExtArgs>
   }
 
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6289,6 +6892,7 @@ export namespace Prisma {
       timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
       invoiceLines: Prisma.$InvoiceLinePayload<ExtArgs>[]
       bankHours: Prisma.$BankHourPayload<ExtArgs>[]
+      contrat: Prisma.$ContratPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6306,6 +6910,7 @@ export namespace Prisma {
       budgetHeuresPrevu: number | null
       budgetMontantPrevu: number | null
       arrondiHeures: number | null
+      contratId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["project"]>
@@ -6707,6 +7312,7 @@ export namespace Prisma {
     timeEntries<T extends Project$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invoiceLines<T extends Project$invoiceLinesArgs<ExtArgs> = {}>(args?: Subset<T, Project$invoiceLinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bankHours<T extends Project$bankHoursArgs<ExtArgs> = {}>(args?: Subset<T, Project$bankHoursArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankHourPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contrat<T extends Project$contratArgs<ExtArgs> = {}>(args?: Subset<T, Project$contratArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6751,6 +7357,7 @@ export namespace Prisma {
     readonly budgetHeuresPrevu: FieldRef<"Project", 'Float'>
     readonly budgetMontantPrevu: FieldRef<"Project", 'Float'>
     readonly arrondiHeures: FieldRef<"Project", 'Float'>
+    readonly contratId: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
   }
@@ -7247,6 +7854,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BankHourScalarFieldEnum | BankHourScalarFieldEnum[]
+  }
+
+  /**
+   * Project.contrat
+   */
+  export type Project$contratArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    where?: ContratWhereInput
   }
 
   /**
@@ -15661,6 +16287,4945 @@ export namespace Prisma {
 
 
   /**
+   * Model Contact
+   */
+
+  export type AggregateContact = {
+    _count: ContactCountAggregateOutputType | null
+    _min: ContactMinAggregateOutputType | null
+    _max: ContactMaxAggregateOutputType | null
+  }
+
+  export type ContactMinAggregateOutputType = {
+    id: string | null
+    clientId: string | null
+    nom: string | null
+    fonction: string | null
+    courriel: string | null
+    telephone: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactMaxAggregateOutputType = {
+    id: string | null
+    clientId: string | null
+    nom: string | null
+    fonction: string | null
+    courriel: string | null
+    telephone: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactCountAggregateOutputType = {
+    id: number
+    clientId: number
+    nom: number
+    fonction: number
+    courriel: number
+    telephone: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContactMinAggregateInputType = {
+    id?: true
+    clientId?: true
+    nom?: true
+    fonction?: true
+    courriel?: true
+    telephone?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactMaxAggregateInputType = {
+    id?: true
+    clientId?: true
+    nom?: true
+    fonction?: true
+    courriel?: true
+    telephone?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactCountAggregateInputType = {
+    id?: true
+    clientId?: true
+    nom?: true
+    fonction?: true
+    courriel?: true
+    telephone?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContactAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Contact to aggregate.
+     */
+    where?: ContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contacts to fetch.
+     */
+    orderBy?: ContactOrderByWithRelationInput | ContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Contacts
+    **/
+    _count?: true | ContactCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContactMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContactMaxAggregateInputType
+  }
+
+  export type GetContactAggregateType<T extends ContactAggregateArgs> = {
+        [P in keyof T & keyof AggregateContact]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContact[P]>
+      : GetScalarType<T[P], AggregateContact[P]>
+  }
+
+
+
+
+  export type ContactGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactWhereInput
+    orderBy?: ContactOrderByWithAggregationInput | ContactOrderByWithAggregationInput[]
+    by: ContactScalarFieldEnum[] | ContactScalarFieldEnum
+    having?: ContactScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContactCountAggregateInputType | true
+    _min?: ContactMinAggregateInputType
+    _max?: ContactMaxAggregateInputType
+  }
+
+  export type ContactGroupByOutputType = {
+    id: string
+    clientId: string
+    nom: string
+    fonction: string | null
+    courriel: string | null
+    telephone: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ContactCountAggregateOutputType | null
+    _min: ContactMinAggregateOutputType | null
+    _max: ContactMaxAggregateOutputType | null
+  }
+
+  type GetContactGroupByPayload<T extends ContactGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContactGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContactGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContactGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContactSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clientId?: boolean
+    nom?: boolean
+    fonction?: boolean
+    courriel?: boolean
+    telephone?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    soumissions?: boolean | Contact$soumissionsArgs<ExtArgs>
+    contrats?: boolean | Contact$contratsArgs<ExtArgs>
+    _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contact"]>
+
+  export type ContactSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clientId?: boolean
+    nom?: boolean
+    fonction?: boolean
+    courriel?: boolean
+    telephone?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contact"]>
+
+  export type ContactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    clientId?: boolean
+    nom?: boolean
+    fonction?: boolean
+    courriel?: boolean
+    telephone?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contact"]>
+
+  export type ContactSelectScalar = {
+    id?: boolean
+    clientId?: boolean
+    nom?: boolean
+    fonction?: boolean
+    courriel?: boolean
+    telephone?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "nom" | "fonction" | "courriel" | "telephone" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+  export type ContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    soumissions?: boolean | Contact$soumissionsArgs<ExtArgs>
+    contrats?: boolean | Contact$contratsArgs<ExtArgs>
+    _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ContactIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+  }
+  export type ContactIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+  }
+
+  export type $ContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Contact"
+    objects: {
+      client: Prisma.$ClientPayload<ExtArgs>
+      soumissions: Prisma.$SoumissionPayload<ExtArgs>[]
+      contrats: Prisma.$ContratPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      clientId: string
+      nom: string
+      fonction: string | null
+      courriel: string | null
+      telephone: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contact"]>
+    composites: {}
+  }
+
+  type ContactGetPayload<S extends boolean | null | undefined | ContactDefaultArgs> = $Result.GetResult<Prisma.$ContactPayload, S>
+
+  type ContactCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContactFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContactCountAggregateInputType | true
+    }
+
+  export interface ContactDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Contact'], meta: { name: 'Contact' } }
+    /**
+     * Find zero or one Contact that matches the filter.
+     * @param {ContactFindUniqueArgs} args - Arguments to find a Contact
+     * @example
+     * // Get one Contact
+     * const contact = await prisma.contact.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactFindUniqueArgs>(args: SelectSubset<T, ContactFindUniqueArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Contact that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactFindUniqueOrThrowArgs} args - Arguments to find a Contact
+     * @example
+     * // Get one Contact
+     * const contact = await prisma.contact.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactFindUniqueOrThrowArgs>(args: SelectSubset<T, ContactFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Contact that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactFindFirstArgs} args - Arguments to find a Contact
+     * @example
+     * // Get one Contact
+     * const contact = await prisma.contact.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactFindFirstArgs>(args?: SelectSubset<T, ContactFindFirstArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Contact that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactFindFirstOrThrowArgs} args - Arguments to find a Contact
+     * @example
+     * // Get one Contact
+     * const contact = await prisma.contact.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactFindFirstOrThrowArgs>(args?: SelectSubset<T, ContactFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Contacts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Contacts
+     * const contacts = await prisma.contact.findMany()
+     * 
+     * // Get first 10 Contacts
+     * const contacts = await prisma.contact.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contactWithIdOnly = await prisma.contact.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContactFindManyArgs>(args?: SelectSubset<T, ContactFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Contact.
+     * @param {ContactCreateArgs} args - Arguments to create a Contact.
+     * @example
+     * // Create one Contact
+     * const Contact = await prisma.contact.create({
+     *   data: {
+     *     // ... data to create a Contact
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContactCreateArgs>(args: SelectSubset<T, ContactCreateArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Contacts.
+     * @param {ContactCreateManyArgs} args - Arguments to create many Contacts.
+     * @example
+     * // Create many Contacts
+     * const contact = await prisma.contact.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContactCreateManyArgs>(args?: SelectSubset<T, ContactCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Contacts and returns the data saved in the database.
+     * @param {ContactCreateManyAndReturnArgs} args - Arguments to create many Contacts.
+     * @example
+     * // Create many Contacts
+     * const contact = await prisma.contact.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Contacts and only return the `id`
+     * const contactWithIdOnly = await prisma.contact.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContactCreateManyAndReturnArgs>(args?: SelectSubset<T, ContactCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Contact.
+     * @param {ContactDeleteArgs} args - Arguments to delete one Contact.
+     * @example
+     * // Delete one Contact
+     * const Contact = await prisma.contact.delete({
+     *   where: {
+     *     // ... filter to delete one Contact
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContactDeleteArgs>(args: SelectSubset<T, ContactDeleteArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Contact.
+     * @param {ContactUpdateArgs} args - Arguments to update one Contact.
+     * @example
+     * // Update one Contact
+     * const contact = await prisma.contact.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContactUpdateArgs>(args: SelectSubset<T, ContactUpdateArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Contacts.
+     * @param {ContactDeleteManyArgs} args - Arguments to filter Contacts to delete.
+     * @example
+     * // Delete a few Contacts
+     * const { count } = await prisma.contact.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContactDeleteManyArgs>(args?: SelectSubset<T, ContactDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Contacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Contacts
+     * const contact = await prisma.contact.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContactUpdateManyArgs>(args: SelectSubset<T, ContactUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Contacts and returns the data updated in the database.
+     * @param {ContactUpdateManyAndReturnArgs} args - Arguments to update many Contacts.
+     * @example
+     * // Update many Contacts
+     * const contact = await prisma.contact.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Contacts and only return the `id`
+     * const contactWithIdOnly = await prisma.contact.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContactUpdateManyAndReturnArgs>(args: SelectSubset<T, ContactUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Contact.
+     * @param {ContactUpsertArgs} args - Arguments to update or create a Contact.
+     * @example
+     * // Update or create a Contact
+     * const contact = await prisma.contact.upsert({
+     *   create: {
+     *     // ... data to create a Contact
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Contact we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactUpsertArgs>(args: SelectSubset<T, ContactUpsertArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Contacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactCountArgs} args - Arguments to filter Contacts to count.
+     * @example
+     * // Count the number of Contacts
+     * const count = await prisma.contact.count({
+     *   where: {
+     *     // ... the filter for the Contacts we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContactCountArgs>(
+      args?: Subset<T, ContactCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContactCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Contact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContactAggregateArgs>(args: Subset<T, ContactAggregateArgs>): Prisma.PrismaPromise<GetContactAggregateType<T>>
+
+    /**
+     * Group by Contact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContactGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactGroupByArgs['orderBy'] }
+        : { orderBy?: ContactGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContactGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContactGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Contact model
+   */
+  readonly fields: ContactFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Contact.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    client<T extends ClientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClientDefaultArgs<ExtArgs>>): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    soumissions<T extends Contact$soumissionsArgs<ExtArgs> = {}>(args?: Subset<T, Contact$soumissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contrats<T extends Contact$contratsArgs<ExtArgs> = {}>(args?: Subset<T, Contact$contratsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Contact model
+   */
+  interface ContactFieldRefs {
+    readonly id: FieldRef<"Contact", 'String'>
+    readonly clientId: FieldRef<"Contact", 'String'>
+    readonly nom: FieldRef<"Contact", 'String'>
+    readonly fonction: FieldRef<"Contact", 'String'>
+    readonly courriel: FieldRef<"Contact", 'String'>
+    readonly telephone: FieldRef<"Contact", 'String'>
+    readonly createdAt: FieldRef<"Contact", 'DateTime'>
+    readonly updatedAt: FieldRef<"Contact", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Contact findUnique
+   */
+  export type ContactFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * Filter, which Contact to fetch.
+     */
+    where: ContactWhereUniqueInput
+  }
+
+  /**
+   * Contact findUniqueOrThrow
+   */
+  export type ContactFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * Filter, which Contact to fetch.
+     */
+    where: ContactWhereUniqueInput
+  }
+
+  /**
+   * Contact findFirst
+   */
+  export type ContactFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * Filter, which Contact to fetch.
+     */
+    where?: ContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contacts to fetch.
+     */
+    orderBy?: ContactOrderByWithRelationInput | ContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contacts.
+     */
+    cursor?: ContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contacts.
+     */
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[]
+  }
+
+  /**
+   * Contact findFirstOrThrow
+   */
+  export type ContactFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * Filter, which Contact to fetch.
+     */
+    where?: ContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contacts to fetch.
+     */
+    orderBy?: ContactOrderByWithRelationInput | ContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contacts.
+     */
+    cursor?: ContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contacts.
+     */
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[]
+  }
+
+  /**
+   * Contact findMany
+   */
+  export type ContactFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * Filter, which Contacts to fetch.
+     */
+    where?: ContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contacts to fetch.
+     */
+    orderBy?: ContactOrderByWithRelationInput | ContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Contacts.
+     */
+    cursor?: ContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contacts.
+     */
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[]
+  }
+
+  /**
+   * Contact create
+   */
+  export type ContactCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Contact.
+     */
+    data: XOR<ContactCreateInput, ContactUncheckedCreateInput>
+  }
+
+  /**
+   * Contact createMany
+   */
+  export type ContactCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Contacts.
+     */
+    data: ContactCreateManyInput | ContactCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Contact createManyAndReturn
+   */
+  export type ContactCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * The data used to create many Contacts.
+     */
+    data: ContactCreateManyInput | ContactCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Contact update
+   */
+  export type ContactUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Contact.
+     */
+    data: XOR<ContactUpdateInput, ContactUncheckedUpdateInput>
+    /**
+     * Choose, which Contact to update.
+     */
+    where: ContactWhereUniqueInput
+  }
+
+  /**
+   * Contact updateMany
+   */
+  export type ContactUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Contacts.
+     */
+    data: XOR<ContactUpdateManyMutationInput, ContactUncheckedUpdateManyInput>
+    /**
+     * Filter which Contacts to update
+     */
+    where?: ContactWhereInput
+    /**
+     * Limit how many Contacts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Contact updateManyAndReturn
+   */
+  export type ContactUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * The data used to update Contacts.
+     */
+    data: XOR<ContactUpdateManyMutationInput, ContactUncheckedUpdateManyInput>
+    /**
+     * Filter which Contacts to update
+     */
+    where?: ContactWhereInput
+    /**
+     * Limit how many Contacts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Contact upsert
+   */
+  export type ContactUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Contact to update in case it exists.
+     */
+    where: ContactWhereUniqueInput
+    /**
+     * In case the Contact found by the `where` argument doesn't exist, create a new Contact with this data.
+     */
+    create: XOR<ContactCreateInput, ContactUncheckedCreateInput>
+    /**
+     * In case the Contact was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactUpdateInput, ContactUncheckedUpdateInput>
+  }
+
+  /**
+   * Contact delete
+   */
+  export type ContactDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    /**
+     * Filter which Contact to delete.
+     */
+    where: ContactWhereUniqueInput
+  }
+
+  /**
+   * Contact deleteMany
+   */
+  export type ContactDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Contacts to delete
+     */
+    where?: ContactWhereInput
+    /**
+     * Limit how many Contacts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Contact.soumissions
+   */
+  export type Contact$soumissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    where?: SoumissionWhereInput
+    orderBy?: SoumissionOrderByWithRelationInput | SoumissionOrderByWithRelationInput[]
+    cursor?: SoumissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoumissionScalarFieldEnum | SoumissionScalarFieldEnum[]
+  }
+
+  /**
+   * Contact.contrats
+   */
+  export type Contact$contratsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    where?: ContratWhereInput
+    orderBy?: ContratOrderByWithRelationInput | ContratOrderByWithRelationInput[]
+    cursor?: ContratWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContratScalarFieldEnum | ContratScalarFieldEnum[]
+  }
+
+  /**
+   * Contact without action
+   */
+  export type ContactDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Soumission
+   */
+
+  export type AggregateSoumission = {
+    _count: SoumissionCountAggregateOutputType | null
+    _avg: SoumissionAvgAggregateOutputType | null
+    _sum: SoumissionSumAggregateOutputType | null
+    _min: SoumissionMinAggregateOutputType | null
+    _max: SoumissionMaxAggregateOutputType | null
+  }
+
+  export type SoumissionAvgAggregateOutputType = {
+    sousTotalHT: number | null
+    montantTPS: number | null
+    montantTVQ: number | null
+    totalTTC: number | null
+  }
+
+  export type SoumissionSumAggregateOutputType = {
+    sousTotalHT: number | null
+    montantTPS: number | null
+    montantTVQ: number | null
+    totalTTC: number | null
+  }
+
+  export type SoumissionMinAggregateOutputType = {
+    id: string | null
+    numero: string | null
+    dateSoumission: Date | null
+    clientId: string | null
+    contactId: string | null
+    titre: string | null
+    description: string | null
+    dateValidite: Date | null
+    statut: string | null
+    sousTotalHT: number | null
+    montantTPS: number | null
+    montantTVQ: number | null
+    totalTTC: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SoumissionMaxAggregateOutputType = {
+    id: string | null
+    numero: string | null
+    dateSoumission: Date | null
+    clientId: string | null
+    contactId: string | null
+    titre: string | null
+    description: string | null
+    dateValidite: Date | null
+    statut: string | null
+    sousTotalHT: number | null
+    montantTPS: number | null
+    montantTVQ: number | null
+    totalTTC: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SoumissionCountAggregateOutputType = {
+    id: number
+    numero: number
+    dateSoumission: number
+    clientId: number
+    contactId: number
+    titre: number
+    description: number
+    dateValidite: number
+    statut: number
+    sousTotalHT: number
+    montantTPS: number
+    montantTVQ: number
+    totalTTC: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SoumissionAvgAggregateInputType = {
+    sousTotalHT?: true
+    montantTPS?: true
+    montantTVQ?: true
+    totalTTC?: true
+  }
+
+  export type SoumissionSumAggregateInputType = {
+    sousTotalHT?: true
+    montantTPS?: true
+    montantTVQ?: true
+    totalTTC?: true
+  }
+
+  export type SoumissionMinAggregateInputType = {
+    id?: true
+    numero?: true
+    dateSoumission?: true
+    clientId?: true
+    contactId?: true
+    titre?: true
+    description?: true
+    dateValidite?: true
+    statut?: true
+    sousTotalHT?: true
+    montantTPS?: true
+    montantTVQ?: true
+    totalTTC?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SoumissionMaxAggregateInputType = {
+    id?: true
+    numero?: true
+    dateSoumission?: true
+    clientId?: true
+    contactId?: true
+    titre?: true
+    description?: true
+    dateValidite?: true
+    statut?: true
+    sousTotalHT?: true
+    montantTPS?: true
+    montantTVQ?: true
+    totalTTC?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SoumissionCountAggregateInputType = {
+    id?: true
+    numero?: true
+    dateSoumission?: true
+    clientId?: true
+    contactId?: true
+    titre?: true
+    description?: true
+    dateValidite?: true
+    statut?: true
+    sousTotalHT?: true
+    montantTPS?: true
+    montantTVQ?: true
+    totalTTC?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SoumissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Soumission to aggregate.
+     */
+    where?: SoumissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Soumissions to fetch.
+     */
+    orderBy?: SoumissionOrderByWithRelationInput | SoumissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SoumissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Soumissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Soumissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Soumissions
+    **/
+    _count?: true | SoumissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SoumissionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SoumissionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SoumissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SoumissionMaxAggregateInputType
+  }
+
+  export type GetSoumissionAggregateType<T extends SoumissionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSoumission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSoumission[P]>
+      : GetScalarType<T[P], AggregateSoumission[P]>
+  }
+
+
+
+
+  export type SoumissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoumissionWhereInput
+    orderBy?: SoumissionOrderByWithAggregationInput | SoumissionOrderByWithAggregationInput[]
+    by: SoumissionScalarFieldEnum[] | SoumissionScalarFieldEnum
+    having?: SoumissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SoumissionCountAggregateInputType | true
+    _avg?: SoumissionAvgAggregateInputType
+    _sum?: SoumissionSumAggregateInputType
+    _min?: SoumissionMinAggregateInputType
+    _max?: SoumissionMaxAggregateInputType
+  }
+
+  export type SoumissionGroupByOutputType = {
+    id: string
+    numero: string
+    dateSoumission: Date
+    clientId: string
+    contactId: string | null
+    titre: string
+    description: string | null
+    dateValidite: Date | null
+    statut: string
+    sousTotalHT: number
+    montantTPS: number
+    montantTVQ: number
+    totalTTC: number
+    createdAt: Date
+    updatedAt: Date
+    _count: SoumissionCountAggregateOutputType | null
+    _avg: SoumissionAvgAggregateOutputType | null
+    _sum: SoumissionSumAggregateOutputType | null
+    _min: SoumissionMinAggregateOutputType | null
+    _max: SoumissionMaxAggregateOutputType | null
+  }
+
+  type GetSoumissionGroupByPayload<T extends SoumissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SoumissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SoumissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SoumissionGroupByOutputType[P]>
+            : GetScalarType<T[P], SoumissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SoumissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numero?: boolean
+    dateSoumission?: boolean
+    clientId?: boolean
+    contactId?: boolean
+    titre?: boolean
+    description?: boolean
+    dateValidite?: boolean
+    statut?: boolean
+    sousTotalHT?: boolean
+    montantTPS?: boolean
+    montantTVQ?: boolean
+    totalTTC?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Soumission$contactArgs<ExtArgs>
+    lines?: boolean | Soumission$linesArgs<ExtArgs>
+    contrats?: boolean | Soumission$contratsArgs<ExtArgs>
+    _count?: boolean | SoumissionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["soumission"]>
+
+  export type SoumissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numero?: boolean
+    dateSoumission?: boolean
+    clientId?: boolean
+    contactId?: boolean
+    titre?: boolean
+    description?: boolean
+    dateValidite?: boolean
+    statut?: boolean
+    sousTotalHT?: boolean
+    montantTPS?: boolean
+    montantTVQ?: boolean
+    totalTTC?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Soumission$contactArgs<ExtArgs>
+  }, ExtArgs["result"]["soumission"]>
+
+  export type SoumissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numero?: boolean
+    dateSoumission?: boolean
+    clientId?: boolean
+    contactId?: boolean
+    titre?: boolean
+    description?: boolean
+    dateValidite?: boolean
+    statut?: boolean
+    sousTotalHT?: boolean
+    montantTPS?: boolean
+    montantTVQ?: boolean
+    totalTTC?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Soumission$contactArgs<ExtArgs>
+  }, ExtArgs["result"]["soumission"]>
+
+  export type SoumissionSelectScalar = {
+    id?: boolean
+    numero?: boolean
+    dateSoumission?: boolean
+    clientId?: boolean
+    contactId?: boolean
+    titre?: boolean
+    description?: boolean
+    dateValidite?: boolean
+    statut?: boolean
+    sousTotalHT?: boolean
+    montantTPS?: boolean
+    montantTVQ?: boolean
+    totalTTC?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SoumissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "numero" | "dateSoumission" | "clientId" | "contactId" | "titre" | "description" | "dateValidite" | "statut" | "sousTotalHT" | "montantTPS" | "montantTVQ" | "totalTTC" | "createdAt" | "updatedAt", ExtArgs["result"]["soumission"]>
+  export type SoumissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Soumission$contactArgs<ExtArgs>
+    lines?: boolean | Soumission$linesArgs<ExtArgs>
+    contrats?: boolean | Soumission$contratsArgs<ExtArgs>
+    _count?: boolean | SoumissionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SoumissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Soumission$contactArgs<ExtArgs>
+  }
+  export type SoumissionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Soumission$contactArgs<ExtArgs>
+  }
+
+  export type $SoumissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Soumission"
+    objects: {
+      client: Prisma.$ClientPayload<ExtArgs>
+      contact: Prisma.$ContactPayload<ExtArgs> | null
+      lines: Prisma.$SoumissionLinePayload<ExtArgs>[]
+      contrats: Prisma.$ContratPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      numero: string
+      dateSoumission: Date
+      clientId: string
+      contactId: string | null
+      titre: string
+      description: string | null
+      dateValidite: Date | null
+      statut: string
+      sousTotalHT: number
+      montantTPS: number
+      montantTVQ: number
+      totalTTC: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["soumission"]>
+    composites: {}
+  }
+
+  type SoumissionGetPayload<S extends boolean | null | undefined | SoumissionDefaultArgs> = $Result.GetResult<Prisma.$SoumissionPayload, S>
+
+  type SoumissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SoumissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SoumissionCountAggregateInputType | true
+    }
+
+  export interface SoumissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Soumission'], meta: { name: 'Soumission' } }
+    /**
+     * Find zero or one Soumission that matches the filter.
+     * @param {SoumissionFindUniqueArgs} args - Arguments to find a Soumission
+     * @example
+     * // Get one Soumission
+     * const soumission = await prisma.soumission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SoumissionFindUniqueArgs>(args: SelectSubset<T, SoumissionFindUniqueArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Soumission that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SoumissionFindUniqueOrThrowArgs} args - Arguments to find a Soumission
+     * @example
+     * // Get one Soumission
+     * const soumission = await prisma.soumission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SoumissionFindUniqueOrThrowArgs>(args: SelectSubset<T, SoumissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Soumission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionFindFirstArgs} args - Arguments to find a Soumission
+     * @example
+     * // Get one Soumission
+     * const soumission = await prisma.soumission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SoumissionFindFirstArgs>(args?: SelectSubset<T, SoumissionFindFirstArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Soumission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionFindFirstOrThrowArgs} args - Arguments to find a Soumission
+     * @example
+     * // Get one Soumission
+     * const soumission = await prisma.soumission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SoumissionFindFirstOrThrowArgs>(args?: SelectSubset<T, SoumissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Soumissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Soumissions
+     * const soumissions = await prisma.soumission.findMany()
+     * 
+     * // Get first 10 Soumissions
+     * const soumissions = await prisma.soumission.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const soumissionWithIdOnly = await prisma.soumission.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SoumissionFindManyArgs>(args?: SelectSubset<T, SoumissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Soumission.
+     * @param {SoumissionCreateArgs} args - Arguments to create a Soumission.
+     * @example
+     * // Create one Soumission
+     * const Soumission = await prisma.soumission.create({
+     *   data: {
+     *     // ... data to create a Soumission
+     *   }
+     * })
+     * 
+     */
+    create<T extends SoumissionCreateArgs>(args: SelectSubset<T, SoumissionCreateArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Soumissions.
+     * @param {SoumissionCreateManyArgs} args - Arguments to create many Soumissions.
+     * @example
+     * // Create many Soumissions
+     * const soumission = await prisma.soumission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SoumissionCreateManyArgs>(args?: SelectSubset<T, SoumissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Soumissions and returns the data saved in the database.
+     * @param {SoumissionCreateManyAndReturnArgs} args - Arguments to create many Soumissions.
+     * @example
+     * // Create many Soumissions
+     * const soumission = await prisma.soumission.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Soumissions and only return the `id`
+     * const soumissionWithIdOnly = await prisma.soumission.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SoumissionCreateManyAndReturnArgs>(args?: SelectSubset<T, SoumissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Soumission.
+     * @param {SoumissionDeleteArgs} args - Arguments to delete one Soumission.
+     * @example
+     * // Delete one Soumission
+     * const Soumission = await prisma.soumission.delete({
+     *   where: {
+     *     // ... filter to delete one Soumission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SoumissionDeleteArgs>(args: SelectSubset<T, SoumissionDeleteArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Soumission.
+     * @param {SoumissionUpdateArgs} args - Arguments to update one Soumission.
+     * @example
+     * // Update one Soumission
+     * const soumission = await prisma.soumission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SoumissionUpdateArgs>(args: SelectSubset<T, SoumissionUpdateArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Soumissions.
+     * @param {SoumissionDeleteManyArgs} args - Arguments to filter Soumissions to delete.
+     * @example
+     * // Delete a few Soumissions
+     * const { count } = await prisma.soumission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SoumissionDeleteManyArgs>(args?: SelectSubset<T, SoumissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Soumissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Soumissions
+     * const soumission = await prisma.soumission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SoumissionUpdateManyArgs>(args: SelectSubset<T, SoumissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Soumissions and returns the data updated in the database.
+     * @param {SoumissionUpdateManyAndReturnArgs} args - Arguments to update many Soumissions.
+     * @example
+     * // Update many Soumissions
+     * const soumission = await prisma.soumission.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Soumissions and only return the `id`
+     * const soumissionWithIdOnly = await prisma.soumission.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SoumissionUpdateManyAndReturnArgs>(args: SelectSubset<T, SoumissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Soumission.
+     * @param {SoumissionUpsertArgs} args - Arguments to update or create a Soumission.
+     * @example
+     * // Update or create a Soumission
+     * const soumission = await prisma.soumission.upsert({
+     *   create: {
+     *     // ... data to create a Soumission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Soumission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SoumissionUpsertArgs>(args: SelectSubset<T, SoumissionUpsertArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Soumissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionCountArgs} args - Arguments to filter Soumissions to count.
+     * @example
+     * // Count the number of Soumissions
+     * const count = await prisma.soumission.count({
+     *   where: {
+     *     // ... the filter for the Soumissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SoumissionCountArgs>(
+      args?: Subset<T, SoumissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SoumissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Soumission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SoumissionAggregateArgs>(args: Subset<T, SoumissionAggregateArgs>): Prisma.PrismaPromise<GetSoumissionAggregateType<T>>
+
+    /**
+     * Group by Soumission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SoumissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SoumissionGroupByArgs['orderBy'] }
+        : { orderBy?: SoumissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SoumissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSoumissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Soumission model
+   */
+  readonly fields: SoumissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Soumission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SoumissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    client<T extends ClientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClientDefaultArgs<ExtArgs>>): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    contact<T extends Soumission$contactArgs<ExtArgs> = {}>(args?: Subset<T, Soumission$contactArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    lines<T extends Soumission$linesArgs<ExtArgs> = {}>(args?: Subset<T, Soumission$linesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contrats<T extends Soumission$contratsArgs<ExtArgs> = {}>(args?: Subset<T, Soumission$contratsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Soumission model
+   */
+  interface SoumissionFieldRefs {
+    readonly id: FieldRef<"Soumission", 'String'>
+    readonly numero: FieldRef<"Soumission", 'String'>
+    readonly dateSoumission: FieldRef<"Soumission", 'DateTime'>
+    readonly clientId: FieldRef<"Soumission", 'String'>
+    readonly contactId: FieldRef<"Soumission", 'String'>
+    readonly titre: FieldRef<"Soumission", 'String'>
+    readonly description: FieldRef<"Soumission", 'String'>
+    readonly dateValidite: FieldRef<"Soumission", 'DateTime'>
+    readonly statut: FieldRef<"Soumission", 'String'>
+    readonly sousTotalHT: FieldRef<"Soumission", 'Float'>
+    readonly montantTPS: FieldRef<"Soumission", 'Float'>
+    readonly montantTVQ: FieldRef<"Soumission", 'Float'>
+    readonly totalTTC: FieldRef<"Soumission", 'Float'>
+    readonly createdAt: FieldRef<"Soumission", 'DateTime'>
+    readonly updatedAt: FieldRef<"Soumission", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Soumission findUnique
+   */
+  export type SoumissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Soumission to fetch.
+     */
+    where: SoumissionWhereUniqueInput
+  }
+
+  /**
+   * Soumission findUniqueOrThrow
+   */
+  export type SoumissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Soumission to fetch.
+     */
+    where: SoumissionWhereUniqueInput
+  }
+
+  /**
+   * Soumission findFirst
+   */
+  export type SoumissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Soumission to fetch.
+     */
+    where?: SoumissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Soumissions to fetch.
+     */
+    orderBy?: SoumissionOrderByWithRelationInput | SoumissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Soumissions.
+     */
+    cursor?: SoumissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Soumissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Soumissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Soumissions.
+     */
+    distinct?: SoumissionScalarFieldEnum | SoumissionScalarFieldEnum[]
+  }
+
+  /**
+   * Soumission findFirstOrThrow
+   */
+  export type SoumissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Soumission to fetch.
+     */
+    where?: SoumissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Soumissions to fetch.
+     */
+    orderBy?: SoumissionOrderByWithRelationInput | SoumissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Soumissions.
+     */
+    cursor?: SoumissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Soumissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Soumissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Soumissions.
+     */
+    distinct?: SoumissionScalarFieldEnum | SoumissionScalarFieldEnum[]
+  }
+
+  /**
+   * Soumission findMany
+   */
+  export type SoumissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * Filter, which Soumissions to fetch.
+     */
+    where?: SoumissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Soumissions to fetch.
+     */
+    orderBy?: SoumissionOrderByWithRelationInput | SoumissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Soumissions.
+     */
+    cursor?: SoumissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Soumissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Soumissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Soumissions.
+     */
+    distinct?: SoumissionScalarFieldEnum | SoumissionScalarFieldEnum[]
+  }
+
+  /**
+   * Soumission create
+   */
+  export type SoumissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Soumission.
+     */
+    data: XOR<SoumissionCreateInput, SoumissionUncheckedCreateInput>
+  }
+
+  /**
+   * Soumission createMany
+   */
+  export type SoumissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Soumissions.
+     */
+    data: SoumissionCreateManyInput | SoumissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Soumission createManyAndReturn
+   */
+  export type SoumissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Soumissions.
+     */
+    data: SoumissionCreateManyInput | SoumissionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Soumission update
+   */
+  export type SoumissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Soumission.
+     */
+    data: XOR<SoumissionUpdateInput, SoumissionUncheckedUpdateInput>
+    /**
+     * Choose, which Soumission to update.
+     */
+    where: SoumissionWhereUniqueInput
+  }
+
+  /**
+   * Soumission updateMany
+   */
+  export type SoumissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Soumissions.
+     */
+    data: XOR<SoumissionUpdateManyMutationInput, SoumissionUncheckedUpdateManyInput>
+    /**
+     * Filter which Soumissions to update
+     */
+    where?: SoumissionWhereInput
+    /**
+     * Limit how many Soumissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Soumission updateManyAndReturn
+   */
+  export type SoumissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * The data used to update Soumissions.
+     */
+    data: XOR<SoumissionUpdateManyMutationInput, SoumissionUncheckedUpdateManyInput>
+    /**
+     * Filter which Soumissions to update
+     */
+    where?: SoumissionWhereInput
+    /**
+     * Limit how many Soumissions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Soumission upsert
+   */
+  export type SoumissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Soumission to update in case it exists.
+     */
+    where: SoumissionWhereUniqueInput
+    /**
+     * In case the Soumission found by the `where` argument doesn't exist, create a new Soumission with this data.
+     */
+    create: XOR<SoumissionCreateInput, SoumissionUncheckedCreateInput>
+    /**
+     * In case the Soumission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SoumissionUpdateInput, SoumissionUncheckedUpdateInput>
+  }
+
+  /**
+   * Soumission delete
+   */
+  export type SoumissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    /**
+     * Filter which Soumission to delete.
+     */
+    where: SoumissionWhereUniqueInput
+  }
+
+  /**
+   * Soumission deleteMany
+   */
+  export type SoumissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Soumissions to delete
+     */
+    where?: SoumissionWhereInput
+    /**
+     * Limit how many Soumissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Soumission.contact
+   */
+  export type Soumission$contactArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    where?: ContactWhereInput
+  }
+
+  /**
+   * Soumission.lines
+   */
+  export type Soumission$linesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    where?: SoumissionLineWhereInput
+    orderBy?: SoumissionLineOrderByWithRelationInput | SoumissionLineOrderByWithRelationInput[]
+    cursor?: SoumissionLineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoumissionLineScalarFieldEnum | SoumissionLineScalarFieldEnum[]
+  }
+
+  /**
+   * Soumission.contrats
+   */
+  export type Soumission$contratsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    where?: ContratWhereInput
+    orderBy?: ContratOrderByWithRelationInput | ContratOrderByWithRelationInput[]
+    cursor?: ContratWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContratScalarFieldEnum | ContratScalarFieldEnum[]
+  }
+
+  /**
+   * Soumission without action
+   */
+  export type SoumissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SoumissionLine
+   */
+
+  export type AggregateSoumissionLine = {
+    _count: SoumissionLineCountAggregateOutputType | null
+    _avg: SoumissionLineAvgAggregateOutputType | null
+    _sum: SoumissionLineSumAggregateOutputType | null
+    _min: SoumissionLineMinAggregateOutputType | null
+    _max: SoumissionLineMaxAggregateOutputType | null
+  }
+
+  export type SoumissionLineAvgAggregateOutputType = {
+    quantite: number | null
+    prixUnitaire: number | null
+    montantLigne: number | null
+  }
+
+  export type SoumissionLineSumAggregateOutputType = {
+    quantite: number | null
+    prixUnitaire: number | null
+    montantLigne: number | null
+  }
+
+  export type SoumissionLineMinAggregateOutputType = {
+    id: string | null
+    soumissionId: string | null
+    description: string | null
+    quantite: number | null
+    prixUnitaire: number | null
+    montantLigne: number | null
+    typeLigne: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SoumissionLineMaxAggregateOutputType = {
+    id: string | null
+    soumissionId: string | null
+    description: string | null
+    quantite: number | null
+    prixUnitaire: number | null
+    montantLigne: number | null
+    typeLigne: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SoumissionLineCountAggregateOutputType = {
+    id: number
+    soumissionId: number
+    description: number
+    quantite: number
+    prixUnitaire: number
+    montantLigne: number
+    typeLigne: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SoumissionLineAvgAggregateInputType = {
+    quantite?: true
+    prixUnitaire?: true
+    montantLigne?: true
+  }
+
+  export type SoumissionLineSumAggregateInputType = {
+    quantite?: true
+    prixUnitaire?: true
+    montantLigne?: true
+  }
+
+  export type SoumissionLineMinAggregateInputType = {
+    id?: true
+    soumissionId?: true
+    description?: true
+    quantite?: true
+    prixUnitaire?: true
+    montantLigne?: true
+    typeLigne?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SoumissionLineMaxAggregateInputType = {
+    id?: true
+    soumissionId?: true
+    description?: true
+    quantite?: true
+    prixUnitaire?: true
+    montantLigne?: true
+    typeLigne?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SoumissionLineCountAggregateInputType = {
+    id?: true
+    soumissionId?: true
+    description?: true
+    quantite?: true
+    prixUnitaire?: true
+    montantLigne?: true
+    typeLigne?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SoumissionLineAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SoumissionLine to aggregate.
+     */
+    where?: SoumissionLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoumissionLines to fetch.
+     */
+    orderBy?: SoumissionLineOrderByWithRelationInput | SoumissionLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SoumissionLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoumissionLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoumissionLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SoumissionLines
+    **/
+    _count?: true | SoumissionLineCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SoumissionLineAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SoumissionLineSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SoumissionLineMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SoumissionLineMaxAggregateInputType
+  }
+
+  export type GetSoumissionLineAggregateType<T extends SoumissionLineAggregateArgs> = {
+        [P in keyof T & keyof AggregateSoumissionLine]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSoumissionLine[P]>
+      : GetScalarType<T[P], AggregateSoumissionLine[P]>
+  }
+
+
+
+
+  export type SoumissionLineGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoumissionLineWhereInput
+    orderBy?: SoumissionLineOrderByWithAggregationInput | SoumissionLineOrderByWithAggregationInput[]
+    by: SoumissionLineScalarFieldEnum[] | SoumissionLineScalarFieldEnum
+    having?: SoumissionLineScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SoumissionLineCountAggregateInputType | true
+    _avg?: SoumissionLineAvgAggregateInputType
+    _sum?: SoumissionLineSumAggregateInputType
+    _min?: SoumissionLineMinAggregateInputType
+    _max?: SoumissionLineMaxAggregateInputType
+  }
+
+  export type SoumissionLineGroupByOutputType = {
+    id: string
+    soumissionId: string
+    description: string
+    quantite: number
+    prixUnitaire: number
+    montantLigne: number
+    typeLigne: string
+    createdAt: Date
+    updatedAt: Date
+    _count: SoumissionLineCountAggregateOutputType | null
+    _avg: SoumissionLineAvgAggregateOutputType | null
+    _sum: SoumissionLineSumAggregateOutputType | null
+    _min: SoumissionLineMinAggregateOutputType | null
+    _max: SoumissionLineMaxAggregateOutputType | null
+  }
+
+  type GetSoumissionLineGroupByPayload<T extends SoumissionLineGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SoumissionLineGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SoumissionLineGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SoumissionLineGroupByOutputType[P]>
+            : GetScalarType<T[P], SoumissionLineGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SoumissionLineSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    soumissionId?: boolean
+    description?: boolean
+    quantite?: boolean
+    prixUnitaire?: boolean
+    montantLigne?: boolean
+    typeLigne?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    soumission?: boolean | SoumissionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["soumissionLine"]>
+
+  export type SoumissionLineSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    soumissionId?: boolean
+    description?: boolean
+    quantite?: boolean
+    prixUnitaire?: boolean
+    montantLigne?: boolean
+    typeLigne?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    soumission?: boolean | SoumissionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["soumissionLine"]>
+
+  export type SoumissionLineSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    soumissionId?: boolean
+    description?: boolean
+    quantite?: boolean
+    prixUnitaire?: boolean
+    montantLigne?: boolean
+    typeLigne?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    soumission?: boolean | SoumissionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["soumissionLine"]>
+
+  export type SoumissionLineSelectScalar = {
+    id?: boolean
+    soumissionId?: boolean
+    description?: boolean
+    quantite?: boolean
+    prixUnitaire?: boolean
+    montantLigne?: boolean
+    typeLigne?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SoumissionLineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "soumissionId" | "description" | "quantite" | "prixUnitaire" | "montantLigne" | "typeLigne" | "createdAt" | "updatedAt", ExtArgs["result"]["soumissionLine"]>
+  export type SoumissionLineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    soumission?: boolean | SoumissionDefaultArgs<ExtArgs>
+  }
+  export type SoumissionLineIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    soumission?: boolean | SoumissionDefaultArgs<ExtArgs>
+  }
+  export type SoumissionLineIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    soumission?: boolean | SoumissionDefaultArgs<ExtArgs>
+  }
+
+  export type $SoumissionLinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SoumissionLine"
+    objects: {
+      soumission: Prisma.$SoumissionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      soumissionId: string
+      description: string
+      quantite: number
+      prixUnitaire: number
+      montantLigne: number
+      typeLigne: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["soumissionLine"]>
+    composites: {}
+  }
+
+  type SoumissionLineGetPayload<S extends boolean | null | undefined | SoumissionLineDefaultArgs> = $Result.GetResult<Prisma.$SoumissionLinePayload, S>
+
+  type SoumissionLineCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SoumissionLineFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SoumissionLineCountAggregateInputType | true
+    }
+
+  export interface SoumissionLineDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SoumissionLine'], meta: { name: 'SoumissionLine' } }
+    /**
+     * Find zero or one SoumissionLine that matches the filter.
+     * @param {SoumissionLineFindUniqueArgs} args - Arguments to find a SoumissionLine
+     * @example
+     * // Get one SoumissionLine
+     * const soumissionLine = await prisma.soumissionLine.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SoumissionLineFindUniqueArgs>(args: SelectSubset<T, SoumissionLineFindUniqueArgs<ExtArgs>>): Prisma__SoumissionLineClient<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SoumissionLine that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SoumissionLineFindUniqueOrThrowArgs} args - Arguments to find a SoumissionLine
+     * @example
+     * // Get one SoumissionLine
+     * const soumissionLine = await prisma.soumissionLine.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SoumissionLineFindUniqueOrThrowArgs>(args: SelectSubset<T, SoumissionLineFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SoumissionLineClient<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SoumissionLine that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionLineFindFirstArgs} args - Arguments to find a SoumissionLine
+     * @example
+     * // Get one SoumissionLine
+     * const soumissionLine = await prisma.soumissionLine.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SoumissionLineFindFirstArgs>(args?: SelectSubset<T, SoumissionLineFindFirstArgs<ExtArgs>>): Prisma__SoumissionLineClient<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SoumissionLine that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionLineFindFirstOrThrowArgs} args - Arguments to find a SoumissionLine
+     * @example
+     * // Get one SoumissionLine
+     * const soumissionLine = await prisma.soumissionLine.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SoumissionLineFindFirstOrThrowArgs>(args?: SelectSubset<T, SoumissionLineFindFirstOrThrowArgs<ExtArgs>>): Prisma__SoumissionLineClient<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SoumissionLines that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionLineFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SoumissionLines
+     * const soumissionLines = await prisma.soumissionLine.findMany()
+     * 
+     * // Get first 10 SoumissionLines
+     * const soumissionLines = await prisma.soumissionLine.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const soumissionLineWithIdOnly = await prisma.soumissionLine.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SoumissionLineFindManyArgs>(args?: SelectSubset<T, SoumissionLineFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SoumissionLine.
+     * @param {SoumissionLineCreateArgs} args - Arguments to create a SoumissionLine.
+     * @example
+     * // Create one SoumissionLine
+     * const SoumissionLine = await prisma.soumissionLine.create({
+     *   data: {
+     *     // ... data to create a SoumissionLine
+     *   }
+     * })
+     * 
+     */
+    create<T extends SoumissionLineCreateArgs>(args: SelectSubset<T, SoumissionLineCreateArgs<ExtArgs>>): Prisma__SoumissionLineClient<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SoumissionLines.
+     * @param {SoumissionLineCreateManyArgs} args - Arguments to create many SoumissionLines.
+     * @example
+     * // Create many SoumissionLines
+     * const soumissionLine = await prisma.soumissionLine.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SoumissionLineCreateManyArgs>(args?: SelectSubset<T, SoumissionLineCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SoumissionLines and returns the data saved in the database.
+     * @param {SoumissionLineCreateManyAndReturnArgs} args - Arguments to create many SoumissionLines.
+     * @example
+     * // Create many SoumissionLines
+     * const soumissionLine = await prisma.soumissionLine.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SoumissionLines and only return the `id`
+     * const soumissionLineWithIdOnly = await prisma.soumissionLine.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SoumissionLineCreateManyAndReturnArgs>(args?: SelectSubset<T, SoumissionLineCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SoumissionLine.
+     * @param {SoumissionLineDeleteArgs} args - Arguments to delete one SoumissionLine.
+     * @example
+     * // Delete one SoumissionLine
+     * const SoumissionLine = await prisma.soumissionLine.delete({
+     *   where: {
+     *     // ... filter to delete one SoumissionLine
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SoumissionLineDeleteArgs>(args: SelectSubset<T, SoumissionLineDeleteArgs<ExtArgs>>): Prisma__SoumissionLineClient<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SoumissionLine.
+     * @param {SoumissionLineUpdateArgs} args - Arguments to update one SoumissionLine.
+     * @example
+     * // Update one SoumissionLine
+     * const soumissionLine = await prisma.soumissionLine.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SoumissionLineUpdateArgs>(args: SelectSubset<T, SoumissionLineUpdateArgs<ExtArgs>>): Prisma__SoumissionLineClient<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SoumissionLines.
+     * @param {SoumissionLineDeleteManyArgs} args - Arguments to filter SoumissionLines to delete.
+     * @example
+     * // Delete a few SoumissionLines
+     * const { count } = await prisma.soumissionLine.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SoumissionLineDeleteManyArgs>(args?: SelectSubset<T, SoumissionLineDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SoumissionLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionLineUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SoumissionLines
+     * const soumissionLine = await prisma.soumissionLine.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SoumissionLineUpdateManyArgs>(args: SelectSubset<T, SoumissionLineUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SoumissionLines and returns the data updated in the database.
+     * @param {SoumissionLineUpdateManyAndReturnArgs} args - Arguments to update many SoumissionLines.
+     * @example
+     * // Update many SoumissionLines
+     * const soumissionLine = await prisma.soumissionLine.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SoumissionLines and only return the `id`
+     * const soumissionLineWithIdOnly = await prisma.soumissionLine.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SoumissionLineUpdateManyAndReturnArgs>(args: SelectSubset<T, SoumissionLineUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SoumissionLine.
+     * @param {SoumissionLineUpsertArgs} args - Arguments to update or create a SoumissionLine.
+     * @example
+     * // Update or create a SoumissionLine
+     * const soumissionLine = await prisma.soumissionLine.upsert({
+     *   create: {
+     *     // ... data to create a SoumissionLine
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SoumissionLine we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SoumissionLineUpsertArgs>(args: SelectSubset<T, SoumissionLineUpsertArgs<ExtArgs>>): Prisma__SoumissionLineClient<$Result.GetResult<Prisma.$SoumissionLinePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SoumissionLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionLineCountArgs} args - Arguments to filter SoumissionLines to count.
+     * @example
+     * // Count the number of SoumissionLines
+     * const count = await prisma.soumissionLine.count({
+     *   where: {
+     *     // ... the filter for the SoumissionLines we want to count
+     *   }
+     * })
+    **/
+    count<T extends SoumissionLineCountArgs>(
+      args?: Subset<T, SoumissionLineCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SoumissionLineCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SoumissionLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionLineAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SoumissionLineAggregateArgs>(args: Subset<T, SoumissionLineAggregateArgs>): Prisma.PrismaPromise<GetSoumissionLineAggregateType<T>>
+
+    /**
+     * Group by SoumissionLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoumissionLineGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SoumissionLineGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SoumissionLineGroupByArgs['orderBy'] }
+        : { orderBy?: SoumissionLineGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SoumissionLineGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSoumissionLineGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SoumissionLine model
+   */
+  readonly fields: SoumissionLineFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SoumissionLine.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SoumissionLineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    soumission<T extends SoumissionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SoumissionDefaultArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SoumissionLine model
+   */
+  interface SoumissionLineFieldRefs {
+    readonly id: FieldRef<"SoumissionLine", 'String'>
+    readonly soumissionId: FieldRef<"SoumissionLine", 'String'>
+    readonly description: FieldRef<"SoumissionLine", 'String'>
+    readonly quantite: FieldRef<"SoumissionLine", 'Float'>
+    readonly prixUnitaire: FieldRef<"SoumissionLine", 'Float'>
+    readonly montantLigne: FieldRef<"SoumissionLine", 'Float'>
+    readonly typeLigne: FieldRef<"SoumissionLine", 'String'>
+    readonly createdAt: FieldRef<"SoumissionLine", 'DateTime'>
+    readonly updatedAt: FieldRef<"SoumissionLine", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SoumissionLine findUnique
+   */
+  export type SoumissionLineFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * Filter, which SoumissionLine to fetch.
+     */
+    where: SoumissionLineWhereUniqueInput
+  }
+
+  /**
+   * SoumissionLine findUniqueOrThrow
+   */
+  export type SoumissionLineFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * Filter, which SoumissionLine to fetch.
+     */
+    where: SoumissionLineWhereUniqueInput
+  }
+
+  /**
+   * SoumissionLine findFirst
+   */
+  export type SoumissionLineFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * Filter, which SoumissionLine to fetch.
+     */
+    where?: SoumissionLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoumissionLines to fetch.
+     */
+    orderBy?: SoumissionLineOrderByWithRelationInput | SoumissionLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SoumissionLines.
+     */
+    cursor?: SoumissionLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoumissionLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoumissionLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoumissionLines.
+     */
+    distinct?: SoumissionLineScalarFieldEnum | SoumissionLineScalarFieldEnum[]
+  }
+
+  /**
+   * SoumissionLine findFirstOrThrow
+   */
+  export type SoumissionLineFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * Filter, which SoumissionLine to fetch.
+     */
+    where?: SoumissionLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoumissionLines to fetch.
+     */
+    orderBy?: SoumissionLineOrderByWithRelationInput | SoumissionLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SoumissionLines.
+     */
+    cursor?: SoumissionLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoumissionLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoumissionLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoumissionLines.
+     */
+    distinct?: SoumissionLineScalarFieldEnum | SoumissionLineScalarFieldEnum[]
+  }
+
+  /**
+   * SoumissionLine findMany
+   */
+  export type SoumissionLineFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * Filter, which SoumissionLines to fetch.
+     */
+    where?: SoumissionLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoumissionLines to fetch.
+     */
+    orderBy?: SoumissionLineOrderByWithRelationInput | SoumissionLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SoumissionLines.
+     */
+    cursor?: SoumissionLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoumissionLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoumissionLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoumissionLines.
+     */
+    distinct?: SoumissionLineScalarFieldEnum | SoumissionLineScalarFieldEnum[]
+  }
+
+  /**
+   * SoumissionLine create
+   */
+  export type SoumissionLineCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SoumissionLine.
+     */
+    data: XOR<SoumissionLineCreateInput, SoumissionLineUncheckedCreateInput>
+  }
+
+  /**
+   * SoumissionLine createMany
+   */
+  export type SoumissionLineCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SoumissionLines.
+     */
+    data: SoumissionLineCreateManyInput | SoumissionLineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SoumissionLine createManyAndReturn
+   */
+  export type SoumissionLineCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * The data used to create many SoumissionLines.
+     */
+    data: SoumissionLineCreateManyInput | SoumissionLineCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SoumissionLine update
+   */
+  export type SoumissionLineUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SoumissionLine.
+     */
+    data: XOR<SoumissionLineUpdateInput, SoumissionLineUncheckedUpdateInput>
+    /**
+     * Choose, which SoumissionLine to update.
+     */
+    where: SoumissionLineWhereUniqueInput
+  }
+
+  /**
+   * SoumissionLine updateMany
+   */
+  export type SoumissionLineUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SoumissionLines.
+     */
+    data: XOR<SoumissionLineUpdateManyMutationInput, SoumissionLineUncheckedUpdateManyInput>
+    /**
+     * Filter which SoumissionLines to update
+     */
+    where?: SoumissionLineWhereInput
+    /**
+     * Limit how many SoumissionLines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SoumissionLine updateManyAndReturn
+   */
+  export type SoumissionLineUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * The data used to update SoumissionLines.
+     */
+    data: XOR<SoumissionLineUpdateManyMutationInput, SoumissionLineUncheckedUpdateManyInput>
+    /**
+     * Filter which SoumissionLines to update
+     */
+    where?: SoumissionLineWhereInput
+    /**
+     * Limit how many SoumissionLines to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SoumissionLine upsert
+   */
+  export type SoumissionLineUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SoumissionLine to update in case it exists.
+     */
+    where: SoumissionLineWhereUniqueInput
+    /**
+     * In case the SoumissionLine found by the `where` argument doesn't exist, create a new SoumissionLine with this data.
+     */
+    create: XOR<SoumissionLineCreateInput, SoumissionLineUncheckedCreateInput>
+    /**
+     * In case the SoumissionLine was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SoumissionLineUpdateInput, SoumissionLineUncheckedUpdateInput>
+  }
+
+  /**
+   * SoumissionLine delete
+   */
+  export type SoumissionLineDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+    /**
+     * Filter which SoumissionLine to delete.
+     */
+    where: SoumissionLineWhereUniqueInput
+  }
+
+  /**
+   * SoumissionLine deleteMany
+   */
+  export type SoumissionLineDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SoumissionLines to delete
+     */
+    where?: SoumissionLineWhereInput
+    /**
+     * Limit how many SoumissionLines to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SoumissionLine without action
+   */
+  export type SoumissionLineDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoumissionLine
+     */
+    select?: SoumissionLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoumissionLine
+     */
+    omit?: SoumissionLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionLineInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Contrat
+   */
+
+  export type AggregateContrat = {
+    _count: ContratCountAggregateOutputType | null
+    _avg: ContratAvgAggregateOutputType | null
+    _sum: ContratSumAggregateOutputType | null
+    _min: ContratMinAggregateOutputType | null
+    _max: ContratMaxAggregateOutputType | null
+  }
+
+  export type ContratAvgAggregateOutputType = {
+    montantTotalContrat: number | null
+  }
+
+  export type ContratSumAggregateOutputType = {
+    montantTotalContrat: number | null
+  }
+
+  export type ContratMinAggregateOutputType = {
+    id: string | null
+    numero: string | null
+    dateSignature: Date | null
+    dateDebut: Date | null
+    dateFin: Date | null
+    clientId: string | null
+    contactId: string | null
+    soumissionId: string | null
+    statut: string | null
+    montantTotalContrat: number | null
+    typeContrat: string | null
+    conditionsSpeciales: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContratMaxAggregateOutputType = {
+    id: string | null
+    numero: string | null
+    dateSignature: Date | null
+    dateDebut: Date | null
+    dateFin: Date | null
+    clientId: string | null
+    contactId: string | null
+    soumissionId: string | null
+    statut: string | null
+    montantTotalContrat: number | null
+    typeContrat: string | null
+    conditionsSpeciales: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContratCountAggregateOutputType = {
+    id: number
+    numero: number
+    dateSignature: number
+    dateDebut: number
+    dateFin: number
+    clientId: number
+    contactId: number
+    soumissionId: number
+    statut: number
+    montantTotalContrat: number
+    typeContrat: number
+    conditionsSpeciales: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContratAvgAggregateInputType = {
+    montantTotalContrat?: true
+  }
+
+  export type ContratSumAggregateInputType = {
+    montantTotalContrat?: true
+  }
+
+  export type ContratMinAggregateInputType = {
+    id?: true
+    numero?: true
+    dateSignature?: true
+    dateDebut?: true
+    dateFin?: true
+    clientId?: true
+    contactId?: true
+    soumissionId?: true
+    statut?: true
+    montantTotalContrat?: true
+    typeContrat?: true
+    conditionsSpeciales?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContratMaxAggregateInputType = {
+    id?: true
+    numero?: true
+    dateSignature?: true
+    dateDebut?: true
+    dateFin?: true
+    clientId?: true
+    contactId?: true
+    soumissionId?: true
+    statut?: true
+    montantTotalContrat?: true
+    typeContrat?: true
+    conditionsSpeciales?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContratCountAggregateInputType = {
+    id?: true
+    numero?: true
+    dateSignature?: true
+    dateDebut?: true
+    dateFin?: true
+    clientId?: true
+    contactId?: true
+    soumissionId?: true
+    statut?: true
+    montantTotalContrat?: true
+    typeContrat?: true
+    conditionsSpeciales?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContratAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Contrat to aggregate.
+     */
+    where?: ContratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contrats to fetch.
+     */
+    orderBy?: ContratOrderByWithRelationInput | ContratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contrats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contrats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Contrats
+    **/
+    _count?: true | ContratCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ContratAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ContratSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContratMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContratMaxAggregateInputType
+  }
+
+  export type GetContratAggregateType<T extends ContratAggregateArgs> = {
+        [P in keyof T & keyof AggregateContrat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContrat[P]>
+      : GetScalarType<T[P], AggregateContrat[P]>
+  }
+
+
+
+
+  export type ContratGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContratWhereInput
+    orderBy?: ContratOrderByWithAggregationInput | ContratOrderByWithAggregationInput[]
+    by: ContratScalarFieldEnum[] | ContratScalarFieldEnum
+    having?: ContratScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContratCountAggregateInputType | true
+    _avg?: ContratAvgAggregateInputType
+    _sum?: ContratSumAggregateInputType
+    _min?: ContratMinAggregateInputType
+    _max?: ContratMaxAggregateInputType
+  }
+
+  export type ContratGroupByOutputType = {
+    id: string
+    numero: string
+    dateSignature: Date | null
+    dateDebut: Date
+    dateFin: Date | null
+    clientId: string
+    contactId: string | null
+    soumissionId: string | null
+    statut: string
+    montantTotalContrat: number | null
+    typeContrat: string
+    conditionsSpeciales: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ContratCountAggregateOutputType | null
+    _avg: ContratAvgAggregateOutputType | null
+    _sum: ContratSumAggregateOutputType | null
+    _min: ContratMinAggregateOutputType | null
+    _max: ContratMaxAggregateOutputType | null
+  }
+
+  type GetContratGroupByPayload<T extends ContratGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContratGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContratGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContratGroupByOutputType[P]>
+            : GetScalarType<T[P], ContratGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContratSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numero?: boolean
+    dateSignature?: boolean
+    dateDebut?: boolean
+    dateFin?: boolean
+    clientId?: boolean
+    contactId?: boolean
+    soumissionId?: boolean
+    statut?: boolean
+    montantTotalContrat?: boolean
+    typeContrat?: boolean
+    conditionsSpeciales?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Contrat$contactArgs<ExtArgs>
+    soumission?: boolean | Contrat$soumissionArgs<ExtArgs>
+    projects?: boolean | Contrat$projectsArgs<ExtArgs>
+    _count?: boolean | ContratCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contrat"]>
+
+  export type ContratSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numero?: boolean
+    dateSignature?: boolean
+    dateDebut?: boolean
+    dateFin?: boolean
+    clientId?: boolean
+    contactId?: boolean
+    soumissionId?: boolean
+    statut?: boolean
+    montantTotalContrat?: boolean
+    typeContrat?: boolean
+    conditionsSpeciales?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Contrat$contactArgs<ExtArgs>
+    soumission?: boolean | Contrat$soumissionArgs<ExtArgs>
+  }, ExtArgs["result"]["contrat"]>
+
+  export type ContratSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    numero?: boolean
+    dateSignature?: boolean
+    dateDebut?: boolean
+    dateFin?: boolean
+    clientId?: boolean
+    contactId?: boolean
+    soumissionId?: boolean
+    statut?: boolean
+    montantTotalContrat?: boolean
+    typeContrat?: boolean
+    conditionsSpeciales?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Contrat$contactArgs<ExtArgs>
+    soumission?: boolean | Contrat$soumissionArgs<ExtArgs>
+  }, ExtArgs["result"]["contrat"]>
+
+  export type ContratSelectScalar = {
+    id?: boolean
+    numero?: boolean
+    dateSignature?: boolean
+    dateDebut?: boolean
+    dateFin?: boolean
+    clientId?: boolean
+    contactId?: boolean
+    soumissionId?: boolean
+    statut?: boolean
+    montantTotalContrat?: boolean
+    typeContrat?: boolean
+    conditionsSpeciales?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContratOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "numero" | "dateSignature" | "dateDebut" | "dateFin" | "clientId" | "contactId" | "soumissionId" | "statut" | "montantTotalContrat" | "typeContrat" | "conditionsSpeciales" | "createdAt" | "updatedAt", ExtArgs["result"]["contrat"]>
+  export type ContratInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Contrat$contactArgs<ExtArgs>
+    soumission?: boolean | Contrat$soumissionArgs<ExtArgs>
+    projects?: boolean | Contrat$projectsArgs<ExtArgs>
+    _count?: boolean | ContratCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ContratIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Contrat$contactArgs<ExtArgs>
+    soumission?: boolean | Contrat$soumissionArgs<ExtArgs>
+  }
+  export type ContratIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    client?: boolean | ClientDefaultArgs<ExtArgs>
+    contact?: boolean | Contrat$contactArgs<ExtArgs>
+    soumission?: boolean | Contrat$soumissionArgs<ExtArgs>
+  }
+
+  export type $ContratPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Contrat"
+    objects: {
+      client: Prisma.$ClientPayload<ExtArgs>
+      contact: Prisma.$ContactPayload<ExtArgs> | null
+      soumission: Prisma.$SoumissionPayload<ExtArgs> | null
+      projects: Prisma.$ProjectPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      numero: string
+      dateSignature: Date | null
+      dateDebut: Date
+      dateFin: Date | null
+      clientId: string
+      contactId: string | null
+      soumissionId: string | null
+      statut: string
+      montantTotalContrat: number | null
+      typeContrat: string
+      conditionsSpeciales: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contrat"]>
+    composites: {}
+  }
+
+  type ContratGetPayload<S extends boolean | null | undefined | ContratDefaultArgs> = $Result.GetResult<Prisma.$ContratPayload, S>
+
+  type ContratCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContratFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContratCountAggregateInputType | true
+    }
+
+  export interface ContratDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Contrat'], meta: { name: 'Contrat' } }
+    /**
+     * Find zero or one Contrat that matches the filter.
+     * @param {ContratFindUniqueArgs} args - Arguments to find a Contrat
+     * @example
+     * // Get one Contrat
+     * const contrat = await prisma.contrat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContratFindUniqueArgs>(args: SelectSubset<T, ContratFindUniqueArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Contrat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContratFindUniqueOrThrowArgs} args - Arguments to find a Contrat
+     * @example
+     * // Get one Contrat
+     * const contrat = await prisma.contrat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContratFindUniqueOrThrowArgs>(args: SelectSubset<T, ContratFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Contrat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratFindFirstArgs} args - Arguments to find a Contrat
+     * @example
+     * // Get one Contrat
+     * const contrat = await prisma.contrat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContratFindFirstArgs>(args?: SelectSubset<T, ContratFindFirstArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Contrat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratFindFirstOrThrowArgs} args - Arguments to find a Contrat
+     * @example
+     * // Get one Contrat
+     * const contrat = await prisma.contrat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContratFindFirstOrThrowArgs>(args?: SelectSubset<T, ContratFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Contrats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Contrats
+     * const contrats = await prisma.contrat.findMany()
+     * 
+     * // Get first 10 Contrats
+     * const contrats = await prisma.contrat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contratWithIdOnly = await prisma.contrat.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContratFindManyArgs>(args?: SelectSubset<T, ContratFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Contrat.
+     * @param {ContratCreateArgs} args - Arguments to create a Contrat.
+     * @example
+     * // Create one Contrat
+     * const Contrat = await prisma.contrat.create({
+     *   data: {
+     *     // ... data to create a Contrat
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContratCreateArgs>(args: SelectSubset<T, ContratCreateArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Contrats.
+     * @param {ContratCreateManyArgs} args - Arguments to create many Contrats.
+     * @example
+     * // Create many Contrats
+     * const contrat = await prisma.contrat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContratCreateManyArgs>(args?: SelectSubset<T, ContratCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Contrats and returns the data saved in the database.
+     * @param {ContratCreateManyAndReturnArgs} args - Arguments to create many Contrats.
+     * @example
+     * // Create many Contrats
+     * const contrat = await prisma.contrat.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Contrats and only return the `id`
+     * const contratWithIdOnly = await prisma.contrat.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContratCreateManyAndReturnArgs>(args?: SelectSubset<T, ContratCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Contrat.
+     * @param {ContratDeleteArgs} args - Arguments to delete one Contrat.
+     * @example
+     * // Delete one Contrat
+     * const Contrat = await prisma.contrat.delete({
+     *   where: {
+     *     // ... filter to delete one Contrat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContratDeleteArgs>(args: SelectSubset<T, ContratDeleteArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Contrat.
+     * @param {ContratUpdateArgs} args - Arguments to update one Contrat.
+     * @example
+     * // Update one Contrat
+     * const contrat = await prisma.contrat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContratUpdateArgs>(args: SelectSubset<T, ContratUpdateArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Contrats.
+     * @param {ContratDeleteManyArgs} args - Arguments to filter Contrats to delete.
+     * @example
+     * // Delete a few Contrats
+     * const { count } = await prisma.contrat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContratDeleteManyArgs>(args?: SelectSubset<T, ContratDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Contrats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Contrats
+     * const contrat = await prisma.contrat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContratUpdateManyArgs>(args: SelectSubset<T, ContratUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Contrats and returns the data updated in the database.
+     * @param {ContratUpdateManyAndReturnArgs} args - Arguments to update many Contrats.
+     * @example
+     * // Update many Contrats
+     * const contrat = await prisma.contrat.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Contrats and only return the `id`
+     * const contratWithIdOnly = await prisma.contrat.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContratUpdateManyAndReturnArgs>(args: SelectSubset<T, ContratUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Contrat.
+     * @param {ContratUpsertArgs} args - Arguments to update or create a Contrat.
+     * @example
+     * // Update or create a Contrat
+     * const contrat = await prisma.contrat.upsert({
+     *   create: {
+     *     // ... data to create a Contrat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Contrat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContratUpsertArgs>(args: SelectSubset<T, ContratUpsertArgs<ExtArgs>>): Prisma__ContratClient<$Result.GetResult<Prisma.$ContratPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Contrats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratCountArgs} args - Arguments to filter Contrats to count.
+     * @example
+     * // Count the number of Contrats
+     * const count = await prisma.contrat.count({
+     *   where: {
+     *     // ... the filter for the Contrats we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContratCountArgs>(
+      args?: Subset<T, ContratCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContratCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Contrat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContratAggregateArgs>(args: Subset<T, ContratAggregateArgs>): Prisma.PrismaPromise<GetContratAggregateType<T>>
+
+    /**
+     * Group by Contrat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContratGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContratGroupByArgs['orderBy'] }
+        : { orderBy?: ContratGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContratGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContratGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Contrat model
+   */
+  readonly fields: ContratFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Contrat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContratClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    client<T extends ClientDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClientDefaultArgs<ExtArgs>>): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    contact<T extends Contrat$contactArgs<ExtArgs> = {}>(args?: Subset<T, Contrat$contactArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    soumission<T extends Contrat$soumissionArgs<ExtArgs> = {}>(args?: Subset<T, Contrat$soumissionArgs<ExtArgs>>): Prisma__SoumissionClient<$Result.GetResult<Prisma.$SoumissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    projects<T extends Contrat$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Contrat$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Contrat model
+   */
+  interface ContratFieldRefs {
+    readonly id: FieldRef<"Contrat", 'String'>
+    readonly numero: FieldRef<"Contrat", 'String'>
+    readonly dateSignature: FieldRef<"Contrat", 'DateTime'>
+    readonly dateDebut: FieldRef<"Contrat", 'DateTime'>
+    readonly dateFin: FieldRef<"Contrat", 'DateTime'>
+    readonly clientId: FieldRef<"Contrat", 'String'>
+    readonly contactId: FieldRef<"Contrat", 'String'>
+    readonly soumissionId: FieldRef<"Contrat", 'String'>
+    readonly statut: FieldRef<"Contrat", 'String'>
+    readonly montantTotalContrat: FieldRef<"Contrat", 'Float'>
+    readonly typeContrat: FieldRef<"Contrat", 'String'>
+    readonly conditionsSpeciales: FieldRef<"Contrat", 'String'>
+    readonly createdAt: FieldRef<"Contrat", 'DateTime'>
+    readonly updatedAt: FieldRef<"Contrat", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Contrat findUnique
+   */
+  export type ContratFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * Filter, which Contrat to fetch.
+     */
+    where: ContratWhereUniqueInput
+  }
+
+  /**
+   * Contrat findUniqueOrThrow
+   */
+  export type ContratFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * Filter, which Contrat to fetch.
+     */
+    where: ContratWhereUniqueInput
+  }
+
+  /**
+   * Contrat findFirst
+   */
+  export type ContratFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * Filter, which Contrat to fetch.
+     */
+    where?: ContratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contrats to fetch.
+     */
+    orderBy?: ContratOrderByWithRelationInput | ContratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contrats.
+     */
+    cursor?: ContratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contrats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contrats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contrats.
+     */
+    distinct?: ContratScalarFieldEnum | ContratScalarFieldEnum[]
+  }
+
+  /**
+   * Contrat findFirstOrThrow
+   */
+  export type ContratFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * Filter, which Contrat to fetch.
+     */
+    where?: ContratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contrats to fetch.
+     */
+    orderBy?: ContratOrderByWithRelationInput | ContratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contrats.
+     */
+    cursor?: ContratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contrats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contrats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contrats.
+     */
+    distinct?: ContratScalarFieldEnum | ContratScalarFieldEnum[]
+  }
+
+  /**
+   * Contrat findMany
+   */
+  export type ContratFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * Filter, which Contrats to fetch.
+     */
+    where?: ContratWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contrats to fetch.
+     */
+    orderBy?: ContratOrderByWithRelationInput | ContratOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Contrats.
+     */
+    cursor?: ContratWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contrats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contrats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contrats.
+     */
+    distinct?: ContratScalarFieldEnum | ContratScalarFieldEnum[]
+  }
+
+  /**
+   * Contrat create
+   */
+  export type ContratCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Contrat.
+     */
+    data: XOR<ContratCreateInput, ContratUncheckedCreateInput>
+  }
+
+  /**
+   * Contrat createMany
+   */
+  export type ContratCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Contrats.
+     */
+    data: ContratCreateManyInput | ContratCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Contrat createManyAndReturn
+   */
+  export type ContratCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * The data used to create many Contrats.
+     */
+    data: ContratCreateManyInput | ContratCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Contrat update
+   */
+  export type ContratUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Contrat.
+     */
+    data: XOR<ContratUpdateInput, ContratUncheckedUpdateInput>
+    /**
+     * Choose, which Contrat to update.
+     */
+    where: ContratWhereUniqueInput
+  }
+
+  /**
+   * Contrat updateMany
+   */
+  export type ContratUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Contrats.
+     */
+    data: XOR<ContratUpdateManyMutationInput, ContratUncheckedUpdateManyInput>
+    /**
+     * Filter which Contrats to update
+     */
+    where?: ContratWhereInput
+    /**
+     * Limit how many Contrats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Contrat updateManyAndReturn
+   */
+  export type ContratUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * The data used to update Contrats.
+     */
+    data: XOR<ContratUpdateManyMutationInput, ContratUncheckedUpdateManyInput>
+    /**
+     * Filter which Contrats to update
+     */
+    where?: ContratWhereInput
+    /**
+     * Limit how many Contrats to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Contrat upsert
+   */
+  export type ContratUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Contrat to update in case it exists.
+     */
+    where: ContratWhereUniqueInput
+    /**
+     * In case the Contrat found by the `where` argument doesn't exist, create a new Contrat with this data.
+     */
+    create: XOR<ContratCreateInput, ContratUncheckedCreateInput>
+    /**
+     * In case the Contrat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContratUpdateInput, ContratUncheckedUpdateInput>
+  }
+
+  /**
+   * Contrat delete
+   */
+  export type ContratDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+    /**
+     * Filter which Contrat to delete.
+     */
+    where: ContratWhereUniqueInput
+  }
+
+  /**
+   * Contrat deleteMany
+   */
+  export type ContratDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Contrats to delete
+     */
+    where?: ContratWhereInput
+    /**
+     * Limit how many Contrats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Contrat.contact
+   */
+  export type Contrat$contactArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null
+    where?: ContactWhereInput
+  }
+
+  /**
+   * Contrat.soumission
+   */
+  export type Contrat$soumissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Soumission
+     */
+    select?: SoumissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Soumission
+     */
+    omit?: SoumissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoumissionInclude<ExtArgs> | null
+    where?: SoumissionWhereInput
+  }
+
+  /**
+   * Contrat.projects
+   */
+  export type Contrat$projectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    cursor?: ProjectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Contrat without action
+   */
+  export type ContratDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrat
+     */
+    select?: ContratSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrat
+     */
+    omit?: ContratOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -15752,6 +21317,7 @@ export namespace Prisma {
     budgetHeuresPrevu: 'budgetHeuresPrevu',
     budgetMontantPrevu: 'budgetMontantPrevu',
     arrondiHeures: 'arrondiHeures',
+    contratId: 'contratId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -15869,6 +21435,76 @@ export namespace Prisma {
   };
 
   export type BankHourScalarFieldEnum = (typeof BankHourScalarFieldEnum)[keyof typeof BankHourScalarFieldEnum]
+
+
+  export const ContactScalarFieldEnum: {
+    id: 'id',
+    clientId: 'clientId',
+    nom: 'nom',
+    fonction: 'fonction',
+    courriel: 'courriel',
+    telephone: 'telephone',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
+
+
+  export const SoumissionScalarFieldEnum: {
+    id: 'id',
+    numero: 'numero',
+    dateSoumission: 'dateSoumission',
+    clientId: 'clientId',
+    contactId: 'contactId',
+    titre: 'titre',
+    description: 'description',
+    dateValidite: 'dateValidite',
+    statut: 'statut',
+    sousTotalHT: 'sousTotalHT',
+    montantTPS: 'montantTPS',
+    montantTVQ: 'montantTVQ',
+    totalTTC: 'totalTTC',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SoumissionScalarFieldEnum = (typeof SoumissionScalarFieldEnum)[keyof typeof SoumissionScalarFieldEnum]
+
+
+  export const SoumissionLineScalarFieldEnum: {
+    id: 'id',
+    soumissionId: 'soumissionId',
+    description: 'description',
+    quantite: 'quantite',
+    prixUnitaire: 'prixUnitaire',
+    montantLigne: 'montantLigne',
+    typeLigne: 'typeLigne',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SoumissionLineScalarFieldEnum = (typeof SoumissionLineScalarFieldEnum)[keyof typeof SoumissionLineScalarFieldEnum]
+
+
+  export const ContratScalarFieldEnum: {
+    id: 'id',
+    numero: 'numero',
+    dateSignature: 'dateSignature',
+    dateDebut: 'dateDebut',
+    dateFin: 'dateFin',
+    clientId: 'clientId',
+    contactId: 'contactId',
+    soumissionId: 'soumissionId',
+    statut: 'statut',
+    montantTotalContrat: 'montantTotalContrat',
+    typeContrat: 'typeContrat',
+    conditionsSpeciales: 'conditionsSpeciales',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContratScalarFieldEnum = (typeof ContratScalarFieldEnum)[keyof typeof ContratScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -16166,6 +21802,9 @@ export namespace Prisma {
     projects?: ProjectListRelationFilter
     invoices?: InvoiceListRelationFilter
     bankHours?: BankHourListRelationFilter
+    contacts?: ContactListRelationFilter
+    soumissions?: SoumissionListRelationFilter
+    contrats?: ContratListRelationFilter
   }
 
   export type ClientOrderByWithRelationInput = {
@@ -16196,6 +21835,9 @@ export namespace Prisma {
     projects?: ProjectOrderByRelationAggregateInput
     invoices?: InvoiceOrderByRelationAggregateInput
     bankHours?: BankHourOrderByRelationAggregateInput
+    contacts?: ContactOrderByRelationAggregateInput
+    soumissions?: SoumissionOrderByRelationAggregateInput
+    contrats?: ContratOrderByRelationAggregateInput
   }
 
   export type ClientWhereUniqueInput = Prisma.AtLeast<{
@@ -16229,6 +21871,9 @@ export namespace Prisma {
     projects?: ProjectListRelationFilter
     invoices?: InvoiceListRelationFilter
     bankHours?: BankHourListRelationFilter
+    contacts?: ContactListRelationFilter
+    soumissions?: SoumissionListRelationFilter
+    contrats?: ContratListRelationFilter
   }, "id">
 
   export type ClientOrderByWithAggregationInput = {
@@ -16310,6 +21955,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: FloatNullableFilter<"Project"> | number | null
     budgetMontantPrevu?: FloatNullableFilter<"Project"> | number | null
     arrondiHeures?: FloatNullableFilter<"Project"> | number | null
+    contratId?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
@@ -16317,6 +21963,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryListRelationFilter
     invoiceLines?: InvoiceLineListRelationFilter
     bankHours?: BankHourListRelationFilter
+    contrat?: XOR<ContratNullableScalarRelationFilter, ContratWhereInput> | null
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -16335,6 +21982,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrderInput | SortOrder
     budgetMontantPrevu?: SortOrderInput | SortOrder
     arrondiHeures?: SortOrderInput | SortOrder
+    contratId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     client?: ClientOrderByWithRelationInput
@@ -16342,6 +21990,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryOrderByRelationAggregateInput
     invoiceLines?: InvoiceLineOrderByRelationAggregateInput
     bankHours?: BankHourOrderByRelationAggregateInput
+    contrat?: ContratOrderByWithRelationInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -16363,6 +22012,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: FloatNullableFilter<"Project"> | number | null
     budgetMontantPrevu?: FloatNullableFilter<"Project"> | number | null
     arrondiHeures?: FloatNullableFilter<"Project"> | number | null
+    contratId?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
@@ -16370,6 +22020,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryListRelationFilter
     invoiceLines?: InvoiceLineListRelationFilter
     bankHours?: BankHourListRelationFilter
+    contrat?: XOR<ContratNullableScalarRelationFilter, ContratWhereInput> | null
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -16388,6 +22039,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrderInput | SortOrder
     budgetMontantPrevu?: SortOrderInput | SortOrder
     arrondiHeures?: SortOrderInput | SortOrder
+    contratId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProjectCountOrderByAggregateInput
@@ -16416,6 +22068,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: FloatNullableWithAggregatesFilter<"Project"> | number | null
     budgetMontantPrevu?: FloatNullableWithAggregatesFilter<"Project"> | number | null
     arrondiHeures?: FloatNullableWithAggregatesFilter<"Project"> | number | null
+    contratId?: StringNullableWithAggregatesFilter<"Project"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
   }
@@ -17026,6 +22679,386 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"BankHour"> | Date | string
   }
 
+  export type ContactWhereInput = {
+    AND?: ContactWhereInput | ContactWhereInput[]
+    OR?: ContactWhereInput[]
+    NOT?: ContactWhereInput | ContactWhereInput[]
+    id?: StringFilter<"Contact"> | string
+    clientId?: StringFilter<"Contact"> | string
+    nom?: StringFilter<"Contact"> | string
+    fonction?: StringNullableFilter<"Contact"> | string | null
+    courriel?: StringNullableFilter<"Contact"> | string | null
+    telephone?: StringNullableFilter<"Contact"> | string | null
+    createdAt?: DateTimeFilter<"Contact"> | Date | string
+    updatedAt?: DateTimeFilter<"Contact"> | Date | string
+    client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
+    soumissions?: SoumissionListRelationFilter
+    contrats?: ContratListRelationFilter
+  }
+
+  export type ContactOrderByWithRelationInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    nom?: SortOrder
+    fonction?: SortOrderInput | SortOrder
+    courriel?: SortOrderInput | SortOrder
+    telephone?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    client?: ClientOrderByWithRelationInput
+    soumissions?: SoumissionOrderByRelationAggregateInput
+    contrats?: ContratOrderByRelationAggregateInput
+  }
+
+  export type ContactWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContactWhereInput | ContactWhereInput[]
+    OR?: ContactWhereInput[]
+    NOT?: ContactWhereInput | ContactWhereInput[]
+    clientId?: StringFilter<"Contact"> | string
+    nom?: StringFilter<"Contact"> | string
+    fonction?: StringNullableFilter<"Contact"> | string | null
+    courriel?: StringNullableFilter<"Contact"> | string | null
+    telephone?: StringNullableFilter<"Contact"> | string | null
+    createdAt?: DateTimeFilter<"Contact"> | Date | string
+    updatedAt?: DateTimeFilter<"Contact"> | Date | string
+    client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
+    soumissions?: SoumissionListRelationFilter
+    contrats?: ContratListRelationFilter
+  }, "id">
+
+  export type ContactOrderByWithAggregationInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    nom?: SortOrder
+    fonction?: SortOrderInput | SortOrder
+    courriel?: SortOrderInput | SortOrder
+    telephone?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContactCountOrderByAggregateInput
+    _max?: ContactMaxOrderByAggregateInput
+    _min?: ContactMinOrderByAggregateInput
+  }
+
+  export type ContactScalarWhereWithAggregatesInput = {
+    AND?: ContactScalarWhereWithAggregatesInput | ContactScalarWhereWithAggregatesInput[]
+    OR?: ContactScalarWhereWithAggregatesInput[]
+    NOT?: ContactScalarWhereWithAggregatesInput | ContactScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Contact"> | string
+    clientId?: StringWithAggregatesFilter<"Contact"> | string
+    nom?: StringWithAggregatesFilter<"Contact"> | string
+    fonction?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    courriel?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    telephone?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
+  }
+
+  export type SoumissionWhereInput = {
+    AND?: SoumissionWhereInput | SoumissionWhereInput[]
+    OR?: SoumissionWhereInput[]
+    NOT?: SoumissionWhereInput | SoumissionWhereInput[]
+    id?: StringFilter<"Soumission"> | string
+    numero?: StringFilter<"Soumission"> | string
+    dateSoumission?: DateTimeFilter<"Soumission"> | Date | string
+    clientId?: StringFilter<"Soumission"> | string
+    contactId?: StringNullableFilter<"Soumission"> | string | null
+    titre?: StringFilter<"Soumission"> | string
+    description?: StringNullableFilter<"Soumission"> | string | null
+    dateValidite?: DateTimeNullableFilter<"Soumission"> | Date | string | null
+    statut?: StringFilter<"Soumission"> | string
+    sousTotalHT?: FloatFilter<"Soumission"> | number
+    montantTPS?: FloatFilter<"Soumission"> | number
+    montantTVQ?: FloatFilter<"Soumission"> | number
+    totalTTC?: FloatFilter<"Soumission"> | number
+    createdAt?: DateTimeFilter<"Soumission"> | Date | string
+    updatedAt?: DateTimeFilter<"Soumission"> | Date | string
+    client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
+    contact?: XOR<ContactNullableScalarRelationFilter, ContactWhereInput> | null
+    lines?: SoumissionLineListRelationFilter
+    contrats?: ContratListRelationFilter
+  }
+
+  export type SoumissionOrderByWithRelationInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSoumission?: SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrderInput | SortOrder
+    titre?: SortOrder
+    description?: SortOrderInput | SortOrder
+    dateValidite?: SortOrderInput | SortOrder
+    statut?: SortOrder
+    sousTotalHT?: SortOrder
+    montantTPS?: SortOrder
+    montantTVQ?: SortOrder
+    totalTTC?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    client?: ClientOrderByWithRelationInput
+    contact?: ContactOrderByWithRelationInput
+    lines?: SoumissionLineOrderByRelationAggregateInput
+    contrats?: ContratOrderByRelationAggregateInput
+  }
+
+  export type SoumissionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    numero?: string
+    AND?: SoumissionWhereInput | SoumissionWhereInput[]
+    OR?: SoumissionWhereInput[]
+    NOT?: SoumissionWhereInput | SoumissionWhereInput[]
+    dateSoumission?: DateTimeFilter<"Soumission"> | Date | string
+    clientId?: StringFilter<"Soumission"> | string
+    contactId?: StringNullableFilter<"Soumission"> | string | null
+    titre?: StringFilter<"Soumission"> | string
+    description?: StringNullableFilter<"Soumission"> | string | null
+    dateValidite?: DateTimeNullableFilter<"Soumission"> | Date | string | null
+    statut?: StringFilter<"Soumission"> | string
+    sousTotalHT?: FloatFilter<"Soumission"> | number
+    montantTPS?: FloatFilter<"Soumission"> | number
+    montantTVQ?: FloatFilter<"Soumission"> | number
+    totalTTC?: FloatFilter<"Soumission"> | number
+    createdAt?: DateTimeFilter<"Soumission"> | Date | string
+    updatedAt?: DateTimeFilter<"Soumission"> | Date | string
+    client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
+    contact?: XOR<ContactNullableScalarRelationFilter, ContactWhereInput> | null
+    lines?: SoumissionLineListRelationFilter
+    contrats?: ContratListRelationFilter
+  }, "id" | "numero">
+
+  export type SoumissionOrderByWithAggregationInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSoumission?: SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrderInput | SortOrder
+    titre?: SortOrder
+    description?: SortOrderInput | SortOrder
+    dateValidite?: SortOrderInput | SortOrder
+    statut?: SortOrder
+    sousTotalHT?: SortOrder
+    montantTPS?: SortOrder
+    montantTVQ?: SortOrder
+    totalTTC?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SoumissionCountOrderByAggregateInput
+    _avg?: SoumissionAvgOrderByAggregateInput
+    _max?: SoumissionMaxOrderByAggregateInput
+    _min?: SoumissionMinOrderByAggregateInput
+    _sum?: SoumissionSumOrderByAggregateInput
+  }
+
+  export type SoumissionScalarWhereWithAggregatesInput = {
+    AND?: SoumissionScalarWhereWithAggregatesInput | SoumissionScalarWhereWithAggregatesInput[]
+    OR?: SoumissionScalarWhereWithAggregatesInput[]
+    NOT?: SoumissionScalarWhereWithAggregatesInput | SoumissionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Soumission"> | string
+    numero?: StringWithAggregatesFilter<"Soumission"> | string
+    dateSoumission?: DateTimeWithAggregatesFilter<"Soumission"> | Date | string
+    clientId?: StringWithAggregatesFilter<"Soumission"> | string
+    contactId?: StringNullableWithAggregatesFilter<"Soumission"> | string | null
+    titre?: StringWithAggregatesFilter<"Soumission"> | string
+    description?: StringNullableWithAggregatesFilter<"Soumission"> | string | null
+    dateValidite?: DateTimeNullableWithAggregatesFilter<"Soumission"> | Date | string | null
+    statut?: StringWithAggregatesFilter<"Soumission"> | string
+    sousTotalHT?: FloatWithAggregatesFilter<"Soumission"> | number
+    montantTPS?: FloatWithAggregatesFilter<"Soumission"> | number
+    montantTVQ?: FloatWithAggregatesFilter<"Soumission"> | number
+    totalTTC?: FloatWithAggregatesFilter<"Soumission"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Soumission"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Soumission"> | Date | string
+  }
+
+  export type SoumissionLineWhereInput = {
+    AND?: SoumissionLineWhereInput | SoumissionLineWhereInput[]
+    OR?: SoumissionLineWhereInput[]
+    NOT?: SoumissionLineWhereInput | SoumissionLineWhereInput[]
+    id?: StringFilter<"SoumissionLine"> | string
+    soumissionId?: StringFilter<"SoumissionLine"> | string
+    description?: StringFilter<"SoumissionLine"> | string
+    quantite?: FloatFilter<"SoumissionLine"> | number
+    prixUnitaire?: FloatFilter<"SoumissionLine"> | number
+    montantLigne?: FloatFilter<"SoumissionLine"> | number
+    typeLigne?: StringFilter<"SoumissionLine"> | string
+    createdAt?: DateTimeFilter<"SoumissionLine"> | Date | string
+    updatedAt?: DateTimeFilter<"SoumissionLine"> | Date | string
+    soumission?: XOR<SoumissionScalarRelationFilter, SoumissionWhereInput>
+  }
+
+  export type SoumissionLineOrderByWithRelationInput = {
+    id?: SortOrder
+    soumissionId?: SortOrder
+    description?: SortOrder
+    quantite?: SortOrder
+    prixUnitaire?: SortOrder
+    montantLigne?: SortOrder
+    typeLigne?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    soumission?: SoumissionOrderByWithRelationInput
+  }
+
+  export type SoumissionLineWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SoumissionLineWhereInput | SoumissionLineWhereInput[]
+    OR?: SoumissionLineWhereInput[]
+    NOT?: SoumissionLineWhereInput | SoumissionLineWhereInput[]
+    soumissionId?: StringFilter<"SoumissionLine"> | string
+    description?: StringFilter<"SoumissionLine"> | string
+    quantite?: FloatFilter<"SoumissionLine"> | number
+    prixUnitaire?: FloatFilter<"SoumissionLine"> | number
+    montantLigne?: FloatFilter<"SoumissionLine"> | number
+    typeLigne?: StringFilter<"SoumissionLine"> | string
+    createdAt?: DateTimeFilter<"SoumissionLine"> | Date | string
+    updatedAt?: DateTimeFilter<"SoumissionLine"> | Date | string
+    soumission?: XOR<SoumissionScalarRelationFilter, SoumissionWhereInput>
+  }, "id">
+
+  export type SoumissionLineOrderByWithAggregationInput = {
+    id?: SortOrder
+    soumissionId?: SortOrder
+    description?: SortOrder
+    quantite?: SortOrder
+    prixUnitaire?: SortOrder
+    montantLigne?: SortOrder
+    typeLigne?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SoumissionLineCountOrderByAggregateInput
+    _avg?: SoumissionLineAvgOrderByAggregateInput
+    _max?: SoumissionLineMaxOrderByAggregateInput
+    _min?: SoumissionLineMinOrderByAggregateInput
+    _sum?: SoumissionLineSumOrderByAggregateInput
+  }
+
+  export type SoumissionLineScalarWhereWithAggregatesInput = {
+    AND?: SoumissionLineScalarWhereWithAggregatesInput | SoumissionLineScalarWhereWithAggregatesInput[]
+    OR?: SoumissionLineScalarWhereWithAggregatesInput[]
+    NOT?: SoumissionLineScalarWhereWithAggregatesInput | SoumissionLineScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SoumissionLine"> | string
+    soumissionId?: StringWithAggregatesFilter<"SoumissionLine"> | string
+    description?: StringWithAggregatesFilter<"SoumissionLine"> | string
+    quantite?: FloatWithAggregatesFilter<"SoumissionLine"> | number
+    prixUnitaire?: FloatWithAggregatesFilter<"SoumissionLine"> | number
+    montantLigne?: FloatWithAggregatesFilter<"SoumissionLine"> | number
+    typeLigne?: StringWithAggregatesFilter<"SoumissionLine"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"SoumissionLine"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SoumissionLine"> | Date | string
+  }
+
+  export type ContratWhereInput = {
+    AND?: ContratWhereInput | ContratWhereInput[]
+    OR?: ContratWhereInput[]
+    NOT?: ContratWhereInput | ContratWhereInput[]
+    id?: StringFilter<"Contrat"> | string
+    numero?: StringFilter<"Contrat"> | string
+    dateSignature?: DateTimeNullableFilter<"Contrat"> | Date | string | null
+    dateDebut?: DateTimeFilter<"Contrat"> | Date | string
+    dateFin?: DateTimeNullableFilter<"Contrat"> | Date | string | null
+    clientId?: StringFilter<"Contrat"> | string
+    contactId?: StringNullableFilter<"Contrat"> | string | null
+    soumissionId?: StringNullableFilter<"Contrat"> | string | null
+    statut?: StringFilter<"Contrat"> | string
+    montantTotalContrat?: FloatNullableFilter<"Contrat"> | number | null
+    typeContrat?: StringFilter<"Contrat"> | string
+    conditionsSpeciales?: StringNullableFilter<"Contrat"> | string | null
+    createdAt?: DateTimeFilter<"Contrat"> | Date | string
+    updatedAt?: DateTimeFilter<"Contrat"> | Date | string
+    client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
+    contact?: XOR<ContactNullableScalarRelationFilter, ContactWhereInput> | null
+    soumission?: XOR<SoumissionNullableScalarRelationFilter, SoumissionWhereInput> | null
+    projects?: ProjectListRelationFilter
+  }
+
+  export type ContratOrderByWithRelationInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSignature?: SortOrderInput | SortOrder
+    dateDebut?: SortOrder
+    dateFin?: SortOrderInput | SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrderInput | SortOrder
+    soumissionId?: SortOrderInput | SortOrder
+    statut?: SortOrder
+    montantTotalContrat?: SortOrderInput | SortOrder
+    typeContrat?: SortOrder
+    conditionsSpeciales?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    client?: ClientOrderByWithRelationInput
+    contact?: ContactOrderByWithRelationInput
+    soumission?: SoumissionOrderByWithRelationInput
+    projects?: ProjectOrderByRelationAggregateInput
+  }
+
+  export type ContratWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    numero?: string
+    AND?: ContratWhereInput | ContratWhereInput[]
+    OR?: ContratWhereInput[]
+    NOT?: ContratWhereInput | ContratWhereInput[]
+    dateSignature?: DateTimeNullableFilter<"Contrat"> | Date | string | null
+    dateDebut?: DateTimeFilter<"Contrat"> | Date | string
+    dateFin?: DateTimeNullableFilter<"Contrat"> | Date | string | null
+    clientId?: StringFilter<"Contrat"> | string
+    contactId?: StringNullableFilter<"Contrat"> | string | null
+    soumissionId?: StringNullableFilter<"Contrat"> | string | null
+    statut?: StringFilter<"Contrat"> | string
+    montantTotalContrat?: FloatNullableFilter<"Contrat"> | number | null
+    typeContrat?: StringFilter<"Contrat"> | string
+    conditionsSpeciales?: StringNullableFilter<"Contrat"> | string | null
+    createdAt?: DateTimeFilter<"Contrat"> | Date | string
+    updatedAt?: DateTimeFilter<"Contrat"> | Date | string
+    client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
+    contact?: XOR<ContactNullableScalarRelationFilter, ContactWhereInput> | null
+    soumission?: XOR<SoumissionNullableScalarRelationFilter, SoumissionWhereInput> | null
+    projects?: ProjectListRelationFilter
+  }, "id" | "numero">
+
+  export type ContratOrderByWithAggregationInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSignature?: SortOrderInput | SortOrder
+    dateDebut?: SortOrder
+    dateFin?: SortOrderInput | SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrderInput | SortOrder
+    soumissionId?: SortOrderInput | SortOrder
+    statut?: SortOrder
+    montantTotalContrat?: SortOrderInput | SortOrder
+    typeContrat?: SortOrder
+    conditionsSpeciales?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContratCountOrderByAggregateInput
+    _avg?: ContratAvgOrderByAggregateInput
+    _max?: ContratMaxOrderByAggregateInput
+    _min?: ContratMinOrderByAggregateInput
+    _sum?: ContratSumOrderByAggregateInput
+  }
+
+  export type ContratScalarWhereWithAggregatesInput = {
+    AND?: ContratScalarWhereWithAggregatesInput | ContratScalarWhereWithAggregatesInput[]
+    OR?: ContratScalarWhereWithAggregatesInput[]
+    NOT?: ContratScalarWhereWithAggregatesInput | ContratScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Contrat"> | string
+    numero?: StringWithAggregatesFilter<"Contrat"> | string
+    dateSignature?: DateTimeNullableWithAggregatesFilter<"Contrat"> | Date | string | null
+    dateDebut?: DateTimeWithAggregatesFilter<"Contrat"> | Date | string
+    dateFin?: DateTimeNullableWithAggregatesFilter<"Contrat"> | Date | string | null
+    clientId?: StringWithAggregatesFilter<"Contrat"> | string
+    contactId?: StringNullableWithAggregatesFilter<"Contrat"> | string | null
+    soumissionId?: StringNullableWithAggregatesFilter<"Contrat"> | string | null
+    statut?: StringWithAggregatesFilter<"Contrat"> | string
+    montantTotalContrat?: FloatNullableWithAggregatesFilter<"Contrat"> | number | null
+    typeContrat?: StringWithAggregatesFilter<"Contrat"> | string
+    conditionsSpeciales?: StringNullableWithAggregatesFilter<"Contrat"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Contrat"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Contrat"> | Date | string
+  }
+
   export type RoleCreateInput = {
     id?: string
     name: string
@@ -17251,6 +23284,9 @@ export namespace Prisma {
     projects?: ProjectCreateNestedManyWithoutClientInput
     invoices?: InvoiceCreateNestedManyWithoutClientInput
     bankHours?: BankHourCreateNestedManyWithoutClientInput
+    contacts?: ContactCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionCreateNestedManyWithoutClientInput
+    contrats?: ContratCreateNestedManyWithoutClientInput
   }
 
   export type ClientUncheckedCreateInput = {
@@ -17281,6 +23317,9 @@ export namespace Prisma {
     projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
     bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutClientInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutClientInput
   }
 
   export type ClientUpdateInput = {
@@ -17311,6 +23350,9 @@ export namespace Prisma {
     projects?: ProjectUpdateManyWithoutClientNestedInput
     invoices?: InvoiceUpdateManyWithoutClientNestedInput
     bankHours?: BankHourUpdateManyWithoutClientNestedInput
+    contacts?: ContactUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUpdateManyWithoutClientNestedInput
+    contrats?: ContratUpdateManyWithoutClientNestedInput
   }
 
   export type ClientUncheckedUpdateInput = {
@@ -17341,6 +23383,9 @@ export namespace Prisma {
     projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
     bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUncheckedUpdateManyWithoutClientNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutClientNestedInput
   }
 
   export type ClientCreateManyInput = {
@@ -17446,6 +23491,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
     bankHours?: BankHourCreateNestedManyWithoutProjetInput
+    contrat?: ContratCreateNestedOneWithoutProjectsInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -17464,6 +23510,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
@@ -17494,6 +23541,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
     bankHours?: BankHourUpdateManyWithoutProjetNestedInput
+    contrat?: ContratUpdateOneWithoutProjectsNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -17512,6 +23560,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
@@ -17536,6 +23585,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17575,6 +23625,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18227,6 +24278,425 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ContactCreateInput = {
+    id?: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutContactsInput
+    soumissions?: SoumissionCreateNestedManyWithoutContactInput
+    contrats?: ContratCreateNestedManyWithoutContactInput
+  }
+
+  export type ContactUncheckedCreateInput = {
+    id?: string
+    clientId: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutContactInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutContactInput
+  }
+
+  export type ContactUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutContactsNestedInput
+    soumissions?: SoumissionUpdateManyWithoutContactNestedInput
+    contrats?: ContratUpdateManyWithoutContactNestedInput
+  }
+
+  export type ContactUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soumissions?: SoumissionUncheckedUpdateManyWithoutContactNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutContactNestedInput
+  }
+
+  export type ContactCreateManyInput = {
+    id?: string
+    clientId: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionCreateInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutSoumissionsInput
+    contact?: ContactCreateNestedOneWithoutSoumissionsInput
+    lines?: SoumissionLineCreateNestedManyWithoutSoumissionInput
+    contrats?: ContratCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionUncheckedCreateInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    clientId: string
+    contactId?: string | null
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lines?: SoumissionLineUncheckedCreateNestedManyWithoutSoumissionInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutSoumissionsNestedInput
+    contact?: ContactUpdateOneWithoutSoumissionsNestedInput
+    lines?: SoumissionLineUpdateManyWithoutSoumissionNestedInput
+    contrats?: ContratUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type SoumissionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lines?: SoumissionLineUncheckedUpdateManyWithoutSoumissionNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type SoumissionCreateManyInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    clientId: string
+    contactId?: string | null
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoumissionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionLineCreateInput = {
+    id?: string
+    description: string
+    quantite: number
+    prixUnitaire: number
+    montantLigne: number
+    typeLigne: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soumission: SoumissionCreateNestedOneWithoutLinesInput
+  }
+
+  export type SoumissionLineUncheckedCreateInput = {
+    id?: string
+    soumissionId: string
+    description: string
+    quantite: number
+    prixUnitaire: number
+    montantLigne: number
+    typeLigne: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoumissionLineUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    quantite?: FloatFieldUpdateOperationsInput | number
+    prixUnitaire?: FloatFieldUpdateOperationsInput | number
+    montantLigne?: FloatFieldUpdateOperationsInput | number
+    typeLigne?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soumission?: SoumissionUpdateOneRequiredWithoutLinesNestedInput
+  }
+
+  export type SoumissionLineUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    soumissionId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    quantite?: FloatFieldUpdateOperationsInput | number
+    prixUnitaire?: FloatFieldUpdateOperationsInput | number
+    montantLigne?: FloatFieldUpdateOperationsInput | number
+    typeLigne?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionLineCreateManyInput = {
+    id?: string
+    soumissionId: string
+    description: string
+    quantite: number
+    prixUnitaire: number
+    montantLigne: number
+    typeLigne: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoumissionLineUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    quantite?: FloatFieldUpdateOperationsInput | number
+    prixUnitaire?: FloatFieldUpdateOperationsInput | number
+    montantLigne?: FloatFieldUpdateOperationsInput | number
+    typeLigne?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionLineUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    soumissionId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    quantite?: FloatFieldUpdateOperationsInput | number
+    prixUnitaire?: FloatFieldUpdateOperationsInput | number
+    montantLigne?: FloatFieldUpdateOperationsInput | number
+    typeLigne?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratCreateInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutContratsInput
+    contact?: ContactCreateNestedOneWithoutContratsInput
+    soumission?: SoumissionCreateNestedOneWithoutContratsInput
+    projects?: ProjectCreateNestedManyWithoutContratInput
+  }
+
+  export type ContratUncheckedCreateInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    clientId: string
+    contactId?: string | null
+    soumissionId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutContratInput
+  }
+
+  export type ContratUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutContratsNestedInput
+    contact?: ContactUpdateOneWithoutContratsNestedInput
+    soumission?: SoumissionUpdateOneWithoutContratsNestedInput
+    projects?: ProjectUpdateManyWithoutContratNestedInput
+  }
+
+  export type ContratUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    soumissionId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutContratNestedInput
+  }
+
+  export type ContratCreateManyInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    clientId: string
+    contactId?: string | null
+    soumissionId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContratUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    soumissionId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -18502,6 +24972,24 @@ export namespace Prisma {
     none?: BankHourWhereInput
   }
 
+  export type ContactListRelationFilter = {
+    every?: ContactWhereInput
+    some?: ContactWhereInput
+    none?: ContactWhereInput
+  }
+
+  export type SoumissionListRelationFilter = {
+    every?: SoumissionWhereInput
+    some?: SoumissionWhereInput
+    none?: SoumissionWhereInput
+  }
+
+  export type ContratListRelationFilter = {
+    every?: ContratWhereInput
+    some?: ContratWhereInput
+    none?: ContratWhereInput
+  }
+
   export type ProjectOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -18511,6 +24999,18 @@ export namespace Prisma {
   }
 
   export type BankHourOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ContactOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SoumissionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ContratOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18634,6 +25134,11 @@ export namespace Prisma {
     none?: InvoiceLineWhereInput
   }
 
+  export type ContratNullableScalarRelationFilter = {
+    is?: ContratWhereInput | null
+    isNot?: ContratWhereInput | null
+  }
+
   export type TaskOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -18658,6 +25163,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrder
     budgetMontantPrevu?: SortOrder
     arrondiHeures?: SortOrder
+    contratId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18688,6 +25194,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrder
     budgetMontantPrevu?: SortOrder
     arrondiHeures?: SortOrder
+    contratId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -18708,6 +25215,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrder
     budgetMontantPrevu?: SortOrder
     arrondiHeures?: SortOrder
+    contratId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -19114,6 +25622,239 @@ export namespace Prisma {
     heuresConsommees?: SortOrder
   }
 
+  export type ContactCountOrderByAggregateInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    nom?: SortOrder
+    fonction?: SortOrder
+    courriel?: SortOrder
+    telephone?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactMaxOrderByAggregateInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    nom?: SortOrder
+    fonction?: SortOrder
+    courriel?: SortOrder
+    telephone?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactMinOrderByAggregateInput = {
+    id?: SortOrder
+    clientId?: SortOrder
+    nom?: SortOrder
+    fonction?: SortOrder
+    courriel?: SortOrder
+    telephone?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactNullableScalarRelationFilter = {
+    is?: ContactWhereInput | null
+    isNot?: ContactWhereInput | null
+  }
+
+  export type SoumissionLineListRelationFilter = {
+    every?: SoumissionLineWhereInput
+    some?: SoumissionLineWhereInput
+    none?: SoumissionLineWhereInput
+  }
+
+  export type SoumissionLineOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SoumissionCountOrderByAggregateInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSoumission?: SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrder
+    titre?: SortOrder
+    description?: SortOrder
+    dateValidite?: SortOrder
+    statut?: SortOrder
+    sousTotalHT?: SortOrder
+    montantTPS?: SortOrder
+    montantTVQ?: SortOrder
+    totalTTC?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoumissionAvgOrderByAggregateInput = {
+    sousTotalHT?: SortOrder
+    montantTPS?: SortOrder
+    montantTVQ?: SortOrder
+    totalTTC?: SortOrder
+  }
+
+  export type SoumissionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSoumission?: SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrder
+    titre?: SortOrder
+    description?: SortOrder
+    dateValidite?: SortOrder
+    statut?: SortOrder
+    sousTotalHT?: SortOrder
+    montantTPS?: SortOrder
+    montantTVQ?: SortOrder
+    totalTTC?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoumissionMinOrderByAggregateInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSoumission?: SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrder
+    titre?: SortOrder
+    description?: SortOrder
+    dateValidite?: SortOrder
+    statut?: SortOrder
+    sousTotalHT?: SortOrder
+    montantTPS?: SortOrder
+    montantTVQ?: SortOrder
+    totalTTC?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoumissionSumOrderByAggregateInput = {
+    sousTotalHT?: SortOrder
+    montantTPS?: SortOrder
+    montantTVQ?: SortOrder
+    totalTTC?: SortOrder
+  }
+
+  export type SoumissionScalarRelationFilter = {
+    is?: SoumissionWhereInput
+    isNot?: SoumissionWhereInput
+  }
+
+  export type SoumissionLineCountOrderByAggregateInput = {
+    id?: SortOrder
+    soumissionId?: SortOrder
+    description?: SortOrder
+    quantite?: SortOrder
+    prixUnitaire?: SortOrder
+    montantLigne?: SortOrder
+    typeLigne?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoumissionLineAvgOrderByAggregateInput = {
+    quantite?: SortOrder
+    prixUnitaire?: SortOrder
+    montantLigne?: SortOrder
+  }
+
+  export type SoumissionLineMaxOrderByAggregateInput = {
+    id?: SortOrder
+    soumissionId?: SortOrder
+    description?: SortOrder
+    quantite?: SortOrder
+    prixUnitaire?: SortOrder
+    montantLigne?: SortOrder
+    typeLigne?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoumissionLineMinOrderByAggregateInput = {
+    id?: SortOrder
+    soumissionId?: SortOrder
+    description?: SortOrder
+    quantite?: SortOrder
+    prixUnitaire?: SortOrder
+    montantLigne?: SortOrder
+    typeLigne?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoumissionLineSumOrderByAggregateInput = {
+    quantite?: SortOrder
+    prixUnitaire?: SortOrder
+    montantLigne?: SortOrder
+  }
+
+  export type SoumissionNullableScalarRelationFilter = {
+    is?: SoumissionWhereInput | null
+    isNot?: SoumissionWhereInput | null
+  }
+
+  export type ContratCountOrderByAggregateInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSignature?: SortOrder
+    dateDebut?: SortOrder
+    dateFin?: SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrder
+    soumissionId?: SortOrder
+    statut?: SortOrder
+    montantTotalContrat?: SortOrder
+    typeContrat?: SortOrder
+    conditionsSpeciales?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContratAvgOrderByAggregateInput = {
+    montantTotalContrat?: SortOrder
+  }
+
+  export type ContratMaxOrderByAggregateInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSignature?: SortOrder
+    dateDebut?: SortOrder
+    dateFin?: SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrder
+    soumissionId?: SortOrder
+    statut?: SortOrder
+    montantTotalContrat?: SortOrder
+    typeContrat?: SortOrder
+    conditionsSpeciales?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContratMinOrderByAggregateInput = {
+    id?: SortOrder
+    numero?: SortOrder
+    dateSignature?: SortOrder
+    dateDebut?: SortOrder
+    dateFin?: SortOrder
+    clientId?: SortOrder
+    contactId?: SortOrder
+    soumissionId?: SortOrder
+    statut?: SortOrder
+    montantTotalContrat?: SortOrder
+    typeContrat?: SortOrder
+    conditionsSpeciales?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContratSumOrderByAggregateInput = {
+    montantTotalContrat?: SortOrder
+  }
+
   export type UserCreateNestedManyWithoutRoleInput = {
     create?: XOR<UserCreateWithoutRoleInput, UserUncheckedCreateWithoutRoleInput> | UserCreateWithoutRoleInput[] | UserUncheckedCreateWithoutRoleInput[]
     connectOrCreate?: UserCreateOrConnectWithoutRoleInput | UserCreateOrConnectWithoutRoleInput[]
@@ -19339,6 +26080,27 @@ export namespace Prisma {
     connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
   }
 
+  export type ContactCreateNestedManyWithoutClientInput = {
+    create?: XOR<ContactCreateWithoutClientInput, ContactUncheckedCreateWithoutClientInput> | ContactCreateWithoutClientInput[] | ContactUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ContactCreateOrConnectWithoutClientInput | ContactCreateOrConnectWithoutClientInput[]
+    createMany?: ContactCreateManyClientInputEnvelope
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+  }
+
+  export type SoumissionCreateNestedManyWithoutClientInput = {
+    create?: XOR<SoumissionCreateWithoutClientInput, SoumissionUncheckedCreateWithoutClientInput> | SoumissionCreateWithoutClientInput[] | SoumissionUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: SoumissionCreateOrConnectWithoutClientInput | SoumissionCreateOrConnectWithoutClientInput[]
+    createMany?: SoumissionCreateManyClientInputEnvelope
+    connect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+  }
+
+  export type ContratCreateNestedManyWithoutClientInput = {
+    create?: XOR<ContratCreateWithoutClientInput, ContratUncheckedCreateWithoutClientInput> | ContratCreateWithoutClientInput[] | ContratUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutClientInput | ContratCreateOrConnectWithoutClientInput[]
+    createMany?: ContratCreateManyClientInputEnvelope
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+  }
+
   export type ProjectUncheckedCreateNestedManyWithoutClientInput = {
     create?: XOR<ProjectCreateWithoutClientInput, ProjectUncheckedCreateWithoutClientInput> | ProjectCreateWithoutClientInput[] | ProjectUncheckedCreateWithoutClientInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutClientInput | ProjectCreateOrConnectWithoutClientInput[]
@@ -19358,6 +26120,27 @@ export namespace Prisma {
     connectOrCreate?: BankHourCreateOrConnectWithoutClientInput | BankHourCreateOrConnectWithoutClientInput[]
     createMany?: BankHourCreateManyClientInputEnvelope
     connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+  }
+
+  export type ContactUncheckedCreateNestedManyWithoutClientInput = {
+    create?: XOR<ContactCreateWithoutClientInput, ContactUncheckedCreateWithoutClientInput> | ContactCreateWithoutClientInput[] | ContactUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ContactCreateOrConnectWithoutClientInput | ContactCreateOrConnectWithoutClientInput[]
+    createMany?: ContactCreateManyClientInputEnvelope
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+  }
+
+  export type SoumissionUncheckedCreateNestedManyWithoutClientInput = {
+    create?: XOR<SoumissionCreateWithoutClientInput, SoumissionUncheckedCreateWithoutClientInput> | SoumissionCreateWithoutClientInput[] | SoumissionUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: SoumissionCreateOrConnectWithoutClientInput | SoumissionCreateOrConnectWithoutClientInput[]
+    createMany?: SoumissionCreateManyClientInputEnvelope
+    connect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+  }
+
+  export type ContratUncheckedCreateNestedManyWithoutClientInput = {
+    create?: XOR<ContratCreateWithoutClientInput, ContratUncheckedCreateWithoutClientInput> | ContratCreateWithoutClientInput[] | ContratUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutClientInput | ContratCreateOrConnectWithoutClientInput[]
+    createMany?: ContratCreateManyClientInputEnvelope
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
   }
 
   export type ProjectUpdateManyWithoutClientNestedInput = {
@@ -19402,6 +26185,48 @@ export namespace Prisma {
     deleteMany?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
   }
 
+  export type ContactUpdateManyWithoutClientNestedInput = {
+    create?: XOR<ContactCreateWithoutClientInput, ContactUncheckedCreateWithoutClientInput> | ContactCreateWithoutClientInput[] | ContactUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ContactCreateOrConnectWithoutClientInput | ContactCreateOrConnectWithoutClientInput[]
+    upsert?: ContactUpsertWithWhereUniqueWithoutClientInput | ContactUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: ContactCreateManyClientInputEnvelope
+    set?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    disconnect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    delete?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    update?: ContactUpdateWithWhereUniqueWithoutClientInput | ContactUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: ContactUpdateManyWithWhereWithoutClientInput | ContactUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[]
+  }
+
+  export type SoumissionUpdateManyWithoutClientNestedInput = {
+    create?: XOR<SoumissionCreateWithoutClientInput, SoumissionUncheckedCreateWithoutClientInput> | SoumissionCreateWithoutClientInput[] | SoumissionUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: SoumissionCreateOrConnectWithoutClientInput | SoumissionCreateOrConnectWithoutClientInput[]
+    upsert?: SoumissionUpsertWithWhereUniqueWithoutClientInput | SoumissionUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: SoumissionCreateManyClientInputEnvelope
+    set?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    disconnect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    delete?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    connect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    update?: SoumissionUpdateWithWhereUniqueWithoutClientInput | SoumissionUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: SoumissionUpdateManyWithWhereWithoutClientInput | SoumissionUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: SoumissionScalarWhereInput | SoumissionScalarWhereInput[]
+  }
+
+  export type ContratUpdateManyWithoutClientNestedInput = {
+    create?: XOR<ContratCreateWithoutClientInput, ContratUncheckedCreateWithoutClientInput> | ContratCreateWithoutClientInput[] | ContratUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutClientInput | ContratCreateOrConnectWithoutClientInput[]
+    upsert?: ContratUpsertWithWhereUniqueWithoutClientInput | ContratUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: ContratCreateManyClientInputEnvelope
+    set?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    disconnect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    delete?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    update?: ContratUpdateWithWhereUniqueWithoutClientInput | ContratUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: ContratUpdateManyWithWhereWithoutClientInput | ContratUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: ContratScalarWhereInput | ContratScalarWhereInput[]
+  }
+
   export type ProjectUncheckedUpdateManyWithoutClientNestedInput = {
     create?: XOR<ProjectCreateWithoutClientInput, ProjectUncheckedCreateWithoutClientInput> | ProjectCreateWithoutClientInput[] | ProjectUncheckedCreateWithoutClientInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutClientInput | ProjectCreateOrConnectWithoutClientInput[]
@@ -19444,6 +26269,48 @@ export namespace Prisma {
     deleteMany?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
   }
 
+  export type ContactUncheckedUpdateManyWithoutClientNestedInput = {
+    create?: XOR<ContactCreateWithoutClientInput, ContactUncheckedCreateWithoutClientInput> | ContactCreateWithoutClientInput[] | ContactUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ContactCreateOrConnectWithoutClientInput | ContactCreateOrConnectWithoutClientInput[]
+    upsert?: ContactUpsertWithWhereUniqueWithoutClientInput | ContactUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: ContactCreateManyClientInputEnvelope
+    set?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    disconnect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    delete?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    update?: ContactUpdateWithWhereUniqueWithoutClientInput | ContactUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: ContactUpdateManyWithWhereWithoutClientInput | ContactUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[]
+  }
+
+  export type SoumissionUncheckedUpdateManyWithoutClientNestedInput = {
+    create?: XOR<SoumissionCreateWithoutClientInput, SoumissionUncheckedCreateWithoutClientInput> | SoumissionCreateWithoutClientInput[] | SoumissionUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: SoumissionCreateOrConnectWithoutClientInput | SoumissionCreateOrConnectWithoutClientInput[]
+    upsert?: SoumissionUpsertWithWhereUniqueWithoutClientInput | SoumissionUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: SoumissionCreateManyClientInputEnvelope
+    set?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    disconnect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    delete?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    connect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    update?: SoumissionUpdateWithWhereUniqueWithoutClientInput | SoumissionUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: SoumissionUpdateManyWithWhereWithoutClientInput | SoumissionUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: SoumissionScalarWhereInput | SoumissionScalarWhereInput[]
+  }
+
+  export type ContratUncheckedUpdateManyWithoutClientNestedInput = {
+    create?: XOR<ContratCreateWithoutClientInput, ContratUncheckedCreateWithoutClientInput> | ContratCreateWithoutClientInput[] | ContratUncheckedCreateWithoutClientInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutClientInput | ContratCreateOrConnectWithoutClientInput[]
+    upsert?: ContratUpsertWithWhereUniqueWithoutClientInput | ContratUpsertWithWhereUniqueWithoutClientInput[]
+    createMany?: ContratCreateManyClientInputEnvelope
+    set?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    disconnect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    delete?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    update?: ContratUpdateWithWhereUniqueWithoutClientInput | ContratUpdateWithWhereUniqueWithoutClientInput[]
+    updateMany?: ContratUpdateManyWithWhereWithoutClientInput | ContratUpdateManyWithWhereWithoutClientInput[]
+    deleteMany?: ContratScalarWhereInput | ContratScalarWhereInput[]
+  }
+
   export type ClientCreateNestedOneWithoutProjectsInput = {
     create?: XOR<ClientCreateWithoutProjectsInput, ClientUncheckedCreateWithoutProjectsInput>
     connectOrCreate?: ClientCreateOrConnectWithoutProjectsInput
@@ -19476,6 +26343,12 @@ export namespace Prisma {
     connectOrCreate?: BankHourCreateOrConnectWithoutProjetInput | BankHourCreateOrConnectWithoutProjetInput[]
     createMany?: BankHourCreateManyProjetInputEnvelope
     connect?: BankHourWhereUniqueInput | BankHourWhereUniqueInput[]
+  }
+
+  export type ContratCreateNestedOneWithoutProjectsInput = {
+    create?: XOR<ContratCreateWithoutProjectsInput, ContratUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: ContratCreateOrConnectWithoutProjectsInput
+    connect?: ContratWhereUniqueInput
   }
 
   export type TaskUncheckedCreateNestedManyWithoutProjetInput = {
@@ -19584,6 +26457,16 @@ export namespace Prisma {
     update?: BankHourUpdateWithWhereUniqueWithoutProjetInput | BankHourUpdateWithWhereUniqueWithoutProjetInput[]
     updateMany?: BankHourUpdateManyWithWhereWithoutProjetInput | BankHourUpdateManyWithWhereWithoutProjetInput[]
     deleteMany?: BankHourScalarWhereInput | BankHourScalarWhereInput[]
+  }
+
+  export type ContratUpdateOneWithoutProjectsNestedInput = {
+    create?: XOR<ContratCreateWithoutProjectsInput, ContratUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: ContratCreateOrConnectWithoutProjectsInput
+    upsert?: ContratUpsertWithoutProjectsInput
+    disconnect?: ContratWhereInput | boolean
+    delete?: ContratWhereInput | boolean
+    connect?: ContratWhereUniqueInput
+    update?: XOR<XOR<ContratUpdateToOneWithWhereWithoutProjectsInput, ContratUpdateWithoutProjectsInput>, ContratUncheckedUpdateWithoutProjectsInput>
   }
 
   export type TaskUncheckedUpdateManyWithoutProjetNestedInput = {
@@ -20074,6 +26957,320 @@ export namespace Prisma {
     update?: TimeEntryUpdateWithWhereUniqueWithoutBankHourInput | TimeEntryUpdateWithWhereUniqueWithoutBankHourInput[]
     updateMany?: TimeEntryUpdateManyWithWhereWithoutBankHourInput | TimeEntryUpdateManyWithWhereWithoutBankHourInput[]
     deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+  }
+
+  export type ClientCreateNestedOneWithoutContactsInput = {
+    create?: XOR<ClientCreateWithoutContactsInput, ClientUncheckedCreateWithoutContactsInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutContactsInput
+    connect?: ClientWhereUniqueInput
+  }
+
+  export type SoumissionCreateNestedManyWithoutContactInput = {
+    create?: XOR<SoumissionCreateWithoutContactInput, SoumissionUncheckedCreateWithoutContactInput> | SoumissionCreateWithoutContactInput[] | SoumissionUncheckedCreateWithoutContactInput[]
+    connectOrCreate?: SoumissionCreateOrConnectWithoutContactInput | SoumissionCreateOrConnectWithoutContactInput[]
+    createMany?: SoumissionCreateManyContactInputEnvelope
+    connect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+  }
+
+  export type ContratCreateNestedManyWithoutContactInput = {
+    create?: XOR<ContratCreateWithoutContactInput, ContratUncheckedCreateWithoutContactInput> | ContratCreateWithoutContactInput[] | ContratUncheckedCreateWithoutContactInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutContactInput | ContratCreateOrConnectWithoutContactInput[]
+    createMany?: ContratCreateManyContactInputEnvelope
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+  }
+
+  export type SoumissionUncheckedCreateNestedManyWithoutContactInput = {
+    create?: XOR<SoumissionCreateWithoutContactInput, SoumissionUncheckedCreateWithoutContactInput> | SoumissionCreateWithoutContactInput[] | SoumissionUncheckedCreateWithoutContactInput[]
+    connectOrCreate?: SoumissionCreateOrConnectWithoutContactInput | SoumissionCreateOrConnectWithoutContactInput[]
+    createMany?: SoumissionCreateManyContactInputEnvelope
+    connect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+  }
+
+  export type ContratUncheckedCreateNestedManyWithoutContactInput = {
+    create?: XOR<ContratCreateWithoutContactInput, ContratUncheckedCreateWithoutContactInput> | ContratCreateWithoutContactInput[] | ContratUncheckedCreateWithoutContactInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutContactInput | ContratCreateOrConnectWithoutContactInput[]
+    createMany?: ContratCreateManyContactInputEnvelope
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+  }
+
+  export type ClientUpdateOneRequiredWithoutContactsNestedInput = {
+    create?: XOR<ClientCreateWithoutContactsInput, ClientUncheckedCreateWithoutContactsInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutContactsInput
+    upsert?: ClientUpsertWithoutContactsInput
+    connect?: ClientWhereUniqueInput
+    update?: XOR<XOR<ClientUpdateToOneWithWhereWithoutContactsInput, ClientUpdateWithoutContactsInput>, ClientUncheckedUpdateWithoutContactsInput>
+  }
+
+  export type SoumissionUpdateManyWithoutContactNestedInput = {
+    create?: XOR<SoumissionCreateWithoutContactInput, SoumissionUncheckedCreateWithoutContactInput> | SoumissionCreateWithoutContactInput[] | SoumissionUncheckedCreateWithoutContactInput[]
+    connectOrCreate?: SoumissionCreateOrConnectWithoutContactInput | SoumissionCreateOrConnectWithoutContactInput[]
+    upsert?: SoumissionUpsertWithWhereUniqueWithoutContactInput | SoumissionUpsertWithWhereUniqueWithoutContactInput[]
+    createMany?: SoumissionCreateManyContactInputEnvelope
+    set?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    disconnect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    delete?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    connect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    update?: SoumissionUpdateWithWhereUniqueWithoutContactInput | SoumissionUpdateWithWhereUniqueWithoutContactInput[]
+    updateMany?: SoumissionUpdateManyWithWhereWithoutContactInput | SoumissionUpdateManyWithWhereWithoutContactInput[]
+    deleteMany?: SoumissionScalarWhereInput | SoumissionScalarWhereInput[]
+  }
+
+  export type ContratUpdateManyWithoutContactNestedInput = {
+    create?: XOR<ContratCreateWithoutContactInput, ContratUncheckedCreateWithoutContactInput> | ContratCreateWithoutContactInput[] | ContratUncheckedCreateWithoutContactInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutContactInput | ContratCreateOrConnectWithoutContactInput[]
+    upsert?: ContratUpsertWithWhereUniqueWithoutContactInput | ContratUpsertWithWhereUniqueWithoutContactInput[]
+    createMany?: ContratCreateManyContactInputEnvelope
+    set?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    disconnect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    delete?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    update?: ContratUpdateWithWhereUniqueWithoutContactInput | ContratUpdateWithWhereUniqueWithoutContactInput[]
+    updateMany?: ContratUpdateManyWithWhereWithoutContactInput | ContratUpdateManyWithWhereWithoutContactInput[]
+    deleteMany?: ContratScalarWhereInput | ContratScalarWhereInput[]
+  }
+
+  export type SoumissionUncheckedUpdateManyWithoutContactNestedInput = {
+    create?: XOR<SoumissionCreateWithoutContactInput, SoumissionUncheckedCreateWithoutContactInput> | SoumissionCreateWithoutContactInput[] | SoumissionUncheckedCreateWithoutContactInput[]
+    connectOrCreate?: SoumissionCreateOrConnectWithoutContactInput | SoumissionCreateOrConnectWithoutContactInput[]
+    upsert?: SoumissionUpsertWithWhereUniqueWithoutContactInput | SoumissionUpsertWithWhereUniqueWithoutContactInput[]
+    createMany?: SoumissionCreateManyContactInputEnvelope
+    set?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    disconnect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    delete?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    connect?: SoumissionWhereUniqueInput | SoumissionWhereUniqueInput[]
+    update?: SoumissionUpdateWithWhereUniqueWithoutContactInput | SoumissionUpdateWithWhereUniqueWithoutContactInput[]
+    updateMany?: SoumissionUpdateManyWithWhereWithoutContactInput | SoumissionUpdateManyWithWhereWithoutContactInput[]
+    deleteMany?: SoumissionScalarWhereInput | SoumissionScalarWhereInput[]
+  }
+
+  export type ContratUncheckedUpdateManyWithoutContactNestedInput = {
+    create?: XOR<ContratCreateWithoutContactInput, ContratUncheckedCreateWithoutContactInput> | ContratCreateWithoutContactInput[] | ContratUncheckedCreateWithoutContactInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutContactInput | ContratCreateOrConnectWithoutContactInput[]
+    upsert?: ContratUpsertWithWhereUniqueWithoutContactInput | ContratUpsertWithWhereUniqueWithoutContactInput[]
+    createMany?: ContratCreateManyContactInputEnvelope
+    set?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    disconnect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    delete?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    update?: ContratUpdateWithWhereUniqueWithoutContactInput | ContratUpdateWithWhereUniqueWithoutContactInput[]
+    updateMany?: ContratUpdateManyWithWhereWithoutContactInput | ContratUpdateManyWithWhereWithoutContactInput[]
+    deleteMany?: ContratScalarWhereInput | ContratScalarWhereInput[]
+  }
+
+  export type ClientCreateNestedOneWithoutSoumissionsInput = {
+    create?: XOR<ClientCreateWithoutSoumissionsInput, ClientUncheckedCreateWithoutSoumissionsInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutSoumissionsInput
+    connect?: ClientWhereUniqueInput
+  }
+
+  export type ContactCreateNestedOneWithoutSoumissionsInput = {
+    create?: XOR<ContactCreateWithoutSoumissionsInput, ContactUncheckedCreateWithoutSoumissionsInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutSoumissionsInput
+    connect?: ContactWhereUniqueInput
+  }
+
+  export type SoumissionLineCreateNestedManyWithoutSoumissionInput = {
+    create?: XOR<SoumissionLineCreateWithoutSoumissionInput, SoumissionLineUncheckedCreateWithoutSoumissionInput> | SoumissionLineCreateWithoutSoumissionInput[] | SoumissionLineUncheckedCreateWithoutSoumissionInput[]
+    connectOrCreate?: SoumissionLineCreateOrConnectWithoutSoumissionInput | SoumissionLineCreateOrConnectWithoutSoumissionInput[]
+    createMany?: SoumissionLineCreateManySoumissionInputEnvelope
+    connect?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+  }
+
+  export type ContratCreateNestedManyWithoutSoumissionInput = {
+    create?: XOR<ContratCreateWithoutSoumissionInput, ContratUncheckedCreateWithoutSoumissionInput> | ContratCreateWithoutSoumissionInput[] | ContratUncheckedCreateWithoutSoumissionInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutSoumissionInput | ContratCreateOrConnectWithoutSoumissionInput[]
+    createMany?: ContratCreateManySoumissionInputEnvelope
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+  }
+
+  export type SoumissionLineUncheckedCreateNestedManyWithoutSoumissionInput = {
+    create?: XOR<SoumissionLineCreateWithoutSoumissionInput, SoumissionLineUncheckedCreateWithoutSoumissionInput> | SoumissionLineCreateWithoutSoumissionInput[] | SoumissionLineUncheckedCreateWithoutSoumissionInput[]
+    connectOrCreate?: SoumissionLineCreateOrConnectWithoutSoumissionInput | SoumissionLineCreateOrConnectWithoutSoumissionInput[]
+    createMany?: SoumissionLineCreateManySoumissionInputEnvelope
+    connect?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+  }
+
+  export type ContratUncheckedCreateNestedManyWithoutSoumissionInput = {
+    create?: XOR<ContratCreateWithoutSoumissionInput, ContratUncheckedCreateWithoutSoumissionInput> | ContratCreateWithoutSoumissionInput[] | ContratUncheckedCreateWithoutSoumissionInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutSoumissionInput | ContratCreateOrConnectWithoutSoumissionInput[]
+    createMany?: ContratCreateManySoumissionInputEnvelope
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+  }
+
+  export type ClientUpdateOneRequiredWithoutSoumissionsNestedInput = {
+    create?: XOR<ClientCreateWithoutSoumissionsInput, ClientUncheckedCreateWithoutSoumissionsInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutSoumissionsInput
+    upsert?: ClientUpsertWithoutSoumissionsInput
+    connect?: ClientWhereUniqueInput
+    update?: XOR<XOR<ClientUpdateToOneWithWhereWithoutSoumissionsInput, ClientUpdateWithoutSoumissionsInput>, ClientUncheckedUpdateWithoutSoumissionsInput>
+  }
+
+  export type ContactUpdateOneWithoutSoumissionsNestedInput = {
+    create?: XOR<ContactCreateWithoutSoumissionsInput, ContactUncheckedCreateWithoutSoumissionsInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutSoumissionsInput
+    upsert?: ContactUpsertWithoutSoumissionsInput
+    disconnect?: ContactWhereInput | boolean
+    delete?: ContactWhereInput | boolean
+    connect?: ContactWhereUniqueInput
+    update?: XOR<XOR<ContactUpdateToOneWithWhereWithoutSoumissionsInput, ContactUpdateWithoutSoumissionsInput>, ContactUncheckedUpdateWithoutSoumissionsInput>
+  }
+
+  export type SoumissionLineUpdateManyWithoutSoumissionNestedInput = {
+    create?: XOR<SoumissionLineCreateWithoutSoumissionInput, SoumissionLineUncheckedCreateWithoutSoumissionInput> | SoumissionLineCreateWithoutSoumissionInput[] | SoumissionLineUncheckedCreateWithoutSoumissionInput[]
+    connectOrCreate?: SoumissionLineCreateOrConnectWithoutSoumissionInput | SoumissionLineCreateOrConnectWithoutSoumissionInput[]
+    upsert?: SoumissionLineUpsertWithWhereUniqueWithoutSoumissionInput | SoumissionLineUpsertWithWhereUniqueWithoutSoumissionInput[]
+    createMany?: SoumissionLineCreateManySoumissionInputEnvelope
+    set?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+    disconnect?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+    delete?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+    connect?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+    update?: SoumissionLineUpdateWithWhereUniqueWithoutSoumissionInput | SoumissionLineUpdateWithWhereUniqueWithoutSoumissionInput[]
+    updateMany?: SoumissionLineUpdateManyWithWhereWithoutSoumissionInput | SoumissionLineUpdateManyWithWhereWithoutSoumissionInput[]
+    deleteMany?: SoumissionLineScalarWhereInput | SoumissionLineScalarWhereInput[]
+  }
+
+  export type ContratUpdateManyWithoutSoumissionNestedInput = {
+    create?: XOR<ContratCreateWithoutSoumissionInput, ContratUncheckedCreateWithoutSoumissionInput> | ContratCreateWithoutSoumissionInput[] | ContratUncheckedCreateWithoutSoumissionInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutSoumissionInput | ContratCreateOrConnectWithoutSoumissionInput[]
+    upsert?: ContratUpsertWithWhereUniqueWithoutSoumissionInput | ContratUpsertWithWhereUniqueWithoutSoumissionInput[]
+    createMany?: ContratCreateManySoumissionInputEnvelope
+    set?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    disconnect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    delete?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    update?: ContratUpdateWithWhereUniqueWithoutSoumissionInput | ContratUpdateWithWhereUniqueWithoutSoumissionInput[]
+    updateMany?: ContratUpdateManyWithWhereWithoutSoumissionInput | ContratUpdateManyWithWhereWithoutSoumissionInput[]
+    deleteMany?: ContratScalarWhereInput | ContratScalarWhereInput[]
+  }
+
+  export type SoumissionLineUncheckedUpdateManyWithoutSoumissionNestedInput = {
+    create?: XOR<SoumissionLineCreateWithoutSoumissionInput, SoumissionLineUncheckedCreateWithoutSoumissionInput> | SoumissionLineCreateWithoutSoumissionInput[] | SoumissionLineUncheckedCreateWithoutSoumissionInput[]
+    connectOrCreate?: SoumissionLineCreateOrConnectWithoutSoumissionInput | SoumissionLineCreateOrConnectWithoutSoumissionInput[]
+    upsert?: SoumissionLineUpsertWithWhereUniqueWithoutSoumissionInput | SoumissionLineUpsertWithWhereUniqueWithoutSoumissionInput[]
+    createMany?: SoumissionLineCreateManySoumissionInputEnvelope
+    set?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+    disconnect?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+    delete?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+    connect?: SoumissionLineWhereUniqueInput | SoumissionLineWhereUniqueInput[]
+    update?: SoumissionLineUpdateWithWhereUniqueWithoutSoumissionInput | SoumissionLineUpdateWithWhereUniqueWithoutSoumissionInput[]
+    updateMany?: SoumissionLineUpdateManyWithWhereWithoutSoumissionInput | SoumissionLineUpdateManyWithWhereWithoutSoumissionInput[]
+    deleteMany?: SoumissionLineScalarWhereInput | SoumissionLineScalarWhereInput[]
+  }
+
+  export type ContratUncheckedUpdateManyWithoutSoumissionNestedInput = {
+    create?: XOR<ContratCreateWithoutSoumissionInput, ContratUncheckedCreateWithoutSoumissionInput> | ContratCreateWithoutSoumissionInput[] | ContratUncheckedCreateWithoutSoumissionInput[]
+    connectOrCreate?: ContratCreateOrConnectWithoutSoumissionInput | ContratCreateOrConnectWithoutSoumissionInput[]
+    upsert?: ContratUpsertWithWhereUniqueWithoutSoumissionInput | ContratUpsertWithWhereUniqueWithoutSoumissionInput[]
+    createMany?: ContratCreateManySoumissionInputEnvelope
+    set?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    disconnect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    delete?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    connect?: ContratWhereUniqueInput | ContratWhereUniqueInput[]
+    update?: ContratUpdateWithWhereUniqueWithoutSoumissionInput | ContratUpdateWithWhereUniqueWithoutSoumissionInput[]
+    updateMany?: ContratUpdateManyWithWhereWithoutSoumissionInput | ContratUpdateManyWithWhereWithoutSoumissionInput[]
+    deleteMany?: ContratScalarWhereInput | ContratScalarWhereInput[]
+  }
+
+  export type SoumissionCreateNestedOneWithoutLinesInput = {
+    create?: XOR<SoumissionCreateWithoutLinesInput, SoumissionUncheckedCreateWithoutLinesInput>
+    connectOrCreate?: SoumissionCreateOrConnectWithoutLinesInput
+    connect?: SoumissionWhereUniqueInput
+  }
+
+  export type SoumissionUpdateOneRequiredWithoutLinesNestedInput = {
+    create?: XOR<SoumissionCreateWithoutLinesInput, SoumissionUncheckedCreateWithoutLinesInput>
+    connectOrCreate?: SoumissionCreateOrConnectWithoutLinesInput
+    upsert?: SoumissionUpsertWithoutLinesInput
+    connect?: SoumissionWhereUniqueInput
+    update?: XOR<XOR<SoumissionUpdateToOneWithWhereWithoutLinesInput, SoumissionUpdateWithoutLinesInput>, SoumissionUncheckedUpdateWithoutLinesInput>
+  }
+
+  export type ClientCreateNestedOneWithoutContratsInput = {
+    create?: XOR<ClientCreateWithoutContratsInput, ClientUncheckedCreateWithoutContratsInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutContratsInput
+    connect?: ClientWhereUniqueInput
+  }
+
+  export type ContactCreateNestedOneWithoutContratsInput = {
+    create?: XOR<ContactCreateWithoutContratsInput, ContactUncheckedCreateWithoutContratsInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutContratsInput
+    connect?: ContactWhereUniqueInput
+  }
+
+  export type SoumissionCreateNestedOneWithoutContratsInput = {
+    create?: XOR<SoumissionCreateWithoutContratsInput, SoumissionUncheckedCreateWithoutContratsInput>
+    connectOrCreate?: SoumissionCreateOrConnectWithoutContratsInput
+    connect?: SoumissionWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedManyWithoutContratInput = {
+    create?: XOR<ProjectCreateWithoutContratInput, ProjectUncheckedCreateWithoutContratInput> | ProjectCreateWithoutContratInput[] | ProjectUncheckedCreateWithoutContratInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutContratInput | ProjectCreateOrConnectWithoutContratInput[]
+    createMany?: ProjectCreateManyContratInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type ProjectUncheckedCreateNestedManyWithoutContratInput = {
+    create?: XOR<ProjectCreateWithoutContratInput, ProjectUncheckedCreateWithoutContratInput> | ProjectCreateWithoutContratInput[] | ProjectUncheckedCreateWithoutContratInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutContratInput | ProjectCreateOrConnectWithoutContratInput[]
+    createMany?: ProjectCreateManyContratInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type ClientUpdateOneRequiredWithoutContratsNestedInput = {
+    create?: XOR<ClientCreateWithoutContratsInput, ClientUncheckedCreateWithoutContratsInput>
+    connectOrCreate?: ClientCreateOrConnectWithoutContratsInput
+    upsert?: ClientUpsertWithoutContratsInput
+    connect?: ClientWhereUniqueInput
+    update?: XOR<XOR<ClientUpdateToOneWithWhereWithoutContratsInput, ClientUpdateWithoutContratsInput>, ClientUncheckedUpdateWithoutContratsInput>
+  }
+
+  export type ContactUpdateOneWithoutContratsNestedInput = {
+    create?: XOR<ContactCreateWithoutContratsInput, ContactUncheckedCreateWithoutContratsInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutContratsInput
+    upsert?: ContactUpsertWithoutContratsInput
+    disconnect?: ContactWhereInput | boolean
+    delete?: ContactWhereInput | boolean
+    connect?: ContactWhereUniqueInput
+    update?: XOR<XOR<ContactUpdateToOneWithWhereWithoutContratsInput, ContactUpdateWithoutContratsInput>, ContactUncheckedUpdateWithoutContratsInput>
+  }
+
+  export type SoumissionUpdateOneWithoutContratsNestedInput = {
+    create?: XOR<SoumissionCreateWithoutContratsInput, SoumissionUncheckedCreateWithoutContratsInput>
+    connectOrCreate?: SoumissionCreateOrConnectWithoutContratsInput
+    upsert?: SoumissionUpsertWithoutContratsInput
+    disconnect?: SoumissionWhereInput | boolean
+    delete?: SoumissionWhereInput | boolean
+    connect?: SoumissionWhereUniqueInput
+    update?: XOR<XOR<SoumissionUpdateToOneWithWhereWithoutContratsInput, SoumissionUpdateWithoutContratsInput>, SoumissionUncheckedUpdateWithoutContratsInput>
+  }
+
+  export type ProjectUpdateManyWithoutContratNestedInput = {
+    create?: XOR<ProjectCreateWithoutContratInput, ProjectUncheckedCreateWithoutContratInput> | ProjectCreateWithoutContratInput[] | ProjectUncheckedCreateWithoutContratInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutContratInput | ProjectCreateOrConnectWithoutContratInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutContratInput | ProjectUpsertWithWhereUniqueWithoutContratInput[]
+    createMany?: ProjectCreateManyContratInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutContratInput | ProjectUpdateWithWhereUniqueWithoutContratInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutContratInput | ProjectUpdateManyWithWhereWithoutContratInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutContratNestedInput = {
+    create?: XOR<ProjectCreateWithoutContratInput, ProjectUncheckedCreateWithoutContratInput> | ProjectCreateWithoutContratInput[] | ProjectUncheckedCreateWithoutContratInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutContratInput | ProjectCreateOrConnectWithoutContratInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutContratInput | ProjectUpsertWithWhereUniqueWithoutContratInput[]
+    createMany?: ProjectCreateManyContratInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutContratInput | ProjectUpdateWithWhereUniqueWithoutContratInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutContratInput | ProjectUpdateManyWithWhereWithoutContratInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -20615,6 +27812,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
     bankHours?: BankHourCreateNestedManyWithoutProjetInput
+    contrat?: ContratCreateNestedOneWithoutProjectsInput
   }
 
   export type ProjectUncheckedCreateWithoutClientInput = {
@@ -20632,6 +27830,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
@@ -20732,6 +27931,132 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ContactCreateWithoutClientInput = {
+    id?: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soumissions?: SoumissionCreateNestedManyWithoutContactInput
+    contrats?: ContratCreateNestedManyWithoutContactInput
+  }
+
+  export type ContactUncheckedCreateWithoutClientInput = {
+    id?: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutContactInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutContactInput
+  }
+
+  export type ContactCreateOrConnectWithoutClientInput = {
+    where: ContactWhereUniqueInput
+    create: XOR<ContactCreateWithoutClientInput, ContactUncheckedCreateWithoutClientInput>
+  }
+
+  export type ContactCreateManyClientInputEnvelope = {
+    data: ContactCreateManyClientInput | ContactCreateManyClientInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SoumissionCreateWithoutClientInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contact?: ContactCreateNestedOneWithoutSoumissionsInput
+    lines?: SoumissionLineCreateNestedManyWithoutSoumissionInput
+    contrats?: ContratCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionUncheckedCreateWithoutClientInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    contactId?: string | null
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lines?: SoumissionLineUncheckedCreateNestedManyWithoutSoumissionInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionCreateOrConnectWithoutClientInput = {
+    where: SoumissionWhereUniqueInput
+    create: XOR<SoumissionCreateWithoutClientInput, SoumissionUncheckedCreateWithoutClientInput>
+  }
+
+  export type SoumissionCreateManyClientInputEnvelope = {
+    data: SoumissionCreateManyClientInput | SoumissionCreateManyClientInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContratCreateWithoutClientInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contact?: ContactCreateNestedOneWithoutContratsInput
+    soumission?: SoumissionCreateNestedOneWithoutContratsInput
+    projects?: ProjectCreateNestedManyWithoutContratInput
+  }
+
+  export type ContratUncheckedCreateWithoutClientInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    contactId?: string | null
+    soumissionId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutContratInput
+  }
+
+  export type ContratCreateOrConnectWithoutClientInput = {
+    where: ContratWhereUniqueInput
+    create: XOR<ContratCreateWithoutClientInput, ContratUncheckedCreateWithoutClientInput>
+  }
+
+  export type ContratCreateManyClientInputEnvelope = {
+    data: ContratCreateManyClientInput | ContratCreateManyClientInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProjectUpsertWithWhereUniqueWithoutClientInput = {
     where: ProjectWhereUniqueInput
     update: XOR<ProjectUpdateWithoutClientInput, ProjectUncheckedUpdateWithoutClientInput>
@@ -20767,6 +28092,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: FloatNullableFilter<"Project"> | number | null
     budgetMontantPrevu?: FloatNullableFilter<"Project"> | number | null
     arrondiHeures?: FloatNullableFilter<"Project"> | number | null
+    contratId?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
   }
@@ -20840,6 +28166,109 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"BankHour"> | Date | string
   }
 
+  export type ContactUpsertWithWhereUniqueWithoutClientInput = {
+    where: ContactWhereUniqueInput
+    update: XOR<ContactUpdateWithoutClientInput, ContactUncheckedUpdateWithoutClientInput>
+    create: XOR<ContactCreateWithoutClientInput, ContactUncheckedCreateWithoutClientInput>
+  }
+
+  export type ContactUpdateWithWhereUniqueWithoutClientInput = {
+    where: ContactWhereUniqueInput
+    data: XOR<ContactUpdateWithoutClientInput, ContactUncheckedUpdateWithoutClientInput>
+  }
+
+  export type ContactUpdateManyWithWhereWithoutClientInput = {
+    where: ContactScalarWhereInput
+    data: XOR<ContactUpdateManyMutationInput, ContactUncheckedUpdateManyWithoutClientInput>
+  }
+
+  export type ContactScalarWhereInput = {
+    AND?: ContactScalarWhereInput | ContactScalarWhereInput[]
+    OR?: ContactScalarWhereInput[]
+    NOT?: ContactScalarWhereInput | ContactScalarWhereInput[]
+    id?: StringFilter<"Contact"> | string
+    clientId?: StringFilter<"Contact"> | string
+    nom?: StringFilter<"Contact"> | string
+    fonction?: StringNullableFilter<"Contact"> | string | null
+    courriel?: StringNullableFilter<"Contact"> | string | null
+    telephone?: StringNullableFilter<"Contact"> | string | null
+    createdAt?: DateTimeFilter<"Contact"> | Date | string
+    updatedAt?: DateTimeFilter<"Contact"> | Date | string
+  }
+
+  export type SoumissionUpsertWithWhereUniqueWithoutClientInput = {
+    where: SoumissionWhereUniqueInput
+    update: XOR<SoumissionUpdateWithoutClientInput, SoumissionUncheckedUpdateWithoutClientInput>
+    create: XOR<SoumissionCreateWithoutClientInput, SoumissionUncheckedCreateWithoutClientInput>
+  }
+
+  export type SoumissionUpdateWithWhereUniqueWithoutClientInput = {
+    where: SoumissionWhereUniqueInput
+    data: XOR<SoumissionUpdateWithoutClientInput, SoumissionUncheckedUpdateWithoutClientInput>
+  }
+
+  export type SoumissionUpdateManyWithWhereWithoutClientInput = {
+    where: SoumissionScalarWhereInput
+    data: XOR<SoumissionUpdateManyMutationInput, SoumissionUncheckedUpdateManyWithoutClientInput>
+  }
+
+  export type SoumissionScalarWhereInput = {
+    AND?: SoumissionScalarWhereInput | SoumissionScalarWhereInput[]
+    OR?: SoumissionScalarWhereInput[]
+    NOT?: SoumissionScalarWhereInput | SoumissionScalarWhereInput[]
+    id?: StringFilter<"Soumission"> | string
+    numero?: StringFilter<"Soumission"> | string
+    dateSoumission?: DateTimeFilter<"Soumission"> | Date | string
+    clientId?: StringFilter<"Soumission"> | string
+    contactId?: StringNullableFilter<"Soumission"> | string | null
+    titre?: StringFilter<"Soumission"> | string
+    description?: StringNullableFilter<"Soumission"> | string | null
+    dateValidite?: DateTimeNullableFilter<"Soumission"> | Date | string | null
+    statut?: StringFilter<"Soumission"> | string
+    sousTotalHT?: FloatFilter<"Soumission"> | number
+    montantTPS?: FloatFilter<"Soumission"> | number
+    montantTVQ?: FloatFilter<"Soumission"> | number
+    totalTTC?: FloatFilter<"Soumission"> | number
+    createdAt?: DateTimeFilter<"Soumission"> | Date | string
+    updatedAt?: DateTimeFilter<"Soumission"> | Date | string
+  }
+
+  export type ContratUpsertWithWhereUniqueWithoutClientInput = {
+    where: ContratWhereUniqueInput
+    update: XOR<ContratUpdateWithoutClientInput, ContratUncheckedUpdateWithoutClientInput>
+    create: XOR<ContratCreateWithoutClientInput, ContratUncheckedCreateWithoutClientInput>
+  }
+
+  export type ContratUpdateWithWhereUniqueWithoutClientInput = {
+    where: ContratWhereUniqueInput
+    data: XOR<ContratUpdateWithoutClientInput, ContratUncheckedUpdateWithoutClientInput>
+  }
+
+  export type ContratUpdateManyWithWhereWithoutClientInput = {
+    where: ContratScalarWhereInput
+    data: XOR<ContratUpdateManyMutationInput, ContratUncheckedUpdateManyWithoutClientInput>
+  }
+
+  export type ContratScalarWhereInput = {
+    AND?: ContratScalarWhereInput | ContratScalarWhereInput[]
+    OR?: ContratScalarWhereInput[]
+    NOT?: ContratScalarWhereInput | ContratScalarWhereInput[]
+    id?: StringFilter<"Contrat"> | string
+    numero?: StringFilter<"Contrat"> | string
+    dateSignature?: DateTimeNullableFilter<"Contrat"> | Date | string | null
+    dateDebut?: DateTimeFilter<"Contrat"> | Date | string
+    dateFin?: DateTimeNullableFilter<"Contrat"> | Date | string | null
+    clientId?: StringFilter<"Contrat"> | string
+    contactId?: StringNullableFilter<"Contrat"> | string | null
+    soumissionId?: StringNullableFilter<"Contrat"> | string | null
+    statut?: StringFilter<"Contrat"> | string
+    montantTotalContrat?: FloatNullableFilter<"Contrat"> | number | null
+    typeContrat?: StringFilter<"Contrat"> | string
+    conditionsSpeciales?: StringNullableFilter<"Contrat"> | string | null
+    createdAt?: DateTimeFilter<"Contrat"> | Date | string
+    updatedAt?: DateTimeFilter<"Contrat"> | Date | string
+  }
+
   export type ClientCreateWithoutProjectsInput = {
     id?: string
     typeClient: string
@@ -20867,6 +28296,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     invoices?: InvoiceCreateNestedManyWithoutClientInput
     bankHours?: BankHourCreateNestedManyWithoutClientInput
+    contacts?: ContactCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionCreateNestedManyWithoutClientInput
+    contrats?: ContratCreateNestedManyWithoutClientInput
   }
 
   export type ClientUncheckedCreateWithoutProjectsInput = {
@@ -20896,6 +28328,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
     bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutClientInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutClientInput
   }
 
   export type ClientCreateOrConnectWithoutProjectsInput = {
@@ -21059,6 +28494,45 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ContratCreateWithoutProjectsInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutContratsInput
+    contact?: ContactCreateNestedOneWithoutContratsInput
+    soumission?: SoumissionCreateNestedOneWithoutContratsInput
+  }
+
+  export type ContratUncheckedCreateWithoutProjectsInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    clientId: string
+    contactId?: string | null
+    soumissionId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContratCreateOrConnectWithoutProjectsInput = {
+    where: ContratWhereUniqueInput
+    create: XOR<ContratCreateWithoutProjectsInput, ContratUncheckedCreateWithoutProjectsInput>
+  }
+
   export type ClientUpsertWithoutProjectsInput = {
     update: XOR<ClientUpdateWithoutProjectsInput, ClientUncheckedUpdateWithoutProjectsInput>
     create: XOR<ClientCreateWithoutProjectsInput, ClientUncheckedCreateWithoutProjectsInput>
@@ -21097,6 +28571,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoices?: InvoiceUpdateManyWithoutClientNestedInput
     bankHours?: BankHourUpdateManyWithoutClientNestedInput
+    contacts?: ContactUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUpdateManyWithoutClientNestedInput
+    contrats?: ContratUpdateManyWithoutClientNestedInput
   }
 
   export type ClientUncheckedUpdateWithoutProjectsInput = {
@@ -21126,6 +28603,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
     bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUncheckedUpdateManyWithoutClientNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutClientNestedInput
   }
 
   export type TaskUpsertWithWhereUniqueWithoutProjetInput = {
@@ -21225,6 +28705,51 @@ export namespace Prisma {
     data: XOR<BankHourUpdateManyMutationInput, BankHourUncheckedUpdateManyWithoutProjetInput>
   }
 
+  export type ContratUpsertWithoutProjectsInput = {
+    update: XOR<ContratUpdateWithoutProjectsInput, ContratUncheckedUpdateWithoutProjectsInput>
+    create: XOR<ContratCreateWithoutProjectsInput, ContratUncheckedCreateWithoutProjectsInput>
+    where?: ContratWhereInput
+  }
+
+  export type ContratUpdateToOneWithWhereWithoutProjectsInput = {
+    where?: ContratWhereInput
+    data: XOR<ContratUpdateWithoutProjectsInput, ContratUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type ContratUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutContratsNestedInput
+    contact?: ContactUpdateOneWithoutContratsNestedInput
+    soumission?: SoumissionUpdateOneWithoutContratsNestedInput
+  }
+
+  export type ContratUncheckedUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    soumissionId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ProjectCreateWithoutTasksInput = {
     id?: string
     nom: string
@@ -21246,6 +28771,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
     bankHours?: BankHourCreateNestedManyWithoutProjetInput
+    contrat?: ContratCreateNestedOneWithoutProjectsInput
   }
 
   export type ProjectUncheckedCreateWithoutTasksInput = {
@@ -21264,6 +28790,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutProjetInput
@@ -21374,6 +28901,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
     bankHours?: BankHourUpdateManyWithoutProjetNestedInput
+    contrat?: ContratUpdateOneWithoutProjectsNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutTasksInput = {
@@ -21392,6 +28920,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutProjetNestedInput
@@ -21673,6 +29202,7 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
     bankHours?: BankHourCreateNestedManyWithoutProjetInput
+    contrat?: ContratCreateNestedOneWithoutProjectsInput
   }
 
   export type ProjectUncheckedCreateWithoutTimeEntriesInput = {
@@ -21691,6 +29221,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
@@ -21887,6 +29418,7 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
     bankHours?: BankHourUpdateManyWithoutProjetNestedInput
+    contrat?: ContratUpdateOneWithoutProjectsNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutTimeEntriesInput = {
@@ -21905,6 +29437,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
@@ -22039,6 +29572,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     projects?: ProjectCreateNestedManyWithoutClientInput
     bankHours?: BankHourCreateNestedManyWithoutClientInput
+    contacts?: ContactCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionCreateNestedManyWithoutClientInput
+    contrats?: ContratCreateNestedManyWithoutClientInput
   }
 
   export type ClientUncheckedCreateWithoutInvoicesInput = {
@@ -22068,6 +29604,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
     bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutClientInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutClientInput
   }
 
   export type ClientCreateOrConnectWithoutInvoicesInput = {
@@ -22147,6 +29686,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUpdateManyWithoutClientNestedInput
     bankHours?: BankHourUpdateManyWithoutClientNestedInput
+    contacts?: ContactUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUpdateManyWithoutClientNestedInput
+    contrats?: ContratUpdateManyWithoutClientNestedInput
   }
 
   export type ClientUncheckedUpdateWithoutInvoicesInput = {
@@ -22176,6 +29718,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
     bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUncheckedUpdateManyWithoutClientNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutClientNestedInput
   }
 
   export type InvoiceLineUpsertWithWhereUniqueWithoutFactureInput = {
@@ -22252,6 +29797,7 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutProjetInput
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
     bankHours?: BankHourCreateNestedManyWithoutProjetInput
+    contrat?: ContratCreateNestedOneWithoutProjectsInput
   }
 
   export type ProjectUncheckedCreateWithoutInvoiceLinesInput = {
@@ -22270,6 +29816,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
@@ -22392,6 +29939,7 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutProjetNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
     bankHours?: BankHourUpdateManyWithoutProjetNestedInput
+    contrat?: ContratUpdateOneWithoutProjectsNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutInvoiceLinesInput = {
@@ -22410,6 +29958,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
@@ -22556,6 +30105,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     projects?: ProjectCreateNestedManyWithoutClientInput
     invoices?: InvoiceCreateNestedManyWithoutClientInput
+    contacts?: ContactCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionCreateNestedManyWithoutClientInput
+    contrats?: ContratCreateNestedManyWithoutClientInput
   }
 
   export type ClientUncheckedCreateWithoutBankHoursInput = {
@@ -22585,6 +30137,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutClientInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutClientInput
   }
 
   export type ClientCreateOrConnectWithoutBankHoursInput = {
@@ -22613,6 +30168,7 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutProjetInput
     timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
     invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
+    contrat?: ContratCreateNestedOneWithoutProjectsInput
   }
 
   export type ProjectUncheckedCreateWithoutBankHoursInput = {
@@ -22631,6 +30187,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
@@ -22721,6 +30278,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUpdateManyWithoutClientNestedInput
     invoices?: InvoiceUpdateManyWithoutClientNestedInput
+    contacts?: ContactUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUpdateManyWithoutClientNestedInput
+    contrats?: ContratUpdateManyWithoutClientNestedInput
   }
 
   export type ClientUncheckedUpdateWithoutBankHoursInput = {
@@ -22750,6 +30310,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUncheckedUpdateManyWithoutClientNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutClientNestedInput
   }
 
   export type ProjectUpsertWithoutBankHoursInput = {
@@ -22784,6 +30347,7 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutProjetNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
+    contrat?: ContratUpdateOneWithoutProjectsNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutBankHoursInput = {
@@ -22802,6 +30366,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
@@ -22823,6 +30388,1071 @@ export namespace Prisma {
   export type TimeEntryUpdateManyWithWhereWithoutBankHourInput = {
     where: TimeEntryScalarWhereInput
     data: XOR<TimeEntryUpdateManyMutationInput, TimeEntryUncheckedUpdateManyWithoutBankHourInput>
+  }
+
+  export type ClientCreateWithoutContactsInput = {
+    id?: string
+    typeClient: string
+    nomLegal: string
+    adresseLigne1: string
+    adresseLigne2?: string | null
+    ville: string
+    province: string
+    codePostal: string
+    pays: string
+    courriel: string
+    telephone: string
+    contactNom?: string | null
+    contactFonction?: string | null
+    notesInternes?: string | null
+    modeFacturationParDefaut: string
+    deviseParDefaut?: string
+    conditionsPaiement?: string | null
+    modesPaiement?: string | null
+    clientTaxable?: boolean
+    appliquerTPS?: boolean
+    appliquerTVQ?: boolean
+    estArchive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectCreateNestedManyWithoutClientInput
+    invoices?: InvoiceCreateNestedManyWithoutClientInput
+    bankHours?: BankHourCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionCreateNestedManyWithoutClientInput
+    contrats?: ContratCreateNestedManyWithoutClientInput
+  }
+
+  export type ClientUncheckedCreateWithoutContactsInput = {
+    id?: string
+    typeClient: string
+    nomLegal: string
+    adresseLigne1: string
+    adresseLigne2?: string | null
+    ville: string
+    province: string
+    codePostal: string
+    pays: string
+    courriel: string
+    telephone: string
+    contactNom?: string | null
+    contactFonction?: string | null
+    notesInternes?: string | null
+    modeFacturationParDefaut: string
+    deviseParDefaut?: string
+    conditionsPaiement?: string | null
+    modesPaiement?: string | null
+    clientTaxable?: boolean
+    appliquerTPS?: boolean
+    appliquerTVQ?: boolean
+    estArchive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutClientInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutClientInput
+  }
+
+  export type ClientCreateOrConnectWithoutContactsInput = {
+    where: ClientWhereUniqueInput
+    create: XOR<ClientCreateWithoutContactsInput, ClientUncheckedCreateWithoutContactsInput>
+  }
+
+  export type SoumissionCreateWithoutContactInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutSoumissionsInput
+    lines?: SoumissionLineCreateNestedManyWithoutSoumissionInput
+    contrats?: ContratCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionUncheckedCreateWithoutContactInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    clientId: string
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lines?: SoumissionLineUncheckedCreateNestedManyWithoutSoumissionInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionCreateOrConnectWithoutContactInput = {
+    where: SoumissionWhereUniqueInput
+    create: XOR<SoumissionCreateWithoutContactInput, SoumissionUncheckedCreateWithoutContactInput>
+  }
+
+  export type SoumissionCreateManyContactInputEnvelope = {
+    data: SoumissionCreateManyContactInput | SoumissionCreateManyContactInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContratCreateWithoutContactInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutContratsInput
+    soumission?: SoumissionCreateNestedOneWithoutContratsInput
+    projects?: ProjectCreateNestedManyWithoutContratInput
+  }
+
+  export type ContratUncheckedCreateWithoutContactInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    clientId: string
+    soumissionId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutContratInput
+  }
+
+  export type ContratCreateOrConnectWithoutContactInput = {
+    where: ContratWhereUniqueInput
+    create: XOR<ContratCreateWithoutContactInput, ContratUncheckedCreateWithoutContactInput>
+  }
+
+  export type ContratCreateManyContactInputEnvelope = {
+    data: ContratCreateManyContactInput | ContratCreateManyContactInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClientUpsertWithoutContactsInput = {
+    update: XOR<ClientUpdateWithoutContactsInput, ClientUncheckedUpdateWithoutContactsInput>
+    create: XOR<ClientCreateWithoutContactsInput, ClientUncheckedCreateWithoutContactsInput>
+    where?: ClientWhereInput
+  }
+
+  export type ClientUpdateToOneWithWhereWithoutContactsInput = {
+    where?: ClientWhereInput
+    data: XOR<ClientUpdateWithoutContactsInput, ClientUncheckedUpdateWithoutContactsInput>
+  }
+
+  export type ClientUpdateWithoutContactsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    typeClient?: StringFieldUpdateOperationsInput | string
+    nomLegal?: StringFieldUpdateOperationsInput | string
+    adresseLigne1?: StringFieldUpdateOperationsInput | string
+    adresseLigne2?: NullableStringFieldUpdateOperationsInput | string | null
+    ville?: StringFieldUpdateOperationsInput | string
+    province?: StringFieldUpdateOperationsInput | string
+    codePostal?: StringFieldUpdateOperationsInput | string
+    pays?: StringFieldUpdateOperationsInput | string
+    courriel?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
+    contactNom?: NullableStringFieldUpdateOperationsInput | string | null
+    contactFonction?: NullableStringFieldUpdateOperationsInput | string | null
+    notesInternes?: NullableStringFieldUpdateOperationsInput | string | null
+    modeFacturationParDefaut?: StringFieldUpdateOperationsInput | string
+    deviseParDefaut?: StringFieldUpdateOperationsInput | string
+    conditionsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    modesPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    clientTaxable?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTPS?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTVQ?: BoolFieldUpdateOperationsInput | boolean
+    estArchive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUpdateManyWithoutClientNestedInput
+    invoices?: InvoiceUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUpdateManyWithoutClientNestedInput
+    contrats?: ContratUpdateManyWithoutClientNestedInput
+  }
+
+  export type ClientUncheckedUpdateWithoutContactsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    typeClient?: StringFieldUpdateOperationsInput | string
+    nomLegal?: StringFieldUpdateOperationsInput | string
+    adresseLigne1?: StringFieldUpdateOperationsInput | string
+    adresseLigne2?: NullableStringFieldUpdateOperationsInput | string | null
+    ville?: StringFieldUpdateOperationsInput | string
+    province?: StringFieldUpdateOperationsInput | string
+    codePostal?: StringFieldUpdateOperationsInput | string
+    pays?: StringFieldUpdateOperationsInput | string
+    courriel?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
+    contactNom?: NullableStringFieldUpdateOperationsInput | string | null
+    contactFonction?: NullableStringFieldUpdateOperationsInput | string | null
+    notesInternes?: NullableStringFieldUpdateOperationsInput | string | null
+    modeFacturationParDefaut?: StringFieldUpdateOperationsInput | string
+    deviseParDefaut?: StringFieldUpdateOperationsInput | string
+    conditionsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    modesPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    clientTaxable?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTPS?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTVQ?: BoolFieldUpdateOperationsInput | boolean
+    estArchive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUncheckedUpdateManyWithoutClientNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutClientNestedInput
+  }
+
+  export type SoumissionUpsertWithWhereUniqueWithoutContactInput = {
+    where: SoumissionWhereUniqueInput
+    update: XOR<SoumissionUpdateWithoutContactInput, SoumissionUncheckedUpdateWithoutContactInput>
+    create: XOR<SoumissionCreateWithoutContactInput, SoumissionUncheckedCreateWithoutContactInput>
+  }
+
+  export type SoumissionUpdateWithWhereUniqueWithoutContactInput = {
+    where: SoumissionWhereUniqueInput
+    data: XOR<SoumissionUpdateWithoutContactInput, SoumissionUncheckedUpdateWithoutContactInput>
+  }
+
+  export type SoumissionUpdateManyWithWhereWithoutContactInput = {
+    where: SoumissionScalarWhereInput
+    data: XOR<SoumissionUpdateManyMutationInput, SoumissionUncheckedUpdateManyWithoutContactInput>
+  }
+
+  export type ContratUpsertWithWhereUniqueWithoutContactInput = {
+    where: ContratWhereUniqueInput
+    update: XOR<ContratUpdateWithoutContactInput, ContratUncheckedUpdateWithoutContactInput>
+    create: XOR<ContratCreateWithoutContactInput, ContratUncheckedCreateWithoutContactInput>
+  }
+
+  export type ContratUpdateWithWhereUniqueWithoutContactInput = {
+    where: ContratWhereUniqueInput
+    data: XOR<ContratUpdateWithoutContactInput, ContratUncheckedUpdateWithoutContactInput>
+  }
+
+  export type ContratUpdateManyWithWhereWithoutContactInput = {
+    where: ContratScalarWhereInput
+    data: XOR<ContratUpdateManyMutationInput, ContratUncheckedUpdateManyWithoutContactInput>
+  }
+
+  export type ClientCreateWithoutSoumissionsInput = {
+    id?: string
+    typeClient: string
+    nomLegal: string
+    adresseLigne1: string
+    adresseLigne2?: string | null
+    ville: string
+    province: string
+    codePostal: string
+    pays: string
+    courriel: string
+    telephone: string
+    contactNom?: string | null
+    contactFonction?: string | null
+    notesInternes?: string | null
+    modeFacturationParDefaut: string
+    deviseParDefaut?: string
+    conditionsPaiement?: string | null
+    modesPaiement?: string | null
+    clientTaxable?: boolean
+    appliquerTPS?: boolean
+    appliquerTVQ?: boolean
+    estArchive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectCreateNestedManyWithoutClientInput
+    invoices?: InvoiceCreateNestedManyWithoutClientInput
+    bankHours?: BankHourCreateNestedManyWithoutClientInput
+    contacts?: ContactCreateNestedManyWithoutClientInput
+    contrats?: ContratCreateNestedManyWithoutClientInput
+  }
+
+  export type ClientUncheckedCreateWithoutSoumissionsInput = {
+    id?: string
+    typeClient: string
+    nomLegal: string
+    adresseLigne1: string
+    adresseLigne2?: string | null
+    ville: string
+    province: string
+    codePostal: string
+    pays: string
+    courriel: string
+    telephone: string
+    contactNom?: string | null
+    contactFonction?: string | null
+    notesInternes?: string | null
+    modeFacturationParDefaut: string
+    deviseParDefaut?: string
+    conditionsPaiement?: string | null
+    modesPaiement?: string | null
+    clientTaxable?: boolean
+    appliquerTPS?: boolean
+    appliquerTVQ?: boolean
+    estArchive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutClientInput
+    contrats?: ContratUncheckedCreateNestedManyWithoutClientInput
+  }
+
+  export type ClientCreateOrConnectWithoutSoumissionsInput = {
+    where: ClientWhereUniqueInput
+    create: XOR<ClientCreateWithoutSoumissionsInput, ClientUncheckedCreateWithoutSoumissionsInput>
+  }
+
+  export type ContactCreateWithoutSoumissionsInput = {
+    id?: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutContactsInput
+    contrats?: ContratCreateNestedManyWithoutContactInput
+  }
+
+  export type ContactUncheckedCreateWithoutSoumissionsInput = {
+    id?: string
+    clientId: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contrats?: ContratUncheckedCreateNestedManyWithoutContactInput
+  }
+
+  export type ContactCreateOrConnectWithoutSoumissionsInput = {
+    where: ContactWhereUniqueInput
+    create: XOR<ContactCreateWithoutSoumissionsInput, ContactUncheckedCreateWithoutSoumissionsInput>
+  }
+
+  export type SoumissionLineCreateWithoutSoumissionInput = {
+    id?: string
+    description: string
+    quantite: number
+    prixUnitaire: number
+    montantLigne: number
+    typeLigne: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoumissionLineUncheckedCreateWithoutSoumissionInput = {
+    id?: string
+    description: string
+    quantite: number
+    prixUnitaire: number
+    montantLigne: number
+    typeLigne: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoumissionLineCreateOrConnectWithoutSoumissionInput = {
+    where: SoumissionLineWhereUniqueInput
+    create: XOR<SoumissionLineCreateWithoutSoumissionInput, SoumissionLineUncheckedCreateWithoutSoumissionInput>
+  }
+
+  export type SoumissionLineCreateManySoumissionInputEnvelope = {
+    data: SoumissionLineCreateManySoumissionInput | SoumissionLineCreateManySoumissionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContratCreateWithoutSoumissionInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutContratsInput
+    contact?: ContactCreateNestedOneWithoutContratsInput
+    projects?: ProjectCreateNestedManyWithoutContratInput
+  }
+
+  export type ContratUncheckedCreateWithoutSoumissionInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    clientId: string
+    contactId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutContratInput
+  }
+
+  export type ContratCreateOrConnectWithoutSoumissionInput = {
+    where: ContratWhereUniqueInput
+    create: XOR<ContratCreateWithoutSoumissionInput, ContratUncheckedCreateWithoutSoumissionInput>
+  }
+
+  export type ContratCreateManySoumissionInputEnvelope = {
+    data: ContratCreateManySoumissionInput | ContratCreateManySoumissionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClientUpsertWithoutSoumissionsInput = {
+    update: XOR<ClientUpdateWithoutSoumissionsInput, ClientUncheckedUpdateWithoutSoumissionsInput>
+    create: XOR<ClientCreateWithoutSoumissionsInput, ClientUncheckedCreateWithoutSoumissionsInput>
+    where?: ClientWhereInput
+  }
+
+  export type ClientUpdateToOneWithWhereWithoutSoumissionsInput = {
+    where?: ClientWhereInput
+    data: XOR<ClientUpdateWithoutSoumissionsInput, ClientUncheckedUpdateWithoutSoumissionsInput>
+  }
+
+  export type ClientUpdateWithoutSoumissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    typeClient?: StringFieldUpdateOperationsInput | string
+    nomLegal?: StringFieldUpdateOperationsInput | string
+    adresseLigne1?: StringFieldUpdateOperationsInput | string
+    adresseLigne2?: NullableStringFieldUpdateOperationsInput | string | null
+    ville?: StringFieldUpdateOperationsInput | string
+    province?: StringFieldUpdateOperationsInput | string
+    codePostal?: StringFieldUpdateOperationsInput | string
+    pays?: StringFieldUpdateOperationsInput | string
+    courriel?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
+    contactNom?: NullableStringFieldUpdateOperationsInput | string | null
+    contactFonction?: NullableStringFieldUpdateOperationsInput | string | null
+    notesInternes?: NullableStringFieldUpdateOperationsInput | string | null
+    modeFacturationParDefaut?: StringFieldUpdateOperationsInput | string
+    deviseParDefaut?: StringFieldUpdateOperationsInput | string
+    conditionsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    modesPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    clientTaxable?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTPS?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTVQ?: BoolFieldUpdateOperationsInput | boolean
+    estArchive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUpdateManyWithoutClientNestedInput
+    invoices?: InvoiceUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUpdateManyWithoutClientNestedInput
+    contacts?: ContactUpdateManyWithoutClientNestedInput
+    contrats?: ContratUpdateManyWithoutClientNestedInput
+  }
+
+  export type ClientUncheckedUpdateWithoutSoumissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    typeClient?: StringFieldUpdateOperationsInput | string
+    nomLegal?: StringFieldUpdateOperationsInput | string
+    adresseLigne1?: StringFieldUpdateOperationsInput | string
+    adresseLigne2?: NullableStringFieldUpdateOperationsInput | string | null
+    ville?: StringFieldUpdateOperationsInput | string
+    province?: StringFieldUpdateOperationsInput | string
+    codePostal?: StringFieldUpdateOperationsInput | string
+    pays?: StringFieldUpdateOperationsInput | string
+    courriel?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
+    contactNom?: NullableStringFieldUpdateOperationsInput | string | null
+    contactFonction?: NullableStringFieldUpdateOperationsInput | string | null
+    notesInternes?: NullableStringFieldUpdateOperationsInput | string | null
+    modeFacturationParDefaut?: StringFieldUpdateOperationsInput | string
+    deviseParDefaut?: StringFieldUpdateOperationsInput | string
+    conditionsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    modesPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    clientTaxable?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTPS?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTVQ?: BoolFieldUpdateOperationsInput | boolean
+    estArchive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutClientNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutClientNestedInput
+  }
+
+  export type ContactUpsertWithoutSoumissionsInput = {
+    update: XOR<ContactUpdateWithoutSoumissionsInput, ContactUncheckedUpdateWithoutSoumissionsInput>
+    create: XOR<ContactCreateWithoutSoumissionsInput, ContactUncheckedCreateWithoutSoumissionsInput>
+    where?: ContactWhereInput
+  }
+
+  export type ContactUpdateToOneWithWhereWithoutSoumissionsInput = {
+    where?: ContactWhereInput
+    data: XOR<ContactUpdateWithoutSoumissionsInput, ContactUncheckedUpdateWithoutSoumissionsInput>
+  }
+
+  export type ContactUpdateWithoutSoumissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutContactsNestedInput
+    contrats?: ContratUpdateManyWithoutContactNestedInput
+  }
+
+  export type ContactUncheckedUpdateWithoutSoumissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contrats?: ContratUncheckedUpdateManyWithoutContactNestedInput
+  }
+
+  export type SoumissionLineUpsertWithWhereUniqueWithoutSoumissionInput = {
+    where: SoumissionLineWhereUniqueInput
+    update: XOR<SoumissionLineUpdateWithoutSoumissionInput, SoumissionLineUncheckedUpdateWithoutSoumissionInput>
+    create: XOR<SoumissionLineCreateWithoutSoumissionInput, SoumissionLineUncheckedCreateWithoutSoumissionInput>
+  }
+
+  export type SoumissionLineUpdateWithWhereUniqueWithoutSoumissionInput = {
+    where: SoumissionLineWhereUniqueInput
+    data: XOR<SoumissionLineUpdateWithoutSoumissionInput, SoumissionLineUncheckedUpdateWithoutSoumissionInput>
+  }
+
+  export type SoumissionLineUpdateManyWithWhereWithoutSoumissionInput = {
+    where: SoumissionLineScalarWhereInput
+    data: XOR<SoumissionLineUpdateManyMutationInput, SoumissionLineUncheckedUpdateManyWithoutSoumissionInput>
+  }
+
+  export type SoumissionLineScalarWhereInput = {
+    AND?: SoumissionLineScalarWhereInput | SoumissionLineScalarWhereInput[]
+    OR?: SoumissionLineScalarWhereInput[]
+    NOT?: SoumissionLineScalarWhereInput | SoumissionLineScalarWhereInput[]
+    id?: StringFilter<"SoumissionLine"> | string
+    soumissionId?: StringFilter<"SoumissionLine"> | string
+    description?: StringFilter<"SoumissionLine"> | string
+    quantite?: FloatFilter<"SoumissionLine"> | number
+    prixUnitaire?: FloatFilter<"SoumissionLine"> | number
+    montantLigne?: FloatFilter<"SoumissionLine"> | number
+    typeLigne?: StringFilter<"SoumissionLine"> | string
+    createdAt?: DateTimeFilter<"SoumissionLine"> | Date | string
+    updatedAt?: DateTimeFilter<"SoumissionLine"> | Date | string
+  }
+
+  export type ContratUpsertWithWhereUniqueWithoutSoumissionInput = {
+    where: ContratWhereUniqueInput
+    update: XOR<ContratUpdateWithoutSoumissionInput, ContratUncheckedUpdateWithoutSoumissionInput>
+    create: XOR<ContratCreateWithoutSoumissionInput, ContratUncheckedCreateWithoutSoumissionInput>
+  }
+
+  export type ContratUpdateWithWhereUniqueWithoutSoumissionInput = {
+    where: ContratWhereUniqueInput
+    data: XOR<ContratUpdateWithoutSoumissionInput, ContratUncheckedUpdateWithoutSoumissionInput>
+  }
+
+  export type ContratUpdateManyWithWhereWithoutSoumissionInput = {
+    where: ContratScalarWhereInput
+    data: XOR<ContratUpdateManyMutationInput, ContratUncheckedUpdateManyWithoutSoumissionInput>
+  }
+
+  export type SoumissionCreateWithoutLinesInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutSoumissionsInput
+    contact?: ContactCreateNestedOneWithoutSoumissionsInput
+    contrats?: ContratCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionUncheckedCreateWithoutLinesInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    clientId: string
+    contactId?: string | null
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contrats?: ContratUncheckedCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionCreateOrConnectWithoutLinesInput = {
+    where: SoumissionWhereUniqueInput
+    create: XOR<SoumissionCreateWithoutLinesInput, SoumissionUncheckedCreateWithoutLinesInput>
+  }
+
+  export type SoumissionUpsertWithoutLinesInput = {
+    update: XOR<SoumissionUpdateWithoutLinesInput, SoumissionUncheckedUpdateWithoutLinesInput>
+    create: XOR<SoumissionCreateWithoutLinesInput, SoumissionUncheckedCreateWithoutLinesInput>
+    where?: SoumissionWhereInput
+  }
+
+  export type SoumissionUpdateToOneWithWhereWithoutLinesInput = {
+    where?: SoumissionWhereInput
+    data: XOR<SoumissionUpdateWithoutLinesInput, SoumissionUncheckedUpdateWithoutLinesInput>
+  }
+
+  export type SoumissionUpdateWithoutLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutSoumissionsNestedInput
+    contact?: ContactUpdateOneWithoutSoumissionsNestedInput
+    contrats?: ContratUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type SoumissionUncheckedUpdateWithoutLinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contrats?: ContratUncheckedUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type ClientCreateWithoutContratsInput = {
+    id?: string
+    typeClient: string
+    nomLegal: string
+    adresseLigne1: string
+    adresseLigne2?: string | null
+    ville: string
+    province: string
+    codePostal: string
+    pays: string
+    courriel: string
+    telephone: string
+    contactNom?: string | null
+    contactFonction?: string | null
+    notesInternes?: string | null
+    modeFacturationParDefaut: string
+    deviseParDefaut?: string
+    conditionsPaiement?: string | null
+    modesPaiement?: string | null
+    clientTaxable?: boolean
+    appliquerTPS?: boolean
+    appliquerTVQ?: boolean
+    estArchive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectCreateNestedManyWithoutClientInput
+    invoices?: InvoiceCreateNestedManyWithoutClientInput
+    bankHours?: BankHourCreateNestedManyWithoutClientInput
+    contacts?: ContactCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionCreateNestedManyWithoutClientInput
+  }
+
+  export type ClientUncheckedCreateWithoutContratsInput = {
+    id?: string
+    typeClient: string
+    nomLegal: string
+    adresseLigne1: string
+    adresseLigne2?: string | null
+    ville: string
+    province: string
+    codePostal: string
+    pays: string
+    courriel: string
+    telephone: string
+    contactNom?: string | null
+    contactFonction?: string | null
+    notesInternes?: string | null
+    modeFacturationParDefaut: string
+    deviseParDefaut?: string
+    conditionsPaiement?: string | null
+    modesPaiement?: string | null
+    clientTaxable?: boolean
+    appliquerTPS?: boolean
+    appliquerTVQ?: boolean
+    estArchive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projects?: ProjectUncheckedCreateNestedManyWithoutClientInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutClientInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutClientInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutClientInput
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutClientInput
+  }
+
+  export type ClientCreateOrConnectWithoutContratsInput = {
+    where: ClientWhereUniqueInput
+    create: XOR<ClientCreateWithoutContratsInput, ClientUncheckedCreateWithoutContratsInput>
+  }
+
+  export type ContactCreateWithoutContratsInput = {
+    id?: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutContactsInput
+    soumissions?: SoumissionCreateNestedManyWithoutContactInput
+  }
+
+  export type ContactUncheckedCreateWithoutContratsInput = {
+    id?: string
+    clientId: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soumissions?: SoumissionUncheckedCreateNestedManyWithoutContactInput
+  }
+
+  export type ContactCreateOrConnectWithoutContratsInput = {
+    where: ContactWhereUniqueInput
+    create: XOR<ContactCreateWithoutContratsInput, ContactUncheckedCreateWithoutContratsInput>
+  }
+
+  export type SoumissionCreateWithoutContratsInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutSoumissionsInput
+    contact?: ContactCreateNestedOneWithoutSoumissionsInput
+    lines?: SoumissionLineCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionUncheckedCreateWithoutContratsInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    clientId: string
+    contactId?: string | null
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lines?: SoumissionLineUncheckedCreateNestedManyWithoutSoumissionInput
+  }
+
+  export type SoumissionCreateOrConnectWithoutContratsInput = {
+    where: SoumissionWhereUniqueInput
+    create: XOR<SoumissionCreateWithoutContratsInput, SoumissionUncheckedCreateWithoutContratsInput>
+  }
+
+  export type ProjectCreateWithoutContratInput = {
+    id?: string
+    nom: string
+    description?: string | null
+    dateDebut: Date | string
+    dateFinPrevue?: Date | string | null
+    statut?: string
+    typeFacturation: string
+    tauxHoraire?: number | null
+    montantForfait?: number | null
+    heuresBanqueTotales?: number | null
+    heuresBanqueConsommees?: number
+    budgetHeuresPrevu?: number | null
+    budgetMontantPrevu?: number | null
+    arrondiHeures?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutProjectsInput
+    tasks?: TaskCreateNestedManyWithoutProjetInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutProjetInput
+    invoiceLines?: InvoiceLineCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourCreateNestedManyWithoutProjetInput
+  }
+
+  export type ProjectUncheckedCreateWithoutContratInput = {
+    id?: string
+    clientId: string
+    nom: string
+    description?: string | null
+    dateDebut: Date | string
+    dateFinPrevue?: Date | string | null
+    statut?: string
+    typeFacturation: string
+    tauxHoraire?: number | null
+    montantForfait?: number | null
+    heuresBanqueTotales?: number | null
+    heuresBanqueConsommees?: number
+    budgetHeuresPrevu?: number | null
+    budgetMontantPrevu?: number | null
+    arrondiHeures?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutProjetInput
+    invoiceLines?: InvoiceLineUncheckedCreateNestedManyWithoutProjetInput
+    bankHours?: BankHourUncheckedCreateNestedManyWithoutProjetInput
+  }
+
+  export type ProjectCreateOrConnectWithoutContratInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutContratInput, ProjectUncheckedCreateWithoutContratInput>
+  }
+
+  export type ProjectCreateManyContratInputEnvelope = {
+    data: ProjectCreateManyContratInput | ProjectCreateManyContratInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClientUpsertWithoutContratsInput = {
+    update: XOR<ClientUpdateWithoutContratsInput, ClientUncheckedUpdateWithoutContratsInput>
+    create: XOR<ClientCreateWithoutContratsInput, ClientUncheckedCreateWithoutContratsInput>
+    where?: ClientWhereInput
+  }
+
+  export type ClientUpdateToOneWithWhereWithoutContratsInput = {
+    where?: ClientWhereInput
+    data: XOR<ClientUpdateWithoutContratsInput, ClientUncheckedUpdateWithoutContratsInput>
+  }
+
+  export type ClientUpdateWithoutContratsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    typeClient?: StringFieldUpdateOperationsInput | string
+    nomLegal?: StringFieldUpdateOperationsInput | string
+    adresseLigne1?: StringFieldUpdateOperationsInput | string
+    adresseLigne2?: NullableStringFieldUpdateOperationsInput | string | null
+    ville?: StringFieldUpdateOperationsInput | string
+    province?: StringFieldUpdateOperationsInput | string
+    codePostal?: StringFieldUpdateOperationsInput | string
+    pays?: StringFieldUpdateOperationsInput | string
+    courriel?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
+    contactNom?: NullableStringFieldUpdateOperationsInput | string | null
+    contactFonction?: NullableStringFieldUpdateOperationsInput | string | null
+    notesInternes?: NullableStringFieldUpdateOperationsInput | string | null
+    modeFacturationParDefaut?: StringFieldUpdateOperationsInput | string
+    deviseParDefaut?: StringFieldUpdateOperationsInput | string
+    conditionsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    modesPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    clientTaxable?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTPS?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTVQ?: BoolFieldUpdateOperationsInput | boolean
+    estArchive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUpdateManyWithoutClientNestedInput
+    invoices?: InvoiceUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUpdateManyWithoutClientNestedInput
+    contacts?: ContactUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUpdateManyWithoutClientNestedInput
+  }
+
+  export type ClientUncheckedUpdateWithoutContratsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    typeClient?: StringFieldUpdateOperationsInput | string
+    nomLegal?: StringFieldUpdateOperationsInput | string
+    adresseLigne1?: StringFieldUpdateOperationsInput | string
+    adresseLigne2?: NullableStringFieldUpdateOperationsInput | string | null
+    ville?: StringFieldUpdateOperationsInput | string
+    province?: StringFieldUpdateOperationsInput | string
+    codePostal?: StringFieldUpdateOperationsInput | string
+    pays?: StringFieldUpdateOperationsInput | string
+    courriel?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
+    contactNom?: NullableStringFieldUpdateOperationsInput | string | null
+    contactFonction?: NullableStringFieldUpdateOperationsInput | string | null
+    notesInternes?: NullableStringFieldUpdateOperationsInput | string | null
+    modeFacturationParDefaut?: StringFieldUpdateOperationsInput | string
+    deviseParDefaut?: StringFieldUpdateOperationsInput | string
+    conditionsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    modesPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    clientTaxable?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTPS?: BoolFieldUpdateOperationsInput | boolean
+    appliquerTVQ?: BoolFieldUpdateOperationsInput | boolean
+    estArchive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutClientNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutClientNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutClientNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutClientNestedInput
+    soumissions?: SoumissionUncheckedUpdateManyWithoutClientNestedInput
+  }
+
+  export type ContactUpsertWithoutContratsInput = {
+    update: XOR<ContactUpdateWithoutContratsInput, ContactUncheckedUpdateWithoutContratsInput>
+    create: XOR<ContactCreateWithoutContratsInput, ContactUncheckedCreateWithoutContratsInput>
+    where?: ContactWhereInput
+  }
+
+  export type ContactUpdateToOneWithWhereWithoutContratsInput = {
+    where?: ContactWhereInput
+    data: XOR<ContactUpdateWithoutContratsInput, ContactUncheckedUpdateWithoutContratsInput>
+  }
+
+  export type ContactUpdateWithoutContratsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutContactsNestedInput
+    soumissions?: SoumissionUpdateManyWithoutContactNestedInput
+  }
+
+  export type ContactUncheckedUpdateWithoutContratsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soumissions?: SoumissionUncheckedUpdateManyWithoutContactNestedInput
+  }
+
+  export type SoumissionUpsertWithoutContratsInput = {
+    update: XOR<SoumissionUpdateWithoutContratsInput, SoumissionUncheckedUpdateWithoutContratsInput>
+    create: XOR<SoumissionCreateWithoutContratsInput, SoumissionUncheckedCreateWithoutContratsInput>
+    where?: SoumissionWhereInput
+  }
+
+  export type SoumissionUpdateToOneWithWhereWithoutContratsInput = {
+    where?: SoumissionWhereInput
+    data: XOR<SoumissionUpdateWithoutContratsInput, SoumissionUncheckedUpdateWithoutContratsInput>
+  }
+
+  export type SoumissionUpdateWithoutContratsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutSoumissionsNestedInput
+    contact?: ContactUpdateOneWithoutSoumissionsNestedInput
+    lines?: SoumissionLineUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type SoumissionUncheckedUpdateWithoutContratsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lines?: SoumissionLineUncheckedUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type ProjectUpsertWithWhereUniqueWithoutContratInput = {
+    where: ProjectWhereUniqueInput
+    update: XOR<ProjectUpdateWithoutContratInput, ProjectUncheckedUpdateWithoutContratInput>
+    create: XOR<ProjectCreateWithoutContratInput, ProjectUncheckedCreateWithoutContratInput>
+  }
+
+  export type ProjectUpdateWithWhereUniqueWithoutContratInput = {
+    where: ProjectWhereUniqueInput
+    data: XOR<ProjectUpdateWithoutContratInput, ProjectUncheckedUpdateWithoutContratInput>
+  }
+
+  export type ProjectUpdateManyWithWhereWithoutContratInput = {
+    where: ProjectScalarWhereInput
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutContratInput>
   }
 
   export type UserCreateManyRoleInput = {
@@ -23036,6 +31666,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -23069,6 +31700,49 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type ContactCreateManyClientInput = {
+    id?: string
+    nom: string
+    fonction?: string | null
+    courriel?: string | null
+    telephone?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoumissionCreateManyClientInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    contactId?: string | null
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContratCreateManyClientInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    contactId?: string | null
+    soumissionId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ProjectUpdateWithoutClientInput = {
     id?: StringFieldUpdateOperationsInput | string
     nom?: StringFieldUpdateOperationsInput | string
@@ -23090,6 +31764,7 @@ export namespace Prisma {
     timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
     invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
     bankHours?: BankHourUpdateManyWithoutProjetNestedInput
+    contrat?: ContratUpdateOneWithoutProjectsNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutClientInput = {
@@ -23107,6 +31782,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
@@ -23130,6 +31806,7 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23221,6 +31898,145 @@ export namespace Prisma {
     dateDebut?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactUpdateWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soumissions?: SoumissionUpdateManyWithoutContactNestedInput
+    contrats?: ContratUpdateManyWithoutContactNestedInput
+  }
+
+  export type ContactUncheckedUpdateWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soumissions?: SoumissionUncheckedUpdateManyWithoutContactNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutContactNestedInput
+  }
+
+  export type ContactUncheckedUpdateManyWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    fonction?: NullableStringFieldUpdateOperationsInput | string | null
+    courriel?: NullableStringFieldUpdateOperationsInput | string | null
+    telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionUpdateWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contact?: ContactUpdateOneWithoutSoumissionsNestedInput
+    lines?: SoumissionLineUpdateManyWithoutSoumissionNestedInput
+    contrats?: ContratUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type SoumissionUncheckedUpdateWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lines?: SoumissionLineUncheckedUpdateManyWithoutSoumissionNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type SoumissionUncheckedUpdateManyWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratUpdateWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contact?: ContactUpdateOneWithoutContratsNestedInput
+    soumission?: SoumissionUpdateOneWithoutContratsNestedInput
+    projects?: ProjectUpdateManyWithoutContratNestedInput
+  }
+
+  export type ContratUncheckedUpdateWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    soumissionId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutContratNestedInput
+  }
+
+  export type ContratUncheckedUpdateManyWithoutClientInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    soumissionId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23718,6 +32534,342 @@ export namespace Prisma {
     estFacturable?: BoolFieldUpdateOperationsInput | boolean
     commentaire?: NullableStringFieldUpdateOperationsInput | string | null
     statut?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionCreateManyContactInput = {
+    id?: string
+    numero: string
+    dateSoumission?: Date | string
+    clientId: string
+    titre: string
+    description?: string | null
+    dateValidite?: Date | string | null
+    statut?: string
+    sousTotalHT?: number
+    montantTPS?: number
+    montantTVQ?: number
+    totalTTC?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContratCreateManyContactInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    clientId: string
+    soumissionId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoumissionUpdateWithoutContactInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutSoumissionsNestedInput
+    lines?: SoumissionLineUpdateManyWithoutSoumissionNestedInput
+    contrats?: ContratUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type SoumissionUncheckedUpdateWithoutContactInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lines?: SoumissionLineUncheckedUpdateManyWithoutSoumissionNestedInput
+    contrats?: ContratUncheckedUpdateManyWithoutSoumissionNestedInput
+  }
+
+  export type SoumissionUncheckedUpdateManyWithoutContactInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSoumission?: DateTimeFieldUpdateOperationsInput | Date | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    titre?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateValidite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    sousTotalHT?: FloatFieldUpdateOperationsInput | number
+    montantTPS?: FloatFieldUpdateOperationsInput | number
+    montantTVQ?: FloatFieldUpdateOperationsInput | number
+    totalTTC?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratUpdateWithoutContactInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutContratsNestedInput
+    soumission?: SoumissionUpdateOneWithoutContratsNestedInput
+    projects?: ProjectUpdateManyWithoutContratNestedInput
+  }
+
+  export type ContratUncheckedUpdateWithoutContactInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clientId?: StringFieldUpdateOperationsInput | string
+    soumissionId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutContratNestedInput
+  }
+
+  export type ContratUncheckedUpdateManyWithoutContactInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clientId?: StringFieldUpdateOperationsInput | string
+    soumissionId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionLineCreateManySoumissionInput = {
+    id?: string
+    description: string
+    quantite: number
+    prixUnitaire: number
+    montantLigne: number
+    typeLigne: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContratCreateManySoumissionInput = {
+    id?: string
+    numero: string
+    dateSignature?: Date | string | null
+    dateDebut: Date | string
+    dateFin?: Date | string | null
+    clientId: string
+    contactId?: string | null
+    statut?: string
+    montantTotalContrat?: number | null
+    typeContrat: string
+    conditionsSpeciales?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoumissionLineUpdateWithoutSoumissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    quantite?: FloatFieldUpdateOperationsInput | number
+    prixUnitaire?: FloatFieldUpdateOperationsInput | number
+    montantLigne?: FloatFieldUpdateOperationsInput | number
+    typeLigne?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionLineUncheckedUpdateWithoutSoumissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    quantite?: FloatFieldUpdateOperationsInput | number
+    prixUnitaire?: FloatFieldUpdateOperationsInput | number
+    montantLigne?: FloatFieldUpdateOperationsInput | number
+    typeLigne?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoumissionLineUncheckedUpdateManyWithoutSoumissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    quantite?: FloatFieldUpdateOperationsInput | number
+    prixUnitaire?: FloatFieldUpdateOperationsInput | number
+    montantLigne?: FloatFieldUpdateOperationsInput | number
+    typeLigne?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratUpdateWithoutSoumissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutContratsNestedInput
+    contact?: ContactUpdateOneWithoutContratsNestedInput
+    projects?: ProjectUpdateManyWithoutContratNestedInput
+  }
+
+  export type ContratUncheckedUpdateWithoutSoumissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projects?: ProjectUncheckedUpdateManyWithoutContratNestedInput
+  }
+
+  export type ContratUncheckedUpdateManyWithoutSoumissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero?: StringFieldUpdateOperationsInput | string
+    dateSignature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    clientId?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    montantTotalContrat?: NullableFloatFieldUpdateOperationsInput | number | null
+    typeContrat?: StringFieldUpdateOperationsInput | string
+    conditionsSpeciales?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectCreateManyContratInput = {
+    id?: string
+    clientId: string
+    nom: string
+    description?: string | null
+    dateDebut: Date | string
+    dateFinPrevue?: Date | string | null
+    statut?: string
+    typeFacturation: string
+    tauxHoraire?: number | null
+    montantForfait?: number | null
+    heuresBanqueTotales?: number | null
+    heuresBanqueConsommees?: number
+    budgetHeuresPrevu?: number | null
+    budgetMontantPrevu?: number | null
+    arrondiHeures?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProjectUpdateWithoutContratInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFinPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    typeFacturation?: StringFieldUpdateOperationsInput | string
+    tauxHoraire?: NullableFloatFieldUpdateOperationsInput | number | null
+    montantForfait?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueTotales?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueConsommees?: FloatFieldUpdateOperationsInput | number
+    budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
+    tasks?: TaskUpdateManyWithoutProjetNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutProjetNestedInput
+    invoiceLines?: InvoiceLineUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUpdateManyWithoutProjetNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutContratInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFinPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    typeFacturation?: StringFieldUpdateOperationsInput | string
+    tauxHoraire?: NullableFloatFieldUpdateOperationsInput | number | null
+    montantForfait?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueTotales?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueConsommees?: FloatFieldUpdateOperationsInput | number
+    budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutProjetNestedInput
+    invoiceLines?: InvoiceLineUncheckedUpdateManyWithoutProjetNestedInput
+    bankHours?: BankHourUncheckedUpdateManyWithoutProjetNestedInput
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutContratInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    clientId?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dateDebut?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateFinPrevue?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    statut?: StringFieldUpdateOperationsInput | string
+    typeFacturation?: StringFieldUpdateOperationsInput | string
+    tauxHoraire?: NullableFloatFieldUpdateOperationsInput | number | null
+    montantForfait?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueTotales?: NullableFloatFieldUpdateOperationsInput | number | null
+    heuresBanqueConsommees?: FloatFieldUpdateOperationsInput | number
+    budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
+    arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

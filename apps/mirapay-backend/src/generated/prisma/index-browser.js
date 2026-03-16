@@ -189,6 +189,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
   budgetHeuresPrevu: 'budgetHeuresPrevu',
   budgetMontantPrevu: 'budgetMontantPrevu',
   arrondiHeures: 'arrondiHeures',
+  contratId: 'contratId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -284,6 +285,64 @@ exports.Prisma.BankHourScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ContactScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  nom: 'nom',
+  fonction: 'fonction',
+  courriel: 'courriel',
+  telephone: 'telephone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SoumissionScalarFieldEnum = {
+  id: 'id',
+  numero: 'numero',
+  dateSoumission: 'dateSoumission',
+  clientId: 'clientId',
+  contactId: 'contactId',
+  titre: 'titre',
+  description: 'description',
+  dateValidite: 'dateValidite',
+  statut: 'statut',
+  sousTotalHT: 'sousTotalHT',
+  montantTPS: 'montantTPS',
+  montantTVQ: 'montantTVQ',
+  totalTTC: 'totalTTC',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SoumissionLineScalarFieldEnum = {
+  id: 'id',
+  soumissionId: 'soumissionId',
+  description: 'description',
+  quantite: 'quantite',
+  prixUnitaire: 'prixUnitaire',
+  montantLigne: 'montantLigne',
+  typeLigne: 'typeLigne',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ContratScalarFieldEnum = {
+  id: 'id',
+  numero: 'numero',
+  dateSignature: 'dateSignature',
+  dateDebut: 'dateDebut',
+  dateFin: 'dateFin',
+  clientId: 'clientId',
+  contactId: 'contactId',
+  soumissionId: 'soumissionId',
+  statut: 'statut',
+  montantTotalContrat: 'montantTotalContrat',
+  typeContrat: 'typeContrat',
+  conditionsSpeciales: 'conditionsSpeciales',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -311,7 +370,11 @@ exports.Prisma.ModelName = {
   Invoice: 'Invoice',
   InvoiceLine: 'InvoiceLine',
   Transaction: 'Transaction',
-  BankHour: 'BankHour'
+  BankHour: 'BankHour',
+  Contact: 'Contact',
+  Soumission: 'Soumission',
+  SoumissionLine: 'SoumissionLine',
+  Contrat: 'Contrat'
 };
 
 /**

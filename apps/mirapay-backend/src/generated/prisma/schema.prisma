@@ -71,9 +71,12 @@ model Client {
   appliquerTVQ  Boolean @default(true)
   estArchive    Boolean @default(false)
 
-  projects  Project[]
-  invoices  Invoice[]
-  bankHours BankHour[]
+  projects    Project[]
+  invoices    Invoice[]
+  bankHours   BankHour[]
+  contacts    Contact[]
+  soumissions Soumission[]
+  contrats    Contrat[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -102,6 +105,8 @@ model Project {
   timeEntries  TimeEntry[]
   invoiceLines InvoiceLine[]
   bankHours    BankHour[]
+  contratId    String?
+  contrat      Contrat?      @relation(fields: [contratId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -222,6 +227,83 @@ model BankHour {
   estActive        Boolean   @default(true)
 
   timeEntries TimeEntry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  id        String  @id @default(uuid())
+  clientId  String
+  client    Client  @relation(fields: [clientId], references: [id])
+  nom       String
+  fonction  String?
+  courriel  String?
+  telephone String?
+
+  soumissions Soumission[]
+  contrats    Contrat[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Soumission {
+  id             String    @id @default(uuid())
+  numero         String    @unique
+  dateSoumission DateTime  @default(now())
+  clientId       String
+  client         Client    @relation(fields: [clientId], references: [id])
+  contactId      String?
+  contact        Contact?  @relation(fields: [contactId], references: [id])
+  titre          String
+  description    String?   @db.Text
+  dateValidite   DateTime?
+  statut         String    @default("brouillon") // brouillon | envoyee | acceptee | refusee | expiree
+  sousTotalHT    Float     @default(0)
+  montantTPS     Float     @default(0)
+  montantTVQ     Float     @default(0)
+  totalTTC       Float     @default(0)
+
+  lines    SoumissionLine[]
+  contrats Contrat[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SoumissionLine {
+  id           String     @id @default(uuid())
+  soumissionId String
+  soumission   Soumission @relation(fields: [soumissionId], references: [id])
+  description  String     @db.Text
+  quantite     Float
+  prixUnitaire Float
+  montantLigne Float // quantite * prixUnitaire
+  typeLigne    String // service | materiel | autre
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contrat {
+  id                  String      @id @default(uuid())
+  numero              String      @unique
+  dateSignature       DateTime?
+  dateDebut           DateTime
+  dateFin             DateTime?
+  clientId            String
+  client              Client      @relation(fields: [clientId], references: [id])
+  contactId           String?
+  contact             Contact?    @relation(fields: [contactId], references: [id])
+  soumissionId        String?
+  soumission          Soumission? @relation(fields: [soumissionId], references: [id])
+  statut              String      @default("actif") // actif | suspendu | termine | archive
+  montantTotalContrat Float?
+  typeContrat         String // horaire | forfait | banqueHeures | mixte
+  conditionsSpeciales String?     @db.Text
+
+  projects Project[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
