@@ -1,0 +1,93 @@
+@if (client()) {
+  <div class="client-detail-container">
+    <div class="header">
+      <div class="title-section">
+        <a routerLink="/clients" class="back-link">← Retour aux clients</a>
+        <h1>{{ client()?.nomLegal }}</h1>
+        <span class="type-badge">{{ client()?.typeClient }}</span>
+      </div>
+      <button class="btn-primary" (click)="openModal()">+ Ajouter Banque d'Heures</button>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Fiche Info -->
+      <div class="card info-card">
+        <h2>Informations Générales</h2>
+        <div class="info-item"><strong>Courriel :</strong> {{ client()?.courriel }}</div>
+        <div class="info-item"><strong>Téléphone :</strong> {{ client()?.telephone }}</div>
+        <div class="info-item"><strong>Adresse :</strong> {{ client()?.adresseLigne1 }}, {{ client()?.ville }}</div>
+        <div class="info-item"><strong>Dévise :</strong> {{ client()?.deviseParDefaut }}</div>
+      </div>
+
+      <!-- Banque d'Heures -->
+      <div class="card bank-card">
+        <h2>Banques d'Heures</h2>
+        @if (client()?.bankHours && client()!.bankHours!.length > 0) {
+          <div class="bank-list">
+            @for (bank of client()?.bankHours; track bank.id) {
+              <div class="bank-item">
+                <div class="bank-header">
+                  <h3>{{ bank.nom }}</h3>
+                  <span class="status-badge" [class.active]="bank.estActive">{{ bank.estActive ? 'Active' : 'Inactive' }}</span>
+                </div>
+                <p class="desc">{{ bank.description || 'Pas de description' }}</p>
+                <div class="progress-section">
+                  <div class="progress-info">
+                    <span>{{ bank.heuresConsommees }}h / {{ bank.heuresAchetees }}h</span>
+                    <span>Solde: {{ (bank.heuresAchetees - bank.heuresConsommees) }}h</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" [style.width.%]="(bank.heuresConsommees / bank.heuresAchetees) * 100"></div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="empty-state">Aucune banque d'heures définie pour ce client.</p>
+        }
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Modal Ajouter Banque -->
+@if (isModalOpen()) {
+  <div class="modal-overlay">
+    <div class="modal">
+      <h2>Ajouter une Banque d'Heures</h2>
+      <form [formGroup]="bankForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="bankName">Nom de la banque *</label>
+          <input id="bankName" type="text" formControlName="nom" placeholder="ex: Support Urgent 20h" />
+        </div>
+
+        <div class="form-group">
+          <label for="bankDesc">Description</label>
+          <textarea id="bankDesc" formControlName="description" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="bankHours">Heures Achetées *</label>
+          <input id="bankHours" type="number" formControlName="heuresAchetees" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dateDebut">Date Début</label>
+            <input id="dateDebut" type="date" formControlName="dateDebut" />
+          </div>
+          <div class="form-group">
+            <label for="dateFin">Date Fin</label>
+            <input id="dateFin" type="date" formControlName="dateFin" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
+          <button type="submit" class="btn-primary" [disabled]="bankForm.invalid">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

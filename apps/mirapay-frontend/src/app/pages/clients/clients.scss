@@ -61,6 +61,14 @@
       color: #0f172a;
     }
 
+    .client-link {
+      color: #2563eb;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
     .empty-state {
       text-align: center;
       padding: 3rem;

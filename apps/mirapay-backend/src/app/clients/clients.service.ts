@@ -22,8 +22,9 @@ export class ClientsService {
       where: { id },
       include: {
         projects: true,
-        invoices: true
-      }
+        invoices: true,
+        bankHours: true
+      } as any
     });
   }
 

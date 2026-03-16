@@ -49,6 +49,7 @@ export interface Client {
   appliquerTVQ: boolean;
   estArchive: boolean;
   bankHours?: BankHour[];
+  _count?: { projects: number; invoices: number; };
   createdAt: Date | string;
   updatedAt: Date | string;
 }

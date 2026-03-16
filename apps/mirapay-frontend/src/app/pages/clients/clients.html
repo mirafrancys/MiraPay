@@ -127,7 +127,11 @@
       <tbody>
         @for (client of clients(); track client.id) {
           <tr>
-            <td class="font-bold">{{ client.nomLegal }}</td>
+            <td>
+              <a [routerLink]="['/clients', client.id]" class="client-link font-bold">
+                {{ client.nomLegal }}
+              </a>
+            </td>
             <td>{{ client.courriel }}</td>
             <td>{{ client.telephone }}</td>
             <td>{{ client._count?.projects || 0 }}</td>
