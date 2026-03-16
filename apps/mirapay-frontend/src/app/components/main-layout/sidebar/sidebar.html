@@ -3,44 +3,36 @@
     <ul>
       <li>
         <a routerLink="/dashboard" routerLinkActive="active">
-          <span class="icon">📊</span>
           <span class="label">{{ts.translate('COMMON.DASHBOARD')}}</span>
         </a>
       </li>
       <li>
         <a routerLink="/transactions" routerLinkActive="active">
-          <span class="icon">💸</span>
           <span class="label">{{ts.translate('COMMON.TRANSACTIONS')}}</span>
         </a>
       </li>
-
       <li>
         <a routerLink="/contacts" routerLinkActive="active">
-          <span class="icon">👥</span>
           <span class="label">{{ts.translate('COMMON.CONTACTS')}}</span>
         </a>
       </li>
       <li>
         <a routerLink="/clients" routerLinkActive="active">
-          <span class="icon">🏢</span>
           <span class="label">{{ts.translate('COMMON.CLIENTS')}}</span>
         </a>
       </li>
       <li>
         <a routerLink="/projects" routerLinkActive="active">
-          <span class="icon">📁</span>
           <span class="label">{{ts.translate('COMMON.PROJECTS')}}</span>
         </a>
       </li>
       <li>
         <a routerLink="/time-entries" routerLinkActive="active">
-          <span class="icon">⏱️</span>
           <span class="label">{{ts.translate('COMMON.TIME_ENTRIES')}}</span>
         </a>
       </li>
       <li>
         <a routerLink="/invoices" routerLinkActive="active">
-          <span class="icon">🧾</span>
           <span class="label">{{ts.translate('COMMON.INVOICES')}}</span>
         </a>
       </li>
@@ -48,11 +40,9 @@
 
     <div class="sidebar-footer">
       <a routerLink="/settings" routerLinkActive="active">
-        <span class="icon">⚙️</span>
         <span class="label">{{ts.translate('COMMON.SETTINGS')}}</span>
       </a>
       <a href="#" class="logout" (click)="logout($event)">
-        <span class="icon">🚪</span>
         <span class="label">{{ts.translate('COMMON.LOGOUT')}}</span>
       </a>
     </div>
