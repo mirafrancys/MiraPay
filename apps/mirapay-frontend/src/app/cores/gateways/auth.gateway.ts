@@ -8,7 +8,7 @@ export class AuthGateway {
   private apiUrl = '/api';
   currentUser = signal<User | null>(null);
 
-  async login(credentials: { email: string; password?: string }): Promise<{ user: User }> {
+  async login(credentials: { emailOrUsername: string; password?: string }): Promise<{ user: User }> {
     const response = await fetch(`${this.apiUrl}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

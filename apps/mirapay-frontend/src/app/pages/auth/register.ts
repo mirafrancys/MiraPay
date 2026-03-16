@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthGateway } from '../../cores/gateways/auth.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
+import { Role, User } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ import { TranslationService } from '../../cores/services/translation.service';
 })
 export class RegisterComponent implements OnInit {
   ts = inject(TranslationService);
-  user: any = {
+  user: Partial<User> = {
     firstName: '',
     lastName: '',
     username: '',
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
     country: '',
     roleId: ''
   };
-  roles: any[] = [];
+  roles: Role[] = [];
   
   isLoading = false;
   errorMessage = '';
@@ -56,8 +57,12 @@ export class RegisterComponent implements OnInit {
     try {
       await this.authGateway.register(payload);
       this.successMessage = "Compte créé avec succès ! Vous pouvez maintenant vous connecter.";
-    } catch (error: any) {
-      this.errorMessage = error.message;
+    } catch (error) {
+      if (error instanceof Error) {
+        this.errorMessage = error.message;
+      } else {
+        this.errorMessage = 'An error occurred';
+      }
     } finally {
       this.isLoading = false;
     }

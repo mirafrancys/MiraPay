@@ -50,7 +50,7 @@
             </div>
 
             <!-- Draft Preview area -->
-            @if (draftData()) {
+            @if (draftData(); as draft) {
               <div class="draft-preview" style="margin-top: 1.5rem; background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px dashed #cbd5e1;">
                 <h3 style="margin-top: 0; font-size: 1rem;">{{ ts.translate('INVOICES.DRAFT_PREVIEW') }}</h3>
                 
@@ -64,7 +64,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @for (line of draftData().lines; track $index) {
+                    @for (line of draft.lines; track $index) {
                       <tr style="border-bottom: 1px solid #f1f5f9;">
                         <td style="padding: 0.5rem;">{{ line.description }}</td>
                         <td style="padding: 0.5rem;">{{ line.quantite }}</td>
@@ -77,16 +77,16 @@
 
                 <div class="totals-area" style="width: 200px; margin-left: auto; font-size: 0.875rem;">
                   <div style="display: flex; justify-content: space-between; padding: 0.25rem 0;">
-                    <span>{{ ts.translate('INVOICES.SUBTOTAL') }}</span> <strong>{{ draftData().sousTotal | currency:'CAD' }}</strong>
+                    <span>{{ ts.translate('INVOICES.SUBTOTAL') }}</span> <strong>{{ draft.sousTotal | currency:'CAD' }}</strong>
                   </div>
                   <div style="display: flex; justify-content: space-between; padding: 0.25rem 0;">
-                    <span>{{ ts.translate('INVOICES.TPS') }}</span> <span>{{ draftData().montantTPS | currency:'CAD' }}</span>
+                    <span>{{ ts.translate('INVOICES.TPS') }}</span> <span>{{ draft.montantTPS | currency:'CAD' }}</span>
                   </div>
                   <div style="display: flex; justify-content: space-between; padding: 0.25rem 0;">
-                    <span>{{ ts.translate('INVOICES.TVQ') }}</span> <span>{{ draftData().montantTVQ | currency:'CAD' }}</span>
+                    <span>{{ ts.translate('INVOICES.TVQ') }}</span> <span>{{ draft.montantTVQ | currency:'CAD' }}</span>
                   </div>
                   <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-top: 1px solid #cbd5e1; margin-top: 0.5rem; font-weight: 700; font-size: 1rem;">
-                    <span>{{ ts.translate('INVOICES.TOTAL') }}:</span> <span>{{ draftData().totalTTC | currency:'CAD' }}</span>
+                    <span>{{ ts.translate('INVOICES.TOTAL') }}:</span> <span>{{ draft.totalTTC | currency:'CAD' }}</span>
                   </div>
                 </div>
               </div>

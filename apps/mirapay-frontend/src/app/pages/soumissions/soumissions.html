@@ -1,8 +1,8 @@
 <div class="page-container">
   <div class="page-header">
-    <h1>Soumissions (Devis)</h1>
+    <h1>{{ ts.translate('SOUMISSIONS.TITLE') }}</h1>
     <button class="btn-primary" (click)="openModal()">
-      ➕ Créer une Soumission
+      ➕ {{ ts.translate('SOUMISSIONS.CREATE_BTN') }}
     </button>
   </div>
 
@@ -10,7 +10,7 @@
     <div class="modal-backdrop">
       <div class="modal-card">
         <div class="modal-header">
-          <h2>Créer une Soumission</h2>
+          <h2>{{ ts.translate('SOUMISSIONS.CREATE_MODAL_TITLE') }}</h2>
           <button class="btn-close" (click)="closeModal()">×</button>
         </div>
 
@@ -18,9 +18,9 @@
           <div class="modal-body">
             <div class="form-grid">
               <div class="form-group">
-                <label>Client *</label>
-                <select formControlName="clientId">
-                  <option value="" disabled>Sélectionner un client</option>
+                <label for="clientId">{{ ts.translate('SOUMISSIONS.CLIENT') }}</label>
+                <select id="clientId" formControlName="clientId">
+                  <option value="" disabled>{{ ts.translate('SOUMISSIONS.SELECT_CLIENT') }}</option>
                   @for (client of clients(); track client.id) {
                     <option [value]="client.id">{{ client.nomLegal }}</option>
                   }
@@ -28,24 +28,24 @@
               </div>
 
               <div class="form-group">
-                <label>Numéro *</label>
-                <input type="text" formControlName="numero" />
+                <label for="numero">{{ ts.translate('SOUMISSIONS.NUMERO') }}</label>
+                <input id="numero" type="text" formControlName="numero" />
               </div>
 
               <div class="form-group full-width">
-                <label>Titre *</label>
-                <input type="text" formControlName="titre" placeholder="ex: Refonte Site Web" />
+                <label for="titre">{{ ts.translate('SOUMISSIONS.TITRE') }}</label>
+                <input id="titre" type="text" formControlName="titre" [placeholder]="ts.translate('SOUMISSIONS.TITRE_PLACEHOLDER')" />
               </div>
 
               <div class="form-group full-width">
-                <label>Description</label>
-                <textarea formControlName="description" rows="2"></textarea>
+                <label for="description">{{ ts.translate('SOUMISSIONS.DESCRIPTION') }}</label>
+                <textarea id="description" formControlName="description" rows="2"></textarea>
               </div>
             </div>
 
             <!-- Lignes de Soumission -->
             <div class="lines-section">
-              <h3>Détail des services</h3>
+              <h3>{{ ts.translate('SOUMISSIONS.SERVICES_DETAIL') }}</h3>
               <div formArrayName="lines">
                 @for (line of lines.controls; let i = $index; track i) {
                   <div class="line-item" [formGroupName]="i">
@@ -62,13 +62,13 @@
                   </div>
                 }
               </div>
-              <button type="button" class="btn-link" (click)="addLine()">+ Ajouter une ligne</button>
+              <button type="button" class="btn-link" (click)="addLine()">{{ ts.translate('SOUMISSIONS.ADD_LINE') }}</button>
             </div>
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
-            <button type="submit" class="btn-primary" [disabled]="soumissionForm.invalid">Enregistrer</button>
+            <button type="button" class="btn-secondary" (click)="closeModal()">{{ ts.translate('SOUMISSIONS.CANCEL') }}</button>
+            <button type="submit" class="btn-primary" [disabled]="soumissionForm.invalid">{{ ts.translate('SOUMISSIONS.SAVE') }}</button>
           </div>
         </form>
       </div>
@@ -80,12 +80,12 @@
     <table>
       <thead>
         <tr>
-          <th>Numéro</th>
-          <th>Titre</th>
-          <th>Client</th>
-          <th>Sous-Total HT</th>
-          <th>Total TTC</th>
-          <th>Statut</th>
+          <th>{{ ts.translate('SOUMISSIONS.TABLE.NUMERO') }}</th>
+          <th>{{ ts.translate('SOUMISSIONS.TABLE.TITRE') }}</th>
+          <th>{{ ts.translate('SOUMISSIONS.TABLE.CLIENT') }}</th>
+          <th>{{ ts.translate('SOUMISSIONS.TABLE.SUBTOTAL') }}</th>
+          <th>{{ ts.translate('SOUMISSIONS.TABLE.TOTAL_TTC') }}</th>
+          <th>{{ ts.translate('SOUMISSIONS.TABLE.STATUS') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -102,7 +102,7 @@
           </tr>
         } @empty {
           <tr>
-            <td colspan="6" class="empty-state">Aucune soumission trouvée.</td>
+            <td colspan="6" class="empty-state">{{ ts.translate('SOUMISSIONS.EMPTY_STATE') }}</td>
           </tr>
         }
       </tbody>

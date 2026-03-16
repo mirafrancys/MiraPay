@@ -6,7 +6,14 @@
     "CARDS": "Mis Tarjetas",
     "CONTACTS": "Contactos",
     "SETTINGS": "Ajustes",
-    "LOGOUT": "Cerrar sesión"
+    "LOGOUT": "Cerrar sesión",
+    "CLIENTS": "Clientes",
+    "PROJECTS": "Proyectos",
+    "TIME_ENTRIES": "Registro de Tiempo",
+    "INVOICES": "Facturación",
+    "CREATE_CLIENT": "Crear Cliente",
+    "SOUMISSIONS": "Presupuestos",
+    "CONTRATS": "Contratos"
   },
   "DASHBOARD": {
     "GREETING": "Bienvenido, John 👋",

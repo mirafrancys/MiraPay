@@ -10,7 +10,10 @@
     "PROJECTS": "Projects",
     "TIME_ENTRIES": "Time Tracking",
     "INVOICES": "Invoices",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "CREATE_CLIENT": "Create a Client",
+    "SOUMISSIONS": "Submissions",
+    "CONTRATS": "Contracts"
   },
   "DASHBOARD": {
     "GREETING": "Welcome, John 👋",

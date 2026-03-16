@@ -28,8 +28,12 @@ export class LoginComponent {
     try {
       await this.authGateway.login(this.credentials);
       this.router.navigate(['/dashboard']);
-    } catch (error: any) {
-      this.errorMessage = error.message;
+    } catch (error) {
+      if (error instanceof Error) {
+        this.errorMessage = error.message;
+      } else {
+        this.errorMessage = 'An error occurred';
+      }
     } finally {
       this.isLoading = false;
     }
