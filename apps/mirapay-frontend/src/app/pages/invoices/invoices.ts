@@ -5,6 +5,7 @@ import { InvoicesGateway } from '../../cores/gateways/invoices.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
+import { Invoice, Client, Project } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-invoices',
@@ -20,9 +21,9 @@ export class InvoicesComponent implements OnInit {
   private projectsGateway = inject(ProjectsGateway);
   private fb = inject(FormBuilder);
 
-  invoices = signal<any[]>([]);
-  clients = signal<any[]>([]);
-  projects = signal<any[]>([]);
+  invoices = signal<Invoice[]>([]);
+  clients = signal<Client[]>([]);
+  projects = signal<Project[]>([]);
   
   // Filtrer les projets par client sélectionné
   filteredProjects = computed(() => {
@@ -33,7 +34,7 @@ export class InvoicesComponent implements OnInit {
 
   isModalOpen = signal<boolean>(false);
   invoiceForm!: FormGroup;
-  draftData = signal<any>(null); // Aperçu du brouillon calculé
+  draftData = signal<Invoice | null>(null); // Aperçu du brouillon calculé
 
   ngOnInit() {
     this.initForm();
@@ -73,7 +74,7 @@ export class InvoicesComponent implements OnInit {
     if (!clientId) return;
 
     try {
-      const payload: any = { clientId };
+      const payload: { clientId: string; projetId?: string } = { clientId };
       if (projetId) payload.projetId = projetId;
 
       const res = await this.invoicesGateway.prepareDraft(payload);

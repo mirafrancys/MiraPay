@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Task } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
@@ -6,17 +7,17 @@ import { Injectable } from '@angular/core';
 export class TasksGateway {
   private apiUrl = '/api/tasks';
 
-  async getByProject(projectId: string): Promise<any[]> {
+  async getByProject(projectId: string): Promise<Task[]> {
     const res = await fetch(`${this.apiUrl}/project/${projectId}`);
     return res.json();
   }
 
-  async getOne(id: string): Promise<any> {
+  async getOne(id: string): Promise<Task> {
     const res = await fetch(`${this.apiUrl}/${id}`);
     return res.json();
   }
 
-  async create(data: any): Promise<any> {
+  async create(data: Partial<Task>): Promise<Task> {
     const res = await fetch(this.apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -25,7 +26,7 @@ export class TasksGateway {
     return res.json();
   }
 
-  async update(id: string, data: any): Promise<any> {
+  async update(id: string, data: Partial<Task>): Promise<Task> {
     const res = await fetch(`${this.apiUrl}/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -34,7 +35,7 @@ export class TasksGateway {
     return res.json();
   }
 
-  async delete(id: string): Promise<any> {
+  async delete(id: string): Promise<void> {
     const res = await fetch(`${this.apiUrl}/${id}`, {
       method: 'DELETE'
     });

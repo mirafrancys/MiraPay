@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
+import { Client } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-clients',
@@ -16,7 +17,7 @@ export class ClientsComponent implements OnInit {
   private clientsGateway = inject(ClientsGateway);
   private fb = inject(FormBuilder);
 
-  clients = signal<any[]>([]);
+  clients = signal<Client[]>([]);
   isModalOpen = signal<boolean>(false);
   clientForm!: FormGroup;
 
