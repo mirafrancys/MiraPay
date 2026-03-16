@@ -10,7 +10,10 @@
     "PROJECTS": "Proyectos",
     "TIME_ENTRIES": "Registro de Tiempo",
     "INVOICES": "Facturación",
-    "LOGOUT": "Cerrar sesión"
+    "LOGOUT": "Cerrar sesión",
+    "CREATE_CLIENT": "Crear un Cliente",
+    "SOUMISSIONS": "Cotizaciones",
+    "CONTRATS": "Contratos"
   },
   "DASHBOARD": {
     "GREETING": "Bienvenido, John 👋",
@@ -187,5 +190,52 @@
       "STATUS": "Estado"
     },
     "EMPTY_STATE": "No se encontraron facturas."
+  },
+  "SOUMISSIONS": {
+    "TITLE": "Cotizaciones (Presupuestos)",
+    "CREATE_BTN": "Crear Cotización",
+    "CREATE_MODAL_TITLE": "Crear Cotización",
+    "CLIENT": "Cliente *",
+    "SELECT_CLIENT": "Seleccionar un cliente",
+    "NUMERO": "Número *",
+    "TITRE": "Título *",
+    "TITRE_PLACEHOLDER": "ej: Rediseño del Sitio Web",
+    "DESCRIPTION": "Descripción",
+    "ADD_LINE": "+ Agregar línea",
+    "CANCEL": "Cancelar",
+    "SAVE": "Guardar",
+    "TABLE": {
+      "NUMERO": "Número",
+      "TITRE": "Título",
+      "CLIENT": "Cliente",
+      "SUBTOTAL": "Subtotal",
+      "TOTAL_TTC": "Total",
+      "STATUS": "Estado"
+    },
+    "EMPTY_STATE": "No se encontraron cotizaciones."
+  },
+  "CONTRATS": {
+    "TITLE": "Contratos",
+    "CREATE_BTN": "Crear Contrato",
+    "CREATE_MODAL_TITLE": "Crear Contrato",
+    "CLIENT": "Cliente *",
+    "SELECT_CLIENT": "Seleccionar un cliente",
+    "NUMERO": "Número *",
+    "START_DATE": "Fecha de Inicio *",
+    "END_DATE": "Fecha de Fin (Opcional)",
+    "TYPE": "Tipo de Contrato *",
+    "VAL_GLOBALE": "Valor Global ($)",
+    "SPECIAL_CONDITIONS": "Condiciones Especiales",
+    "CANCEL": "Cancelar",
+    "SAVE": "Guardar",
+    "TABLE": {
+      "NUMERO": "Número",
+      "CLIENT": "Cliente",
+      "TYPE": "Tipo",
+      "VALUE": "Valor",
+      "START_DATE": "Fecha de Inicio",
+      "STATUS": "Estado"
+    },
+    "EMPTY_STATE": "No se encontraron contratos."
   }
 }

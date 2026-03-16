@@ -10,7 +10,10 @@
     "PROJECTS": "Projets",
     "TIME_ENTRIES": "Saisie du Temps",
     "INVOICES": "Facturation",
-    "LOGOUT": "Déconnexion"
+    "LOGOUT": "Déconnexion",
+    "CREATE_CLIENT": "Créer un Client",
+    "SOUMISSIONS": "Soumissions",
+    "CONTRATS": "Contrats"
   },
   "DASHBOARD": {
     "GREETING": "Bienvenue, John 👋",
@@ -187,5 +190,52 @@
       "STATUS": "Statut"
     },
     "EMPTY_STATE": "Aucune facture trouvée."
+  },
+  "SOUMISSIONS": {
+    "TITLE": "Soumissions (Devis)",
+    "CREATE_BTN": "Créer une Soumission",
+    "CREATE_MODAL_TITLE": "Créer une Soumission",
+    "CLIENT": "Client *",
+    "SELECT_CLIENT": "Sélectionner un client",
+    "NUMERO": "Numéro *",
+    "TITRE": "Titre *",
+    "TITRE_PLACEHOLDER": "ex: Refonte Site Web",
+    "DESCRIPTION": "Description",
+    "ADD_LINE": "+ Ajouter une ligne",
+    "CANCEL": "Annuler",
+    "SAVE": "Enregistrer",
+    "TABLE": {
+      "NUMERO": "Numéro",
+      "TITRE": "Titre",
+      "CLIENT": "Client",
+      "SUBTOTAL": "Sous-Total HT",
+      "TOTAL_TTC": "Total TTC",
+      "STATUS": "Statut"
+    },
+    "EMPTY_STATE": "Aucune soumission trouvée."
+  },
+  "CONTRATS": {
+    "TITLE": "Contrats",
+    "CREATE_BTN": "Créer un Contrat",
+    "CREATE_MODAL_TITLE": "Créer un Contrat",
+    "CLIENT": "Client *",
+    "SELECT_CLIENT": "Sélectionner un client",
+    "NUMERO": "Numéro *",
+    "START_DATE": "Date de Début *",
+    "END_DATE": "Date de Fin (Optionnelle)",
+    "TYPE": "Type de Contrat *",
+    "VAL_GLOBALE": "Valeur Globale ($)",
+    "SPECIAL_CONDITIONS": "Conditions Spéciales",
+    "CANCEL": "Annuler",
+    "SAVE": "Enregistrer",
+    "TABLE": {
+      "NUMERO": "Numéro",
+      "CLIENT": "Client",
+      "TYPE": "Type",
+      "VALUE": "Valeur",
+      "START_DATE": "Date Début",
+      "STATUS": "Statut"
+    },
+    "EMPTY_STATE": "Aucun contrat trouvé."
   }
 }

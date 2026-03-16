@@ -10,7 +10,10 @@
     "PROJECTS": "Projects",
     "TIME_ENTRIES": "Time Tracking",
     "INVOICES": "Invoices",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "CREATE_CLIENT": "Create a Client",
+    "SOUMISSIONS": "Submissions",
+    "CONTRATS": "Contracts"
   },
   "DASHBOARD": {
     "GREETING": "Welcome, John 👋",
@@ -187,5 +190,52 @@
       "STATUS": "Status"
     },
     "EMPTY_STATE": "No invoices found."
+  },
+  "SOUMISSIONS": {
+    "TITLE": "Submissions (Quotes)",
+    "CREATE_BTN": "Create Submission",
+    "CREATE_MODAL_TITLE": "Create Submission",
+    "CLIENT": "Client *",
+    "SELECT_CLIENT": "Select a client",
+    "NUMERO": "Number *",
+    "TITRE": "Title *",
+    "TITRE_PLACEHOLDER": "ex: Website Redesign",
+    "DESCRIPTION": "Description",
+    "ADD_LINE": "+ Add line",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "TABLE": {
+      "NUMERO": "Number",
+      "TITRE": "Title",
+      "CLIENT": "Client",
+      "SUBTOTAL": "Subtotal",
+      "TOTAL_TTC": "Total",
+      "STATUS": "Status"
+    },
+    "EMPTY_STATE": "No submissions found."
+  },
+  "CONTRATS": {
+    "TITLE": "Contracts",
+    "CREATE_BTN": "Create Contract",
+    "CREATE_MODAL_TITLE": "Create Contract",
+    "CLIENT": "Client *",
+    "SELECT_CLIENT": "Select a client",
+    "NUMERO": "Number *",
+    "START_DATE": "Start Date *",
+    "END_DATE": "End Date (Optional)",
+    "TYPE": "Contract Type *",
+    "VAL_GLOBALE": "Global Value ($)",
+    "SPECIAL_CONDITIONS": "Special Conditions",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "TABLE": {
+      "NUMERO": "Number",
+      "CLIENT": "Client",
+      "TYPE": "Type",
+      "VALUE": "Value",
+      "START_DATE": "Start Date",
+      "STATUS": "Status"
+    },
+    "EMPTY_STATE": "No contracts found."
   }
 }
