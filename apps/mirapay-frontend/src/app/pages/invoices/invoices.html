@@ -2,7 +2,7 @@
   <div class="page-header">
     <h1>{{ ts.translate('COMMON.INVOICES') }}</h1>
     <button class="btn-primary" (click)="openModal()">
-      🧾 Générer une Facture
+      🧾 {{ ts.translate('INVOICES.CREATE_BTN') }}
     </button>
   </div>
 
@@ -11,7 +11,7 @@
     <div class="modal-backdrop">
       <div class="modal-card" style="max-width: 700px;">
         <div class="modal-header">
-          <h2>Générer une Facture</h2>
+          <h2>{{ ts.translate('INVOICES.CREATE_MODAL_TITLE') }}</h2>
           <button class="btn-close" (click)="closeModal()">×</button>
         </div>
         
@@ -21,9 +21,9 @@
               
               <!-- Client -->
               <div class="form-group">
-                <label for="clientId">Client *</label>
+                <label for="clientId">{{ ts.translate('INVOICES.CLIENT') }}</label>
                 <select id="clientId" formControlName="clientId" (change)="onClientChange()">
-                  <option value="" disabled>Sélectionner un client</option>
+                  <option value="" disabled>{{ ts.translate('INVOICES.SELECT_CLIENT') }}</option>
                   @for (client of clients(); track client.id) {
                     <option [value]="client.id">{{ client.nomLegal }}</option>
                   }
@@ -32,9 +32,9 @@
 
               <!-- Projet (Optionnel) -->
               <div class="form-group">
-                <label for="projetId">Projet (Optionnel)</label>
+                <label for="projetId">{{ ts.translate('INVOICES.PROJECT') }}</label>
                 <select id="projetId" formControlName="projetId" (change)="onProjectChange()">
-                  <option value="">Tous les projets</option>
+                  <option value="">{{ ts.translate('INVOICES.SELECT_PROJECT') }}</option>
                   @for (project of filteredProjects(); track project.id) {
                     <option [value]="project.id">{{ project.nom }}</option>
                   }
@@ -45,22 +45,22 @@
 
             <div class="actions-row" style="margin-top: 1rem; text-align: right;">
               <button type="button" class="btn-secondary" (click)="prepareDraft()" [disabled]="!invoiceForm.get('clientId')?.value">
-                🔍 Calculer le Brouillon
+                🔍 {{ ts.translate('INVOICES.CALCULATE_DRAFT') }}
               </button>
             </div>
 
             <!-- Draft Preview area -->
             @if (draftData()) {
               <div class="draft-preview" style="margin-top: 1.5rem; background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px dashed #cbd5e1;">
-                <h3 style="margin-top: 0; font-size: 1rem;">Aperçu du Brouillon</h3>
+                <h3 style="margin-top: 0; font-size: 1rem;">{{ ts.translate('INVOICES.DRAFT_PREVIEW') }}</h3>
                 
                 <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.875rem;">
                   <thead>
                     <tr style="border-bottom: 1px solid #e2e8f0; color: #64748b; text-align: left;">
-                      <th style="padding: 0.5rem;">Description</th>
-                      <th style="padding: 0.5rem;">Quantité</th>
-                      <th style="padding: 0.5rem;">Prix Unitaire</th>
-                      <th style="padding: 0.5rem; text-align: right;">Total</th>
+                      <th style="padding: 0.5rem;">{{ ts.translate('INVOICES.DESCRIPTION') }}</th>
+                      <th style="padding: 0.5rem;">{{ ts.translate('INVOICES.QUANTITY') }}</th>
+                      <th style="padding: 0.5rem;">{{ ts.translate('INVOICES.UNIT_PRICE') }}</th>
+                      <th style="padding: 0.5rem; text-align: right;">{{ ts.translate('INVOICES.TOTAL') }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -77,16 +77,16 @@
 
                 <div class="totals-area" style="width: 200px; margin-left: auto; font-size: 0.875rem;">
                   <div style="display: flex; justify-content: space-between; padding: 0.25rem 0;">
-                    <span>Sous-Total:</span> <strong>{{ draftData().sousTotal | currency:'CAD' }}</strong>
+                    <span>{{ ts.translate('INVOICES.SUBTOTAL') }}</span> <strong>{{ draftData().sousTotal | currency:'CAD' }}</strong>
                   </div>
                   <div style="display: flex; justify-content: space-between; padding: 0.25rem 0;">
-                    <span>TPS (5%):</span> <span>{{ draftData().montantTPS | currency:'CAD' }}</span>
+                    <span>{{ ts.translate('INVOICES.TPS') }}</span> <span>{{ draftData().montantTPS | currency:'CAD' }}</span>
                   </div>
                   <div style="display: flex; justify-content: space-between; padding: 0.25rem 0;">
-                    <span>TVQ (9.975%):</span> <span>{{ draftData().montantTVQ | currency:'CAD' }}</span>
+                    <span>{{ ts.translate('INVOICES.TVQ') }}</span> <span>{{ draftData().montantTVQ | currency:'CAD' }}</span>
                   </div>
                   <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-top: 1px solid #cbd5e1; margin-top: 0.5rem; font-weight: 700; font-size: 1rem;">
-                    <span>Total:</span> <span>{{ draftData().totalTTC | currency:'CAD' }}</span>
+                    <span>{{ ts.translate('INVOICES.TOTAL') }}:</span> <span>{{ draftData().totalTTC | currency:'CAD' }}</span>
                   </div>
                 </div>
               </div>
@@ -95,8 +95,8 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
-            <button type="submit" class="btn-primary" [disabled]="invoiceForm.invalid || !draftData()">Générer la Facture</button>
+            <button type="button" class="btn-secondary" (click)="closeModal()">{{ ts.translate('INVOICES.CANCEL') }}</button>
+            <button type="submit" class="btn-primary" [disabled]="invoiceForm.invalid || !draftData()">{{ ts.translate('INVOICES.GENERATE') }}</button>
           </div>
         </form>
       </div>
@@ -108,11 +108,11 @@
     <table>
       <thead>
         <tr>
-          <th>Numéro</th>
-          <th>Client</th>
-          <th>Montant Total</th>
-          <th>Date</th>
-          <th>Statut</th>
+          <th>{{ ts.translate('INVOICES.TABLE.NUMBER') }}</th>
+          <th>{{ ts.translate('INVOICES.TABLE.CLIENT') }}</th>
+          <th>{{ ts.translate('INVOICES.TABLE.AMOUNT') }}</th>
+          <th>{{ ts.translate('INVOICES.TABLE.DATE') }}</th>
+          <th>{{ ts.translate('INVOICES.TABLE.STATUS') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -130,7 +130,7 @@
           </tr>
         } @empty {
           <tr>
-            <td colspan="5" class="empty-state">Aucune facture trouvée.</td>
+            <td colspan="5" class="empty-state">{{ ts.translate('INVOICES.EMPTY_STATE') }}</td>
           </tr>
         }
       </tbody>

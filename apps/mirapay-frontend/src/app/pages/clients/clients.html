@@ -11,7 +11,7 @@
     <div class="modal-backdrop">
       <div class="modal-card">
         <div class="modal-header">
-          <h2>Créer un Nouveau Client</h2>
+          <h2>{{ ts.translate('CLIENTS.CREATE_MODAL_TITLE') }}</h2>
           <button class="btn-close" (click)="closeModal()">×</button>
         </div>
         
@@ -20,64 +20,64 @@
             <div class="form-grid">
               <!-- Type de Client -->
               <div class="form-group full-width">
-                <label for="typeClient_entreprise">Type de Client</label>
+                <label for="typeClient_entreprise">{{ ts.translate('CLIENTS.TYPE') }}</label>
                 <div class="radio-group">
                   <label>
-                    <input id="typeClient_entreprise" type="radio" value="entreprise" formControlName="typeClient"> Entreprise
+                    <input id="typeClient_entreprise" type="radio" value="entreprise" formControlName="typeClient"> {{ ts.translate('CLIENTS.TYPE_ENTREPRISE') }}
                   </label>
                   <label>
-                    <input id="typeClient_particulier" type="radio" value="particulier" formControlName="typeClient"> Particulier
+                    <input id="typeClient_particulier" type="radio" value="particulier" formControlName="typeClient"> {{ ts.translate('CLIENTS.TYPE_PARTICULIER') }}
                   </label>
                 </div>
               </div>
 
               <!-- Nom Légal -->
               <div class="form-group full-width">
-                <label for="nomLegal">Nom Légal *</label>
-                <input id="nomLegal" type="text" formControlName="nomLegal" placeholder="Nom de l'entreprise ou personne">
+                <label for="nomLegal">{{ ts.translate('CLIENTS.LEGAL_NAME') }}</label>
+                <input id="nomLegal" type="text" formControlName="nomLegal" [placeholder]="ts.translate('CLIENTS.LEGAL_NAME_PLACEHOLDER')">
                 @if (clientForm.get('nomLegal')?.invalid && clientForm.get('nomLegal')?.touched) {
-                  <span class="error-text">Le nom est requis.</span>
+                  <span class="error-text">{{ ts.translate('CLIENTS.LEGAL_NAME_REQUIRED') }}</span>
                 }
               </div>
 
               <!-- Contact / Courriel -->
               <div class="form-group">
-                <label for="courriel">Courriel *</label>
-                <input id="courriel" type="email" formControlName="courriel" placeholder="Ex: contact@entreprise.com">
+                <label for="courriel">{{ ts.translate('CLIENTS.EMAIL') }}</label>
+                <input id="courriel" type="email" formControlName="courriel" [placeholder]="ts.translate('CLIENTS.EMAIL_PLACEHOLDER')">
                 @if (clientForm.get('courriel')?.invalid && clientForm.get('courriel')?.touched) {
-                  <span class="error-text">Courriel invalide.</span>
+                  <span class="error-text">{{ ts.translate('CLIENTS.EMAIL_INVALID') }}</span>
                 }
               </div>
               <div class="form-group">
-                <label for="telephone">Téléphone *</label>
-                <input id="telephone" type="text" formControlName="telephone" placeholder="Ex: 514-123-4567">
+                <label for="telephone">{{ ts.translate('CLIENTS.PHONE') }}</label>
+                <input id="telephone" type="text" formControlName="telephone" [placeholder]="ts.translate('CLIENTS.PHONE_PLACEHOLDER')">
               </div>
 
               <!-- Adresse -->
               <div class="form-group full-width">
-                <label for="adresseLigne1">Adresse (Ligne 1) *</label>
-                <input id="adresseLigne1" type="text" formControlName="adresseLigne1" placeholder="Ex: 123 Rue Principale">
+                <label for="adresseLigne1">{{ ts.translate('CLIENTS.ADDRESS') }}</label>
+                <input id="adresseLigne1" type="text" formControlName="adresseLigne1" [placeholder]="ts.translate('CLIENTS.ADDRESS_PLACEHOLDER')">
               </div>
               <div class="form-group">
-                <label for="ville">Ville *</label>
-                <input id="ville" type="text" formControlName="ville" placeholder="Ex: Montréal">
+                <label for="ville">{{ ts.translate('CLIENTS.CITY') }}</label>
+                <input id="ville" type="text" formControlName="ville" [placeholder]="ts.translate('CLIENTS.CITY_PLACEHOLDER')">
               </div>
               <div class="form-group">
-                <label for="province">Province *</label>
-                <input id="province" type="text" formControlName="province" placeholder="Ex: QC">
+                <label for="province">{{ ts.translate('CLIENTS.PROVINCE') }}</label>
+                <input id="province" type="text" formControlName="province" [placeholder]="ts.translate('CLIENTS.PROVINCE_PLACEHOLDER')">
               </div>
               <div class="form-group">
-                <label for="codePostal">Code Postal *</label>
-                <input id="codePostal" type="text" formControlName="codePostal" placeholder="Ex: H1A 1A1">
+                <label for="codePostal">{{ ts.translate('CLIENTS.POSTAL_CODE') }}</label>
+                <input id="codePostal" type="text" formControlName="codePostal" [placeholder]="ts.translate('CLIENTS.POSTAL_CODE_PLACEHOLDER')">
               </div>
               <div class="form-group">
-                <label for="pays">Pays *</label>
+                <label for="pays">{{ ts.translate('CLIENTS.COUNTRY') }}</label>
                 <input id="pays" type="text" formControlName="pays">
               </div>
 
               <!-- Facturation -->
               <div class="form-group">
-                <label for="modeFacturationParDefaut">Mode Facturation</label>
+                <label for="modeFacturationParDefaut">{{ ts.translate('CLIENTS.INVOICING_MODE') }}</label>
                 <select id="modeFacturationParDefaut" formControlName="modeFacturationParDefaut">
                   <option value="horaire">Horaire</option>
                   <option value="forfait">Forfait</option>
@@ -85,7 +85,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="deviseParDefaut">Devise</label>
+                <label for="deviseParDefaut">{{ ts.translate('CLIENTS.CURRENCY') }}</label>
                 <select id="deviseParDefaut" formControlName="deviseParDefaut">
                   <option value="CAD">CAD</option>
                   <option value="USD">USD</option>
@@ -95,18 +95,18 @@
 
               <div class="form-group full-width flex-row">
                 <label class="checkbox-label">
-                  <input type="checkbox" formControlName="appliquerTPS"> Appliquer TPS (5%)
+                  <input type="checkbox" formControlName="appliquerTPS"> {{ ts.translate('CLIENTS.APPLY_TPS') }}
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" formControlName="appliquerTVQ"> Appliquer TVQ (9.975%)
+                  <input type="checkbox" formControlName="appliquerTVQ"> {{ ts.translate('CLIENTS.APPLY_TVQ') }}
                 </label>
               </div>
             </div>
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
-            <button type="submit" class="btn-primary" [disabled]="clientForm.invalid">Sauvegarder</button>
+            <button type="button" class="btn-secondary" (click)="closeModal()">{{ ts.translate('CLIENTS.CANCEL') }}</button>
+            <button type="submit" class="btn-primary" [disabled]="clientForm.invalid">{{ ts.translate('CLIENTS.SAVE') }}</button>
           </div>
         </form>
       </div>
@@ -118,10 +118,10 @@
     <table>
       <thead>
         <tr>
-          <th>Nom</th>
-          <th>Courriel</th>
-          <th>Téléphone</th>
-          <th>Projets</th>
+          <th>{{ ts.translate('CLIENTS.TABLE.NAME') }}</th>
+          <th>{{ ts.translate('CLIENTS.TABLE.EMAIL') }}</th>
+          <th>{{ ts.translate('CLIENTS.TABLE.PHONE') }}</th>
+          <th>{{ ts.translate('CLIENTS.TABLE.PROJECTS') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -134,7 +134,7 @@
           </tr>
         } @empty {
           <tr>
-            <td colspan="4" class="empty-state">Aucun client trouvé.</td>
+            <td colspan="4" class="empty-state">{{ ts.translate('CLIENTS.EMPTY_STATE') }}</td>
           </tr>
         }
       </tbody>

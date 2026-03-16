@@ -2,7 +2,7 @@
   <div class="page-header">
     <h1>{{ ts.translate('COMMON.TIME_ENTRIES') }}</h1>
     <button class="btn-primary" (click)="openModal()">
-      ⏱️ Déclarer du Temps
+      ⏱️ {{ ts.translate('TIME_ENTRIES.CREATE_BTN') }}
     </button>
   </div>
 
@@ -11,7 +11,7 @@
     <div class="modal-backdrop">
       <div class="modal-card">
         <div class="modal-header">
-          <h2>Déclarer du Temps passé</h2>
+          <h2>{{ ts.translate('TIME_ENTRIES.CREATE_MODAL_TITLE') }}</h2>
           <button class="btn-close" (click)="closeModal()">×</button>
         </div>
         
@@ -21,15 +21,15 @@
               
               <!-- Date -->
               <div class="form-group">
-                <label for="date">Date *</label>
+                <label for="date">{{ ts.translate('TIME_ENTRIES.DATE') }}</label>
                 <input id="date" type="date" formControlName="date">
               </div>
 
               <!-- Projet -->
               <div class="form-group">
-                <label for="projetId">Projet *</label>
+                <label for="projetId">{{ ts.translate('TIME_ENTRIES.PROJECT') }}</label>
                 <select id="projetId" formControlName="projetId" (change)="onProjectChange($event)">
-                  <option value="" disabled>Sélectionner un projet</option>
+                  <option value="" disabled>{{ ts.translate('TIME_ENTRIES.SELECT_PROJECT') }}</option>
                   @for (project of projects(); track project.id) {
                     <option [value]="project.id">{{ project.nom }}</option>
                   }
@@ -38,9 +38,9 @@
 
               <!-- Tâche (Dépend du projet) -->
               <div class="form-group full-width">
-                <label for="tacheId">Tâche</label>
+                <label for="tacheId">{{ ts.translate('TIME_ENTRIES.TASK') }}</label>
                 <select id="tacheId" formControlName="tacheId">
-                  <option value="">-- Aucune tâche spécifique --</option>
+                  <option value="">{{ ts.translate('TIME_ENTRIES.SELECT_TASK') }}</option>
                   @for (task of tasks(); track task.id) {
                     <option [value]="task.id">{{ task.titre }} ({{ task.type }})</option>
                   }
@@ -49,29 +49,29 @@
 
               <!-- Durée -->
               <div class="form-group">
-                <label for="dureeHeures">Durée (Heures) *</label>
-                <input id="dureeHeures" type="number" step="0.25" formControlName="dureeHeures" placeholder="Ex: 1.5">
+                <label for="dureeHeures">{{ ts.translate('TIME_ENTRIES.DURATION') }}</label>
+                <input id="dureeHeures" type="number" step="0.25" formControlName="dureeHeures" [placeholder]="ts.translate('TIME_ENTRIES.DURATION_PLACEHOLDER')">
               </div>
 
               <!-- Facturable -->
               <div class="form-group flex-row">
                 <label class="checkbox-label" style="align-self: center; margin-top: 1rem;">
-                  <input type="checkbox" formControlName="estFacturable"> Est Facturable
+                  <input type="checkbox" formControlName="estFacturable"> {{ ts.translate('TIME_ENTRIES.BILLABLE') }}
                 </label>
               </div>
 
               <!-- Commentaire -->
               <div class="form-group full-width">
-                <label for="commentaire">Commentaire / Description</label>
-                <textarea id="commentaire" formControlName="commentaire" rows="3" placeholder="Description du travail effectué..."></textarea>
+                <label for="commentaire">{{ ts.translate('TIME_ENTRIES.COMMENT') }}</label>
+                <textarea id="commentaire" formControlName="commentaire" rows="3" [placeholder]="ts.translate('TIME_ENTRIES.COMMENT_PLACEHOLDER')"></textarea>
               </div>
 
             </div>
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
-            <button type="submit" class="btn-primary" [disabled]="timeForm.invalid">Sauvegarder</button>
+            <button type="button" class="btn-secondary" (click)="closeModal()">{{ ts.translate('TIME_ENTRIES.CANCEL') }}</button>
+            <button type="submit" class="btn-primary" [disabled]="timeForm.invalid">{{ ts.translate('TIME_ENTRIES.SAVE') }}</button>
           </div>
         </form>
       </div>
@@ -83,11 +83,11 @@
     <table>
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Projet</th>
-          <th>Description</th>
-          <th>Durée</th>
-          <th>Statut</th>
+          <th>{{ ts.translate('TIME_ENTRIES.TABLE.DATE') }}</th>
+          <th>{{ ts.translate('TIME_ENTRIES.TABLE.PROJECT') }}</th>
+          <th>{{ ts.translate('TIME_ENTRIES.TABLE.DESCRIPTION') }}</th>
+          <th>{{ ts.translate('TIME_ENTRIES.TABLE.DURATION') }}</th>
+          <th>{{ ts.translate('TIME_ENTRIES.TABLE.STATUS') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -107,7 +107,7 @@
           </tr>
         } @empty {
           <tr>
-            <td colspan="5" class="empty-state">Aucune entrée de temps trouvée.</td>
+            <td colspan="5" class="empty-state">{{ ts.translate('TIME_ENTRIES.EMPTY_STATE') }}</td>
           </tr>
         }
       </tbody>
