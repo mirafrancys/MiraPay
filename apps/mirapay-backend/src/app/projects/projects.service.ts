@@ -3,7 +3,11 @@ import { Project, Prisma } from '../../generated/prisma';
 
 export class ProjectsService {
   async create(data: Prisma.ProjectCreateInput): Promise<Project> {
-    return prisma.project.create({ data });
+    const formattedData = { ...data };
+    if (formattedData.dateDebut && String(formattedData.dateDebut).trim() !== '') {
+      formattedData.dateDebut = new Date(formattedData.dateDebut as string);
+    }
+    return prisma.project.create({ data: formattedData });
   }
 
   async findAll(): Promise<Project[]> {

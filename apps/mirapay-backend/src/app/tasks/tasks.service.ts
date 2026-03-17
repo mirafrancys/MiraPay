@@ -3,7 +3,21 @@ import { Task, Prisma, PrismaClient } from '../../generated/prisma';
 
 export class TasksService {
   async create(data: Prisma.TaskCreateInput): Promise<Task> {
-    return prisma.task.create({ data });
+    const formattedData = { ...data };
+    
+    if (formattedData.dateDebutPrevue && String(formattedData.dateDebutPrevue).trim() !== '') {
+      formattedData.dateDebutPrevue = new Date(formattedData.dateDebutPrevue as string);
+    } else {
+      delete formattedData.dateDebutPrevue;
+    }
+
+    if (formattedData.dateEcheance && String(formattedData.dateEcheance).trim() !== '') {
+      formattedData.dateEcheance = new Date(formattedData.dateEcheance as string);
+    } else {
+      delete formattedData.dateEcheance;
+    }
+
+    return prisma.task.create({ data: formattedData });
   }
 
   async findAllByProject(projectId: string): Promise<Task[]> {
