@@ -20,11 +20,29 @@
         <a routerLink="/clients" routerLinkActive="active">
           <span class="label">{{ts.translate('COMMON.CLIENTS')}}</span>
         </a>
+        @if (clientsGateway.activeClient()) {
+          <ul class="submenu">
+            <li class="submenu-item">
+              <a [routerLink]="['/clients', clientsGateway.activeClient()!.id]" routerLinkActive="active">
+                📄 {{ clientsGateway.activeClient()!.nomLegal }}
+              </a>
+            </li>
+          </ul>
+        }
       </li>
       <li>
         <a routerLink="/projects" routerLinkActive="active">
           <span class="label">{{ts.translate('COMMON.PROJECTS')}}</span>
         </a>
+        @if (projectsGateway.activeProject()) {
+          <ul class="submenu">
+            <li class="submenu-item">
+              <a [routerLink]="['/projects', projectsGateway.activeProject()!.id]" routerLinkActive="active">
+                📁 {{ projectsGateway.activeProject()!.nom }}
+              </a>
+            </li>
+          </ul>
+        }
       </li>
       <li>
         <a routerLink="/time-entries" routerLinkActive="active">

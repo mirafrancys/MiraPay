@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClientsGateway } from '../../../cores/gateways/clients.gateway';
 import { BankHoursGateway } from '../../../cores/gateways/bank-hours.gateway';
@@ -16,6 +16,7 @@ import { TranslationService } from '../../../cores/services/translation.service'
 })
 export class ClientDetailComponent implements OnInit {
   route = inject(ActivatedRoute);
+  router = inject(Router);
   clientsGateway = inject(ClientsGateway);
   bankGateway = inject(BankHoursGateway);
   fb = inject(FormBuilder);
@@ -48,9 +49,15 @@ export class ClientDetailComponent implements OnInit {
     try {
       const data = await this.clientsGateway.getOne(id);
       this.client.set(data);
+      this.clientsGateway.activeClient.set(data);
     } catch (error) {
       console.error('Erreur chargement client', error);
     }
+  }
+
+  closeClient() {
+    this.clientsGateway.activeClient.set(null);
+    this.router.navigate(['/clients']);
   }
 
   openModal() {

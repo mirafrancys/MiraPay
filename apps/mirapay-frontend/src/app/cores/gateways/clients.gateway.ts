@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Client } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientsGateway {
+  activeClient = signal<Client | null>(null);
+  
   private apiUrl = '/api/clients';
 
   async getAll(): Promise<Client[]> {

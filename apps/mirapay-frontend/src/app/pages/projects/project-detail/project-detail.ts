@@ -51,10 +51,17 @@ export class ProjectDetailComponent implements OnInit {
 
   async loadProject(id: string) {
     try {
-      this.project.set(await this.projectsGateway.getOne(id));
+      const data = await this.projectsGateway.getOne(id);
+      this.project.set(data);
+      this.projectsGateway.activeProject.set(data);
     } catch (error) {
       console.error('Erreur chargement projet', error);
     }
+  }
+
+  closeProject() {
+    this.projectsGateway.activeProject.set(null);
+    this.router.navigate(['/projects']);
   }
 
   async loadTasks(projectId: string) {

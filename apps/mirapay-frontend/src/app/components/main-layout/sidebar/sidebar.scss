@@ -58,3 +58,31 @@ a.active {
   background: #fef2f2;
   color: #dc2626;
 }
+
+.submenu {
+  margin-top: 0.25rem;
+  padding-left: 1.5rem;
+  list-style: none;
+
+  .submenu-item {
+    margin-bottom: 0.25rem;
+
+    a {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: #64748b;
+      border-radius: 6px;
+
+      &:hover {
+        background: #f1f5f9;
+        color: #1e293b;
+      }
+
+      &.active {
+        background: #eef2ff;
+        color: #6366f1;
+        font-weight: 600;
+      }
+    }
+  }
+}

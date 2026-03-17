@@ -2,7 +2,7 @@
   <div class="project-detail-container">
     <div class="header">
       <div class="title-section">
-        <a routerLink="/projects" class="back-link">← Retour aux projets</a>
+        <a (click)="closeProject()" (keydown.enter)="closeProject()" class="back-link" style="cursor: pointer;" tabindex="0" role="button">← Retour aux projets</a>
         <h1>{{ project()?.nom }}</h1>
         <span class="type-badge">{{ project()?.statut }}</span>
       </div>

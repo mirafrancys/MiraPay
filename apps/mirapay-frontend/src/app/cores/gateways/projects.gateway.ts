@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Project } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsGateway {
+  activeProject = signal<Project | null>(null);
+  
   private apiUrl = '/api/projects';
 
   async getAll(): Promise<Project[]> {

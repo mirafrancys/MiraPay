@@ -2,7 +2,7 @@
   <div class="client-detail-container">
     <div class="header">
       <div class="title-section">
-        <a routerLink="/clients" class="back-link">← Retour aux clients</a>
+        <a (click)="closeClient()" (keydown.enter)="closeClient()" class="back-link" style="cursor: pointer;" tabindex="0" role="button">← Retour aux clients</a>
         <h1>{{ client()?.nomLegal }}</h1>
         <span class="type-badge">{{ client()?.typeClient }}</span>
       </div>
