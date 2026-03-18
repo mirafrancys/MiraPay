@@ -240,6 +240,7 @@ model Contact {
   fonction  String?
   courriel  String?
   telephone String?
+  estActive Boolean  @default(true)
   
   soumissions Soumission[]
   contrats    Contrat[]

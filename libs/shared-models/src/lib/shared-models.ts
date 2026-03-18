@@ -195,6 +195,7 @@ export interface Contact {
   fonction?: string;
   courriel?: string;
   telephone?: string;
+  estActive: boolean;
   soumissions?: Soumission[];
   contrats?: Contrat[];
   createdAt: Date | string;

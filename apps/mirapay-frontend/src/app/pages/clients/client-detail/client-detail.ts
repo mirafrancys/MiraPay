@@ -6,6 +6,7 @@ import { ClientsGateway } from '../../../cores/gateways/clients.gateway';
 import { BankHoursGateway } from '../../../cores/gateways/bank-hours.gateway';
 import { Client, BankHour } from '@mirapay/shared-models';
 import { TranslationService } from '../../../cores/services/translation.service';
+import { ContactsGateway } from '../../../cores/gateways/contacts.gateway';
 
 @Component({
   selector: 'app-client-detail',
@@ -19,12 +20,15 @@ export class ClientDetailComponent implements OnInit {
   router = inject(Router);
   clientsGateway = inject(ClientsGateway);
   bankGateway = inject(BankHoursGateway);
+  contactsGateway = inject(ContactsGateway);
   fb = inject(FormBuilder);
   ts = inject(TranslationService);
 
   client = signal<Client | null>(null);
   isModalOpen = signal<boolean>(false);
+  isContactModalOpen = signal<boolean>(false);
   bankForm!: FormGroup;
+  contactForm!: FormGroup;
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -42,6 +46,13 @@ export class ClientDetailComponent implements OnInit {
       dateDebut: [''],
       dateFin: [''],
       estActive: [true]
+    });
+
+    this.contactForm = this.fb.group({
+      nom: ['', Validators.required],
+      fonction: [''],
+      courriel: ['', [Validators.email]],
+      telephone: ['']
     });
   }
 
@@ -84,6 +95,45 @@ export class ClientDetailComponent implements OnInit {
     } catch (error) {
       console.error('Erreur creation banque d\'heure', error);
       alert('Erreur: ' + (error as Error).message);
+    }
+  }
+
+  openContactModal() {
+    this.contactForm.reset();
+    this.isContactModalOpen.set(true);
+  }
+
+  closeContactModal() {
+    this.isContactModalOpen.set(false);
+  }
+
+  async onSubmitContact() {
+    const currentClient = this.client();
+    if (this.contactForm.invalid || !currentClient) return;
+
+    try {
+      const payload = {
+        ...this.contactForm.value,
+        clientId: currentClient.id
+      };
+      
+      await this.contactsGateway.create(payload);
+      this.closeContactModal();
+      this.loadClient(currentClient.id); // Rafraîchir
+    } catch (error) {
+      console.error('Erreur creation contact', error);
+      alert('Erreur: ' + (error as Error).message);
+    }
+  }
+
+  async deleteContact(id: string) {
+    const currentClient = this.client();
+    if (!currentClient || !confirm("Désactiver ce contact ? Il ne sera plus visible pour les futures opérations.")) return;
+    try {
+      await this.contactsGateway.delete(id);
+      this.loadClient(currentClient.id);
+    } catch (error) {
+      console.error('Erreur delete contact', error);
     }
   }
 }

@@ -292,6 +292,7 @@ exports.Prisma.ContactScalarFieldEnum = {
   fonction: 'fonction',
   courriel: 'courriel',
   telephone: 'telephone',
+  estActive: 'estActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

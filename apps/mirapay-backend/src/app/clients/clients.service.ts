@@ -23,7 +23,8 @@ export class ClientsService {
       include: {
         projects: true,
         invoices: true,
-        bankHours: true
+        bankHours: true,
+        contacts: true
       } as any
     });
   }

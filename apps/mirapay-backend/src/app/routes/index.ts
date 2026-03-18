@@ -10,6 +10,7 @@ import invoicesRoutes from './invoices';
 import bankHoursRoutes from './bank-hours';
 import soumissionsRoutes from './soumissions';
 import contratsRoutes from './contrats';
+import contactsRoutes from './contacts';
 
 const router = Router();
 
@@ -24,5 +25,6 @@ router.use('/invoices', invoicesRoutes);
 router.use('/bank-hours', bankHoursRoutes);
 router.use('/soumissions', soumissionsRoutes);
 router.use('/contrats', contratsRoutes);
+router.use('/contacts', contactsRoutes);
 
 export default router;

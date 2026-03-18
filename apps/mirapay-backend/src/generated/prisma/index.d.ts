@@ -16303,6 +16303,7 @@ export namespace Prisma {
     fonction: string | null
     courriel: string | null
     telephone: string | null
+    estActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -16314,6 +16315,7 @@ export namespace Prisma {
     fonction: string | null
     courriel: string | null
     telephone: string | null
+    estActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -16325,6 +16327,7 @@ export namespace Prisma {
     fonction: number
     courriel: number
     telephone: number
+    estActive: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -16338,6 +16341,7 @@ export namespace Prisma {
     fonction?: true
     courriel?: true
     telephone?: true
+    estActive?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -16349,6 +16353,7 @@ export namespace Prisma {
     fonction?: true
     courriel?: true
     telephone?: true
+    estActive?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -16360,6 +16365,7 @@ export namespace Prisma {
     fonction?: true
     courriel?: true
     telephone?: true
+    estActive?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -16444,6 +16450,7 @@ export namespace Prisma {
     fonction: string | null
     courriel: string | null
     telephone: string | null
+    estActive: boolean
     createdAt: Date
     updatedAt: Date
     _count: ContactCountAggregateOutputType | null
@@ -16472,6 +16479,7 @@ export namespace Prisma {
     fonction?: boolean
     courriel?: boolean
     telephone?: boolean
+    estActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
@@ -16487,6 +16495,7 @@ export namespace Prisma {
     fonction?: boolean
     courriel?: boolean
     telephone?: boolean
+    estActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
@@ -16499,6 +16508,7 @@ export namespace Prisma {
     fonction?: boolean
     courriel?: boolean
     telephone?: boolean
+    estActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     client?: boolean | ClientDefaultArgs<ExtArgs>
@@ -16511,11 +16521,12 @@ export namespace Prisma {
     fonction?: boolean
     courriel?: boolean
     telephone?: boolean
+    estActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "nom" | "fonction" | "courriel" | "telephone" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "nom" | "fonction" | "courriel" | "telephone" | "estActive" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
   export type ContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | ClientDefaultArgs<ExtArgs>
     soumissions?: boolean | Contact$soumissionsArgs<ExtArgs>
@@ -16543,6 +16554,7 @@ export namespace Prisma {
       fonction: string | null
       courriel: string | null
       telephone: string | null
+      estActive: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["contact"]>
@@ -16977,6 +16989,7 @@ export namespace Prisma {
     readonly fonction: FieldRef<"Contact", 'String'>
     readonly courriel: FieldRef<"Contact", 'String'>
     readonly telephone: FieldRef<"Contact", 'String'>
+    readonly estActive: FieldRef<"Contact", 'Boolean'>
     readonly createdAt: FieldRef<"Contact", 'DateTime'>
     readonly updatedAt: FieldRef<"Contact", 'DateTime'>
   }
@@ -21444,6 +21457,7 @@ export namespace Prisma {
     fonction: 'fonction',
     courriel: 'courriel',
     telephone: 'telephone',
+    estActive: 'estActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -22689,6 +22703,7 @@ export namespace Prisma {
     fonction?: StringNullableFilter<"Contact"> | string | null
     courriel?: StringNullableFilter<"Contact"> | string | null
     telephone?: StringNullableFilter<"Contact"> | string | null
+    estActive?: BoolFilter<"Contact"> | boolean
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
     client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
@@ -22703,6 +22718,7 @@ export namespace Prisma {
     fonction?: SortOrderInput | SortOrder
     courriel?: SortOrderInput | SortOrder
     telephone?: SortOrderInput | SortOrder
+    estActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     client?: ClientOrderByWithRelationInput
@@ -22720,6 +22736,7 @@ export namespace Prisma {
     fonction?: StringNullableFilter<"Contact"> | string | null
     courriel?: StringNullableFilter<"Contact"> | string | null
     telephone?: StringNullableFilter<"Contact"> | string | null
+    estActive?: BoolFilter<"Contact"> | boolean
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
     client?: XOR<ClientScalarRelationFilter, ClientWhereInput>
@@ -22734,6 +22751,7 @@ export namespace Prisma {
     fonction?: SortOrderInput | SortOrder
     courriel?: SortOrderInput | SortOrder
     telephone?: SortOrderInput | SortOrder
+    estActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ContactCountOrderByAggregateInput
@@ -22751,6 +22769,7 @@ export namespace Prisma {
     fonction?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     courriel?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     telephone?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    estActive?: BoolWithAggregatesFilter<"Contact"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
   }
@@ -24284,6 +24303,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutContactsInput
@@ -24298,6 +24318,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     soumissions?: SoumissionUncheckedCreateNestedManyWithoutContactInput
@@ -24310,6 +24331,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutContactsNestedInput
@@ -24324,6 +24346,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     soumissions?: SoumissionUncheckedUpdateManyWithoutContactNestedInput
@@ -24337,6 +24360,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -24347,6 +24371,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24358,6 +24383,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25629,6 +25655,7 @@ export namespace Prisma {
     fonction?: SortOrder
     courriel?: SortOrder
     telephone?: SortOrder
+    estActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -25640,6 +25667,7 @@ export namespace Prisma {
     fonction?: SortOrder
     courriel?: SortOrder
     telephone?: SortOrder
+    estActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -25651,6 +25679,7 @@ export namespace Prisma {
     fonction?: SortOrder
     courriel?: SortOrder
     telephone?: SortOrder
+    estActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -27937,6 +27966,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     soumissions?: SoumissionCreateNestedManyWithoutContactInput
@@ -27949,6 +27979,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     soumissions?: SoumissionUncheckedCreateNestedManyWithoutContactInput
@@ -28192,6 +28223,7 @@ export namespace Prisma {
     fonction?: StringNullableFilter<"Contact"> | string | null
     courriel?: StringNullableFilter<"Contact"> | string | null
     telephone?: StringNullableFilter<"Contact"> | string | null
+    estActive?: BoolFilter<"Contact"> | boolean
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
   }
@@ -30733,6 +30765,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutContactsInput
@@ -30746,6 +30779,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     contrats?: ContratUncheckedCreateNestedManyWithoutContactInput
@@ -30924,6 +30958,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutContactsNestedInput
@@ -30937,6 +30972,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     contrats?: ContratUncheckedUpdateManyWithoutContactNestedInput
@@ -31156,6 +31192,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutContactsInput
@@ -31169,6 +31206,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     soumissions?: SoumissionUncheckedCreateNestedManyWithoutContactInput
@@ -31372,6 +31410,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutContactsNestedInput
@@ -31385,6 +31424,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     soumissions?: SoumissionUncheckedUpdateManyWithoutContactNestedInput
@@ -31706,6 +31746,7 @@ export namespace Prisma {
     fonction?: string | null
     courriel?: string | null
     telephone?: string | null
+    estActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -31908,6 +31949,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     soumissions?: SoumissionUpdateManyWithoutContactNestedInput
@@ -31920,6 +31962,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     soumissions?: SoumissionUncheckedUpdateManyWithoutContactNestedInput
@@ -31932,6 +31975,7 @@ export namespace Prisma {
     fonction?: NullableStringFieldUpdateOperationsInput | string | null
     courriel?: NullableStringFieldUpdateOperationsInput | string | null
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
+    estActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
