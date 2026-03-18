@@ -2,13 +2,13 @@
   <div class="client-detail-container">
     <div class="header">
       <div class="title-section">
-        <a (click)="closeClient()" (keydown.enter)="closeClient()" class="back-link" style="cursor: pointer;" tabindex="0" role="button">← Retour aux clients</a>
+        <a (click)="closeClient()" (keydown.enter)="closeClient()" class="back-link" style="cursor: pointer;" tabindex="0" role="button">{{ ts.translate('CLIENTS.DETAILS.BACK') }}</a>
         <h1>{{ client()?.nomLegal }}</h1>
         <span class="type-badge">{{ client()?.typeClient }}</span>
       </div>
       <div style="display: flex; gap: 0.5rem;">
-        <button class="btn-secondary" (click)="openContactModal()">+ Ajouter Contact</button>
-        <button class="btn-primary" (click)="openModal()">+ Ajouter Banque d'Heures</button>
+        <button class="btn-secondary" (click)="openContactModal()">{{ ts.translate('CLIENTS.DETAILS.ADD_CONTACT') }}</button>
+        <button class="btn-primary" (click)="openModal()">{{ ts.translate('CLIENTS.DETAILS.ADD_BANK') }}</button>
       </div>
     </div>
 
@@ -17,16 +17,16 @@
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
         <!-- Fiche Info -->
         <div class="card info-card">
-          <h2>Informations Générales</h2>
-          <div class="info-item"><strong>Courriel :</strong> {{ client()?.courriel }}</div>
-          <div class="info-item"><strong>Téléphone :</strong> {{ client()?.telephone }}</div>
-          <div class="info-item"><strong>Adresse :</strong> {{ client()?.adresseLigne1 }}, {{ client()?.ville }}</div>
-          <div class="info-item"><strong>Dévise :</strong> {{ client()?.deviseParDefaut }}</div>
+          <h2>{{ ts.translate('CLIENTS.DETAILS.GENERAL_INFO') }}</h2>
+          <div class="info-item"><strong>{{ ts.translate('CLIENTS.DETAILS.EMAIL') }}</strong> {{ client()?.courriel }}</div>
+          <div class="info-item"><strong>{{ ts.translate('CLIENTS.DETAILS.PHONE') }}</strong> {{ client()?.telephone }}</div>
+          <div class="info-item"><strong>{{ ts.translate('CLIENTS.DETAILS.ADDRESS') }}</strong> {{ client()?.adresseLigne1 }}, {{ client()?.ville }}</div>
+          <div class="info-item"><strong>{{ ts.translate('CLIENTS.DETAILS.CURRENCY') }}</strong> {{ client()?.deviseParDefaut }}</div>
         </div>
 
         <!-- Contacts -->
         <div class="card">
-          <h2>Contacts ({{ client()?.contacts?.length || 0 }})</h2>
+          <h2>{{ ts.translate('CLIENTS.DETAILS.CONTACTS') }} ({{ client()?.contacts?.length || 0 }})</h2>
           @if (client()?.contacts && client()!.contacts!.length > 0) {
             <div class="contact-list">
               @for (contact of client()?.contacts; track contact.id) {
@@ -50,27 +50,27 @@
               }
             </div>
           } @else {
-            <p style="text-align: center; color: #6b7280; font-size: 0.875rem;">Aucun contact défini.</p>
+            <p style="text-align: center; color: #6b7280; font-size: 0.875rem;">{{ ts.translate('CLIENTS.DETAILS.NO_CONTACTS') }}</p>
           }
         </div>
       </div>
 
       <!-- Banque d'Heures -->
       <div class="card bank-card">
-        <h2>Banques d'Heures</h2>
+        <h2>{{ ts.translate('CLIENTS.DETAILS.BANK_HOURS') }}</h2>
         @if (client()?.bankHours && client()!.bankHours!.length > 0) {
           <div class="bank-list">
             @for (bank of client()?.bankHours; track bank.id) {
               <div class="bank-item">
                 <div class="bank-header">
                   <h3>{{ bank.nom }}</h3>
-                  <span class="status-badge" [class.active]="bank.estActive">{{ bank.estActive ? 'Active' : 'Inactive' }}</span>
+                  <span class="status-badge" [class.active]="bank.estActive">{{ bank.estActive ? ts.translate('CLIENTS.DETAILS.ACTIVE') : ts.translate('CLIENTS.DETAILS.INACTIVE') }}</span>
                 </div>
-                <p class="desc">{{ bank.description || 'Pas de description' }}</p>
+                <p class="desc">{{ bank.description || ts.translate('CLIENTS.DETAILS.NO_DESCRIPTION') }}</p>
                 <div class="progress-section">
                   <div class="progress-info">
                     <span>{{ bank.heuresConsommees }}h / {{ bank.heuresAchetees }}h</span>
-                    <span>Solde: {{ (bank.heuresAchetees - bank.heuresConsommees) }}h</span>
+                    <span>{{ ts.translate('CLIENTS.DETAILS.BALANCE') }} {{ (bank.heuresAchetees - bank.heuresConsommees) }}h</span>
                   </div>
                   <div class="progress-bar">
                     <div class="progress-fill" [style.width.%]="(bank.heuresConsommees / bank.heuresAchetees) * 100"></div>
@@ -80,7 +80,7 @@
             }
           </div>
         } @else {
-          <p class="empty-state">Aucune banque d'heures définie pour ce client.</p>
+          <p class="empty-state">{{ ts.translate('CLIENTS.DETAILS.NO_BANK_HOURS') }}</p>
         }
       </div>
     </div>
@@ -91,37 +91,37 @@
 @if (isModalOpen()) {
   <div class="modal-overlay">
     <div class="modal">
-      <h2>Ajouter une Banque d'Heures</h2>
+      <h2>{{ ts.translate('CLIENTS.DETAILS.MODAL_BANK_TITLE') }}</h2>
       <form [formGroup]="bankForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="bankName">Nom de la banque *</label>
+          <label for="bankName">{{ ts.translate('CLIENTS.DETAILS.MODAL_BANK_NAME') }}</label>
           <input id="bankName" type="text" formControlName="nom" placeholder="ex: Support Urgent 20h" />
         </div>
 
         <div class="form-group">
-          <label for="bankDesc">Description</label>
+          <label for="bankDesc">{{ ts.translate('CLIENTS.DETAILS.MODAL_BANK_DESC') }}</label>
           <textarea id="bankDesc" formControlName="description" rows="3"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="bankHours">Heures Achetées *</label>
+          <label for="bankHours">{{ ts.translate('CLIENTS.DETAILS.MODAL_BANK_HOURS') }}</label>
           <input id="bankHours" type="number" formControlName="heuresAchetees" />
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="dateDebut">Date Début</label>
+            <label for="dateDebut">{{ ts.translate('CLIENTS.DETAILS.MODAL_BANK_START') }}</label>
             <input id="dateDebut" type="date" formControlName="dateDebut" />
           </div>
           <div class="form-group">
-            <label for="dateFin">Date Fin</label>
+            <label for="dateFin">{{ ts.translate('CLIENTS.DETAILS.MODAL_BANK_END') }}</label>
             <input id="dateFin" type="date" formControlName="dateFin" />
           </div>
         </div>
 
         <div class="form-actions">
-          <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
-          <button type="submit" class="btn-primary" [disabled]="bankForm.invalid">Enregistrer</button>
+          <button type="button" class="btn-secondary" (click)="closeModal()">{{ ts.translate('CLIENTS.CANCEL') }}</button>
+          <button type="submit" class="btn-primary" [disabled]="bankForm.invalid">{{ ts.translate('CLIENTS.SAVE') }}</button>
         </div>
       </form>
     </div>
@@ -132,31 +132,31 @@
 @if (isContactModalOpen()) {
   <div class="modal-overlay">
     <div class="modal">
-      <h2>Ajouter un Contact</h2>
+      <h2>{{ ts.translate('CLIENTS.DETAILS.MODAL_CONTACT_TITLE') }}</h2>
       <form [formGroup]="contactForm" (ngSubmit)="onSubmitContact()">
         <div class="form-group">
-          <label for="contactNom">Nom Complet *</label>
+          <label for="contactNom">{{ ts.translate('CLIENTS.DETAILS.MODAL_CONTACT_NAME') }}</label>
           <input id="contactNom" type="text" formControlName="nom" placeholder="ex: Jean Dupont" />
         </div>
 
         <div class="form-group">
-          <label for="contactFonction">Fonction / Rôle</label>
+          <label for="contactFonction">{{ ts.translate('CLIENTS.DETAILS.MODAL_CONTACT_ROLE') }}</label>
           <input id="contactFonction" type="text" formControlName="fonction" placeholder="ex: Comptable, Directeur" />
         </div>
 
         <div class="form-group">
-          <label for="contactEmail">Courriel</label>
+          <label for="contactEmail">{{ ts.translate('CLIENTS.DETAILS.EMAIL') }}</label>
           <input id="contactEmail" type="email" formControlName="courriel" placeholder="ex: j.dupont@entreprise.com" />
         </div>
 
         <div class="form-group">
-          <label for="contactTel">Téléphone</label>
+          <label for="contactTel">{{ ts.translate('CLIENTS.DETAILS.PHONE') }}</label>
           <input id="contactTel" type="text" formControlName="telephone" placeholder="ex: 514-555-5555" />
         </div>
 
         <div class="form-actions">
-          <button type="button" class="btn-secondary" (click)="closeContactModal()">Annuler</button>
-          <button type="submit" class="btn-primary" [disabled]="contactForm.invalid">Enregistrer</button>
+          <button type="button" class="btn-secondary" (click)="closeContactModal()">{{ ts.translate('CLIENTS.CANCEL') }}</button>
+          <button type="submit" class="btn-primary" [disabled]="contactForm.invalid">{{ ts.translate('CLIENTS.SAVE') }}</button>
         </div>
       </form>
     </div>

@@ -103,7 +103,35 @@
       "PHONE": "Téléphone",
       "PROJECTS": "Projets"
     },
-    "EMPTY_STATE": "Aucun client trouvé."
+    "EMPTY_STATE": "Aucun client trouvé.",
+    "DETAILS": {
+      "BACK": "← Retour aux clients",
+      "ADD_CONTACT": "+ Ajouter Contact",
+      "ADD_BANK": "+ Ajouter Banque d'Heures",
+      "GENERAL_INFO": "Informations Générales",
+      "EMAIL": "Courriel :",
+      "PHONE": "Téléphone :",
+      "ADDRESS": "Adresse :",
+      "CURRENCY": "Dévise :",
+      "CONTACTS": "Contacts",
+      "NO_CONTACTS": "Aucun contact défini.",
+      "BANK_HOURS": "Banques d'Heures",
+      "NO_BANK_HOURS": "Aucune banque d'heures définie pour ce client.",
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "NO_DESCRIPTION": "Pas de description",
+      "HOURS": "Heures",
+      "BALANCE": "Solde:",
+      "MODAL_BANK_TITLE": "Ajouter une Banque d'Heures",
+      "MODAL_BANK_NAME": "Nom de la banque *",
+      "MODAL_BANK_DESC": "Description",
+      "MODAL_BANK_HOURS": "Heures Achetées *",
+      "MODAL_BANK_START": "Date Début",
+      "MODAL_BANK_END": "Date Fin",
+      "MODAL_CONTACT_TITLE": "Ajouter un Contact",
+      "MODAL_CONTACT_NAME": "Nom Complet *",
+      "MODAL_CONTACT_ROLE": "Fonction / Rôle"
+    }
   },
   "PROJECTS": {
     "CREATE_BTN": "Créer un Projet",
@@ -138,7 +166,36 @@
       "RATE": "Taux Horaire",
       "STATUS": "Statut"
     },
-    "EMPTY_STATE": "Aucun projet trouvé."
+    "EMPTY_STATE": "Aucun projet trouvé.",
+    "DETAILS": {
+      "BACK": "← Retour aux projets",
+      "ADD_TASK": "+ Ajouter une Tâche",
+      "GENERAL_INFO": "Informations Générales",
+      "CLIENT": "Client :",
+      "INVOICING_TYPE": "Type Facturation :",
+      "START_DATE": "Date Début :",
+      "STATUS_LABEL": "Statut :",
+      "TASKS": "Tâches",
+      "NO_TASKS": "Aucune tâche définie pour ce projet.",
+      "TABLE": {
+        "TITLE": "Titre",
+        "TYPE": "Type",
+        "PRIORITY": "Priorité",
+        "STATUS": "Statut",
+        "BILLABLE": "Facturable"
+      },
+      "YES": "Oui",
+      "NO": "Non",
+      "MODAL_TASK_TITLE": "Ajouter une Tâche",
+      "MODAL_TASK_NAME": "Titre de la tâche *",
+      "MODAL_TASK_DESC": "Description",
+      "MODAL_TASK_TYPE": "Type *",
+      "MODAL_TASK_PRIORITY": "Priorité *",
+      "MODAL_TASK_STATUS": "Statut *",
+      "MODAL_TASK_BILLABLE": "Facturable",
+      "MODAL_TASK_START": "Date Début Prévue",
+      "MODAL_TASK_END": "Échéance"
+    }
   },
   "TIME_ENTRIES": {
     "CREATE_BTN": "Déclarer du Temps",

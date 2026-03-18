@@ -103,7 +103,35 @@
       "PHONE": "Phone",
       "PROJECTS": "Projects"
     },
-    "EMPTY_STATE": "No clients found."
+    "EMPTY_STATE": "No clients found.",
+    "DETAILS": {
+      "BACK": "← Back to clients",
+      "ADD_CONTACT": "+ Add Contact",
+      "ADD_BANK": "+ Add Bank of Hours",
+      "GENERAL_INFO": "General Information",
+      "EMAIL": "Email:",
+      "PHONE": "Phone:",
+      "ADDRESS": "Address:",
+      "CURRENCY": "Currency:",
+      "CONTACTS": "Contacts",
+      "NO_CONTACTS": "No contacts defined.",
+      "BANK_HOURS": "Bank of Hours",
+      "NO_BANK_HOURS": "No bank of hours defined for this client.",
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "NO_DESCRIPTION": "No description",
+      "HOURS": "Hours",
+      "BALANCE": "Balance:",
+      "MODAL_BANK_TITLE": "Add a Bank of Hours",
+      "MODAL_BANK_NAME": "Bank Name *",
+      "MODAL_BANK_DESC": "Description",
+      "MODAL_BANK_HOURS": "Hours Purchased *",
+      "MODAL_BANK_START": "Start Date",
+      "MODAL_BANK_END": "End Date",
+      "MODAL_CONTACT_TITLE": "Add a Contact",
+      "MODAL_CONTACT_NAME": "Full Name *",
+      "MODAL_CONTACT_ROLE": "Role / Title"
+    }
   },
   "PROJECTS": {
     "CREATE_BTN": "Create Project",
@@ -138,7 +166,36 @@
       "RATE": "Hourly Rate",
       "STATUS": "Status"
     },
-    "EMPTY_STATE": "No projects found."
+    "EMPTY_STATE": "No projects found.",
+    "DETAILS": {
+      "BACK": "← Back to projects",
+      "ADD_TASK": "+ Add a Task",
+      "GENERAL_INFO": "General Information",
+      "CLIENT": "Client:",
+      "INVOICING_TYPE": "Invoicing Type:",
+      "START_DATE": "Start Date:",
+      "STATUS_LABEL": "Status:",
+      "TASKS": "Tasks",
+      "NO_TASKS": "No tasks defined for this project.",
+      "TABLE": {
+        "TITLE": "Title",
+        "TYPE": "Type",
+        "PRIORITY": "Priority",
+        "STATUS": "Status",
+        "BILLABLE": "Billable"
+      },
+      "YES": "Yes",
+      "NO": "No",
+      "MODAL_TASK_TITLE": "Add a Task",
+      "MODAL_TASK_NAME": "Task Title *",
+      "MODAL_TASK_DESC": "Description",
+      "MODAL_TASK_TYPE": "Type *",
+      "MODAL_TASK_PRIORITY": "Priority *",
+      "MODAL_TASK_STATUS": "Status *",
+      "MODAL_TASK_BILLABLE": "Billable",
+      "MODAL_TASK_START": "Expected Start Date",
+      "MODAL_TASK_END": "Due Date"
+    }
   },
   "TIME_ENTRIES": {
     "CREATE_BTN": "Track Time",

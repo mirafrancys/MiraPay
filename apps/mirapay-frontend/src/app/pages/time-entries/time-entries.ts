@@ -5,6 +5,7 @@ import { TimeEntriesGateway } from '../../cores/gateways/time-entries.gateway';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { TasksGateway } from '../../cores/gateways/tasks.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
+import { AuthGateway } from '../../cores/gateways/auth.gateway';
 import { TimeEntry, Project, Task } from '@mirapay/shared-models';
 
 @Component({
@@ -16,6 +17,7 @@ import { TimeEntry, Project, Task } from '@mirapay/shared-models';
 })
 export class TimeEntriesComponent implements OnInit {
   ts = inject(TranslationService);
+  private authGateway = inject(AuthGateway);
   private timeGateway = inject(TimeEntriesGateway);
   private projectsGateway = inject(ProjectsGateway);
   private tasksGateway = inject(TasksGateway);
@@ -91,6 +93,17 @@ export class TimeEntriesComponent implements OnInit {
       if (!payload.tacheId || payload.tacheId === '') {
         delete payload.tacheId; // Nettoyer si vide
       }
+
+      // Ajouter le userId de l'utilisateur connecté
+      const user = this.authGateway.currentUser();
+      if (user) {
+        payload.userId = user.id;
+      } else {
+        throw new Error("L'utilisateur n'est pas connecté.");
+      }
+
+      // Formater la date pour Prisma
+      payload.date = new Date(payload.date);
 
       await this.timeGateway.create(payload);
       this.closeModal();

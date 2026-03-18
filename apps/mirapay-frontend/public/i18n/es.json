@@ -103,7 +103,35 @@
       "PHONE": "Teléfono",
       "PROJECTS": "Proyectos"
     },
-    "EMPTY_STATE": "No se encontraron clientes."
+    "EMPTY_STATE": "No se encontraron clientes.",
+    "DETAILS": {
+      "BACK": "← Volver a clientes",
+      "ADD_CONTACT": "+ Agregar Contacto",
+      "ADD_BANK": "+ Agregar Banco de Horas",
+      "GENERAL_INFO": "Información General",
+      "EMAIL": "Correo Electrónico:",
+      "PHONE": "Teléfono:",
+      "ADDRESS": "Dirección:",
+      "CURRENCY": "Moneda:",
+      "CONTACTS": "Contactos",
+      "NO_CONTACTS": "No hay contactos definidos.",
+      "BANK_HOURS": "Bancos de Horas",
+      "NO_BANK_HOURS": "No hay bancos de horas definidos para este cliente.",
+      "ACTIVE": "Activa",
+      "INACTIVE": "Inactiva",
+      "NO_DESCRIPTION": "Sin descripción",
+      "HOURS": "Horas",
+      "BALANCE": "Saldo:",
+      "MODAL_BANK_TITLE": "Agregar un Banco de Horas",
+      "MODAL_BANK_NAME": "Nombre del banco *",
+      "MODAL_BANK_DESC": "Descripción",
+      "MODAL_BANK_HOURS": "Horas Compradas *",
+      "MODAL_BANK_START": "Fecha de Inicio",
+      "MODAL_BANK_END": "Fecha de Fin",
+      "MODAL_CONTACT_TITLE": "Agregar un Contacto",
+      "MODAL_CONTACT_NAME": "Nombre Completo *",
+      "MODAL_CONTACT_ROLE": "Función / Rol"
+    }
   },
   "PROJECTS": {
     "CREATE_BTN": "Crear Proyecto",
@@ -138,7 +166,36 @@
       "RATE": "Tarifa por Hora",
       "STATUS": "Estado"
     },
-    "EMPTY_STATE": "No se encontraron proyectos."
+    "EMPTY_STATE": "No se encontraron proyectos.",
+    "DETAILS": {
+      "BACK": "← Volver a proyectos",
+      "ADD_TASK": "+ Agregar una Tarea",
+      "GENERAL_INFO": "Información General",
+      "CLIENT": "Cliente:",
+      "INVOICING_TYPE": "Tipo de Facturación:",
+      "START_DATE": "Fecha de Inicio:",
+      "STATUS_LABEL": "Estado:",
+      "TASKS": "Tareas",
+      "NO_TASKS": "No hay tareas definidas para este proyecto.",
+      "TABLE": {
+        "TITLE": "Título",
+        "TYPE": "Type",
+        "PRIORITY": "Prioridad",
+        "STATUS": "Estado",
+        "BILLABLE": "Facturable"
+      },
+      "YES": "Sí",
+      "NO": "No",
+      "MODAL_TASK_TITLE": "Agregar una Tarea",
+      "MODAL_TASK_NAME": "Título de la tarea *",
+      "MODAL_TASK_DESC": "Descripción",
+      "MODAL_TASK_TYPE": "Tipo *",
+      "MODAL_TASK_PRIORITY": "Prioridad *",
+      "MODAL_TASK_STATUS": "Estado *",
+      "MODAL_TASK_BILLABLE": "Facturable",
+      "MODAL_TASK_START": "Fecha de Inicio Prevista",
+      "MODAL_TASK_END": "Vencimiento"
+    }
   },
   "TIME_ENTRIES": {
     "CREATE_BTN": "Registrar Tiempo",

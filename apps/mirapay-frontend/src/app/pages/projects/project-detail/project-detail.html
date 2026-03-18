@@ -2,36 +2,36 @@
   <div class="project-detail-container">
     <div class="header">
       <div class="title-section">
-        <a (click)="closeProject()" (keydown.enter)="closeProject()" class="back-link" style="cursor: pointer;" tabindex="0" role="button">← Retour aux projets</a>
+        <a (click)="closeProject()" (keydown.enter)="closeProject()" class="back-link" style="cursor: pointer;" tabindex="0" role="button">{{ ts.translate('PROJECTS.DETAILS.BACK') }}</a>
         <h1>{{ project()?.nom }}</h1>
         <span class="type-badge">{{ project()?.statut }}</span>
       </div>
-      <button class="btn-primary" (click)="openModal()">+ Ajouter une Tâche</button>
+      <button class="btn-primary" (click)="openModal()">{{ ts.translate('PROJECTS.DETAILS.ADD_TASK') }}</button>
     </div>
 
     <div class="dashboard-grid">
       <!-- Fiche Info -->
       <div class="card info-card">
-        <h2>Informations Générales</h2>
-        <div class="info-item"><strong>Client :</strong> {{ project()?.client?.nomLegal || 'Non défini' }}</div>
-        <div class="info-item"><strong>Type Facturation :</strong> {{ project()?.typeFacturation }}</div>
-        <div class="info-item"><strong>Date Début :</strong> {{ project()?.dateDebut && (project()?.dateDebut | date:'shortDate') || 'TBA' }}</div>
-        <div class="info-item"><strong>Statut :</strong> {{ project()?.statut }}</div>
+        <h2>{{ ts.translate('PROJECTS.DETAILS.GENERAL_INFO') }}</h2>
+        <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.CLIENT') }}</strong> {{ project()?.client?.nomLegal || 'Non défini' }}</div>
+        <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.INVOICING_TYPE') }}</strong> {{ project()?.typeFacturation }}</div>
+        <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.START_DATE') }}</strong> {{ project()?.dateDebut && (project()?.dateDebut | date:'shortDate') || 'TBA' }}</div>
+        <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.STATUS_LABEL') }}</strong> {{ project()?.statut }}</div>
       </div>
 
       <!-- Liste des Tâches -->
       <div class="card tasks-card">
-        <h2>Tâches</h2>
+        <h2>{{ ts.translate('PROJECTS.DETAILS.TASKS') }}</h2>
         @if (tasks() && tasks().length > 0) {
           <div class="tasks-table-wrapper">
             <table class="tasks-table">
               <thead>
                 <tr>
-                  <th>Titre</th>
-                  <th>Type</th>
-                  <th>Priorité</th>
-                  <th>Statut</th>
-                  <th>Facturable</th>
+                  <th>{{ ts.translate('PROJECTS.DETAILS.TABLE.TITLE') }}</th>
+                  <th>{{ ts.translate('PROJECTS.DETAILS.TABLE.TYPE') }}</th>
+                  <th>{{ ts.translate('PROJECTS.DETAILS.TABLE.PRIORITY') }}</th>
+                  <th>{{ ts.translate('PROJECTS.DETAILS.TABLE.STATUS') }}</th>
+                  <th>{{ ts.translate('PROJECTS.DETAILS.TABLE.BILLABLE') }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,14 +41,14 @@
                     <td><span class="badge badge-light">{{ task.type }}</span></td>
                     <td><span class="badge" [ngClass]="getPriorityClass(task.priorite)">{{ task.priorite }}</span></td>
                     <td><span class="badge" [ngClass]="getStatusClass(task.statut)">{{ task.statut }}</span></td>
-                    <td><span class="badge" [class.badge-success]="task.tacheFacturable" [class.badge-secondary]="!task.tacheFacturable">{{ task.tacheFacturable ? 'Oui' : 'Non' }}</span></td>
+                    <td><span class="badge" [class.badge-success]="task.tacheFacturable" [class.badge-secondary]="!task.tacheFacturable">{{ task.tacheFacturable ? ts.translate('PROJECTS.DETAILS.YES') : ts.translate('PROJECTS.DETAILS.NO') }}</span></td>
                   </tr>
                 }
               </tbody>
             </table>
           </div>
         } @else {
-          <p class="empty-state">Aucune tâche définie pour ce projet.</p>
+          <p class="empty-state">{{ ts.translate('PROJECTS.DETAILS.NO_TASKS') }}</p>
         }
       </div>
     </div>
@@ -59,21 +59,21 @@
 @if (isModalOpen()) {
   <div class="modal-overlay">
     <div class="modal">
-      <h2>Ajouter une Tâche</h2>
+      <h2>{{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_TITLE') }}</h2>
       <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="taskName">Titre de la tâche *</label>
+          <label for="taskName">{{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_NAME') }}</label>
           <input id="taskName" type="text" formControlName="titre" placeholder="ex: Configurer la DB" />
         </div>
 
         <div class="form-group">
-          <label for="taskDesc">Description</label>
+          <label for="taskDesc">{{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_DESC') }}</label>
           <textarea id="taskDesc" formControlName="description" rows="3"></textarea>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="taskType">Type *</label>
+            <label for="taskType">{{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_TYPE') }}</label>
             <select id="taskType" formControlName="type">
               <option value="analyse">Analyse</option>
               <option value="développement">Développement</option>
@@ -82,7 +82,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="taskPriority">Priorité *</label>
+            <label for="taskPriority">{{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_PRIORITY') }}</label>
             <select id="taskPriority" formControlName="priorite">
               <option value="basse">Basse</option>
               <option value="normale">Normale</option>
@@ -93,7 +93,7 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="taskStatus">Statut *</label>
+            <label for="taskStatus">{{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_STATUS') }}</label>
             <select id="taskStatus" formControlName="statut">
               <option value="new">Nouveau</option>
               <option value="analyse">Analyse en cours</option>
@@ -105,25 +105,25 @@
           <div class="form-group checkbox-group">
             <label for="taskBillable">
               <input id="taskBillable" type="checkbox" formControlName="tacheFacturable" />
-              Facturable
+              {{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_BILLABLE') }}
             </label>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="startDate">Date Début Prévue</label>
+            <label for="startDate">{{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_START') }}</label>
             <input id="startDate" type="date" formControlName="dateDebutPrevue" />
           </div>
           <div class="form-group">
-            <label for="endDate">Échéance</label>
+            <label for="endDate">{{ ts.translate('PROJECTS.DETAILS.MODAL_TASK_END') }}</label>
             <input id="endDate" type="date" formControlName="dateEcheance" />
           </div>
         </div>
 
         <div class="form-actions">
-          <button type="button" class="btn-secondary" (click)="closeModal()">Annuler</button>
-          <button type="submit" class="btn-primary" [disabled]="taskForm.invalid">Enregistrer</button>
+          <button type="button" class="btn-secondary" (click)="closeModal()">{{ ts.translate('PROJECTS.CANCEL') }}</button>
+          <button type="submit" class="btn-primary" [disabled]="taskForm.invalid">{{ ts.translate('PROJECTS.SAVE') }}</button>
         </div>
       </form>
     </div>
