@@ -8,7 +8,7 @@ export class TransactionsController {
     try {
       const transactions = await transactionsService.getAllTransactions();
       res.json(transactions);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: 'Failed to fetch transactions' });
     }
   }
@@ -21,7 +21,7 @@ export class TransactionsController {
         return res.status(404).json({ error: 'Transaction not found' });
       }
       res.json(transaction);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: 'Failed to fetch transaction' });
     }
   }
@@ -36,7 +36,7 @@ export class TransactionsController {
         status: status || 'PENDING',
       });
       res.status(201).json(transaction);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: 'Failed to create transaction' });
     }
   }
@@ -47,7 +47,7 @@ export class TransactionsController {
       const { status } = req.body;
       const transaction = await transactionsService.updateTransactionStatus(id, status);
       res.json(transaction);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: 'Failed to update transaction status' });
     }
   }
@@ -57,7 +57,7 @@ export class TransactionsController {
       const { id } = req.params;
       await transactionsService.deleteTransaction(id);
       res.status(204).send();
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: 'Failed to delete transaction' });
     }
   }
