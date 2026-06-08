@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { soumissionsController } from '../soumissions/soumissions.controller';
+import { soumissionsController } from '../controllers/soumissions.controller';
 
 const router = Router();
 

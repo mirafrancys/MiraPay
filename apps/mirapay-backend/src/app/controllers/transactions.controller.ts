@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { TransactionsService } from './transactions.service';
+import { TransactionsService } from '../services/transactions.service';
 
 const transactionsService = new TransactionsService();
 
@@ -64,3 +64,4 @@ export class TransactionsController {
 }
 
 export const transactionsController = new TransactionsController();
+

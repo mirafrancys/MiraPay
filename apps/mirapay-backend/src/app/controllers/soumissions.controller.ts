@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { SoumissionsService } from './soumissions.service';
+import { SoumissionsService } from '../services/soumissions.service';
 
 const soumissionsService = new SoumissionsService();
 
@@ -41,3 +41,4 @@ export class SoumissionsController {
 }
 
 export const soumissionsController = new SoumissionsController();
+

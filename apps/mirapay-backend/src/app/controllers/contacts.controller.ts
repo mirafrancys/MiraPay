@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ContactsService } from './contacts.service';
+import { ContactsService } from '../services/contacts.service';
 
 const contactsService = new ContactsService();
 
@@ -35,3 +35,4 @@ export class ContactsController {
 }
 
 export const contactsController = new ContactsController();
+

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { TimeEntriesService } from './time-entries.service';
+import { TimeEntriesService } from '../services/time-entries.service';
 
 const timeEntriesService = new TimeEntriesService();
 
@@ -71,3 +71,4 @@ export class TimeEntriesController {
 }
 
 export const timeEntriesController = new TimeEntriesController();
+

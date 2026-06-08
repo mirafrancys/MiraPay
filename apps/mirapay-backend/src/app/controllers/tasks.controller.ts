@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { TasksService } from './tasks.service';
+import { TasksService } from '../services/tasks.service';
 
 const tasksService = new TasksService();
 
@@ -83,3 +83,4 @@ export class TasksController {
 }
 
 export const tasksController = new TasksController();
+

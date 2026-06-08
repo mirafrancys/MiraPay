@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { BankHoursService } from './bank-hours.service';
+import { BankHoursService } from '../services/bank-hours.service';
 
 const bankHoursService = new BankHoursService();
 
@@ -35,3 +35,4 @@ export class BankHoursController {
 }
 
 export const bankHoursController = new BankHoursController();
+

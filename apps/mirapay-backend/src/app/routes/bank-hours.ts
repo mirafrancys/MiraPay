@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { bankHoursController } from '../bank-hours/bank-hours.controller';
+import { bankHoursController } from '../controllers/bank-hours.controller';
 
 const router = Router();
 

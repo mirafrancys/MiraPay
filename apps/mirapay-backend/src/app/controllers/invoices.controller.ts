@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { InvoicesService } from './invoices.service';
+import { InvoicesService } from '../services/invoices.service';
 
 const invoicesService = new InvoicesService();
 
@@ -67,3 +67,4 @@ export class InvoicesController {
 }
 
 export const invoicesController = new InvoicesController();
+

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ContratsService } from './contrats.service';
+import { ContratsService } from '../services/contrats.service';
 
 const contratsService = new ContratsService();
 
@@ -41,3 +41,4 @@ export class ContratsController {
 }
 
 export const contratsController = new ContratsController();
+

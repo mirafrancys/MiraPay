@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { TransactionsController } from './transactions.controller';
-import { TransactionsService } from './transactions.service';
+import { TransactionsService } from '../services/transactions.service';
 
 // Mock the service
-vi.mock('./transactions.service', () => {
+vi.mock('../services/transactions.service', () => {
   return {
-    TransactionsService: vi.fn().mockImplementation(() => {
+    TransactionsService: vi.fn().mockImplementation(function () {
       return {
         getAllTransactions: vi.fn(),
         getTransactionById: vi.fn(),
@@ -39,7 +39,7 @@ describe('TransactionsController', () => {
       
       // We need to mock the implementation of the service method
       // Since the service is instantiated inside the controller file, we rely on the mock
-      const { TransactionsService } = await import('./transactions.service');
+      const { TransactionsService } = await import('../services/transactions.service');
       const serviceInstance = new TransactionsService();
       (serviceInstance.getAllTransactions as any).mockResolvedValue(mockTransactions);
 
@@ -57,7 +57,7 @@ describe('TransactionsController', () => {
     });
 
     it('should return 500 if service fails', async () => {
-      const { TransactionsService } = await import('./transactions.service');
+      const { TransactionsService } = await import('../services/transactions.service');
       const serviceInstance = new TransactionsService();
       (serviceInstance.getAllTransactions as any).mockRejectedValue(new Error('Internal Error'));
 
@@ -74,3 +74,4 @@ describe('TransactionsController', () => {
     });
   });
 });
+

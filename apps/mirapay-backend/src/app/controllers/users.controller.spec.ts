@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
+import { UsersService } from '../services/users.service';
 
 // Mock the service
-vi.mock('./users.service', () => {
+vi.mock('../services/users.service', () => {
   return {
-    UsersService: vi.fn().mockImplementation(() => {
+    UsersService: vi.fn().mockImplementation(function () {
       return {
         findAll: vi.fn(),
         findOne: vi.fn(),
@@ -28,7 +28,7 @@ describe('UsersController', () => {
   describe('getAll', () => {
     it('should return users', async () => {
       const mockUsers = [{ id: '1', email: 'test@test.com' }];
-      const { UsersService } = await import('./users.service');
+      const { UsersService } = await import('../services/users.service');
       const serviceInstance = new UsersService();
       (serviceInstance.findAll as any).mockResolvedValue(mockUsers);
 
@@ -44,7 +44,7 @@ describe('UsersController', () => {
     });
 
     it('should handle errors', async () => {
-      const { UsersService } = await import('./users.service');
+      const { UsersService } = await import('../services/users.service');
       const serviceInstance = new UsersService();
       (serviceInstance.findAll as any).mockRejectedValue(new Error('DB Error'));
 
@@ -61,3 +61,4 @@ describe('UsersController', () => {
     });
   });
 });
+

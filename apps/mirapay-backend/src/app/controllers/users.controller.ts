@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UsersService } from './users.service';
+import { UsersService } from '../services/users.service';
 
 const usersService = new UsersService();
 
@@ -61,3 +61,4 @@ export class UsersController {
 }
 
 export const usersController = new UsersController();
+
