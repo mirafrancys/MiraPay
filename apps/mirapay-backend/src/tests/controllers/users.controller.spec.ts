@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { UsersController } from './users.controller';
-import { UsersService } from '../services/users.service';
+import { UsersController } from '../../app/controllers/users.controller';
+import { UsersService } from '../../app/services/users.service';
 
 // Mock the service
 vi.mock('../services/users.service', () => {
@@ -28,7 +28,7 @@ describe('UsersController', () => {
   describe('getAll', () => {
     it('should return users', async () => {
       const mockUsers = [{ id: '1', email: 'test@test.com' }];
-      const { UsersService } = await import('../services/users.service');
+      const { UsersService } = await import('../../app/services/users.service');
       const serviceInstance = new UsersService();
       (serviceInstance.findAll as any).mockResolvedValue(mockUsers);
 
@@ -44,7 +44,7 @@ describe('UsersController', () => {
     });
 
     it('should handle errors', async () => {
-      const { UsersService } = await import('../services/users.service');
+      const { UsersService } = await import('../../app/services/users.service');
       const serviceInstance = new UsersService();
       (serviceInstance.findAll as any).mockRejectedValue(new Error('DB Error'));
 
