@@ -3,7 +3,6 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
   output   = "../apps/mirapay-backend/src/generated/prisma"
 }
 

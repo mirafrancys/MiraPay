@@ -2,9 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-  output          = "../apps/mirapay-backend/src/generated/prisma"
+  provider = "prisma-client-js"
+  output   = "../apps/mirapay-backend/src/generated/prisma"
 }
 
 datasource db {
@@ -13,7 +12,7 @@ datasource db {
 
 model Role {
   id          String   @id @default(uuid())
-  name        String   @unique // ex: ADMIN, CUSTOMER, SUPPORT
+  name        String   @unique // ex: ADMIN, CUSTOMER, SUPPORT, USER, GUEST
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
