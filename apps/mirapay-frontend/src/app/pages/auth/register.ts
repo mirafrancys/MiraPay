@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -13,7 +13,7 @@ import { User } from '@mirapay/shared-models';
   templateUrl: './register.html',
   styleUrl: './register.scss'
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   ts = inject(TranslationService);
   user: Partial<User> = {
     firstName: '',
