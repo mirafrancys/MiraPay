@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ContratsGateway } from '../../cores/gateways/contrats.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
-import { Contrat, Client } from '@mirapay/shared-models';
+import { IContrat, IClient } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-contrats',
@@ -19,8 +19,8 @@ export class ContratsComponent implements OnInit {
   private clientsGateway = inject(ClientsGateway);
   private fb = inject(FormBuilder);
 
-  contrats = signal<Contrat[]>([]);
-  clients = signal<Client[]>([]);
+  contrats = signal<IContrat[]>([]);
+  clients = signal<IClient[]>([]);
   isModalOpen = signal<boolean>(false);
   contratForm!: FormGroup;
 

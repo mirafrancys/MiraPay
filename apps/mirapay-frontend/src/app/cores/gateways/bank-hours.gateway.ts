@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BankHour } from '@mirapay/shared-models';
+import { IBankHour } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { BankHour } from '@mirapay/shared-models';
 export class BankHoursGateway {
   private apiUrl = '/api/bank-hours';
 
-  async create(data: Partial<BankHour>): Promise<BankHour> {
+  async create(data: Partial<IBankHour>): Promise<IBankHour> {
     const res = await fetch(this.apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -16,7 +16,7 @@ export class BankHoursGateway {
     return res.json();
   }
 
-  async getByClient(clientId: string): Promise<BankHour[]> {
+  async getByClient(clientId: string): Promise<IBankHour[]> {
     const res = await fetch(`${this.apiUrl}?clientId=${clientId}`);
     return res.json();
   }

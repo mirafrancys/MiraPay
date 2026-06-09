@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProjectsGateway } from '../../../cores/gateways/projects.gateway';
 import { TasksGateway } from '../../../cores/gateways/tasks.gateway';
-import { Project, Task } from '@mirapay/shared-models';
+import { IProject, ITask } from '@mirapay/shared-models';
 import { TranslationService } from '../../../cores/services/translation.service';
 
 @Component({
@@ -22,8 +22,8 @@ export class ProjectDetailComponent implements OnInit {
   fb = inject(FormBuilder);
   ts = inject(TranslationService);
 
-  project = signal<Project | null>(null);
-  tasks = signal<Task[]>([]);
+  project = signal<IProject | null>(null);
+  tasks = signal<ITask[]>([]);
   isModalOpen = signal<boolean>(false);
   taskForm!: FormGroup;
 

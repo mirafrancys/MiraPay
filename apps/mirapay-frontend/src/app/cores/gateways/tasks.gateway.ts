@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Task } from '@mirapay/shared-models';
+import { ITask } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
@@ -7,17 +7,17 @@ import { Task } from '@mirapay/shared-models';
 export class TasksGateway {
   private apiUrl = '/api/tasks';
 
-  async getByProject(projectId: string): Promise<Task[]> {
+  async getByProject(projectId: string): Promise<ITask[]> {
     const res = await fetch(`${this.apiUrl}/project/${projectId}`);
     return res.json();
   }
 
-  async getOne(id: string): Promise<Task> {
+  async getOne(id: string): Promise<ITask> {
     const res = await fetch(`${this.apiUrl}/${id}`);
     return res.json();
   }
 
-  async create(data: Partial<Task>): Promise<Task> {
+  async create(data: Partial<ITask>): Promise<ITask> {
     const res = await fetch(this.apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -26,7 +26,7 @@ export class TasksGateway {
     return res.json();
   }
 
-  async update(id: string, data: Partial<Task>): Promise<Task> {
+  async update(id: string, data: Partial<ITask>): Promise<ITask> {
     const res = await fetch(`${this.apiUrl}/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },

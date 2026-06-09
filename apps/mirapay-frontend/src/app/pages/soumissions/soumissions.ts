@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } fr
 import { SoumissionsGateway } from '../../cores/gateways/soumissions.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
-import { Soumission, Client } from '@mirapay/shared-models';
+import { ISoumission, IClient } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-soumissions',
@@ -19,8 +19,8 @@ export class SoumissionsComponent implements OnInit {
   private clientsGateway = inject(ClientsGateway);
   private fb = inject(FormBuilder);
 
-  soumissions = signal<Soumission[]>([]);
-  clients = signal<Client[]>([]);
+  soumissions = signal<ISoumission[]>([]);
+  clients = signal<IClient[]>([]);
   isModalOpen = signal<boolean>(false);
   soumissionForm!: FormGroup;
 

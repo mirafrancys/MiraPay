@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TimeEntry } from '@mirapay/shared-models';
+import { ITimeEntry } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class TimeEntriesGateway {
     estFacturable?: boolean;
     dateDebut?: string;
     dateFin?: string;
-  } = {}): Promise<TimeEntry[]> {
+  } = {}): Promise<ITimeEntry[]> {
     const params = new URLSearchParams();
     Object.entries(filters).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
@@ -25,7 +25,7 @@ export class TimeEntriesGateway {
     return res.json();
   }
 
-  async create(data: Partial<TimeEntry>): Promise<TimeEntry> {
+  async create(data: Partial<ITimeEntry>): Promise<ITimeEntry> {
     const res = await fetch(this.apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -34,7 +34,7 @@ export class TimeEntriesGateway {
     return res.json();
   }
 
-  async update(id: string, data: Partial<TimeEntry>): Promise<TimeEntry> {
+  async update(id: string, data: Partial<ITimeEntry>): Promise<ITimeEntry> {
     const res = await fetch(`${this.apiUrl}/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -43,7 +43,7 @@ export class TimeEntriesGateway {
     return res.json();
   }
 
-  async approve(id: string): Promise<TimeEntry> {
+  async approve(id: string): Promise<ITimeEntry> {
     const res = await fetch(`${this.apiUrl}/${id}/approve`, {
       method: 'PATCH'
     });

@@ -1,25 +1,25 @@
 import { Injectable, signal } from '@angular/core';
-import { Client } from '@mirapay/shared-models';
+import { IClient } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientsGateway {
-  activeClient = signal<Client | null>(null);
+  activeClient = signal<IClient | null>(null);
   
   private apiUrl = '/api/clients';
 
-  async getAll(): Promise<Client[]> {
+  async getAll(): Promise<IClient[]> {
     const res = await fetch(this.apiUrl);
     return res.json();
   }
 
-  async getOne(id: string): Promise<Client> {
+  async getOne(id: string): Promise<IClient> {
     const res = await fetch(`${this.apiUrl}/${id}`);
     return res.json();
   }
 
-  async create(data: Partial<Client>): Promise<Client> {
+  async create(data: Partial<IClient>): Promise<IClient> {
     const res = await fetch(this.apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -28,7 +28,7 @@ export class ClientsGateway {
     return res.json();
   }
 
-  async update(id: string, data: Partial<Client>): Promise<Client> {
+  async update(id: string, data: Partial<IClient>): Promise<IClient> {
     const res = await fetch(`${this.apiUrl}/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -37,7 +37,7 @@ export class ClientsGateway {
     return res.json();
   }
 
-  async archive(id: string): Promise<Client> {
+  async archive(id: string): Promise<IClient> {
     const res = await fetch(`${this.apiUrl}/${id}/archive`, {
       method: 'PATCH'
     });

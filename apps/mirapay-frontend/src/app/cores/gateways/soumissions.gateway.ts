@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Soumission } from '@mirapay/shared-models';
+import { ISoumission } from '@mirapay/shared-models';
 
 @Injectable({ providedIn: 'root' })
 export class SoumissionsGateway {
   private apiUrl = '/api/soumissions';
 
-  async getAll(): Promise<Soumission[]> {
+  async getAll(): Promise<ISoumission[]> {
     const res = await fetch(this.apiUrl);
     return res.json();
   }
 
-  async getOne(id: string): Promise<Soumission> {
+  async getOne(id: string): Promise<ISoumission> {
     const res = await fetch(`${this.apiUrl}/${id}`);
     return res.json();
   }
 
-  async create(data: Partial<Soumission>): Promise<Soumission> {
+  async create(data: Partial<ISoumission>): Promise<ISoumission> {
     const res = await fetch(this.apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -24,7 +24,7 @@ export class SoumissionsGateway {
     return res.json();
   }
 
-  async update(id: string, data: Partial<Soumission>): Promise<Soumission> {
+  async update(id: string, data: Partial<ISoumission>): Promise<ISoumission> {
     const res = await fetch(`${this.apiUrl}/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

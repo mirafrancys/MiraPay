@@ -1,25 +1,25 @@
 import { Injectable, signal } from '@angular/core';
-import { Project } from '@mirapay/shared-models';
+import { IProject } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsGateway {
-  activeProject = signal<Project | null>(null);
+  activeProject = signal<IProject | null>(null);
   
   private apiUrl = '/api/projects';
 
-  async getAll(): Promise<Project[]> {
+  async getAll(): Promise<IProject[]> {
     const res = await fetch(this.apiUrl);
     return res.json();
   }
 
-  async getOne(id: string): Promise<Project> {
+  async getOne(id: string): Promise<IProject> {
     const res = await fetch(`${this.apiUrl}/${id}`);
     return res.json();
   }
 
-  async create(data: Partial<Project>): Promise<Project> {
+  async create(data: Partial<IProject>): Promise<IProject> {
     const res = await fetch(this.apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -28,7 +28,7 @@ export class ProjectsGateway {
     return res.json();
   }
 
-  async update(id: string, data: Partial<Project>): Promise<Project> {
+  async update(id: string, data: Partial<IProject>): Promise<IProject> {
     const res = await fetch(`${this.apiUrl}/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },

@@ -1,14 +1,14 @@
 import { Injectable, signal } from '@angular/core';
-import { User, Role } from '@mirapay/shared-models';
+import { IUser, IRole } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGateway {
   private apiUrl = '/api';
-  currentUser = signal<User | null>(null);
+  currentUser = signal<IUser | null>(null);
 
-  async login(credentials: { emailOrUsername: string; password?: string }): Promise<{ user: User }> {
+  async login(credentials: { emailOrUsername: string; password?: string }): Promise<{ user: IUser }> {
     const response = await fetch(`${this.apiUrl}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -26,7 +26,7 @@ export class AuthGateway {
     return data;
   }
 
-  async register(userData: Partial<User>): Promise<User> {
+  async register(userData: Partial<IUser>): Promise<IUser> {
     const response = await fetch(`${this.apiUrl}/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -41,7 +41,7 @@ export class AuthGateway {
     return await response.json();
   }
 
-  async getRoles(): Promise<Role[]> {
+  async getRoles(): Promise<IRole[]> {
     const response = await fetch(`${this.apiUrl}/auth/roles`);
     if (!response.ok) return [];
     return await response.json();

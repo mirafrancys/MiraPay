@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
-import { Project, Client } from '@mirapay/shared-models';
+import { IProject, IClient } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-projects',
@@ -20,8 +20,8 @@ export class ProjectsComponent implements OnInit {
   private clientsGateway = inject(ClientsGateway);
   private fb = inject(FormBuilder);
 
-  projects = signal<Project[]>([]);
-  clients = signal<Client[]>([]);
+  projects = signal<IProject[]>([]);
+  clients = signal<IClient[]>([]);
   isModalOpen = signal<boolean>(false);
   projectForm!: FormGroup;
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClientsGateway } from '../../../cores/gateways/clients.gateway';
 import { BankHoursGateway } from '../../../cores/gateways/bank-hours.gateway';
-import { Client, BankHour } from '@mirapay/shared-models';
+import { IClient, IBankHour } from '@mirapay/shared-models';
 import { TranslationService } from '../../../cores/services/translation.service';
 import { ContactsGateway } from '../../../cores/gateways/contacts.gateway';
 
@@ -24,7 +24,7 @@ export class ClientDetailComponent implements OnInit {
   fb = inject(FormBuilder);
   ts = inject(TranslationService);
 
-  client = signal<Client | null>(null);
+  client = signal<IClient | null>(null);
   isModalOpen = signal<boolean>(false);
   isContactModalOpen = signal<boolean>(false);
   bankForm!: FormGroup;

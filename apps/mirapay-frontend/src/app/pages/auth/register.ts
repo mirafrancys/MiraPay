@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthGateway } from '../../cores/gateways/auth.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
-import { User } from '@mirapay/shared-models';
+import { IUser } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,7 @@ import { User } from '@mirapay/shared-models';
 })
 export class RegisterComponent {
   ts = inject(TranslationService);
-  user: Partial<User> = {
+  user: Partial<IUser> = {
     firstName: '',
     lastName: '',
     username: '',

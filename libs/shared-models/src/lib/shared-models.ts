@@ -1,4 +1,4 @@
-export interface Role {
+export interface IRole {
   id: string;
   name: string; // ex: ADMIN, CUSTOMER, SUPPORT
   description?: string;
@@ -6,7 +6,7 @@ export interface Role {
   updatedAt: Date | string;
 }
 
-export interface User {
+export interface IUser {
   id: string;
   username: string;
   email: string;
@@ -20,12 +20,12 @@ export interface User {
   country?: string;
   isActive: boolean;
   roleId?: string;
-  role?: Role;
+  role?: IRole;
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface Client {
+export interface IClient {
   id: string;
   typeClient: string; // entreprise | particulier
   nomLegal: string;
@@ -48,19 +48,28 @@ export interface Client {
   appliquerTPS: boolean;
   appliquerTVQ: boolean;
   estArchive: boolean;
-  bankHours?: BankHour[];
-  contacts?: Contact[];
-  soumissions?: Soumission[];
-  contrats?: Contrat[];
+  bankHours?: IBankHour[];
+  contacts?: IContact[];
+  soumissions?: ISoumission[];
+  contrats?: IContrat[];
   _count?: { projects: number; invoices: number; };
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface Project {
+export interface IClientContact {
+  id?: string;
+  clientId: string;
+  nom: string;
+  fonction?: string;
+  courriel?: string;
+  telephone?: string;
+}
+
+export interface IProject {
   id: string;
   clientId: string;
-  client?: Client;
+  client?: IClient;
   nom: string;
   description?: string;
   dateDebut: Date | string;
@@ -74,17 +83,17 @@ export interface Project {
   budgetHeuresPrevu?: number;
   budgetMontantPrevu?: number;
   arrondiHeures?: number;
-  bankHours?: BankHour[];
+  bankHours?: IBankHour[];
   contratId?: string;
-  contrat?: Contrat;
+  contrat?: IContrat;
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface Task {
+export interface ITask {
   id: string;
   projetId: string;
-  projet?: Project;
+  projet?: IProject;
   titre: string;
   description?: string;
   type: string; // analyse, développement, réunion, support
@@ -97,42 +106,42 @@ export interface Task {
   updatedAt: Date | string;
 }
 
-export interface TaskNote {
+export interface ITaskNote {
   id: string;
   tacheId: string;
-  tache?: Task;
+  tache?: ITask;
   userId: string;
-  user?: User;
+  user?: IUser;
   contenu: string;
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface TimeEntry {
+export interface ITimeEntry {
   id: string;
   userId: string;
-  user?: User;
+  user?: IUser;
   date: Date | string;
   projetId: string;
-  projet?: Project;
+  projet?: IProject;
   tacheId?: string;
-  tache?: Task;
+  tache?: ITask;
   dureeHeures: number;
   estFacturable: boolean;
   commentaire?: string;
   statut: string; // brouillon | approuve | facture
   bankHourId?: string;
-  bankHour?: BankHour;
+  bankHour?: IBankHour;
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface Invoice {
+export interface IInvoice {
   id: string;
   numero: string;
   dateFacture: Date | string;
   clientId: string;
-  client?: Client;
+  client?: IClient;
   projetId?: string;
   statut: string; // brouillon | envoyee | payee | enRetard | annulee
   sousTotal: number;
@@ -140,17 +149,17 @@ export interface Invoice {
   montantTVQ: number;
   totalTTC: number;
   conditionsPaiement?: string;
-  lines?: InvoiceLine[];
+  lines?: IInvoiceLine[];
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface InvoiceLine {
+export interface IInvoiceLine {
   id: string;
   factureId: string;
-  facture?: Invoice;
+  facture?: IInvoice;
   projetId?: string;
-  projet?: Project;
+  projet?: IProject;
   description: string;
   quantite: number;
   prixUnitaire: number;
@@ -159,22 +168,22 @@ export interface InvoiceLine {
   updatedAt: Date | string;
 }
 
-export interface Transaction {
+export interface ITransaction {
   id: string;
   amount: number;
   currency: string;
   status: string; // PENDING, COMPLETED, FAILED
   userId: string;
-  user?: User;
+  user?: IUser;
   createdAt: Date | string;
 }
 
-export interface BankHour {
+export interface IBankHour {
   id: string;
   clientId: string;
-  client?: Client;
+  client?: IClient;
   projetId?: string;
-  projet?: Project;
+  projet?: IProject;
   nom: string;
   description?: string;
   heuresAchetees: number;
@@ -182,34 +191,34 @@ export interface BankHour {
   dateDebut?: Date | string;
   dateFin?: Date | string;
   estActive: boolean;
-  timeEntries?: TimeEntry[];
+  timeEntries?: ITimeEntry[];
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface Contact {
+export interface IContact {
   id: string;
   clientId: string;
-  client?: Client;
+  client?: IClient;
   nom: string;
   fonction?: string;
   courriel?: string;
   telephone?: string;
   estActive: boolean;
-  soumissions?: Soumission[];
-  contrats?: Contrat[];
+  soumissions?: ISoumission[];
+  contrats?: IContrat[];
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface Soumission {
+export interface ISoumission {
   id: string;
   numero: string;
   dateSoumission: Date | string;
   clientId: string;
-  client?: Client;
+  client?: IClient;
   contactId?: string;
-  contact?: Contact;
+  contact?: IContact;
   titre: string;
   description?: string;
   dateValidite?: Date | string;
@@ -218,16 +227,16 @@ export interface Soumission {
   montantTPS: number;
   montantTVQ: number;
   totalTTC: number;
-  lines?: SoumissionLine[];
-  contrats?: Contrat[];
+  lines?: ISoumissionLine[];
+  contrats?: IContrat[];
   createdAt: Date | string;
   updatedAt: Date | string;
 }
 
-export interface SoumissionLine {
+export interface ISoumissionLine {
   id: string;
   soumissionId: string;
-  soumission?: Soumission;
+  soumission?: ISoumission;
   description: string;
   quantite: number;
   prixUnitaire: number;
@@ -237,23 +246,23 @@ export interface SoumissionLine {
   updatedAt: Date | string;
 }
 
-export interface Contrat {
+export interface IContrat {
   id: string;
   numero: string;
   dateSignature?: Date | string;
   dateDebut: Date | string;
   dateFin?: Date | string;
   clientId: string;
-  client?: Client;
+  client?: IClient;
   contactId?: string;
-  contact?: Contact;
+  contact?: IContact;
   soumissionId?: string;
-  soumission?: Soumission;
+  soumission?: ISoumission;
   statut: string; // actif | suspendu | termine | archive
   montantTotalContrat?: number;
   typeContrat: string; // horaire | forfait | banqueHeures | mixte;
   conditionsSpeciales?: string;
-  projects?: Project[];
+  projects?: IProject[];
   createdAt: Date | string;
   updatedAt: Date | string;
 }

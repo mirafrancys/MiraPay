@@ -6,7 +6,7 @@ import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { TasksGateway } from '../../cores/gateways/tasks.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { AuthGateway } from '../../cores/gateways/auth.gateway';
-import { TimeEntry, Project, Task } from '@mirapay/shared-models';
+import { ITimeEntry, IProject, ITask } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-time-entries',
@@ -23,9 +23,9 @@ export class TimeEntriesComponent implements OnInit {
   private tasksGateway = inject(TasksGateway);
   private fb = inject(FormBuilder);
 
-  entries = signal<TimeEntry[]>([]);
-  projects = signal<Project[]>([]);
-  tasks = signal<Task[]>([]); // Tâches du projet sélectionné
+  entries = signal<ITimeEntry[]>([]);
+  projects = signal<IProject[]>([]);
+  tasks = signal<ITask[]>([]); // Tâches du projet sélectionné
   isModalOpen = signal<boolean>(false);
   timeForm!: FormGroup;
 
