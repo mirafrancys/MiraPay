@@ -42,18 +42,9 @@
         <input type="password" id="password" name="password" [(ngModel)]="user.password" required class="form-control" />
       </div>
 
-      <div class="form-row">
-        <div class="form-group flex-1">
-          <label for="phoneNumber">{{ts.translate('AUTH.PHONE')}}</label>
-          <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" class="form-control" />
-        </div>
-        <div class="form-group flex-1">
-          <label for="roleId">{{ts.translate('AUTH.ROLE')}}</label>
-          <select id="roleId" name="roleId" [(ngModel)]="user.roleId" class="form-control">
-            <option value="">{{ts.translate('AUTH.SELECT_ROLE')}}</option>
-            <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
-          </select>
-        </div>
+      <div class="form-group">
+        <label for="phoneNumber">{{ts.translate('AUTH.PHONE')}}</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" class="form-control" />
       </div>
 
       <div class="form-group">

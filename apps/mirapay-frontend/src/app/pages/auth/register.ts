@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthGateway } from '../../cores/gateways/auth.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
-import { Role, User } from '@mirapay/shared-models';
+import { User } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-register',
@@ -24,10 +24,8 @@ export class RegisterComponent implements OnInit {
     phoneNumber: '',
     address: '',
     city: '',
-    country: '',
-    roleId: ''
+    country: ''
   };
-  roles: Role[] = [];
   
   isLoading = false;
   errorMessage = '';
@@ -36,23 +34,13 @@ export class RegisterComponent implements OnInit {
   private authGateway = inject(AuthGateway);
   private router = inject(Router);
 
-  async ngOnInit() {
-    try {
-      this.roles = await this.authGateway.getRoles();
-    } catch (e) {
-      console.error('Erreur chargement roles', e);
-    }
-  }
+  ngOnInit() {}
 
   async onSubmit() {
     this.isLoading = true;
     this.errorMessage = '';
     
-    // Formatting data before sending
     const payload = { ...this.user };
-    if (!payload.roleId) {
-      delete payload.roleId;
-    }
 
     try {
       await this.authGateway.register(payload);
