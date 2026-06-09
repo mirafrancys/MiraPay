@@ -7,6 +7,7 @@ import { TasksGateway } from '../../cores/gateways/tasks.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { AuthGateway } from '../../cores/gateways/auth.gateway';
 import { ITimeEntry, IProject, ITask } from '@mirapay/shared-models';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-time-entries',
@@ -47,8 +48,8 @@ export class TimeEntriesComponent implements OnInit {
 
   async loadData() {
     try {
-      this.entries.set(await this.timeGateway.getAll());
-      this.projects.set(await this.projectsGateway.getAll());
+      this.entries.set(await firstValueFrom(this.timeGateway.getAll()));
+      this.projects.set(await firstValueFrom(this.projectsGateway.getAll()));
     } catch (error) {
       console.error('Erreur lors du chargement des données', error);
     }
@@ -62,7 +63,7 @@ export class TimeEntriesComponent implements OnInit {
 
     if (projectId) {
       try {
-        const list = await this.tasksGateway.getByProject(projectId);
+        const list = await firstValueFrom(this.tasksGateway.getByProject(projectId));
         this.tasks.set(list);
       } catch (error) {
         console.error('Erreur lors du chargement des tâches', error);
@@ -105,7 +106,7 @@ export class TimeEntriesComponent implements OnInit {
       // Formater la date pour Prisma
       payload.date = new Date(payload.date);
 
-      await this.timeGateway.create(payload);
+      await firstValueFrom(this.timeGateway.create(payload));
       this.closeModal();
       this.loadData(); // Actualiser
     } catch (error) {

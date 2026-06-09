@@ -5,6 +5,7 @@ import { ContratsGateway } from '../../cores/gateways/contrats.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { IContrat, IClient } from '@mirapay/shared-models';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-contrats',
@@ -43,8 +44,8 @@ export class ContratsComponent implements OnInit {
 
   async loadData() {
     try {
-      this.contrats.set(await this.contratsGateway.getAll());
-      this.clients.set(await this.clientsGateway.getAll());
+      this.contrats.set(await firstValueFrom(this.contratsGateway.getAll()));
+      this.clients.set(await firstValueFrom(this.clientsGateway.getAll()));
     } catch (error) {
       console.error('Erreur chargement contrats', error);
     }
@@ -64,7 +65,7 @@ export class ContratsComponent implements OnInit {
 
     try {
       const payload = this.contratForm.value;
-      await this.contratsGateway.create(payload);
+      await firstValueFrom(this.contratsGateway.create(payload));
       this.closeModal();
       this.loadData();
     } catch (error) {

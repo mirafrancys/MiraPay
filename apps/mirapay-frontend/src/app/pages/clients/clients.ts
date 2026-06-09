@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { IClient } from '@mirapay/shared-models';
+import { firstValueFrom } from 'rxjs';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -49,7 +50,7 @@ export class ClientsComponent implements OnInit {
 
   async loadClients() {
     try {
-      this.clients.set(await this.clientsGateway.getAll());
+      this.clients.set(await firstValueFrom(this.clientsGateway.getAll()));
     } catch (error) {
       console.error('Erreur lors du chargement des clients', error);
     }
@@ -77,7 +78,7 @@ export class ClientsComponent implements OnInit {
 
     try {
       const payload = this.clientForm.value;
-      await this.clientsGateway.create(payload);
+      await firstValueFrom(this.clientsGateway.create(payload));
       this.closeModal();
       this.loadClients(); // Actualiser la liste
     } catch (error) {

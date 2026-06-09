@@ -1,6 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IClient } from '@mirapay/shared-models';
 
 @Injectable({
@@ -11,27 +11,27 @@ export class ClientsGateway {
   private http = inject(HttpClient);
   private apiUrl = '/api/clients';
 
-  async getAll(): Promise<IClient[]> {
-    return firstValueFrom(this.http.get<IClient[]>(this.apiUrl));
+  getAll(): Observable<IClient[]> {
+    return this.http.get<IClient[]>(this.apiUrl);
   }
 
-  async getOne(id: string): Promise<IClient> {
-    return firstValueFrom(this.http.get<IClient>(`${this.apiUrl}/${id}`));
+  getOne(id: string): Observable<IClient> {
+    return this.http.get<IClient>(`${this.apiUrl}/${id}`);
   }
 
-  async create(data: Partial<IClient>): Promise<IClient> {
-    return firstValueFrom(this.http.post<IClient>(this.apiUrl, data));
+  create(data: Partial<IClient>): Observable<IClient> {
+    return this.http.post<IClient>(this.apiUrl, data);
   }
 
-  async update(id: string, data: Partial<IClient>): Promise<IClient> {
-    return firstValueFrom(this.http.patch<IClient>(`${this.apiUrl}/${id}`, data));
+  update(id: string, data: Partial<IClient>): Observable<IClient> {
+    return this.http.patch<IClient>(`${this.apiUrl}/${id}`, data);
   }
 
-  async archive(id: string): Promise<IClient> {
-    return firstValueFrom(this.http.patch<IClient>(`${this.apiUrl}/${id}/archive`, {}));
+  archive(id: string): Observable<IClient> {
+    return this.http.patch<IClient>(`${this.apiUrl}/${id}/archive`, {});
   }
 
-  async delete(id: string): Promise<void> {
-    await firstValueFrom(this.http.delete<void>(`${this.apiUrl}/${id}`));
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

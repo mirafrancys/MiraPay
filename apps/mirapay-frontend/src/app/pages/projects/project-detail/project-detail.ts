@@ -6,6 +6,7 @@ import { ProjectsGateway } from '../../../cores/gateways/projects.gateway';
 import { TasksGateway } from '../../../cores/gateways/tasks.gateway';
 import { IProject, ITask } from '@mirapay/shared-models';
 import { TranslationService } from '../../../cores/services/translation.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-project-detail',
@@ -51,7 +52,7 @@ export class ProjectDetailComponent implements OnInit {
 
   async loadProject(id: string) {
     try {
-      const data = await this.projectsGateway.getOne(id);
+      const data = await firstValueFrom(this.projectsGateway.getOne(id));
       this.project.set(data);
       this.projectsGateway.activeProject.set(data);
     } catch (error) {
@@ -66,7 +67,7 @@ export class ProjectDetailComponent implements OnInit {
 
   async loadTasks(projectId: string) {
     try {
-      this.tasks.set(await this.tasksGateway.getByProject(projectId));
+      this.tasks.set(await firstValueFrom(this.tasksGateway.getByProject(projectId)));
     } catch (error) {
       console.error('Erreur chargement tâches', error);
     }
@@ -100,7 +101,7 @@ export class ProjectDetailComponent implements OnInit {
       if (!payload.dateDebutPrevue) delete payload.dateDebutPrevue;
       if (!payload.dateEcheance) delete payload.dateEcheance;
 
-      await this.tasksGateway.create(payload);
+      await firstValueFrom(this.tasksGateway.create(payload));
       this.closeModal();
       this.loadTasks(currentProject.id); // Rafraîchir
     } catch (error) {

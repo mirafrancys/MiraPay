@@ -7,6 +7,7 @@ import { BankHoursGateway } from '../../../cores/gateways/bank-hours.gateway';
 import { IClient, IBankHour } from '@mirapay/shared-models';
 import { TranslationService } from '../../../cores/services/translation.service';
 import { ContactsGateway } from '../../../cores/gateways/contacts.gateway';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-client-detail',
@@ -58,7 +59,7 @@ export class ClientDetailComponent implements OnInit {
 
   async loadClient(id: string) {
     try {
-      const data = await this.clientsGateway.getOne(id);
+      const data = await firstValueFrom(this.clientsGateway.getOne(id));
       this.client.set(data);
       this.clientsGateway.activeClient.set(data);
     } catch (error) {
@@ -89,7 +90,7 @@ export class ClientDetailComponent implements OnInit {
         clientId: this.client()!.id
       };
       
-      await this.bankGateway.create(payload);
+      await firstValueFrom(this.bankGateway.create(payload));
       this.closeModal();
       this.loadClient(this.client()!.id); // Rafraîchir
     } catch (error) {
@@ -117,7 +118,7 @@ export class ClientDetailComponent implements OnInit {
         clientId: currentClient.id
       };
       
-      await this.contactsGateway.create(payload);
+      await firstValueFrom(this.contactsGateway.create(payload));
       this.closeContactModal();
       this.loadClient(currentClient.id); // Rafraîchir
     } catch (error) {
@@ -130,7 +131,7 @@ export class ClientDetailComponent implements OnInit {
     const currentClient = this.client();
     if (!currentClient || !confirm("Désactiver ce contact ? Il ne sera plus visible pour les futures opérations.")) return;
     try {
-      await this.contactsGateway.delete(id);
+      await firstValueFrom(this.contactsGateway.delete(id));
       this.loadClient(currentClient.id);
     } catch (error) {
       console.error('Erreur delete contact', error);

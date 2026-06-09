@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IBankHour } from '@mirapay/shared-models';
 
 @Injectable({
@@ -10,15 +10,11 @@ export class BankHoursGateway {
   private http = inject(HttpClient);
   private apiUrl = '/api/bank-hours';
 
-  async create(data: Partial<IBankHour>): Promise<IBankHour> {
-    return firstValueFrom(
-      this.http.post<IBankHour>(this.apiUrl, data)
-    );
+  create(data: Partial<IBankHour>): Observable<IBankHour> {
+    return this.http.post<IBankHour>(this.apiUrl, data);
   }
 
-  async getByClient(clientId: string): Promise<IBankHour[]> {
-    return firstValueFrom(
-      this.http.get<IBankHour[]>(this.apiUrl, { params: { clientId } })
-    );
+  getByClient(clientId: string): Observable<IBankHour[]> {
+    return this.http.get<IBankHour[]>(this.apiUrl, { params: { clientId } });
   }
 }

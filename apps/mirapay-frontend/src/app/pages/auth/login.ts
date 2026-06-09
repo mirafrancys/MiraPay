@@ -5,6 +5,8 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthGateway } from '../../cores/gateways/auth.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 
+import { firstValueFrom } from 'rxjs';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -26,7 +28,7 @@ export class LoginComponent {
     this.errorMessage = '';
     
     try {
-      await this.authGateway.login(this.credentials);
+      await firstValueFrom(this.authGateway.login(this.credentials));
       this.router.navigate(['/dashboard']);
     } catch (error) {
       if (error instanceof Error) {

@@ -5,6 +5,7 @@ import { SoumissionsGateway } from '../../cores/gateways/soumissions.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { ISoumission, IClient, ISoumissionLine } from '@mirapay/shared-models';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-soumissions',
@@ -69,8 +70,8 @@ export class SoumissionsComponent implements OnInit {
 
   async loadData() {
     try {
-      this.soumissions.set(await this.soumissionsGateway.getAll());
-      this.clients.set(await this.clientsGateway.getAll());
+      this.soumissions.set(await firstValueFrom(this.soumissionsGateway.getAll()));
+      this.clients.set(await firstValueFrom(this.clientsGateway.getAll()));
     } catch (error) {
       console.error('Erreur chargement soumissions', error);
     }
@@ -100,7 +101,7 @@ export class SoumissionsComponent implements OnInit {
       payload.montantTVQ = payload.sousTotalHT * 0.09975;
       payload.totalTTC = payload.sousTotalHT + payload.montantTPS + payload.montantTVQ;
 
-      await this.soumissionsGateway.create(payload);
+      await firstValueFrom(this.soumissionsGateway.create(payload));
       this.closeModal();
       this.loadData();
     } catch (error) {

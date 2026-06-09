@@ -1,6 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { IUser, IRole } from '@mirapay/shared-models';
 
 @Injectable({
@@ -11,37 +12,32 @@ export class AuthGateway {
   private apiUrl = '/api';
   currentUser = signal<IUser | null>(null);
 
-  async login(credentials: { emailOrUsername: string; password?: string }): Promise<{ user: IUser }> {
-    try {
-      const data = await firstValueFrom(
-        this.http.post<{ user: IUser }>(`${this.apiUrl}/auth/login`, credentials)
-      );
-      this.currentUser.set(data.user);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      return data;
-    } catch (err: any) {
-      throw new Error(err.error?.error || 'Erreur de connexion');
-    }
+  login(credentials: { emailOrUsername: string; password?: string }): Observable<{ user: IUser }> {
+    return this.http.post<{ user: IUser }>(`${this.apiUrl}/auth/login`, credentials).pipe(
+      tap(data => {
+        this.currentUser.set(data.user);
+        localStorage.setItem('user', JSON.stringify(data.user));
+      }),
+      catchError(err => {
+        const errMsg = err.error?.error || 'Erreur de connexion';
+        return throwError(() => new Error(errMsg));
+      })
+    );
   }
 
-  async register(userData: Partial<IUser>): Promise<IUser> {
-    try {
-      return await firstValueFrom(
-        this.http.post<IUser>(`${this.apiUrl}/users`, userData)
-      );
-    } catch (err: any) {
-      throw new Error(err.error?.error || 'Erreur lors de la création');
-    }
+  register(userData: Partial<IUser>): Observable<IUser> {
+    return this.http.post<IUser>(`${this.apiUrl}/users`, userData).pipe(
+      catchError(err => {
+        const errMsg = err.error?.error || 'Erreur lors de la création';
+        return throwError(() => new Error(errMsg));
+      })
+    );
   }
 
-  async getRoles(): Promise<IRole[]> {
-    try {
-      return await firstValueFrom(
-        this.http.get<IRole[]>(`${this.apiUrl}/auth/roles`)
-      );
-    } catch (err) {
-      return [];
-    }
+  getRoles(): Observable<IRole[]> {
+    return this.http.get<IRole[]>(`${this.apiUrl}/auth/roles`).pipe(
+      catchError(() => of([]))
+    );
   }
 
   logout() {

@@ -6,6 +6,8 @@ import { AuthGateway } from '../../cores/gateways/auth.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { IUser } from '@mirapay/shared-models';
 
+import { firstValueFrom } from 'rxjs';
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -41,7 +43,7 @@ export class RegisterComponent {
     const payload = { ...this.user };
 
     try {
-      await this.authGateway.register(payload);
+      await firstValueFrom(this.authGateway.register(payload));
       this.successMessage = "Compte créé avec succès ! Vous pouvez maintenant vous connecter.";
     } catch (error) {
       if (error instanceof Error) {

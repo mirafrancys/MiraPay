@@ -6,6 +6,7 @@ import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { IInvoice, IClient, IProject } from '@mirapay/shared-models';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-invoices',
@@ -50,9 +51,9 @@ export class InvoicesComponent implements OnInit {
 
   async loadData() {
     try {
-      this.invoices.set(await this.invoicesGateway.getAll());
-      this.clients.set(await this.clientsGateway.getAll());
-      this.projects.set(await this.projectsGateway.getAll());
+      this.invoices.set(await firstValueFrom(this.invoicesGateway.getAll()));
+      this.clients.set(await firstValueFrom(this.clientsGateway.getAll()));
+      this.projects.set(await firstValueFrom(this.projectsGateway.getAll()));
     } catch (error) {
       console.error('Erreur lors du chargement des factures', error);
     }
@@ -77,7 +78,7 @@ export class InvoicesComponent implements OnInit {
       const payload: { clientId: string; projetId?: string } = { clientId };
       if (projetId) payload.projetId = projetId;
 
-      const res = await this.invoicesGateway.prepareDraft(payload);
+      const res = await firstValueFrom(this.invoicesGateway.prepareDraft(payload));
       this.draftData.set(res);
     } catch (error) {
       console.error('Erreur lors du calcul du brouillon', error);
@@ -105,7 +106,7 @@ export class InvoicesComponent implements OnInit {
       const payload = { ...this.invoiceForm.value };
       if (!payload.projetId || payload.projetId === '') delete payload.projetId;
 
-      await this.invoicesGateway.create(payload);
+      await firstValueFrom(this.invoicesGateway.create(payload));
       this.closeModal();
       this.loadData(); // actualiser
     } catch (error) {

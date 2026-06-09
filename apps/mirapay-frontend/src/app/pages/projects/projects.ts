@@ -6,6 +6,7 @@ import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { IProject, IClient } from '@mirapay/shared-models';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -47,8 +48,8 @@ export class ProjectsComponent implements OnInit {
 
   async loadData() {
     try {
-      this.projects.set(await this.projectsGateway.getAll());
-      this.clients.set(await this.clientsGateway.getAll());
+      this.projects.set(await firstValueFrom(this.projectsGateway.getAll()));
+      this.clients.set(await firstValueFrom(this.clientsGateway.getAll()));
     } catch (error) {
       console.error('Erreur lors du chargement des données', error);
     }
@@ -78,7 +79,7 @@ export class ProjectsComponent implements OnInit {
 
       if (payload.dateFinPrevue === '') delete payload.dateFinPrevue;
 
-      await this.projectsGateway.create(payload);
+      await firstValueFrom(this.projectsGateway.create(payload));
       this.closeModal();
       this.loadData();
     } catch (error) {
