@@ -67,7 +67,7 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx vitest@latest run --root .",
+        "command": "npx vitest run --root .",
         "cwd": "apps/mirapay-frontend"
       }
     },

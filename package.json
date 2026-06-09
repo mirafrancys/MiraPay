@@ -18,12 +18,15 @@
   },
   "private": true,
   "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.6.0",
+    "@analogjs/vitest-angular": "^2.6.0",
     "@angular-devkit/core": "~21.1.0",
     "@angular-devkit/schematics": "~21.1.0",
     "@angular/build": "~21.1.0",
     "@angular/cli": "~21.1.0",
     "@angular/compiler-cli": "~21.1.0",
     "@angular/language-service": "~21.1.0",
+    "@angular/platform-browser-dynamic": "~21.1.0",
     "@eslint/js": "^9.8.0",
     "@nx/angular": "^22.5.2",
     "@nx/devkit": "22.5.2",
@@ -92,6 +95,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "swagger-ui-express": "^5.0.1",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "zone.js": "^0.16.2"
   }
 }
