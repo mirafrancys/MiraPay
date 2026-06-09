@@ -6,9 +6,11 @@
       <p>{{ts.translate('AUTH.LOGIN_SUBTITLE')}}</p>
     </div>
 
-    <div class="auth-error" *ngIf="errorMessage">
-      {{ errorMessage }}
-    </div>
+    @if (errorMessage) {
+      <div class="auth-error">
+        {{ errorMessage }}
+      </div>
+    }
 
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="auth-form">
       <div class="form-group">

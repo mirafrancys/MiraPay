@@ -6,73 +6,83 @@
       <p>{{ts.translate('AUTH.REGISTER_SUBTITLE')}}</p>
     </div>
 
-    <div class="auth-error" *ngIf="errorMessage">
-      {{ errorMessage }}
-    </div>
-    <div class="auth-success" *ngIf="successMessage">
-      {{ successMessage }}
-    </div>
-
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="auth-form" *ngIf="!successMessage">
-      
-      <div class="form-row">
-        <div class="form-group flex-1">
-          <label for="firstName">{{ts.translate('AUTH.FIRST_NAME')}}</label>
-          <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required class="form-control" />
-        </div>
-        <div class="form-group flex-1">
-          <label for="lastName">{{ts.translate('AUTH.LAST_NAME')}}</label>
-          <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required class="form-control" />
-        </div>
+    @if (errorMessage) {
+      <div class="auth-error">
+        {{ errorMessage }}
       </div>
+    }
 
-      <div class="form-row">
-        <div class="form-group flex-1">
-          <label for="username">{{ts.translate('AUTH.USERNAME')}}</label>
-          <input type="text" id="username" name="username" [(ngModel)]="user.username" required class="form-control" />
+    @if (successMessage) {
+      <div class="auth-success">
+        {{ successMessage }}
+      </div>
+    }
+
+    @if (!successMessage) {
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="auth-form">
+        
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="firstName">{{ts.translate('AUTH.FIRST_NAME')}}</label>
+            <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required class="form-control" />
+          </div>
+          <div class="form-group flex-1">
+            <label for="lastName">{{ts.translate('AUTH.LAST_NAME')}}</label>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required class="form-control" />
+          </div>
         </div>
-        <div class="form-group flex-1">
-          <label for="email">{{ts.translate('AUTH.EMAIL')}}</label>
-          <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="form-control" />
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="username">{{ts.translate('AUTH.USERNAME')}}</label>
+            <input type="text" id="username" name="username" [(ngModel)]="user.username" required class="form-control" />
+          </div>
+          <div class="form-group flex-1">
+            <label for="email">{{ts.translate('AUTH.EMAIL')}}</label>
+            <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="form-control" />
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="password">{{ts.translate('AUTH.PASSWORD')}}</label>
-        <input type="password" id="password" name="password" [(ngModel)]="user.password" required class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="phoneNumber">{{ts.translate('AUTH.PHONE')}}</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="address">{{ts.translate('AUTH.ADDRESS')}}</label>
-        <input type="text" id="address" name="address" [(ngModel)]="user.address" class="form-control" />
-      </div>
-
-      <div class="form-row">
-        <div class="form-group flex-1">
-          <label for="city">{{ts.translate('AUTH.CITY')}}</label>
-          <input type="text" id="city" name="city" [(ngModel)]="user.city" class="form-control" />
+        <div class="form-group">
+          <label for="password">{{ts.translate('AUTH.PASSWORD')}}</label>
+          <input type="password" id="password" name="password" [(ngModel)]="user.password" required class="form-control" />
         </div>
-        <div class="form-group flex-1">
-          <label for="country">{{ts.translate('AUTH.COUNTRY')}}</label>
-          <input type="text" id="country" name="country" [(ngModel)]="user.country" class="form-control" />
+
+        <div class="form-group">
+          <label for="phoneNumber">{{ts.translate('AUTH.PHONE')}}</label>
+          <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" class="form-control" />
         </div>
+
+        <div class="form-group">
+          <label for="address">{{ts.translate('AUTH.ADDRESS')}}</label>
+          <input type="text" id="address" name="address" [(ngModel)]="user.address" class="form-control" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="city">{{ts.translate('AUTH.CITY')}}</label>
+            <input type="text" id="city" name="city" [(ngModel)]="user.city" class="form-control" />
+          </div>
+          <div class="form-group flex-1">
+            <label for="country">{{ts.translate('AUTH.COUNTRY')}}</label>
+            <input type="text" id="country" name="country" [(ngModel)]="user.country" class="form-control" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" [disabled]="!registerForm.form.valid || isLoading">
+          {{ isLoading ? ts.translate('AUTH.REGISTERING') : ts.translate('AUTH.REGISTER_BTN') }}
+        </button>
+      </form>
+    }
+
+    @if (!successMessage) {
+      <div class="auth-footer">
+        <p>{{ts.translate('AUTH.ALREADY_ACCOUNT')}} <a routerLink="/login">{{ts.translate('AUTH.LOGIN_HERE')}}</a>.</p>
       </div>
-
-      <button type="submit" class="btn-primary" [disabled]="!registerForm.form.valid || isLoading">
-        {{ isLoading ? ts.translate('AUTH.REGISTERING') : ts.translate('AUTH.REGISTER_BTN') }}
-      </button>
-    </form>
-
-    <div class="auth-footer" *ngIf="!successMessage">
-      <p>{{ts.translate('AUTH.ALREADY_ACCOUNT')}} <a routerLink="/login">{{ts.translate('AUTH.LOGIN_HERE')}}</a>.</p>
-    </div>
-    <div class="auth-footer" *ngIf="successMessage">
-      <p><a routerLink="/login" class="btn-secondary">{{ts.translate('AUTH.GO_TO_LOGIN')}}</a></p>
-    </div>
+    } @else {
+      <div class="auth-footer">
+        <p><a routerLink="/login" class="btn-secondary">{{ts.translate('AUTH.GO_TO_LOGIN')}}</a></p>
+      </div>
+    }
   </div>
 </div>
