@@ -34,8 +34,6 @@ export class RegisterComponent implements OnInit {
   private authGateway = inject(AuthGateway);
   private router = inject(Router);
 
-  ngOnInit() {}
-
   async onSubmit() {
     this.isLoading = true;
     this.errorMessage = '';

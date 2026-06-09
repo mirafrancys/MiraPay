@@ -1,18 +1,24 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { UsersController } from '../../app/controllers/users.controller';
-import { UsersService } from '../../app/services/users.service';
+//import { UsersService } from '../../app/services/users.service';
+import { Request, Response } from 'express';
+
+type MockedService = Record<string, ReturnType<typeof vi.fn>>;
 
 // Mock the service
-vi.mock('../services/users.service', () => {
+vi.mock('../../app/services/users.service', () => {
+  const mockInstance = {
+    findAll: vi.fn(),
+    findOne: vi.fn(),
+    create: vi.fn(),
+    update: vi.fn(),
+    remove: vi.fn(),
+  };
+  (global as typeof globalThis & { mockUsersServiceInstance: MockedService }).mockUsersServiceInstance = mockInstance;
+
   return {
     UsersService: vi.fn().mockImplementation(function () {
-      return {
-        findAll: vi.fn(),
-        findOne: vi.fn(),
-        create: vi.fn(),
-        update: vi.fn(),
-        remove: vi.fn(),
-      };
+      return mockInstance;
     }),
   };
 });
@@ -28,15 +34,14 @@ describe('UsersController', () => {
   describe('getAll', () => {
     it('should return users', async () => {
       const mockUsers = [{ id: '1', email: 'test@test.com' }];
-      const { UsersService } = await import('../../app/services/users.service');
-      const serviceInstance = new UsersService();
-      (serviceInstance.findAll as any).mockResolvedValue(mockUsers);
+      const mockService = (global as typeof globalThis & { mockUsersServiceInstance: MockedService }).mockUsersServiceInstance;
+      mockService.findAll.mockResolvedValue(mockUsers);
 
-      const req = {} as any;
+      const req = {} as unknown as Request;
       const res = {
         json: vi.fn(),
         status: vi.fn().mockReturnThis(),
-      } as any;
+      } as unknown as Response;
 
       await controller.getAll(req, res);
 
@@ -44,15 +49,14 @@ describe('UsersController', () => {
     });
 
     it('should handle errors', async () => {
-      const { UsersService } = await import('../../app/services/users.service');
-      const serviceInstance = new UsersService();
-      (serviceInstance.findAll as any).mockRejectedValue(new Error('DB Error'));
+      const mockService = (global as typeof globalThis & { mockUsersServiceInstance: MockedService }).mockUsersServiceInstance;
+      mockService.findAll.mockRejectedValue(new Error('DB Error'));
 
-      const req = {} as any;
+      const req = {} as unknown as Request;
       const res = {
         json: vi.fn(),
         status: vi.fn().mockReturnThis(),
-      } as any;
+      } as unknown as Response;
 
       await controller.getAll(req, res);
 
