@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } fr
 import { SoumissionsGateway } from '../../cores/gateways/soumissions.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
-import { ISoumission, IClient } from '@mirapay/shared-models';
+import { ISoumission, IClient, ISoumissionLine } from '@mirapay/shared-models';
 
 @Component({
   selector: 'app-soumissions',
@@ -95,7 +95,7 @@ export class SoumissionsComponent implements OnInit {
       const payload = this.soumissionForm.getRawValue();
       
       // Calculer sousTotalHT
-      payload.sousTotalHT = payload.lines.reduce((acc: number, line: any) => acc + (line.quantite * line.prixUnitaire), 0);
+      payload.sousTotalHT = payload.lines.reduce((acc: number, line: Partial<ISoumissionLine>) => acc + ((line.quantite || 0) * (line.prixUnitaire || 0)), 0);
       payload.montantTPS = payload.sousTotalHT * 0.05; // Fixe pour démo
       payload.montantTVQ = payload.sousTotalHT * 0.09975;
       payload.totalTTC = payload.sousTotalHT + payload.montantTPS + payload.montantTVQ;

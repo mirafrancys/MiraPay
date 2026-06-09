@@ -1,4 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { IClient } from '@mirapay/shared-models';
 
 @Injectable({
@@ -6,48 +8,30 @@ import { IClient } from '@mirapay/shared-models';
 })
 export class ClientsGateway {
   activeClient = signal<IClient | null>(null);
-  
+  private http = inject(HttpClient);
   private apiUrl = '/api/clients';
 
   async getAll(): Promise<IClient[]> {
-    const res = await fetch(this.apiUrl);
-    return res.json();
+    return firstValueFrom(this.http.get<IClient[]>(this.apiUrl));
   }
 
   async getOne(id: string): Promise<IClient> {
-    const res = await fetch(`${this.apiUrl}/${id}`);
-    return res.json();
+    return firstValueFrom(this.http.get<IClient>(`${this.apiUrl}/${id}`));
   }
 
   async create(data: Partial<IClient>): Promise<IClient> {
-    const res = await fetch(this.apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(this.http.post<IClient>(this.apiUrl, data));
   }
 
   async update(id: string, data: Partial<IClient>): Promise<IClient> {
-    const res = await fetch(`${this.apiUrl}/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(this.http.patch<IClient>(`${this.apiUrl}/${id}`, data));
   }
 
   async archive(id: string): Promise<IClient> {
-    const res = await fetch(`${this.apiUrl}/${id}/archive`, {
-      method: 'PATCH'
-    });
-    return res.json();
+    return firstValueFrom(this.http.patch<IClient>(`${this.apiUrl}/${id}/archive`, {}));
   }
 
   async delete(id: string): Promise<void> {
-    const res = await fetch(`${this.apiUrl}/${id}`, {
-      method: 'DELETE'
-    });
-    return res.json();
+    await firstValueFrom(this.http.delete<void>(`${this.apiUrl}/${id}`));
   }
 }

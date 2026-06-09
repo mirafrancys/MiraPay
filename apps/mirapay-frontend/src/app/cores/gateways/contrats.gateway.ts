@@ -1,35 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { IContrat } from '@mirapay/shared-models';
 
 @Injectable({ providedIn: 'root' })
 export class ContratsGateway {
+  private http = inject(HttpClient);
   private apiUrl = '/api/contrats';
 
   async getAll(): Promise<IContrat[]> {
-    const res = await fetch(this.apiUrl);
-    return res.json();
+    return firstValueFrom(this.http.get<IContrat[]>(this.apiUrl));
   }
 
   async getOne(id: string): Promise<IContrat> {
-    const res = await fetch(`${this.apiUrl}/${id}`);
-    return res.json();
+    return firstValueFrom(this.http.get<IContrat>(`${this.apiUrl}/${id}`));
   }
 
   async create(data: Partial<IContrat>): Promise<IContrat> {
-    const res = await fetch(this.apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(this.http.post<IContrat>(this.apiUrl, data));
   }
 
   async update(id: string, data: Partial<IContrat>): Promise<IContrat> {
-    const res = await fetch(`${this.apiUrl}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(this.http.put<IContrat>(`${this.apiUrl}/${id}`, data));
   }
 }

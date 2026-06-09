@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { ITimeEntry } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeEntriesGateway {
+  private http = inject(HttpClient);
   private apiUrl = '/api/time-entries';
 
   async getAll(filters: {
@@ -15,45 +18,28 @@ export class TimeEntriesGateway {
     dateDebut?: string;
     dateFin?: string;
   } = {}): Promise<ITimeEntry[]> {
-    const params = new URLSearchParams();
+    let params = new HttpParams();
     Object.entries(filters).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
-        params.append(key, value.toString());
+        params = params.set(key, value.toString());
       }
     });
-    const res = await fetch(`${this.apiUrl}?${params.toString()}`);
-    return res.json();
+    return firstValueFrom(this.http.get<ITimeEntry[]>(this.apiUrl, { params }));
   }
 
   async create(data: Partial<ITimeEntry>): Promise<ITimeEntry> {
-    const res = await fetch(this.apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(this.http.post<ITimeEntry>(this.apiUrl, data));
   }
 
   async update(id: string, data: Partial<ITimeEntry>): Promise<ITimeEntry> {
-    const res = await fetch(`${this.apiUrl}/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(this.http.patch<ITimeEntry>(`${this.apiUrl}/${id}`, data));
   }
 
   async approve(id: string): Promise<ITimeEntry> {
-    const res = await fetch(`${this.apiUrl}/${id}/approve`, {
-      method: 'PATCH'
-    });
-    return res.json();
+    return firstValueFrom(this.http.patch<ITimeEntry>(`${this.apiUrl}/${id}/approve`, {}));
   }
 
   async delete(id: string): Promise<void> {
-    const res = await fetch(`${this.apiUrl}/${id}`, {
-      method: 'DELETE'
-    });
-    return res.json();
+    await firstValueFrom(this.http.delete<void>(`${this.apiUrl}/${id}`));
   }
 }

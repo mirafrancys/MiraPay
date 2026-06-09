@@ -1,29 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { IClientContact } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsGateway {
+  private http = inject(HttpClient);
   private apiUrl = '/api/contacts';
 
   async getAllByClient(clientId: string): Promise<IClientContact[]> {
-    const res = await fetch(`${this.apiUrl}/client/${clientId}`);
-    return res.json();
+    return firstValueFrom(
+      this.http.get<IClientContact[]>(`${this.apiUrl}/client/${clientId}`)
+    );
   }
 
   async create(data: IClientContact): Promise<IClientContact> {
-    const res = await fetch(this.apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(
+      this.http.post<IClientContact>(this.apiUrl, data)
+    );
   }
 
   async delete(id: string): Promise<void> {
-    await fetch(`${this.apiUrl}/${id}`, {
-      method: 'DELETE'
-    });
+    await firstValueFrom(
+      this.http.delete<void>(`${this.apiUrl}/${id}`)
+    );
   }
 }

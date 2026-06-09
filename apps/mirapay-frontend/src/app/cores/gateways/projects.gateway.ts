@@ -1,4 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { IProject } from '@mirapay/shared-models';
 
 @Injectable({
@@ -6,41 +8,26 @@ import { IProject } from '@mirapay/shared-models';
 })
 export class ProjectsGateway {
   activeProject = signal<IProject | null>(null);
-  
+  private http = inject(HttpClient);
   private apiUrl = '/api/projects';
 
   async getAll(): Promise<IProject[]> {
-    const res = await fetch(this.apiUrl);
-    return res.json();
+    return firstValueFrom(this.http.get<IProject[]>(this.apiUrl));
   }
 
   async getOne(id: string): Promise<IProject> {
-    const res = await fetch(`${this.apiUrl}/${id}`);
-    return res.json();
+    return firstValueFrom(this.http.get<IProject>(`${this.apiUrl}/${id}`));
   }
 
   async create(data: Partial<IProject>): Promise<IProject> {
-    const res = await fetch(this.apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(this.http.post<IProject>(this.apiUrl, data));
   }
 
   async update(id: string, data: Partial<IProject>): Promise<IProject> {
-    const res = await fetch(`${this.apiUrl}/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(this.http.patch<IProject>(`${this.apiUrl}/${id}`, data));
   }
 
   async delete(id: string): Promise<void> {
-    const res = await fetch(`${this.apiUrl}/${id}`, {
-      method: 'DELETE'
-    });
-    return res.json();
+    await firstValueFrom(this.http.delete<void>(`${this.apiUrl}/${id}`));
   }
 }

@@ -1,23 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { IBankHour } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BankHoursGateway {
+  private http = inject(HttpClient);
   private apiUrl = '/api/bank-hours';
 
   async create(data: Partial<IBankHour>): Promise<IBankHour> {
-    const res = await fetch(this.apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return res.json();
+    return firstValueFrom(
+      this.http.post<IBankHour>(this.apiUrl, data)
+    );
   }
 
   async getByClient(clientId: string): Promise<IBankHour[]> {
-    const res = await fetch(`${this.apiUrl}?clientId=${clientId}`);
-    return res.json();
+    return firstValueFrom(
+      this.http.get<IBankHour[]>(this.apiUrl, { params: { clientId } })
+    );
   }
 }

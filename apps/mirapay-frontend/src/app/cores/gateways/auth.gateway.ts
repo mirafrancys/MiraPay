@@ -1,50 +1,47 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { IUser, IRole } from '@mirapay/shared-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGateway {
+  private http = inject(HttpClient);
   private apiUrl = '/api';
   currentUser = signal<IUser | null>(null);
 
   async login(credentials: { emailOrUsername: string; password?: string }): Promise<{ user: IUser }> {
-    const response = await fetch(`${this.apiUrl}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials)
-    });
-    
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Erreur de connexion');
+    try {
+      const data = await firstValueFrom(
+        this.http.post<{ user: IUser }>(`${this.apiUrl}/auth/login`, credentials)
+      );
+      this.currentUser.set(data.user);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      return data;
+    } catch (err: any) {
+      throw new Error(err.error?.error || 'Erreur de connexion');
     }
-
-    const data = await response.json();
-    this.currentUser.set(data.user);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    return data;
   }
 
   async register(userData: Partial<IUser>): Promise<IUser> {
-    const response = await fetch(`${this.apiUrl}/users`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData)
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Erreur lors de la création');
+    try {
+      return await firstValueFrom(
+        this.http.post<IUser>(`${this.apiUrl}/users`, userData)
+      );
+    } catch (err: any) {
+      throw new Error(err.error?.error || 'Erreur lors de la création');
     }
-
-    return await response.json();
   }
 
   async getRoles(): Promise<IRole[]> {
-    const response = await fetch(`${this.apiUrl}/auth/roles`);
-    if (!response.ok) return [];
-    return await response.json();
+    try {
+      return await firstValueFrom(
+        this.http.get<IRole[]>(`${this.apiUrl}/auth/roles`)
+      );
+    } catch (err) {
+      return [];
+    }
   }
 
   logout() {
