@@ -6,13 +6,15 @@ import { signal } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 describe('App', () => {
-  let mockAuthGateway: any;
+  let mockAuthGateway: Partial<AuthGateway>;
 
   beforeEach(async () => {
     mockAuthGateway = {
       currentUser: signal(null),
       checkAuth: () => false,
-      logout: () => {},
+      logout: () => {
+        // Mock method (noop)
+      },
     };
 
     await TestBed.configureTestingModule({
