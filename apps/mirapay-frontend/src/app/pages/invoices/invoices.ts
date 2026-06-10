@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, computed } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InvoicesGateway } from '../../cores/gateways/invoices.gateway';
@@ -27,11 +27,11 @@ export class InvoicesComponent implements OnInit {
   projects = signal<IProject[]>([]);
   
   // Filtrer les projets par client sélectionné
-  filteredProjects = computed(() => {
+  filteredProjects() {
     const clientId = this.invoiceForm?.get('clientId')?.value;
     if (!clientId) return [];
     return this.projects().filter(p => p.clientId === clientId);
-  });
+  }
 
   isModalOpen = signal<boolean>(false);
   invoiceForm!: FormGroup;
