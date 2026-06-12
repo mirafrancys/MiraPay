@@ -1,0 +1,35 @@
+<div class="project-card">
+  <!-- En-tête : Badge et Titre -->
+  <div class="card-header">
+    @if (project.etiquette) {
+      <span class="badge">{{ project.etiquette }}</span>
+    }
+    <h3 class="title">{{ project.nom }}</h3>
+  </div>
+
+  <!-- Corps : Client et Détails -->
+  <div class="card-body">
+    <p class="client-name">
+      <i class="icon-client">👤</i> 
+      {{ project.client?.nomLegal || 'Client inconnu' }}
+    </p>
+
+    <div class="budget-info">
+      <span class="label">Budget :</span>
+      <span class="value">{{ (project.budgetMontantPrevu | currency:'CAD') || 'N/A' }}</span>
+    </div>
+  </div>
+
+  <!-- Pied de page : Barre de progression -->
+  <div class="card-footer">
+    <div class="progress-container">
+      <div class="progress-bar-wrapper">
+        <div 
+          class="progress-bar-fill" 
+          [style.width.%]="project.progression || 0"
+        ></div>
+      </div>
+      <span class="progress-text">{{ project.progression || 0 }}%</span>
+    </div>
+  </div>
+</div>

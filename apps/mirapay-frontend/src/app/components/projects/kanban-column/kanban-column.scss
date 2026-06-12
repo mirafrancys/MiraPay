@@ -1,0 +1,90 @@
+.kanban-column {
+  background: #f1f5f9; /* Slate 100 */
+  border-radius: 12px;
+  width: 320px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  border: 2px dashed transparent;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &.drag-over {
+    background: #e2e8f0; /* Slate 200 */
+    border-color: #94a3b8; /* Slate 400 dashed border */
+  }
+
+  .column-header {
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .title-area {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .count-badge {
+        background: #cbd5e1;
+        color: #334155;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.2rem 0.6rem;
+        border-radius: 9999px;
+      }
+    }
+
+    .budget-summary {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #059669; /* Emerald 600 */
+    }
+  }
+
+  .column-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    flex-grow: 1;
+    min-height: 150px; /* Minimum drop zone space */
+
+    .card-wrapper {
+      cursor: grab;
+      
+      &:active {
+        cursor: grabbing;
+      }
+    }
+
+    .empty-state {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      color: #94a3b8;
+      font-size: 0.875rem;
+      font-weight: 500;
+      min-height: 100px;
+      
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

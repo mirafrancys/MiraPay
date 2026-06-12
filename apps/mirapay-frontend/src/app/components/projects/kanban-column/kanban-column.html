@@ -1,0 +1,39 @@
+<div 
+  class="kanban-column"
+  [class.drag-over]="isDragOver"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+>
+  <!-- En-tête de la colonne -->
+  <div class="column-header">
+    <div class="title-area">
+      <h2 class="title">{{ title }}</h2>
+      <span class="count-badge">{{ projects.length }}</span>
+    </div>
+    
+    @if (totalBudget > 0) {
+      <div class="budget-summary">
+        {{ totalBudget | currency:'CAD' }}
+      </div>
+    }
+  </div>
+
+  <!-- Zone de dépôt contenant les cartes -->
+  <div class="column-body">
+    @for (projet of projects; track projet.id) {
+      <!-- On enveloppe la carte pour gérer son drag côté parent si on n'utilise pas Angular CDK -->
+      <div 
+        class="card-wrapper" 
+        draggable="true" 
+        (dragstart)="$event.dataTransfer?.setData('text/plain', projet.id)"
+      >
+        <app-project-card [project]="projet"></app-project-card>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <p>Aucun projet</p>
+      </div>
+    }
+  </div>
+</div>

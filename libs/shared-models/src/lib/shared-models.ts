@@ -86,7 +86,7 @@ export interface IProject {
   ordreAffichage?: number;
   progression?: number;
   etiquette?: string;
-  metadata?: any;
+  metadata?: Record<string, unknown>;
   bankHours?: IBankHour[];
   contratId?: string;
   contrat?: IContrat;

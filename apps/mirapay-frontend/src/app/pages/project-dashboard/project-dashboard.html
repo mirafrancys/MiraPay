@@ -1,0 +1,52 @@
+<div class="dashboard-container">
+  
+  <header class="dashboard-header">
+    <div class="title-section">
+      <h1>Vue Kanban des Projets</h1>
+      <p class="subtitle">Organisez et suivez l'avancement de vos projets par simple glisser-déposer.</p>
+    </div>
+
+    <!-- Barre d'outils et Filtres -->
+    <div class="toolbar">
+      <div class="filter-group search-bar">
+        <span class="icon">🔍</span>
+        <input 
+          type="text" 
+          placeholder="Rechercher un projet..." 
+          [value]="searchQuery()" 
+          (input)="updateSearch($event)"
+        >
+      </div>
+
+      <div class="filter-group">
+        <select [value]="selectedClientId()" (change)="updateClientFilter($event)">
+          <option value="">Tous les clients</option>
+          @for (client of clients(); track client.id) {
+            <option [value]="client.id">{{ client.nomLegal }}</option>
+          }
+        </select>
+      </div>
+
+      <button class="btn-primary">
+        + Nouveau Projet
+      </button>
+    </div>
+  </header>
+
+  @if (isLoading()) {
+    <div class="loading-state">Chargement des projets...</div>
+  } @else {
+    <!-- Conteneur du Kanban Board -->
+    <div class="kanban-board">
+      @for (col of columns; track col.statusKey) {
+        <app-kanban-column
+          [title]="col.title"
+          [statusKey]="col.statusKey"
+          [projects]="groupedProjects()[col.statusKey].projects"
+          [totalBudget]="groupedProjects()[col.statusKey].totalBudget"
+          (projectDropped)="onProjectDropped($event)"
+        ></app-kanban-column>
+      }
+    </div>
+  }
+</div>
