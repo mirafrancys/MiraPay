@@ -1,4 +1,12 @@
 @if (project()) {
+  @if (isProjectModalOpen()) {
+    <app-project-edit-dlg
+      [clients]="clients()"
+      [projectToEdit]="project()"
+      (closeDialog)="isProjectModalOpen.set(false)"
+      (saveProject)="onSaveProject($event)"
+    ></app-project-edit-dlg>
+  }
   <div class="project-detail-container">
     <div class="header">
       <div class="title-section">
@@ -6,7 +14,10 @@
         <h1>{{ project()?.nom }}</h1>
         <span class="type-badge">{{ project()?.statut }}</span>
       </div>
-      <button class="btn-primary" (click)="openModal()">{{ ts.translate('PROJECTS.DETAILS.ADD_TASK') }}</button>
+      <div class="header-actions" style="display: flex; gap: 1rem;">
+        <button class="btn-secondary" (click)="openEditModal()">Éditer</button>
+        <button class="btn-primary" (click)="openModal()">{{ ts.translate('PROJECTS.DETAILS.ADD_TASK') }}</button>
+      </div>
     </div>
 
     <div class="dashboard-grid">

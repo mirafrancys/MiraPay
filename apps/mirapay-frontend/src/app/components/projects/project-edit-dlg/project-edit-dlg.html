@@ -1,0 +1,93 @@
+<div class="modal-backdrop">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2>{{ projectToEdit ? ts.translate('PROJECTS.EDIT_MODAL_TITLE') : ts.translate('PROJECTS.CREATE_MODAL_TITLE') }}</h2>
+      <button class="btn-close" (click)="onCancel()">×</button>
+    </div>
+    
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div class="modal-body">
+        <div class="form-grid">
+          <!-- Nom du Projet -->
+          <div class="form-group full-width">
+            <label for="nom">{{ ts.translate('PROJECTS.NAME') }}</label>
+            <input id="nom" type="text" formControlName="nom" [placeholder]="ts.translate('PROJECTS.NAME_PLACEHOLDER')">
+            @if (projectForm.get('nom')?.invalid && projectForm.get('nom')?.touched) {
+              <span class="error-text">{{ ts.translate('PROJECTS.NAME_REQUIRED') }}</span>
+            }
+          </div>
+
+          <!-- Client -->
+          <div class="form-group full-width">
+            <label for="clientId">{{ ts.translate('PROJECTS.CLIENT') }}</label>
+            <select id="clientId" formControlName="clientId">
+              <option value="" disabled>{{ ts.translate('PROJECTS.SELECT_CLIENT') }}</option>
+              @for (client of clients; track client.id) {
+                <option [value]="client.id">{{ client.nomLegal }}</option>
+              }
+            </select>
+            @if (projectForm.get('clientId')?.invalid && projectForm.get('clientId')?.touched) {
+              <span class="error-text">{{ ts.translate('PROJECTS.CLIENT_REQUIRED') }}</span>
+            }
+          </div>
+
+          <!-- Type de Facturation -->
+          <div class="form-group">
+            <label for="typeFacturation">{{ ts.translate('PROJECTS.INVOICING_TYPE') }}</label>
+            <select id="typeFacturation" formControlName="typeFacturation">
+              <option value="horaire">{{ ts.translate('PROJECTS.TYPE_HOURLY') }}</option>
+              <option value="forfait">{{ ts.translate('PROJECTS.TYPE_FLAT') }}</option>
+              <option value="banqueHeures">{{ ts.translate('PROJECTS.TYPE_BANK') }}</option>
+            </select>
+          </div>
+
+          <!-- Taux Horaire -->
+          @if (projectForm.get('typeFacturation')?.value === 'horaire') {
+            <div class="form-group">
+              <label for="tauxHoraire">{{ ts.translate('PROJECTS.HOURLY_RATE') }}</label>
+              <input id="tauxHoraire" type="number" formControlName="tauxHoraire" [placeholder]="ts.translate('PROJECTS.HOURLY_RATE_PLACEHOLDER')">
+            </div>
+          }
+
+          <!-- Montant Forfait -->
+          @if (projectForm.get('typeFacturation')?.value === 'forfait') {
+            <div class="form-group">
+              <label for="montantForfait">{{ ts.translate('PROJECTS.FLAT_AMOUNT') }}</label>
+              <input id="montantForfait" type="number" formControlName="montantForfait" [placeholder]="ts.translate('PROJECTS.FLAT_AMOUNT_PLACEHOLDER')">
+            </div>
+          }
+
+          <!-- Budget Heures -->
+          @if (projectForm.get('typeFacturation')?.value === 'banqueHeures') {
+            <div class="form-group">
+              <label for="heuresBanqueTotales">{{ ts.translate('PROJECTS.BANKED_HOURS') }}</label>
+              <input id="heuresBanqueTotales" type="number" formControlName="heuresBanqueTotales" [placeholder]="ts.translate('PROJECTS.BANKED_HOURS_PLACEHOLDER')">
+            </div>
+          }
+
+          <!-- Statut -->
+          <div class="form-group">
+            <label for="statut">{{ ts.translate('PROJECTS.STATUS') }}</label>
+            <select id="statut" formControlName="statut">
+              <option value="brouillon">{{ ts.translate('PROJECTS.STATUS_DRAFT') }}</option>
+              <option value="enCours">{{ ts.translate('PROJECTS.STATUS_IN_PROGRESS') }}</option>
+              <option value="enPause">{{ ts.translate('PROJECTS.STATUS_ON_HOLD') }}</option>
+              <option value="termine">{{ ts.translate('PROJECTS.STATUS_COMPLETED') }}</option>
+            </select>
+          </div>
+
+          <!-- Date Début -->
+          <div class="form-group">
+            <label for="dateDebut">{{ ts.translate('PROJECTS.START_DATE') }}</label>
+            <input id="dateDebut" type="date" formControlName="dateDebut">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" (click)="onCancel()">{{ ts.translate('PROJECTS.CANCEL') }}</button>
+        <button type="submit" class="btn-primary" [disabled]="projectForm.invalid">{{ ts.translate('PROJECTS.SAVE') }}</button>
+      </div>
+    </form>
+  </div>
+</div>

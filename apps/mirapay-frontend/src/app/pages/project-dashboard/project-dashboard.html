@@ -1,4 +1,12 @@
 <div class="dashboard-container">
+  @if (isModalOpen()) {
+    <app-project-edit-dlg
+      [clients]="clients()"
+      [projectToEdit]="projectToEdit()"
+      (closeDialog)="isModalOpen.set(false)"
+      (saveProject)="onSaveProject($event)"
+    ></app-project-edit-dlg>
+  }
   
   <header class="dashboard-header">
     <div class="title-section">
@@ -27,7 +35,7 @@
         </select>
       </div>
 
-      <button class="btn-primary">
+      <button class="btn-primary" (click)="openModal()">
         + {{ ts.translate('PROJECTS.NEW_PROJECT') }}
       </button>
     </div>

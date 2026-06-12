@@ -8,11 +8,12 @@ import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { KanbanColumnComponent } from '../../components/projects/kanban-column/kanban-column';
+import { ProjectEditDlgComponent } from '../../components/projects/project-edit-dlg/project-edit-dlg';
 
 @Component({
   selector: 'app-project-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, KanbanColumnComponent],
+  imports: [CommonModule, FormsModule, KanbanColumnComponent, ProjectEditDlgComponent],
   templateUrl: './project-dashboard.html',
   styleUrls: ['./project-dashboard.scss'],
 })
@@ -25,6 +26,8 @@ export class ProjectDashboardComponent implements OnInit {
   projects = signal<IProject[]>([]);
   clients = signal<IClient[]>([]);
   isLoading = signal<boolean>(true);
+  isModalOpen = signal<boolean>(false);
+  projectToEdit = signal<IProject | null>(null);
 
   // Filtres
   searchQuery = signal<string>('');
@@ -129,5 +132,26 @@ export class ProjectDashboardComponent implements OnInit {
   updateClientFilter(event: Event) {
     const select = event.target as HTMLSelectElement;
     this.selectedClientId.set(select.value);
+  }
+
+  openModal(project: IProject | null = null) {
+    this.projectToEdit.set(project);
+    this.isModalOpen.set(true);
+  }
+
+  async onSaveProject(payload: Partial<IProject>) {
+    try {
+      const currentProject = this.projectToEdit();
+      if (currentProject) {
+        await firstValueFrom(this.projectsGateway.update(currentProject.id, payload));
+      } else {
+        await firstValueFrom(this.projectsGateway.create(payload));
+      }
+      this.isModalOpen.set(false);
+      this.loadData();
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde', error);
+      alert('Erreur lors de la sauvegarde : ' + (error as Error).message);
+    }
   }
 }

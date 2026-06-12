@@ -4,14 +4,16 @@ import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProjectsGateway } from '../../../cores/gateways/projects.gateway';
 import { TasksGateway } from '../../../cores/gateways/tasks.gateway';
-import { IProject, ITask } from '@mirapay/shared-models';
+import { ClientsGateway } from '../../../cores/gateways/clients.gateway';
+import { IProject, ITask, IClient } from '@mirapay/shared-models';
 import { TranslationService } from '../../../cores/services/translation.service';
+import { ProjectEditDlgComponent } from '../../../components/projects/project-edit-dlg/project-edit-dlg';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, ProjectEditDlgComponent],
   templateUrl: './project-detail.html',
   styleUrl: './project-detail.scss'
 })
@@ -20,21 +22,30 @@ export class ProjectDetailComponent implements OnInit {
   router = inject(Router);
   projectsGateway = inject(ProjectsGateway);
   tasksGateway = inject(TasksGateway);
+  clientsGateway = inject(ClientsGateway);
   fb = inject(FormBuilder);
   ts = inject(TranslationService);
 
   project = signal<IProject | null>(null);
   tasks = signal<ITask[]>([]);
+  clients = signal<IClient[]>([]);
   isModalOpen = signal<boolean>(false);
+  isProjectModalOpen = signal<boolean>(false);
   taskForm!: FormGroup;
 
-  ngOnInit() {
+  async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadProject(id);
       this.loadTasks(id);
     }
     this.initForm();
+    
+    try {
+      this.clients.set(await firstValueFrom(this.clientsGateway.getAll()));
+    } catch (e) {
+      console.error('Erreur chargement clients', e);
+    }
   }
 
   initForm() {
@@ -63,6 +74,24 @@ export class ProjectDetailComponent implements OnInit {
   closeProject() {
     this.projectsGateway.activeProject.set(null);
     this.router.navigate(['/projects']);
+  }
+
+  openEditModal() {
+    this.isProjectModalOpen.set(true);
+  }
+
+  async onSaveProject(payload: Partial<IProject>) {
+    try {
+      const currentProject = this.project();
+      if (currentProject) {
+        await firstValueFrom(this.projectsGateway.update(currentProject.id, payload));
+        this.loadProject(currentProject.id); // Refresh
+      }
+      this.isProjectModalOpen.set(false);
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde du projet', error);
+      alert('Erreur: ' + (error as Error).message);
+    }
   }
 
   async loadTasks(projectId: string) {

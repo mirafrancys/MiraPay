@@ -1,17 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
 import { TranslationService } from '../../cores/services/translation.service';
 import { IProject, IClient } from '@mirapay/shared-models';
 import { firstValueFrom } from 'rxjs';
+import { ProjectEditDlgComponent } from '../../components/projects/project-edit-dlg/project-edit-dlg';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, RouterModule, ProjectEditDlgComponent],
   templateUrl: './projects.html',
   styleUrl: './projects.scss'
 })
@@ -19,31 +20,14 @@ export class ProjectsComponent implements OnInit {
   ts = inject(TranslationService);
   private projectsGateway = inject(ProjectsGateway);
   private clientsGateway = inject(ClientsGateway);
-  private fb = inject(FormBuilder);
 
   projects = signal<IProject[]>([]);
   clients = signal<IClient[]>([]);
   isModalOpen = signal<boolean>(false);
-  projectForm!: FormGroup;
+  projectToEdit = signal<IProject | null>(null);
 
   ngOnInit() {
-    this.initForm();
     this.loadData();
-  }
-
-  initForm() {
-    this.projectForm = this.fb.group({
-      clientId: ['', Validators.required],
-      nom: ['', Validators.required],
-      description: [''],
-      dateDebut: [new Date().toISOString().substring(0, 10), Validators.required],
-      dateFinPrevue: [''],
-      statut: ['enCours', Validators.required],
-      typeFacturation: ['horaire', Validators.required],
-      tauxHoraire: [null],
-      montantForfait: [null],
-      heuresBanqueTotales: [null]
-    });
   }
 
   async loadData() {
@@ -55,36 +39,24 @@ export class ProjectsComponent implements OnInit {
     }
   }
 
-  openModal() {
-    this.projectForm.reset({
-      statut: 'enCours',
-      typeFacturation: 'horaire',
-      dateDebut: new Date().toISOString().substring(0, 10)
-    });
+  openModal(project: IProject | null = null) {
+    this.projectToEdit.set(project);
     this.isModalOpen.set(true);
   }
 
-  closeModal() {
-    this.isModalOpen.set(false);
-  }
-
-  async onSubmit() {
-    if (this.projectForm.invalid) return;
-
+  async onSaveProject(payload: Partial<IProject>) {
     try {
-      const payload = this.projectForm.value;
-      if (payload.typeFacturation !== 'horaire') delete payload.tauxHoraire;
-      if (payload.typeFacturation !== 'forfait') delete payload.montantForfait;
-      if (payload.typeFacturation !== 'banqueHeures') delete payload.heuresBanqueTotales;
-
-      if (payload.dateFinPrevue === '') delete payload.dateFinPrevue;
-
-      await firstValueFrom(this.projectsGateway.create(payload));
-      this.closeModal();
+      const currentProject = this.projectToEdit();
+      if (currentProject) {
+        await firstValueFrom(this.projectsGateway.update(currentProject.id, payload));
+      } else {
+        await firstValueFrom(this.projectsGateway.create(payload));
+      }
+      this.isModalOpen.set(false);
       this.loadData();
     } catch (error) {
-      console.error('Erreur lors de la création du projet', error);
-      alert('Erreur lors de la création du projet : ' + (error as Error).message);
+      console.error('Erreur lors de la sauvegarde du projet', error);
+      alert('Erreur lors de la sauvegarde : ' + (error as Error).message);
     }
   }
 }

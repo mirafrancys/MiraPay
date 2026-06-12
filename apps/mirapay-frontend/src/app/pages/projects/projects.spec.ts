@@ -59,7 +59,7 @@ describe('ProjectsComponent', () => {
     expect(mockClientsGateway.getAll).toHaveBeenCalled();
   });
 
-  it('should open and close modal', () => {
+  it('should open modal', () => {
     const fixture = TestBed.createComponent(ProjectsComponent);
     const comp = fixture.componentInstance;
     
@@ -67,49 +67,48 @@ describe('ProjectsComponent', () => {
     
     comp.openModal();
     expect(comp.isModalOpen()).toBe(true);
-    expect(comp.projectForm.get('statut')?.value).toBe('enCours');
-
-    comp.closeModal();
-    expect(comp.isModalOpen()).toBe(false);
+    expect(comp.projectToEdit()).toBeNull();
   });
 
-  it('should not submit if form is invalid', async () => {
+  it('should save new project via gateway on onSaveProject', async () => {
     const fixture = TestBed.createComponent(ProjectsComponent);
     const comp = fixture.componentInstance;
     
     fixture.detectChanges();
     comp.openModal();
     
-    await comp.onSubmit();
-    expect(mockProjectsGateway.create).not.toHaveBeenCalled();
-  });
-
-  it('should submit if form is valid and format payload correctly', async () => {
-    const fixture = TestBed.createComponent(ProjectsComponent);
-    const comp = fixture.componentInstance;
-    
-    fixture.detectChanges();
-    comp.openModal();
-    
-    comp.projectForm.patchValue({
+    const payload = {
       clientId: 'c1',
       nom: 'Test Project',
       dateDebut: '2024-01-01',
       statut: 'enCours',
       typeFacturation: 'forfait',
       montantForfait: 1000
-    });
+    };
 
-    await comp.onSubmit();
+    await comp.onSaveProject(payload);
     
-    expect(mockProjectsGateway.create).toHaveBeenCalled();
-    const payload = (mockProjectsGateway.create as ReturnType<typeof vi.fn>).mock.calls[0][0];
+    expect(mockProjectsGateway.create).toHaveBeenCalledWith(payload);
+    expect(comp.isModalOpen()).toBe(false);
+  });
+
+  it('should update project via gateway on onSaveProject if projectToEdit is set', async () => {
+    const fixture = TestBed.createComponent(ProjectsComponent);
+    const comp = fixture.componentInstance;
     
-    // Since typeFacturation is 'forfait', tauxHoraire should be deleted from payload
-    expect(payload).not.toHaveProperty('tauxHoraire');
-    expect(payload).not.toHaveProperty('heuresBanqueTotales');
-    expect(payload).toHaveProperty('montantForfait', 1000);
+    fixture.detectChanges();
     
+    const existingProject = { id: 'p1', nom: 'Existing' };
+    comp.openModal(existingProject as any);
+    
+    expect(comp.projectToEdit()?.id).toBe('p1');
+
+    const payload = { nom: 'Updated' };
+    mockProjectsGateway.update = vi.fn().mockReturnValue(of({}));
+
+    await comp.onSaveProject(payload);
+    
+    expect(mockProjectsGateway.update).toHaveBeenCalledWith('p1', payload);
     expect(comp.isModalOpen()).toBe(false);
   });
 });
