@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
@@ -21,6 +21,8 @@ export class ProjectDashboardComponent implements OnInit {
   private projectsGateway = inject(ProjectsGateway);
   private clientsGateway = inject(ClientsGateway);
   public ts = inject(TranslationService);
+
+  @Input() embedded = false;
 
   // État local (Signals)
   projects = signal<IProject[]>([]);

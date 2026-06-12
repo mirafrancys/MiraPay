@@ -134,6 +134,11 @@
     }
   },
   "PROJECTS": {
+    "TABS": {
+      "DASHBOARD": "Tablero (Kanban)",
+      "ACTIVE": "Proyectos Activos",
+      "ALL": "Todos los Proyectos"
+    },
     "CREATE_BTN": "Crear Proyecto",
     "CREATE_MODAL_TITLE": "Crear Nuevo Proyecto",
     "NAME": "Nombre del Proyecto *",

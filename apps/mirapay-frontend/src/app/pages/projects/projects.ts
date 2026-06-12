@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
@@ -7,11 +7,12 @@ import { TranslationService } from '../../cores/services/translation.service';
 import { IProject, IClient } from '@mirapay/shared-models';
 import { firstValueFrom } from 'rxjs';
 import { ProjectEditDlgComponent } from '../../components/projects/project-edit-dlg/project-edit-dlg';
+import { ProjectDashboardComponent } from '../project-dashboard/project-dashboard';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProjectEditDlgComponent],
+  imports: [CommonModule, RouterModule, ProjectEditDlgComponent, ProjectDashboardComponent],
   templateUrl: './projects.html',
   styleUrl: './projects.scss'
 })
@@ -24,6 +25,12 @@ export class ProjectsComponent implements OnInit {
   clients = signal<IClient[]>([]);
   isModalOpen = signal<boolean>(false);
   projectToEdit = signal<IProject | null>(null);
+
+  activeTab = signal<'dashboard' | 'active' | 'all'>('dashboard');
+
+  activeProjects = computed(() => {
+    return this.projects().filter(p => p.statut === 'enCours' || p.statut === 'brouillon');
+  });
 
   ngOnInit() {
     this.loadData();

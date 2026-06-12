@@ -1,8 +1,47 @@
 <div class="page-container">
   <div class="page-header">
-    <h1>{{ ts.translate('COMMON.PROJECTS') }}</h1>
+    <div class="title-section">
+      <h1>{{ ts.translate('COMMON.PROJECTS') }}</h1>
+    </div>
     <button class="btn-primary" (click)="openModal()">
       ➕ {{ ts.translate('PROJECTS.CREATE_BTN') }}
+    </button>
+  </div>
+
+  <!-- Onglets -->
+  <div class="tabs-container" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem;">
+    <button 
+      (click)="activeTab.set('dashboard')" 
+      [style.border]="'none'" 
+      [style.background]="'transparent'" 
+      [style.cursor]="'pointer'" 
+      [style.font-weight]="activeTab() === 'dashboard' ? 'bold' : 'normal'"
+      [style.color]="activeTab() === 'dashboard' ? '#4f46e5' : '#6b7280'"
+      [style.border-bottom]="activeTab() === 'dashboard' ? '2px solid #4f46e5' : 'none'"
+      style="padding: 0.5rem 1rem; font-size: 1rem;">
+      {{ ts.translate('PROJECTS.TABS.DASHBOARD') }}
+    </button>
+    <button 
+      (click)="activeTab.set('active')" 
+      [style.border]="'none'" 
+      [style.background]="'transparent'" 
+      [style.cursor]="'pointer'" 
+      [style.font-weight]="activeTab() === 'active' ? 'bold' : 'normal'"
+      [style.color]="activeTab() === 'active' ? '#4f46e5' : '#6b7280'"
+      [style.border-bottom]="activeTab() === 'active' ? '2px solid #4f46e5' : 'none'"
+      style="padding: 0.5rem 1rem; font-size: 1rem;">
+      {{ ts.translate('PROJECTS.TABS.ACTIVE') }}
+    </button>
+    <button 
+      (click)="activeTab.set('all')" 
+      [style.border]="'none'" 
+      [style.background]="'transparent'" 
+      [style.cursor]="'pointer'" 
+      [style.font-weight]="activeTab() === 'all' ? 'bold' : 'normal'"
+      [style.color]="activeTab() === 'all' ? '#4f46e5' : '#6b7280'"
+      [style.border-bottom]="activeTab() === 'all' ? '2px solid #4f46e5' : 'none'"
+      style="padding: 0.5rem 1rem; font-size: 1rem;">
+      {{ ts.translate('PROJECTS.TABS.ALL') }}
     </button>
   </div>
 
@@ -16,43 +55,47 @@
     ></app-project-edit-dlg>
   }
 
-  <!-- List Table -->
-  <div class="list-container">
-    <table>
-      <thead>
-        <tr>
-          <th>{{ ts.translate('PROJECTS.TABLE.NAME') }}</th>
-          <th>{{ ts.translate('PROJECTS.TABLE.CLIENT') }}</th>
-          <th>{{ ts.translate('PROJECTS.TABLE.RATE') }}</th>
-          <th>{{ ts.translate('PROJECTS.TABLE.STATUS') }}</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (project of projects(); track project.id) {
+  @if (activeTab() === 'dashboard') {
+    <app-project-dashboard [embedded]="true"></app-project-dashboard>
+  } @else {
+    <!-- List Table -->
+    <div class="list-container">
+      <table>
+        <thead>
           <tr>
-            <td>
-              <a [routerLink]="['/projects', project.id]" style="color: #4f46e5; text-decoration: none; font-weight: bold;">
-                {{ project.nom }}
-              </a>
-            </td>
-            <td>{{ project.client?.nomLegal }}</td>
-            <td>{{ project.tauxHoraire ? (project.tauxHoraire | currency:'CAD') : 'N/A' }}</td>
-            <td>
-              <span style="padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; background: #dff6dd; color: #1e4620;">
-                {{ project.statut }}
-              </span>
-            </td>
-            <td>
-              <button class="btn-icon" (click)="openModal(project)" style="background: none; border: none; cursor: pointer; color: #4f46e5;">✏️</button>
-            </td>
+            <th>{{ ts.translate('PROJECTS.TABLE.NAME') }}</th>
+            <th>{{ ts.translate('PROJECTS.TABLE.CLIENT') }}</th>
+            <th>{{ ts.translate('PROJECTS.TABLE.RATE') }}</th>
+            <th>{{ ts.translate('PROJECTS.TABLE.STATUS') }}</th>
+            <th>Actions</th>
           </tr>
-        } @empty {
-          <tr>
-            <td colspan="5" class="empty-state">{{ ts.translate('PROJECTS.EMPTY_STATE') }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          @for (project of (activeTab() === 'active' ? activeProjects() : projects()); track project.id) {
+            <tr>
+              <td>
+                <a [routerLink]="['/projects', project.id]" style="color: #4f46e5; text-decoration: none; font-weight: bold;">
+                  {{ project.nom }}
+                </a>
+              </td>
+              <td>{{ project.client?.nomLegal }}</td>
+              <td>{{ project.tauxHoraire ? (project.tauxHoraire | currency:'CAD') : 'N/A' }}</td>
+              <td>
+                <span style="padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; background: #dff6dd; color: #1e4620;">
+                  {{ project.statut }}
+                </span>
+              </td>
+              <td>
+                <button class="btn-icon" (click)="openModal(project)" style="background: none; border: none; cursor: pointer; color: #4f46e5;">✏️</button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="empty-state">{{ ts.translate('PROJECTS.EMPTY_STATE') }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
 </div>

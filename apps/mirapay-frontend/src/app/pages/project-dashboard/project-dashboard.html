@@ -9,13 +9,15 @@
   }
   
   <header class="dashboard-header">
-    <div class="title-section">
-      <h1>{{ ts.translate('PROJECTS.KANBAN_TITLE') }}</h1>
-      <p class="subtitle">{{ ts.translate('PROJECTS.KANBAN_SUBTITLE') }}</p>
-    </div>
+    @if (!embedded) {
+      <div class="title-section">
+        <h1>{{ ts.translate('PROJECTS.KANBAN_TITLE') }}</h1>
+        <p class="subtitle">{{ ts.translate('PROJECTS.KANBAN_SUBTITLE') }}</p>
+      </div>
+    }
 
     <!-- Barre d'outils et Filtres -->
-    <div class="toolbar">
+    <div class="toolbar" [style.justify-content]="embedded ? 'flex-end' : 'space-between'">
       <div class="filter-group search-bar">
         <span class="icon">🔍</span>
         <input 
@@ -35,9 +37,11 @@
         </select>
       </div>
 
-      <button class="btn-primary" (click)="openModal()">
-        + {{ ts.translate('PROJECTS.NEW_PROJECT') }}
-      </button>
+      @if (!embedded) {
+        <button class="btn-primary" (click)="openModal()">
+          + {{ ts.translate('PROJECTS.NEW_PROJECT') }}
+        </button>
+      }
     </div>
   </header>
 
