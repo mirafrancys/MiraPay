@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
 import { ClientsGateway } from '../../cores/gateways/clients.gateway';
