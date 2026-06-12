@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProject } from '@mirapay/shared-models';
 import { ProjectCardComponent } from '../project-card/project-card';
+import { TranslationService } from '../../../cores/services/translation.service';
 
 @Component({
   selector: 'app-kanban-column',
@@ -11,10 +12,11 @@ import { ProjectCardComponent } from '../project-card/project-card';
   styleUrls: ['./kanban-column.scss'],
 })
 export class KanbanColumnComponent {
+  public ts = inject(TranslationService);
   @Input({ required: true }) title!: string;
   @Input({ required: true }) statusKey!: string;
   @Input({ required: true }) projects: IProject[] = [];
-  @Input() totalBudget: number = 0;
+  @Input() totalBudget = 0;
 
   @Output() projectDropped = new EventEmitter<{
     projectId: string;
@@ -31,7 +33,7 @@ export class KanbanColumnComponent {
     this.isDragOver = true;
   }
 
-  onDragLeave(event: DragEvent) {
+  onDragLeave() {
     this.isDragOver = false;
   }
 

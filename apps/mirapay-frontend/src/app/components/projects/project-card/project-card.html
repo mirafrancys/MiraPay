@@ -11,12 +11,12 @@
   <div class="card-body">
     <p class="client-name">
       <i class="icon-client">👤</i> 
-      {{ project.client?.nomLegal || 'Client inconnu' }}
+      {{ project.client?.nomLegal || ts.translate('PROJECTS.UNKNOWN_CLIENT') }}
     </p>
 
     <div class="budget-info">
-      <span class="label">Budget :</span>
-      <span class="value">{{ (project.budgetMontantPrevu | currency:'CAD') || 'N/A' }}</span>
+      <span class="label">{{ ts.translate('PROJECTS.BUDGET') }} :</span>
+      <span class="value">{{ (project.budgetMontantPrevu | currency:'CAD') || ts.translate('COMMON.NA') }}</span>
     </div>
   </div>
 

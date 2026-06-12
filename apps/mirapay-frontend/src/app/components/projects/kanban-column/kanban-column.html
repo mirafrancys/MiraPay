@@ -2,7 +2,7 @@
   class="kanban-column"
   [class.drag-over]="isDragOver"
   (dragover)="onDragOver($event)"
-  (dragleave)="onDragLeave($event)"
+  (dragleave)="onDragLeave()"
   (drop)="onDrop($event)"
 >
   <!-- En-tête de la colonne -->
@@ -32,7 +32,7 @@
       </div>
     } @empty {
       <div class="empty-state">
-        <p>Aucun projet</p>
+        <p>{{ ts.translate('PROJECTS.NO_PROJECTS') }}</p>
       </div>
     }
   </div>

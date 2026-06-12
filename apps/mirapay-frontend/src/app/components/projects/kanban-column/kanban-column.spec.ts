@@ -2,14 +2,22 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { KanbanColumnComponent } from './kanban-column';
 import { IProject } from '@mirapay/shared-models';
+import { TranslationService } from '../../../cores/services/translation.service';
 
 describe('KanbanColumnComponent', () => {
   let component: KanbanColumnComponent;
   let fixture: ComponentFixture<KanbanColumnComponent>;
 
   beforeEach(async () => {
+    const mockTranslationService = {
+      translate: vi.fn((key: string) => key)
+    };
+
     await TestBed.configureTestingModule({
       imports: [KanbanColumnComponent],
+      providers: [
+        { provide: TranslationService, useValue: mockTranslationService }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(KanbanColumnComponent);
@@ -41,14 +49,14 @@ describe('KanbanColumnComponent', () => {
 
   it('should toggle isDragOver on dragover and dragleave', () => {
     fixture.detectChanges();
-    const event = new Event('dragover') as any;
+    const event = new Event('dragover') as unknown as DragEvent;
     event.preventDefault = vi.fn();
 
     component.onDragOver(event);
     expect(event.preventDefault).toHaveBeenCalled();
     expect(component.isDragOver).toBe(true);
 
-    component.onDragLeave(event);
+    component.onDragLeave();
     expect(component.isDragOver).toBe(false);
   });
 
@@ -60,9 +68,9 @@ describe('KanbanColumnComponent', () => {
       getData: vi.fn().mockReturnValue('p123')
     };
 
-    const dropEvent = new Event('drop') as any;
+    const dropEvent = new Event('drop') as unknown as DragEvent;
     dropEvent.preventDefault = vi.fn();
-    dropEvent.dataTransfer = mockDataTransfer;
+    Object.defineProperty(dropEvent, 'dataTransfer', { value: mockDataTransfer });
 
     component.onDrop(dropEvent);
 

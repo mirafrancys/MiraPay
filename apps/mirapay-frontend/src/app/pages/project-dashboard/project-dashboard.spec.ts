@@ -109,7 +109,7 @@ describe('ProjectDashboardComponent', () => {
   });
 
   it('should rollback optimistic update if Gateway fails', async () => {
-    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
     // Simuler une erreur HTTP
     mockProjectsGateway.update = vi.fn().mockReturnValue(throwError(() => new Error('API Error')));
     

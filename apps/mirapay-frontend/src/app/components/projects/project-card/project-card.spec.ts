@@ -2,14 +2,23 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { ProjectCardComponent } from './project-card';
 import { IProject } from '@mirapay/shared-models';
+import { TranslationService } from '../../../cores/services/translation.service';
+import { vi } from 'vitest';
 
 describe('ProjectCardComponent', () => {
   let component: ProjectCardComponent;
   let fixture: ComponentFixture<ProjectCardComponent>;
 
   beforeEach(async () => {
+    const mockTranslationService = {
+      translate: vi.fn((key: string) => key)
+    };
+
     await TestBed.configureTestingModule({
       imports: [ProjectCardComponent],
+      providers: [
+        { provide: TranslationService, useValue: mockTranslationService }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProjectCardComponent);
@@ -48,7 +57,7 @@ describe('ProjectCardComponent', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       }
-    };
+    } as IProject;
   });
 
   it('should create the component', () => {

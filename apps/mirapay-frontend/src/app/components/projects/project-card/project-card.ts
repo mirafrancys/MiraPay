@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProject } from '@mirapay/shared-models';
+import { TranslationService } from '../../../cores/services/translation.service';
 
 @Component({
   selector: 'app-project-card',
@@ -10,5 +11,6 @@ import { IProject } from '@mirapay/shared-models';
   styleUrls: ['./project-card.scss'],
 })
 export class ProjectCardComponent {
+  public ts = inject(TranslationService);
   @Input({ required: true }) project!: IProject;
 }

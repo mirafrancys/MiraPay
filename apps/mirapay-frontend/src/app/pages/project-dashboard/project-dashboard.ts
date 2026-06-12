@@ -32,10 +32,10 @@ export class ProjectDashboardComponent implements OnInit {
 
   // Configuration des colonnes du Kanban
   columns = [
-    { title: 'Brouillons', statusKey: 'brouillon' },
-    { title: 'En cours', statusKey: 'enCours' },
-    { title: 'En pause', statusKey: 'enPause' },
-    { title: 'Terminés', statusKey: 'termine' }
+    { titleKey: 'PROJECTS.STATUS_DRAFT', statusKey: 'brouillon' },
+    { titleKey: 'PROJECTS.STATUS_IN_PROGRESS', statusKey: 'enCours' },
+    { titleKey: 'PROJECTS.STATUS_ON_HOLD', statusKey: 'enPause' },
+    { titleKey: 'PROJECTS.STATUS_COMPLETED', statusKey: 'termine' }
   ];
 
   // Pipeline de filtrage

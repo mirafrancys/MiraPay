@@ -2,8 +2,8 @@
   
   <header class="dashboard-header">
     <div class="title-section">
-      <h1>Vue Kanban des Projets</h1>
-      <p class="subtitle">Organisez et suivez l'avancement de vos projets par simple glisser-déposer.</p>
+      <h1>{{ ts.translate('PROJECTS.KANBAN_TITLE') }}</h1>
+      <p class="subtitle">{{ ts.translate('PROJECTS.KANBAN_SUBTITLE') }}</p>
     </div>
 
     <!-- Barre d'outils et Filtres -->
@@ -12,7 +12,7 @@
         <span class="icon">🔍</span>
         <input 
           type="text" 
-          placeholder="Rechercher un projet..." 
+          [placeholder]="ts.translate('PROJECTS.SEARCH_PLACEHOLDER')" 
           [value]="searchQuery()" 
           (input)="updateSearch($event)"
         >
@@ -20,7 +20,7 @@
 
       <div class="filter-group">
         <select [value]="selectedClientId()" (change)="updateClientFilter($event)">
-          <option value="">Tous les clients</option>
+          <option value="">{{ ts.translate('PROJECTS.ALL_CLIENTS') }}</option>
           @for (client of clients(); track client.id) {
             <option [value]="client.id">{{ client.nomLegal }}</option>
           }
@@ -28,19 +28,19 @@
       </div>
 
       <button class="btn-primary">
-        + Nouveau Projet
+        + {{ ts.translate('PROJECTS.NEW_PROJECT') }}
       </button>
     </div>
   </header>
 
   @if (isLoading()) {
-    <div class="loading-state">Chargement des projets...</div>
+    <div class="loading-state">{{ ts.translate('COMMON.LOADING') }}</div>
   } @else {
     <!-- Conteneur du Kanban Board -->
     <div class="kanban-board">
       @for (col of columns; track col.statusKey) {
         <app-kanban-column
-          [title]="col.title"
+          [title]="ts.translate(col.titleKey)"
           [statusKey]="col.statusKey"
           [projects]="groupedProjects()[col.statusKey].projects"
           [totalBudget]="groupedProjects()[col.statusKey].totalBudget"
