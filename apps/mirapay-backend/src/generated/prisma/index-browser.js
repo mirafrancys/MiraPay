@@ -189,6 +189,10 @@ exports.Prisma.ProjectScalarFieldEnum = {
   budgetHeuresPrevu: 'budgetHeuresPrevu',
   budgetMontantPrevu: 'budgetMontantPrevu',
   arrondiHeures: 'arrondiHeures',
+  ordreAffichage: 'ordreAffichage',
+  progression: 'progression',
+  etiquette: 'etiquette',
+  metadata: 'metadata',
   contratId: 'contratId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -349,6 +353,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -357,6 +366,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 

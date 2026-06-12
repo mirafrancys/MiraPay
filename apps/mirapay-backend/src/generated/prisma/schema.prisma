@@ -100,6 +100,12 @@ model Project {
   budgetMontantPrevu     Float?
   arrondiHeures          Float? // 0.25 | 0.5 | 1
 
+  // Nouveaux champs Kanban / Flexibilité
+  ordreAffichage Int     @default(0)
+  progression    Int     @default(0)
+  etiquette      String?
+  metadata       Json?
+
   tasks        Task[]
   timeEntries  TimeEntry[]
   invoiceLines InvoiceLine[]

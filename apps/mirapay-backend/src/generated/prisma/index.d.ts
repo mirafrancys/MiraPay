@@ -6483,6 +6483,8 @@ export namespace Prisma {
     budgetHeuresPrevu: number | null
     budgetMontantPrevu: number | null
     arrondiHeures: number | null
+    ordreAffichage: number | null
+    progression: number | null
   }
 
   export type ProjectSumAggregateOutputType = {
@@ -6493,6 +6495,8 @@ export namespace Prisma {
     budgetHeuresPrevu: number | null
     budgetMontantPrevu: number | null
     arrondiHeures: number | null
+    ordreAffichage: number | null
+    progression: number | null
   }
 
   export type ProjectMinAggregateOutputType = {
@@ -6511,6 +6515,9 @@ export namespace Prisma {
     budgetHeuresPrevu: number | null
     budgetMontantPrevu: number | null
     arrondiHeures: number | null
+    ordreAffichage: number | null
+    progression: number | null
+    etiquette: string | null
     contratId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6532,6 +6539,9 @@ export namespace Prisma {
     budgetHeuresPrevu: number | null
     budgetMontantPrevu: number | null
     arrondiHeures: number | null
+    ordreAffichage: number | null
+    progression: number | null
+    etiquette: string | null
     contratId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6553,6 +6563,10 @@ export namespace Prisma {
     budgetHeuresPrevu: number
     budgetMontantPrevu: number
     arrondiHeures: number
+    ordreAffichage: number
+    progression: number
+    etiquette: number
+    metadata: number
     contratId: number
     createdAt: number
     updatedAt: number
@@ -6568,6 +6582,8 @@ export namespace Prisma {
     budgetHeuresPrevu?: true
     budgetMontantPrevu?: true
     arrondiHeures?: true
+    ordreAffichage?: true
+    progression?: true
   }
 
   export type ProjectSumAggregateInputType = {
@@ -6578,6 +6594,8 @@ export namespace Prisma {
     budgetHeuresPrevu?: true
     budgetMontantPrevu?: true
     arrondiHeures?: true
+    ordreAffichage?: true
+    progression?: true
   }
 
   export type ProjectMinAggregateInputType = {
@@ -6596,6 +6614,9 @@ export namespace Prisma {
     budgetHeuresPrevu?: true
     budgetMontantPrevu?: true
     arrondiHeures?: true
+    ordreAffichage?: true
+    progression?: true
+    etiquette?: true
     contratId?: true
     createdAt?: true
     updatedAt?: true
@@ -6617,6 +6638,9 @@ export namespace Prisma {
     budgetHeuresPrevu?: true
     budgetMontantPrevu?: true
     arrondiHeures?: true
+    ordreAffichage?: true
+    progression?: true
+    etiquette?: true
     contratId?: true
     createdAt?: true
     updatedAt?: true
@@ -6638,6 +6662,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: true
     budgetMontantPrevu?: true
     arrondiHeures?: true
+    ordreAffichage?: true
+    progression?: true
+    etiquette?: true
+    metadata?: true
     contratId?: true
     createdAt?: true
     updatedAt?: true
@@ -6746,6 +6774,10 @@ export namespace Prisma {
     budgetHeuresPrevu: number | null
     budgetMontantPrevu: number | null
     arrondiHeures: number | null
+    ordreAffichage: number
+    progression: number
+    etiquette: string | null
+    metadata: JsonValue | null
     contratId: string | null
     createdAt: Date
     updatedAt: Date
@@ -6786,6 +6818,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: boolean
     budgetMontantPrevu?: boolean
     arrondiHeures?: boolean
+    ordreAffichage?: boolean
+    progression?: boolean
+    etiquette?: boolean
+    metadata?: boolean
     contratId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6814,6 +6850,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: boolean
     budgetMontantPrevu?: boolean
     arrondiHeures?: boolean
+    ordreAffichage?: boolean
+    progression?: boolean
+    etiquette?: boolean
+    metadata?: boolean
     contratId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6837,6 +6877,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: boolean
     budgetMontantPrevu?: boolean
     arrondiHeures?: boolean
+    ordreAffichage?: boolean
+    progression?: boolean
+    etiquette?: boolean
+    metadata?: boolean
     contratId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6860,12 +6904,16 @@ export namespace Prisma {
     budgetHeuresPrevu?: boolean
     budgetMontantPrevu?: boolean
     arrondiHeures?: boolean
+    ordreAffichage?: boolean
+    progression?: boolean
+    etiquette?: boolean
+    metadata?: boolean
     contratId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "nom" | "description" | "dateDebut" | "dateFinPrevue" | "statut" | "typeFacturation" | "tauxHoraire" | "montantForfait" | "heuresBanqueTotales" | "heuresBanqueConsommees" | "budgetHeuresPrevu" | "budgetMontantPrevu" | "arrondiHeures" | "contratId" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "nom" | "description" | "dateDebut" | "dateFinPrevue" | "statut" | "typeFacturation" | "tauxHoraire" | "montantForfait" | "heuresBanqueTotales" | "heuresBanqueConsommees" | "budgetHeuresPrevu" | "budgetMontantPrevu" | "arrondiHeures" | "ordreAffichage" | "progression" | "etiquette" | "metadata" | "contratId" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | ClientDefaultArgs<ExtArgs>
     tasks?: boolean | Project$tasksArgs<ExtArgs>
@@ -6910,6 +6958,10 @@ export namespace Prisma {
       budgetHeuresPrevu: number | null
       budgetMontantPrevu: number | null
       arrondiHeures: number | null
+      ordreAffichage: number
+      progression: number
+      etiquette: string | null
+      metadata: Prisma.JsonValue | null
       contratId: string | null
       createdAt: Date
       updatedAt: Date
@@ -7357,6 +7409,10 @@ export namespace Prisma {
     readonly budgetHeuresPrevu: FieldRef<"Project", 'Float'>
     readonly budgetMontantPrevu: FieldRef<"Project", 'Float'>
     readonly arrondiHeures: FieldRef<"Project", 'Float'>
+    readonly ordreAffichage: FieldRef<"Project", 'Int'>
+    readonly progression: FieldRef<"Project", 'Int'>
+    readonly etiquette: FieldRef<"Project", 'String'>
+    readonly metadata: FieldRef<"Project", 'Json'>
     readonly contratId: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
@@ -21330,6 +21386,10 @@ export namespace Prisma {
     budgetHeuresPrevu: 'budgetHeuresPrevu',
     budgetMontantPrevu: 'budgetMontantPrevu',
     arrondiHeures: 'arrondiHeures',
+    ordreAffichage: 'ordreAffichage',
+    progression: 'progression',
+    etiquette: 'etiquette',
+    metadata: 'metadata',
     contratId: 'contratId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -21529,6 +21589,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -21543,6 +21611,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -21610,6 +21687,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
   /**
    * Deep Input Types
@@ -21969,6 +22060,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: FloatNullableFilter<"Project"> | number | null
     budgetMontantPrevu?: FloatNullableFilter<"Project"> | number | null
     arrondiHeures?: FloatNullableFilter<"Project"> | number | null
+    ordreAffichage?: IntFilter<"Project"> | number
+    progression?: IntFilter<"Project"> | number
+    etiquette?: StringNullableFilter<"Project"> | string | null
+    metadata?: JsonNullableFilter<"Project">
     contratId?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
@@ -21996,6 +22091,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrderInput | SortOrder
     budgetMontantPrevu?: SortOrderInput | SortOrder
     arrondiHeures?: SortOrderInput | SortOrder
+    ordreAffichage?: SortOrder
+    progression?: SortOrder
+    etiquette?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
     contratId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22026,6 +22125,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: FloatNullableFilter<"Project"> | number | null
     budgetMontantPrevu?: FloatNullableFilter<"Project"> | number | null
     arrondiHeures?: FloatNullableFilter<"Project"> | number | null
+    ordreAffichage?: IntFilter<"Project"> | number
+    progression?: IntFilter<"Project"> | number
+    etiquette?: StringNullableFilter<"Project"> | string | null
+    metadata?: JsonNullableFilter<"Project">
     contratId?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
@@ -22053,6 +22156,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrderInput | SortOrder
     budgetMontantPrevu?: SortOrderInput | SortOrder
     arrondiHeures?: SortOrderInput | SortOrder
+    ordreAffichage?: SortOrder
+    progression?: SortOrder
+    etiquette?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
     contratId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22082,6 +22189,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: FloatNullableWithAggregatesFilter<"Project"> | number | null
     budgetMontantPrevu?: FloatNullableWithAggregatesFilter<"Project"> | number | null
     arrondiHeures?: FloatNullableWithAggregatesFilter<"Project"> | number | null
+    ordreAffichage?: IntWithAggregatesFilter<"Project"> | number
+    progression?: IntWithAggregatesFilter<"Project"> | number
+    etiquette?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"Project">
     contratId?: StringNullableWithAggregatesFilter<"Project"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
@@ -23503,6 +23614,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutProjectsInput
@@ -23529,6 +23644,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23553,6 +23672,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
@@ -23579,6 +23702,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23604,6 +23731,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23624,6 +23755,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23644,6 +23779,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25143,6 +25282,40 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type ClientScalarRelationFilter = {
     is?: ClientWhereInput
     isNot?: ClientWhereInput
@@ -25189,6 +25362,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrder
     budgetMontantPrevu?: SortOrder
     arrondiHeures?: SortOrder
+    ordreAffichage?: SortOrder
+    progression?: SortOrder
+    etiquette?: SortOrder
+    metadata?: SortOrder
     contratId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -25202,6 +25379,8 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrder
     budgetMontantPrevu?: SortOrder
     arrondiHeures?: SortOrder
+    ordreAffichage?: SortOrder
+    progression?: SortOrder
   }
 
   export type ProjectMaxOrderByAggregateInput = {
@@ -25220,6 +25399,9 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrder
     budgetMontantPrevu?: SortOrder
     arrondiHeures?: SortOrder
+    ordreAffichage?: SortOrder
+    progression?: SortOrder
+    etiquette?: SortOrder
     contratId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -25241,6 +25423,9 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrder
     budgetMontantPrevu?: SortOrder
     arrondiHeures?: SortOrder
+    ordreAffichage?: SortOrder
+    progression?: SortOrder
+    etiquette?: SortOrder
     contratId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -25254,6 +25439,8 @@ export namespace Prisma {
     budgetHeuresPrevu?: SortOrder
     budgetMontantPrevu?: SortOrder
     arrondiHeures?: SortOrder
+    ordreAffichage?: SortOrder
+    progression?: SortOrder
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -25286,6 +25473,48 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type ProjectScalarRelationFilter = {
@@ -26424,6 +26653,14 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type ClientUpdateOneRequiredWithoutProjectsNestedInput = {
     create?: XOR<ClientCreateWithoutProjectsInput, ClientUncheckedCreateWithoutProjectsInput>
     connectOrCreate?: ClientCreateOrConnectWithoutProjectsInput
@@ -27503,6 +27740,45 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type UserCreateWithoutRoleInput = {
     id?: string
     username: string
@@ -27835,6 +28111,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskCreateNestedManyWithoutProjetInput
@@ -27859,6 +28139,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28123,6 +28407,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: FloatNullableFilter<"Project"> | number | null
     budgetMontantPrevu?: FloatNullableFilter<"Project"> | number | null
     arrondiHeures?: FloatNullableFilter<"Project"> | number | null
+    ordreAffichage?: IntFilter<"Project"> | number
+    progression?: IntFilter<"Project"> | number
+    etiquette?: StringNullableFilter<"Project"> | string | null
+    metadata?: JsonNullableFilter<"Project">
     contratId?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
@@ -28797,6 +29085,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutProjectsInput
@@ -28822,6 +29114,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28927,6 +29223,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
@@ -28952,6 +29252,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29228,6 +29532,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutProjectsInput
@@ -29253,6 +29561,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29444,6 +29756,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
@@ -29469,6 +29785,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29823,6 +30143,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutProjectsInput
@@ -29848,6 +30172,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29965,6 +30293,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
@@ -29990,6 +30322,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30194,6 +30530,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutProjectsInput
@@ -30219,6 +30559,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -30373,6 +30717,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
@@ -30398,6 +30746,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31275,6 +31627,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     client: ClientCreateNestedOneWithoutProjectsInput
@@ -31300,6 +31656,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjetInput
@@ -31706,6 +32066,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31799,6 +32163,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUpdateManyWithoutProjetNestedInput
@@ -31823,6 +32191,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31847,6 +32219,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     contratId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32846,6 +33222,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: number | null
     budgetMontantPrevu?: number | null
     arrondiHeures?: number | null
+    ordreAffichage?: number
+    progression?: number
+    etiquette?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32865,6 +33245,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneRequiredWithoutProjectsNestedInput
@@ -32890,6 +33274,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjetNestedInput
@@ -32914,6 +33302,10 @@ export namespace Prisma {
     budgetHeuresPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     budgetMontantPrevu?: NullableFloatFieldUpdateOperationsInput | number | null
     arrondiHeures?: NullableFloatFieldUpdateOperationsInput | number | null
+    ordreAffichage?: IntFieldUpdateOperationsInput | number
+    progression?: IntFieldUpdateOperationsInput | number
+    etiquette?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

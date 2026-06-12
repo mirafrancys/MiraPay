@@ -83,6 +83,10 @@ export interface IProject {
   budgetHeuresPrevu?: number;
   budgetMontantPrevu?: number;
   arrondiHeures?: number;
+  ordreAffichage?: number;
+  progression?: number;
+  etiquette?: string;
+  metadata?: any;
   bankHours?: IBankHour[];
   contratId?: string;
   contrat?: IContrat;
