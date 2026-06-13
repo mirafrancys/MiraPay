@@ -1,6 +1,7 @@
 import prisma from '../prisma-client';
 import { User, Prisma } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import { HttpError } from '../utils/http-error';
 
 export class UsersService {
   async create(data: Prisma.UserCreateInput): Promise<Omit<User, 'password'>> {
@@ -8,14 +9,14 @@ export class UsersService {
       where: { email: data.email },
     });
     if (existingEmail) {
-      throw new Error('Email already exists');
+      throw new HttpError(409, 'Email already exists');
     }
 
     const existingUsername = await prisma.user.findUnique({
       where: { username: data.username },
     });
     if (existingUsername) {
-      throw new Error('Username already exists');
+      throw new HttpError(409, 'Username already exists');
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);

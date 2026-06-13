@@ -1,5 +1,5 @@
 import prisma from '../prisma-client';
-import { Project, Prisma } from '../../generated/prisma';
+import { Project, Prisma } from '@mirapay/prisma';
 
 export class ProjectsService {
   async create(data: Prisma.ProjectCreateInput): Promise<Project> {

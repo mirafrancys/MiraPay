@@ -1,8 +1,30 @@
 import prisma from '../prisma-client';
-import { Invoice, Prisma } from '../../generated/prisma';
+import { Invoice, Prisma } from '@mirapay/prisma';
+import { HttpError } from '../utils/http-error';
+
+export interface InvoiceLineInput {
+  description: string;
+  quantite: number;
+  prixUnitaire: number;
+  montantLigne: number;
+  projetId?: string;
+  timeEntryIds?: string[];
+}
+
+export interface DraftInvoice {
+  numero: string;
+  clientId: string;
+  projetId: string | null;
+  statut: string;
+  sousTotal: number;
+  montantTPS: number;
+  montantTVQ: number;
+  totalTTC: number;
+  lines: InvoiceLineInput[];
+}
 
 export class InvoicesService {
-  async create(data: Prisma.InvoiceUncheckedCreateInput & { lines: any[] }, timeEntryIds: string[]): Promise<Invoice> {
+  async create(data: Prisma.InvoiceUncheckedCreateInput & { lines: InvoiceLineInput[] }, timeEntryIds: string[]): Promise<Invoice> {
     // 8.1.3 : Exigence transactionnelle pour verrouillage des entrées de temps
     return prisma.$transaction(async (tx) => {
       
@@ -41,11 +63,11 @@ export class InvoicesService {
   }
 
   // 6.5.1 : Écran de préparation de facture (Simulation)
-  async prepareDraft(clientId: string, projetId?: string, options: { dateDebut?: string; dateFin?: string } = {}): Promise<any> {
+  async prepareDraft(clientId: string, projetId?: string, options: { dateDebut?: string; dateFin?: string } = {}): Promise<DraftInvoice> {
     const client = await prisma.client.findUnique({ where: { id: clientId } });
     if (!client) throw new Error('Client non trouvé');
 
-    const where: any = {
+    const where: Prisma.TimeEntryWhereInput = {
       statut: 'approuve',
       estFacturable: true,
       projet: { clientId }
@@ -69,7 +91,7 @@ export class InvoicesService {
     }
 
     // Regrouper par projet
-    const lines: any[] = [];
+    const lines: InvoiceLineInput[] = [];
     let subTotal = 0;
 
     // Récupérer la liste des projets touchés
@@ -136,7 +158,7 @@ export class InvoicesService {
   async updateStatus(id: string, statut: string): Promise<Invoice> {
     const inv = await prisma.invoice.findUnique({ where: { id } });
     if (inv && inv.statut === 'annulee') {
-      throw new Error("Une facture au statut 'annulee' ne peut plus être modifiée.");
+      throw new HttpError(400, "Une facture au statut 'annulee' ne peut plus être modifiée.");
     }
     return prisma.invoice.update({ where: { id }, data: { statut } });
   }

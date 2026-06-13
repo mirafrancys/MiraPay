@@ -1,5 +1,5 @@
 import prisma from '../prisma-client';
-import { Contact, Prisma } from '../../generated/prisma';
+import { Contact, Prisma } from '@mirapay/prisma';
 
 export class ContactsService {
   async create(data: Prisma.ContactCreateInput): Promise<Contact> {

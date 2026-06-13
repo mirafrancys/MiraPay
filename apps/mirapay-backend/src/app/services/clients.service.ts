@@ -1,5 +1,6 @@
 import prisma from '../prisma-client';
-import { Client, Prisma } from '../../generated/prisma';
+import { Client, Prisma } from '@mirapay/prisma';
+import { HttpError } from '../utils/http-error';
 
 export class ClientsService {
   async create(data: Prisma.ClientCreateInput): Promise<Client> {
@@ -48,7 +49,7 @@ export class ClientsService {
     });
 
     if (client && client._count.projects > 0) {
-      throw new Error("Impossible de supprimer un client qui possède des projets. Veuillez l'archiver.");
+      throw new HttpError(400, "Impossible de supprimer un client qui possède des projets. Veuillez l'archiver.");
     }
 
     return prisma.client.delete({

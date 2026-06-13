@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import routes from './app/routes';
+import { errorHandler } from './app/middlewares/error-handler.middleware';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,6 +19,9 @@ app.use(`/${globalPrefix}`, routes);
 app.get('/', (req, res) => {
   res.send({ message: 'MiraPay API is running' });
 });
+
+// Global Error Handler
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(

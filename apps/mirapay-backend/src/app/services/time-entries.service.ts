@@ -1,5 +1,6 @@
 import prisma from '../prisma-client';
-import { TimeEntry, Prisma } from '../../generated/prisma';
+import { TimeEntry, Prisma } from '@mirapay/prisma';
+import { HttpError } from '../utils/http-error';
 
 export class TimeEntriesService {
   async create(data: Prisma.TimeEntryUncheckedCreateInput): Promise<TimeEntry> {
@@ -14,7 +15,7 @@ export class TimeEntriesService {
     dateDebut?: string;
     dateFin?: string;
   }): Promise<TimeEntry[]> {
-    const where: any = {};
+    const where: Prisma.TimeEntryWhereInput = {};
 
     if (filters.projetId) where.projetId = filters.projetId;
     if (filters.userId) where.userId = filters.userId;
@@ -50,7 +51,7 @@ export class TimeEntriesService {
     // Règle métier 5.2.1 : Ne peut plus être modifiée si au statut facture
     const entry = await prisma.timeEntry.findUnique({ where: { id } });
     if (entry && entry.statut === 'facture') {
-      throw new Error("Une entrée de temps au statut 'facture' ne peut plus être modifiée.");
+      throw new HttpError(400, "Une entrée de temps au statut 'facture' ne peut plus être modifiée.");
     }
 
     return prisma.timeEntry.update({
@@ -66,7 +67,7 @@ export class TimeEntriesService {
   async remove(id: string): Promise<TimeEntry> {
     const entry = await prisma.timeEntry.findUnique({ where: { id } });
     if (entry && entry.statut === 'facture') {
-      throw new Error("Une entrée de temps au statut 'facture' ne peut plus être supprimée.");
+      throw new HttpError(400, "Une entrée de temps au statut 'facture' ne peut plus être supprimée.");
     }
 
     return prisma.timeEntry.delete({ where: { id } });

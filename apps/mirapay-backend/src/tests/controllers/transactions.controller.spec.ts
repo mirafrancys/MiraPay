@@ -53,7 +53,7 @@ describe('TransactionsController', () => {
       expect(res.json).toHaveBeenCalledWith(mockTransactions);
     });
 
-    it('should return 500 if service fails', async () => {
+    it('should throw error if service fails', async () => {
       const mockService = (global as typeof globalThis & { mockTransactionsServiceInstance: MockedService }).mockTransactionsServiceInstance;
       mockService.getAllTransactions.mockRejectedValue(new Error('Internal Error'));
 
@@ -63,10 +63,7 @@ describe('TransactionsController', () => {
         status: vi.fn().mockReturnThis(),
       } as unknown as Response;
 
-      await controller.getAll(req, res);
-
-      expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({ error: 'Failed to fetch transactions' });
+      await expect(controller.getAll(req, res)).rejects.toThrow('Internal Error');
     });
   });
 });

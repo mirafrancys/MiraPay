@@ -48,7 +48,7 @@ describe('UsersController', () => {
       expect(res.json).toHaveBeenCalledWith(mockUsers);
     });
 
-    it('should handle errors', async () => {
+    it('should throw error if service fails', async () => {
       const mockService = (global as typeof globalThis & { mockUsersServiceInstance: MockedService }).mockUsersServiceInstance;
       mockService.findAll.mockRejectedValue(new Error('DB Error'));
 
@@ -58,10 +58,7 @@ describe('UsersController', () => {
         status: vi.fn().mockReturnThis(),
       } as unknown as Response;
 
-      await controller.getAll(req, res);
-
-      expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({ error: 'DB Error' });
+      await expect(controller.getAll(req, res)).rejects.toThrow('DB Error');
     });
   });
 });

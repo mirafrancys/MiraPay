@@ -16,7 +16,8 @@
     "baseUrl": ".",
 
     "paths": {
-      "@mirapay/shared-models": ["libs/shared-models/src/index.ts"]
+      "@mirapay/shared-models": ["libs/shared-models/src/index.ts"],
+      "@mirapay/prisma": ["apps/mirapay-backend/src/generated/prisma"]
     }
   },
   "exclude": ["node_modules", "tmp"]

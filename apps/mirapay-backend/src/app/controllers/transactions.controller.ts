@@ -5,61 +5,41 @@ const transactionsService = new TransactionsService();
 
 export class TransactionsController {
   async getAll(req: Request, res: Response) {
-    try {
-      const transactions = await transactionsService.getAllTransactions();
-      res.json(transactions);
-    } catch {
-      res.status(500).json({ error: 'Failed to fetch transactions' });
-    }
+    const transactions = await transactionsService.getAllTransactions();
+    res.json(transactions);
   }
 
   async getOne(req: Request, res: Response) {
-    try {
-      const { id } = req.params;
-      const transaction = await transactionsService.getTransactionById(id);
-      if (!transaction) {
-        return res.status(404).json({ error: 'Transaction not found' });
-      }
-      res.json(transaction);
-    } catch {
-      res.status(500).json({ error: 'Failed to fetch transaction' });
+    const { id } = req.params;
+    const transaction = await transactionsService.getTransactionById(id);
+    if (!transaction) {
+      return res.status(404).json({ error: 'Transaction not found' });
     }
+    res.json(transaction);
   }
 
   async create(req: Request, res: Response) {
-    try {
-      const { amount, currency, userId, status } = req.body;
-      const transaction = await transactionsService.createTransaction({
-        amount,
-        currency,
-        userId,
-        status: status || 'PENDING',
-      });
-      res.status(201).json(transaction);
-    } catch {
-      res.status(500).json({ error: 'Failed to create transaction' });
-    }
+    const { amount, currency, userId, status } = req.body;
+    const transaction = await transactionsService.createTransaction({
+      amount,
+      currency,
+      userId,
+      status: status || 'PENDING',
+    });
+    res.status(201).json(transaction);
   }
 
   async updateStatus(req: Request, res: Response) {
-    try {
-      const { id } = req.params;
-      const { status } = req.body;
-      const transaction = await transactionsService.updateTransactionStatus(id, status);
-      res.json(transaction);
-    } catch {
-      res.status(500).json({ error: 'Failed to update transaction status' });
-    }
+    const { id } = req.params;
+    const { status } = req.body;
+    const transaction = await transactionsService.updateTransactionStatus(id, status);
+    res.json(transaction);
   }
 
   async delete(req: Request, res: Response) {
-    try {
-      const { id } = req.params;
-      await transactionsService.deleteTransaction(id);
-      res.status(204).send();
-    } catch {
-      res.status(500).json({ error: 'Failed to delete transaction' });
-    }
+    const { id } = req.params;
+    await transactionsService.deleteTransaction(id);
+    res.status(204).send();
   }
 }
 

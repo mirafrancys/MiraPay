@@ -1,5 +1,5 @@
 import prisma from '../prisma-client';
-import { Task, Prisma, PrismaClient } from '../../generated/prisma';
+import { Task, Prisma, PrismaClient } from '@mirapay/prisma';
 
 export class TasksService {
   async create(data: Prisma.TaskCreateInput): Promise<Task> {
