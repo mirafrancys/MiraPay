@@ -49,6 +49,7 @@
       "continuous": true,
       "executor": "@angular/build:dev-server",
       "options": {
+        "port": 4231,
         "proxyConfig": "apps/mirapay-frontend/proxy.conf.json"
       },
       "configurations": {
@@ -67,8 +68,7 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx vitest run --root .",
-        "cwd": "apps/mirapay-frontend"
+        "command": "npx vitest run --config apps/mirapay-frontend/vitest.config.mts"
       }
     },
     "serve-static": {
@@ -76,7 +76,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "mirapay-frontend:build",
-        "port": 4200,
+        "port": 4231,
         "staticFilePath": "dist/apps/mirapay-frontend/browser",
         "spa": true
       }

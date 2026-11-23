@@ -10,7 +10,7 @@ export class ProjectsController {
   }
 
   async getOne(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const project = await projectsService.findOne(id);
     if (!project) {
       return res.status(404).json({ error: `Project with ID ${id} not found` });
@@ -24,13 +24,13 @@ export class ProjectsController {
   }
 
   async update(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const project = await projectsService.update(id, req.body);
     res.json(project);
   }
 
   async delete(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await projectsService.remove(id);
     res.status(204).send();
   }

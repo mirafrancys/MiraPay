@@ -16,7 +16,9 @@ import { AuthGateway } from './cores/gateways/auth.gateway';
       
       <div class="main-layout">
         <!-- Sidebar is only visible if the user is authenticated -->
-        <app-sidebar class="sidebar-wrapper" *ngIf="auth.currentUser()"></app-sidebar>
+        @if (auth.currentUser()) {
+          <app-sidebar class="sidebar-wrapper"></app-sidebar>
+        }
         
         <main class="content-area">
           <router-outlet></router-outlet>

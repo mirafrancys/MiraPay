@@ -5,13 +5,13 @@ const tasksService = new TasksService();
 
 export class TasksController {
   async getByProject(req: Request, res: Response) {
-    const { projectId } = req.params;
+    const projectId = req.params.projectId as string;
     const tasks = await tasksService.findAllByProject(projectId);
     res.json(tasks);
   }
 
   async getOne(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const task = await tasksService.findOne(id);
     if (!task) {
       return res.status(404).json({ error: `Task with ID ${id} not found` });
@@ -25,19 +25,19 @@ export class TasksController {
   }
 
   async update(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const task = await tasksService.update(id, req.body);
     res.json(task);
   }
 
   async delete(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await tasksService.remove(id);
     res.status(204).send();
   }
 
   async addNote(req: Request, res: Response) {
-    const { taskId } = req.params;
+    const taskId = req.params.taskId as string;
     const { contenu, userId } = req.body;
     const note = await tasksService.addNote({
       contenu,
@@ -48,7 +48,7 @@ export class TasksController {
   }
 
   async getNotes(req: Request, res: Response) {
-    const { taskId } = req.params;
+    const taskId = req.params.taskId as string;
     const notes = await tasksService.findNotesByTask(taskId);
     res.json(notes);
   }

@@ -24,19 +24,19 @@ export class TimeEntriesController {
   }
 
   async update(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const entry = await timeEntriesService.update(id, req.body);
     res.json(entry);
   }
 
   async approve(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const entry = await timeEntriesService.approve(id);
     res.json(entry);
   }
 
   async delete(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await timeEntriesService.remove(id);
     res.status(204).send();
   }

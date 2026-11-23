@@ -10,7 +10,7 @@ export class ClientsController {
   }
 
   async getOne(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const client = await clientsService.findOne(id);
     if (!client) {
       return res.status(404).json({ error: `Client with ID ${id} not found` });
@@ -24,19 +24,19 @@ export class ClientsController {
   }
 
   async update(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const client = await clientsService.update(id, req.body);
     res.json(client);
   }
 
   async delete(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await clientsService.remove(id);
     res.status(204).send();
   }
 
   async archive(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const client = await clientsService.archive(id);
     res.json(client);
   }

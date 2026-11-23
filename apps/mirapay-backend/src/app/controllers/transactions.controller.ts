@@ -10,7 +10,7 @@ export class TransactionsController {
   }
 
   async getOne(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const transaction = await transactionsService.getTransactionById(id);
     if (!transaction) {
       return res.status(404).json({ error: 'Transaction not found' });
@@ -30,14 +30,14 @@ export class TransactionsController {
   }
 
   async updateStatus(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const { status } = req.body;
     const transaction = await transactionsService.updateTransactionStatus(id, status);
     res.json(transaction);
   }
 
   async delete(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await transactionsService.deleteTransaction(id);
     res.status(204).send();
   }

@@ -1,5 +1,5 @@
 import prisma from '../prisma-client';
-import { User, Prisma } from '@prisma/client';
+import { User, Prisma } from '@mirapay/prisma';
 import bcrypt from 'bcrypt';
 import { HttpError } from '../utils/http-error';
 

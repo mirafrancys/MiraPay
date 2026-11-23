@@ -1,5 +1,5 @@
 import prisma from '../prisma-client';
-import { Transaction } from '@prisma/client';
+import { Transaction } from '@mirapay/prisma';
 
 export class TransactionsService {
   async getAllTransactions(): Promise<Transaction[]> {

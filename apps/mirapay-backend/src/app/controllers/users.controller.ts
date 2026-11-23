@@ -10,7 +10,7 @@ export class UsersController {
   }
 
   async getOne(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const user = await usersService.findOne(id);
     if (!user) {
       return res.status(404).json({ error: `User with ID ${id} not found` });
@@ -24,13 +24,13 @@ export class UsersController {
   }
 
   async update(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const user = await usersService.update(id, req.body);
     res.json(user);
   }
 
   async delete(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await usersService.remove(id);
     res.status(204).send();
   }

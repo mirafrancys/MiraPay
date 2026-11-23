@@ -10,13 +10,13 @@ export class ContactsController {
   }
 
   async getAllByClient(req: Request, res: Response) {
-    const { clientId } = req.params;
+    const clientId = req.params.clientId as string;
     const contacts = await contactsService.findAllByClient(clientId);
     res.json(contacts);
   }
 
   async delete(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await contactsService.archive(id);
     res.status(204).send();
   }

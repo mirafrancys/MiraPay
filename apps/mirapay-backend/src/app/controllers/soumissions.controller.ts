@@ -9,7 +9,7 @@ export class SoumissionsController {
   }
 
   async getOne(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const data = await soumissionsService.findOne(id);
     if (!data) return res.status(404).json({ error: 'Soumission non trouvée' });
     res.json(data);
@@ -20,7 +20,7 @@ export class SoumissionsController {
   }
 
   async update(req: Request, res: Response) {
-    res.json(await soumissionsService.update(req.params.id, req.body));
+    res.json(await soumissionsService.update(req.params.id as string, req.body));
   }
 }
 

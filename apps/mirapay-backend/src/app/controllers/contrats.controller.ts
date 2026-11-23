@@ -9,7 +9,7 @@ export class ContratsController {
   }
 
   async getOne(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const data = await contratsService.findOne(id);
     if (!data) return res.status(404).json({ error: 'Contrat non trouvé' });
     res.json(data);
@@ -20,7 +20,7 @@ export class ContratsController {
   }
 
   async update(req: Request, res: Response) {
-    res.json(await contratsService.update(req.params.id, req.body));
+    res.json(await contratsService.update(req.params.id as string, req.body));
   }
 }
 

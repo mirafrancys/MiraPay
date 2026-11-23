@@ -5,7 +5,12 @@ export default [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist', '**/out-tsc'],
+    ignores: [
+      '**/dist',
+      '**/out-tsc',
+      '**/src/generated/**',
+      '**/vitest.config.*.timestamp*',
+    ],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -14,7 +19,10 @@ export default [
         'error',
         {
           enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
+          allow: [
+            '^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$',
+            '@mirapay/prisma',
+          ],
           depConstraints: [
             {
               sourceTag: '*',

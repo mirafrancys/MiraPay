@@ -10,7 +10,7 @@ export class InvoicesController {
   }
 
   async getOne(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const invoice = await invoicesService.findOne(id);
     if (!invoice) {
       return res.status(404).json({ error: `Invoice with ID ${id} not found` });
@@ -35,7 +35,7 @@ export class InvoicesController {
   }
 
   async updateStatus(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const { statut } = req.body;
     const invoice = await invoicesService.updateStatus(id, statut);
     res.json(invoice);

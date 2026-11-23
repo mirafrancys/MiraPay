@@ -5,7 +5,7 @@ import routes from './app/routes';
 import { errorHandler } from './app/middlewares/error-handler.middleware';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3231;
 const globalPrefix = 'api';
 
 // Middlewares
