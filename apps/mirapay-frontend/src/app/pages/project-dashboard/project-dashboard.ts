@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject, signal, Input } from '@angular/core';
+import { Component, OnInit, computed, inject, signal, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
@@ -15,6 +15,7 @@ import { ProjectEditDlgComponent } from '../../components/projects/project-edit-
   standalone: true,
   imports: [CommonModule, FormsModule, KanbanColumnComponent, ProjectEditDlgComponent],
   templateUrl: './project-dashboard.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./project-dashboard.scss'],
 })
 export class ProjectDashboardComponent implements OnInit {

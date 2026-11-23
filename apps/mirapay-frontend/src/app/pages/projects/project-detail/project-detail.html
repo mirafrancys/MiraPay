@@ -26,7 +26,7 @@
         <h2>{{ ts.translate('PROJECTS.DETAILS.GENERAL_INFO') }}</h2>
         <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.CLIENT') }}</strong> {{ project()?.client?.nomLegal || 'Non défini' }}</div>
         <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.INVOICING_TYPE') }}</strong> {{ project()?.typeFacturation }}</div>
-        <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.START_DATE') }}</strong> {{ project()?.dateDebut && (project()?.dateDebut | date:'shortDate') || 'TBA' }}</div>
+        <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.START_DATE') }}</strong> {{ project()?.dateDebut && ($safeNavigationMigration(project()?.dateDebut) | date:'shortDate') || 'TBA' }}</div>
         <div class="info-item"><strong>{{ ts.translate('PROJECTS.DETAILS.STATUS_LABEL') }}</strong> {{ project()?.statut }}</div>
       </div>
 

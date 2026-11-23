@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -15,6 +15,7 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule, ProjectEditDlgComponent],
   templateUrl: './project-detail.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './project-detail.scss'
 })
 export class ProjectDetailComponent implements OnInit {

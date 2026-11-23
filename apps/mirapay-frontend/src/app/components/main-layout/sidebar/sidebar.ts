@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { TranslationService } from '../../../cores/services/translation.service';
@@ -11,6 +11,7 @@ import { ProjectsGateway } from '../../../cores/gateways/projects.gateway';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sidebar.scss'
 })
 export class SidebarComponent {

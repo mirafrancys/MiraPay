@@ -8,12 +8,12 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "webpack-cli build",
-        "args": ["--node-env=production"],
+        "args": ["--mode=production"],
         "cwd": "apps/mirapay-backend"
       },
       "configurations": {
         "development": {
-          "args": ["--node-env=development"]
+          "args": ["--mode=development"]
         }
       }
     },

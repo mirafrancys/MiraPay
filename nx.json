@@ -61,6 +61,13 @@
       "options": {
         "targetName": "e2e"
       }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "e2e"
+      },
+      "include": ["apps/mirapay-backend-e2e/**/*"]
     }
   ],
   "generators": {
@@ -78,5 +85,8 @@
     "@nx/angular:component": {
       "style": "scss"
     }
+  },
+  "affected": {
+    "legacy": true
   }
 }

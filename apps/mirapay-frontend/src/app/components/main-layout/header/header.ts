@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../../cores/services/translation.service';
 import { AuthGateway } from '../../../cores/gateways/auth.gateway';
@@ -8,6 +8,7 @@ import { AuthGateway } from '../../../cores/gateways/auth.gateway';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header.scss'
 })
 export class HeaderComponent {

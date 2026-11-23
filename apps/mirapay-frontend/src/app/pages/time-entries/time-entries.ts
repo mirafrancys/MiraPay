@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TimeEntriesGateway } from '../../cores/gateways/time-entries.gateway';
@@ -14,6 +14,7 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './time-entries.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './time-entries.scss'
 })
 export class TimeEntriesComponent implements OnInit {

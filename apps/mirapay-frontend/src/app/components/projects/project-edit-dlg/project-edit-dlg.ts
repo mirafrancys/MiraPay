@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IProject, IClient } from '@mirapay/shared-models';
@@ -9,6 +9,7 @@ import { TranslationService } from '../../../cores/services/translation.service'
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './project-edit-dlg.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./project-edit-dlg.scss']
 })
 export class ProjectEditDlgComponent implements OnInit {

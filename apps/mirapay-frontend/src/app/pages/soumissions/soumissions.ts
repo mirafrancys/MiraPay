@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SoumissionsGateway } from '../../cores/gateways/soumissions.gateway';
@@ -12,6 +12,7 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './soumissions.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './soumissions.scss'
 })
 export class SoumissionsComponent implements OnInit {

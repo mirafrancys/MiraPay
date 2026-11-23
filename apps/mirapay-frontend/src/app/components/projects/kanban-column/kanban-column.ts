@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProject } from '@mirapay/shared-models';
 import { ProjectCardComponent } from '../project-card/project-card';
@@ -9,6 +9,7 @@ import { TranslationService } from '../../../cores/services/translation.service'
   standalone: true,
   imports: [CommonModule, ProjectCardComponent],
   templateUrl: './kanban-column.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./kanban-column.scss'],
 })
 export class KanbanColumnComponent {

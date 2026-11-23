@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, computed } from '@angular/core';
+import { Component, inject, OnInit, signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProjectsGateway } from '../../cores/gateways/projects.gateway';
@@ -14,6 +14,7 @@ import { ProjectDashboardComponent } from '../project-dashboard/project-dashboar
   standalone: true,
   imports: [CommonModule, RouterModule, ProjectEditDlgComponent, ProjectDashboardComponent],
   templateUrl: './projects.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './projects.scss'
 })
 export class ProjectsComponent implements OnInit {

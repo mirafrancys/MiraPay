@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../cores/services/translation.service';
 
@@ -7,6 +7,7 @@ import { TranslationService } from '../../cores/services/translation.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboard.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './dashboard.scss'
 })
 export class DashboardComponent {

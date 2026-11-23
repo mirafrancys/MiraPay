@@ -9,6 +9,7 @@
     "build": {
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
       "options": {
         "outputPath": "dist/apps/mirapay-frontend",
         "browser": "apps/mirapay-frontend/src/main.ts",
@@ -42,12 +43,15 @@
           "extractLicenses": false,
           "sourceMap": true
         }
-      },
-      "defaultConfiguration": "development"
+      }
     },
     "serve": {
       "continuous": true,
       "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "readyWhen": {
+        "signal": true
+      },
       "options": {
         "port": 4231,
         "proxyConfig": "apps/mirapay-frontend/proxy.conf.json"
@@ -59,11 +63,7 @@
         "development": {
           "buildTarget": "mirapay-frontend:build:development"
         }
-      },
-      "defaultConfiguration": "development"
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
+      }
     },
     "test": {
       "executor": "nx:run-commands",
@@ -79,7 +79,11 @@
         "port": 4231,
         "staticFilePath": "dist/apps/mirapay-frontend/browser",
         "spa": true
-      }
+      },
+      "readyWhen": {
+        "signal": true
+      },
+      "dependsOn": ["build"]
     }
   }
 }

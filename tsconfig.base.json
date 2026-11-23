@@ -18,7 +18,12 @@
     "paths": {
       "@mirapay/shared-models": ["libs/shared-models/src/index.ts"],
       "@mirapay/prisma": ["apps/mirapay-backend/src/generated/prisma"]
-    }
+    },
+    "strict": false,
+    "noUncheckedSideEffectImports": false,
+    "types": ["*"],
+    "esModuleInterop": false,
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["node_modules", "tmp"]
 }

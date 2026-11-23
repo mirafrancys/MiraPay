@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContratsGateway } from '../../cores/gateways/contrats.gateway';
@@ -12,6 +12,7 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './contrats.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contrats.scss'
 })
 export class ContratsComponent implements OnInit {
